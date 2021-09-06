@@ -27,7 +27,7 @@ copyright = str(datetime.now().year) + u', TradingView'
 author = u''
 
 # The short X.Y version
-version = u'4' # Could be referenced from *.rst with |version| macro
+version = u'0.1' # Could be referenced from *.rst with |version| macro
 
 # The full version, including alpha/beta/rc tags
 release = u'4' # Could be referenced from *.rst with |release| macro
@@ -165,7 +165,7 @@ epub_exclude_files = ['search.html']
 
 # -- Extension configuration -------------------------------------------------
 
-# readthedocs recommends configuring Sphinx to use gettext_uuid as True 
+# readthedocs recommends configuring Sphinx to use gettext_uuid as True
 # If True, then RTD creates '# 9f7272de60e648aca7445e7c0cbd450c' these lines in *.pot files
 gettext_uuid = False
 
