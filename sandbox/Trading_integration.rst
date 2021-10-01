@@ -69,8 +69,8 @@ How to implement mapping
   manually if necessary.
 | At the development stage, you can set a partial mapping, i.e. not for all instruments supported by the broker.
 
-How to match characters
-'''''''''''''''''''''''
+How to match symbols
+''''''''''''''''''''
 | To find a TradingView symbol, you can use JSON with a full list of all symbols:
   ``https://s3.amazonaws.com/tradingview-symbology/symbols.json``.
 | This file is updated on daily basis. When generating a response to the ``/mapping`` request, broker must use
@@ -88,22 +88,23 @@ When brokerage integration can be placed in the Sandbox
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 | The Sandbox can be accessed only from IP addresses that were previously placed in the whitelist on the TradingView side.
   The broker integration at the development stage can be placed in the sandbox only after passing the conformational
-  tests at ``https://www.tradingview.com/rest-api-test/`` and having the market data necessary for the integration to work,
-  at least at the TradingView staging. In the absence of a data integration stage, when the broker is going to use
-  the market data that is already available in TradingView, a prerequisite for placing it in the sandbox is the
-  implementation of the `/mapping <https://www.tradingview.com/rest-api-spec/#operation/getMapping>`_ endpoint.
+  tests at `https://www.tradingview.com/rest-api-test/ <https://www.tradingview.com/rest-api-test/>`_ and having
+  the market data necessary for the integration to work, at least at the TradingView staging. In the absence of a data
+  integration stage, when the broker is going to use the market data that is already available in TradingView,
+  a prerequisite for placing it in the sandbox is the implementation of the
+  `/mapping <https://www.tradingview.com/rest-api-spec/#operation/getMapping>`_ endpoint.
 
 Authentication
-..............
+--------------
 
 Password Bearer
-'''''''''''''''
+...............
 | In this type of authorization, the user enters the login and password on the TradingView website.
 | By default, placeholders in the authorization pop-up window have the values ``login`` and ``password``. However, at
   the request of the broker, they can be replaced. In this case, new titles must be provided in English.
 
 OAuth2Bearer
-''''''''''''
+............
 | TradingView's security policy does not allow the same OAuth secrets for all of the six supported
   :ref:`connections<environments-label>` between the TradingView client and the broker's server. Therefore, all
   ``client_id`` values (and ``client_secret`` values in case of using the *OAuth2 Code flow* authorization option) must

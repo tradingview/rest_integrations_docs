@@ -10,4 +10,4 @@ REST Integrations FAQ |version|
 
    Introduction
    Integration_architecture
-   Trading_integration
+   trading/index

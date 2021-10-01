@@ -19,8 +19,8 @@ In what cases it is possible not to integrate data
 | In this case, the broker implements the `/mapping <https://www.tradingview.com/rest-api-spec/#operation/getMapping>`_
   endpoint to solve the problem of :ref:`mapping<mapping-symbols-label>` symbols between TradingView and broker.
 
-How trade integration works
----------------------------
+How trading integration works
+-----------------------------
 When integrating trading, a client-server architecture is used, requests from the user's browser are sent directly to
 the broker's server. The TradingView Server does not participate in this communication. An exception is the
 `/permissions <https://www.tradingview.com/rest-api-spec/#operation/getPermissions>`_ request, which is sent from
