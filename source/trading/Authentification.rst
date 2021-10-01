@@ -1,3 +1,6 @@
+.. contents::
+   :depth: 5
+
 Authentication
 --------------
 | After passing the authentication, regardless of the method of obtaining the access token, all requests to the broker's
@@ -30,7 +33,9 @@ OAuth2 Implicit flow
 ''''''''''''''''''''
 | This type of authorization is implemented in accordance with the `RFC <https://datatracker.ietf.org/doc/html/rfc6749#section-4.2>`_.
   The procedure for OAuth2 Implicit flow is as follows.
-| Authorization:
+
+Authorization
+"""""""""""""
 
 #. The user selects a broker in the Trading panel on the Chart page on the TradingView website.
 #. The user is shown a login popup where the user clicks the ``Continue`` button
@@ -65,6 +70,9 @@ OAuth2 Implicit flow
   from the moment it was opened, even if the access token has not been received. Therefore, you should not require any action
   from the user on this tab, except for entering credentials. If, for example, it is required to give the user the opportunity
   to sign-up, then this should be done in another tab, opened using an external link from the authorization tab.
+
+Refresh Token
+"""""""""""""
 
 | When the access token expires approaching, TradingView automatically launches the access token refresh procedure, which
   follows the following scenario.

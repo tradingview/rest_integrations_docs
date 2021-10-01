@@ -1,3 +1,6 @@
+.. contents::
+   :depth: 5
+
 General issues
 --------------
 
