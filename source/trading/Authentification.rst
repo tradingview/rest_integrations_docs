@@ -29,14 +29,19 @@ OAuth2Bearer
   be unique. On the TradingView side, all OAuth secrets are kept in a special high-security secret vault. Security audits
   are performed regularly.
 
+.. important:: Since the procedure for refreshing the token occurs asynchronously and takes some time, it is possible
+  that there will be a period of time after the broker's server issues a new access token, during which it will receive
+  requests with the old access token, since the new access token is not yet managed to reach the client. Therefore,
+  the broker's server should not invalidate the old access token immediately after issuing a new one and accept requests
+  with the old access token for some time, at least until the requests come with the new access token.
+
 OAuth2 Implicit flow
 ''''''''''''''''''''
-| This type of authorization is implemented in accordance with the `RFC <https://datatracker.ietf.org/doc/html/rfc6749#section-4.2>`_.
+| This type of authorization is implemented in accordance with the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.2>`_.
   The procedure for OAuth2 Implicit flow is as follows.
 
 Authorization
 """""""""""""
-
 #. The user selects a broker in the Trading panel on the Chart page on the TradingView website.
 #. The user is shown a login popup where the user clicks the ``Continue`` button
 #. A new browser tab is opened by the Authorization URL of the broker, in the GET parameters of the request are transmitted:
@@ -87,6 +92,74 @@ Refresh Token
   when the initial authentication passes.
 
 .. warning:: There is a problem that if the user has disabled third-party cookies in his browser, then this cookie will
-  not be sent to the broker's server in a request to refresh the token. Within the option of *OAuth2 Implicit flow*,
-  this problem is not solved in any way. Therefore, it is preferable to use the *OAuth2 Code flow* option, which does not
-  have this problem when refreshing the token.
+   not be sent to the broker's server in a request to refresh the token. Within the option of *OAuth2 Implicit flow*,
+   this problem is not solved in any way. Therefore, it is preferable to use the *OAuth2 Code flow* option, which does not
+   have this problem when refreshing the token.
+
+OAuth2 Code flow
+''''''''''''''''
+| This type of authorization is implemented in accordance with the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.1>`_.
+| Unlike OAuth2 Implicit flow, OAuth2 Code flow does not have a problem with user identification when refreshing
+  an access token, so a refresh token can be used for this and there is no need for cookies. In addition, the procedure
+  for obtaining the access token directly and updating it is performed between the TradingView servers and the broker,
+  so the OAuth2 Code flow option is much more secure than the OAuth2 Implicit flow.
+| The procedure for OAuth2 Code flow is as follows.
+
+Authorization
+"""""""""""""
+#. The user selects a broker in the Trading panel on the Chart page on the TradingView website.
+#. The user is shown a login popup where the user clicks the ``Continue`` button
+#. A new browser tab is opened by the Authorization URL of the broker, in the GET parameters of the request are transmitted:
+
+    * ``response_type`` - the value will always be ``token``
+    * ``client_id`` - unique identifier of the client
+    * ``redirect_uri`` - Redirection Endpoint. For security reasons, it is better to configure the value of this
+      parameter on your server and, when receiving an authorization request, check this parameter for compliance with
+      the one in the configuration
+    * ``scope`` - an optional parameter, the value of which is pre-registered on the TradingView side
+    * ``state`` - a string value used to maintain state between the request and the callback. Shouldn't be changed on
+      the broker's server and should return to the callback unchanged.
+    * ``prompt`` - the parameter takes the value of ``login`` when requesting authorization and value of ``none`` when
+      requesting to refresh the token
+    * ``lang`` - a parameter on demand, transfers the locale of the TradingView site, which the user uses at the time of
+      authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, ``fr``, ``he``, ``hu``,
+      ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``, ``tr``, ``uk``,
+      ``vi``, ``zh``.
+
+#. The broker's server gives a page with an authorization form and prompts the user to enter their credentials.
+#. The broker's server authenticates and authorizes the user after submitting the form and, if successful, redirects
+   the request to redirect_uri with GET parameters:
+
+    * ``code`` - an authorization code with a short expiration time, which will subsequently be exchanged for an access token
+    * ``state`` - the unchanged value of the state field from the original Authorization request
+
+#. The TradingView Server sends a POST request for the access token to the token endpoint of the broker's server with
+   the following parameters in the ``application/x-www-form-urlencoded`` format.
+
+    * ``grant_type`` - the value is always equal to ``authorization_code``
+    * ``code`` - authorization code obtained from response to Authorization request
+    * ``client_id`` - unique identifier of the client
+    * ``client_secret`` - a unique client secret. This parameter has been added for compatibility with the
+      `Auth0 service <https://auth0.com/docs/authorization/flows/call-your-api-using-the-authorization-code-flow>`_,
+      where it is required
+    * ``redirect_uri`` - the same Redirect URI as in the Authorization Request
+
+#. The broker's server sends a response to a request for an access token with a body with the following fields:
+
+    * ``token_type`` - value must be ``bearer``
+    * ``access_token`` - access token that will be used in REST requests to the broker's server
+    * ``expires_in`` - token lifetime in seconds
+    * ``refresh_token`` - a token that is exchanged for a new access token before the expiration of the current access token
+
+Refresh Token
+"""""""""""""
+| When the expiration time of the current access token approaches, the TradingView server automatically starts the procedure
+  for refreshing the access token. To do this, a request is sent to the broker's server for the token endpoint with
+  the following parameters:
+
+    * ``grant_type`` - the value will always be ``refresh_token``
+    * ``refresh_token`` - a refresh token received in the same request as the current access token
+    * ``client_secret`` - the value of the client secret provided by the broker.
+
+| The response is expected to be exactly the same as for the request to obtain an access token during the initial
+  authorization.
