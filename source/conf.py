@@ -22,15 +22,15 @@ from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
-project = u'Pine Script User Manual'
+project = u'REST Integrations Docs'
 copyright = str(datetime.now().year) + u', TradingView'
 author = u''
 
 # The short X.Y version
-version = u'4' # Could be referenced from *.rst with |version| macro
+version = u'1' # Could be referenced from *.rst with |version| macro
 
 # The full version, including alpha/beta/rc tags
-release = u'4' # Could be referenced from *.rst with |release| macro
+release = u'1.0.0' # Could be referenced from *.rst with |release| macro
 
 
 # -- General configuration ---------------------------------------------------
@@ -69,12 +69,7 @@ language = 'en'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_themes/*']
 
-# lexers['pine'] = pine_lexer.PinePygmentsLexer(startinline=True)
-
-# The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'pine_style.PineStyle'
-
-highlight_language = 'pine'
+highlight_language = 'ts'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -141,8 +136,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'pine_script_docs.tex', u'Pine Script User Manual',
-     u'vvolkov', 'manual'),
+    (master_doc, 'rest_integrations_docs.tex', u'REST Integrations Docs',
+     u'ejukovskiy', 'manual'),
 ]
 
 # -- Options for Epub output -------------------------------------------------
@@ -172,15 +167,7 @@ gettext_uuid = False
 # readthedocs recommends configuring Sphinx to use gettext_compact as False to generate .pot files.
 gettext_compact = False
 
-languages = ['en']
-if os.path.isdir('locales'):
-    languages += os.listdir('locales')
-
 html_context = {
     'current_version': 'v1',
-    'languages': languages,
-    'versions': [
-        'v3',
-        'v4'
-    ]
+    'languages': ['en'],
 }

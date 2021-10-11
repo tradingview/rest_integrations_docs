@@ -1,6 +1,6 @@
 .. Helpful doc https://devguide.python.org/documenting/#restructuredtext-primer
 
-REST Integrations |version| FAQ
+REST Integrations FAQ
 *********************************
 
 .. toctree::
