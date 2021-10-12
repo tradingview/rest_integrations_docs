@@ -84,7 +84,7 @@ html_theme_path = guzzle_sphinx_theme.html_theme_path()
 
 # Custom sidebar templates, maps document names to template names.
 html_sidebars = {
-    '**': ['logo-text.html', 'globaltoc.html', 'searchbox.html', 'versions.html']
+    '**': ['logo-text.html', 'globaltoc.html', 'searchbox.html']
 }
 
 # Theme options are theme-specific and customize the look and feel of a theme
