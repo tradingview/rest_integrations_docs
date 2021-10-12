@@ -87,6 +87,8 @@ html_sidebars = {
     '**': ['logo-text.html', 'globaltoc.html', 'searchbox.html']
 }
 
+html_title = u'REST Integrations Docs'
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
