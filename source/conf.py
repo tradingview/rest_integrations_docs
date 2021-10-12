@@ -22,15 +22,15 @@ from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
-project = u'Pine Script User Manual'
+project = u'REST Integrations Docs'
 copyright = str(datetime.now().year) + u', TradingView'
 author = u''
 
 # The short X.Y version
-version = u'0.1' # Could be referenced from *.rst with |version| macro
+version = u'1' # Could be referenced from *.rst with |version| macro
 
 # The full version, including alpha/beta/rc tags
-release = u'4' # Could be referenced from *.rst with |release| macro
+release = u'1.0.0' # Could be referenced from *.rst with |release| macro
 
 
 # -- General configuration ---------------------------------------------------
@@ -69,12 +69,7 @@ language = 'en'
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_themes/*']
 
-# lexers['pine'] = pine_lexer.PinePygmentsLexer(startinline=True)
-
-# The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'pine_style.PineStyle'
-
-highlight_language = 'pine'
+highlight_language = 'ts'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -116,53 +111,6 @@ html_static_path = ['_static']
 # html_sidebars = {}
 
 
-
-# -- Options for LaTeX output ------------------------------------------------
-
-latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'pine_script_docs.tex', u'Pine Script User Manual',
-     u'vvolkov', 'manual'),
-]
-
-# -- Options for Epub output -------------------------------------------------
-
-# Bibliographic Dublin Core info.
-epub_title = project
-
-# The unique identifier of the text. This can be a ISBN number
-# or the project homepage.
-#
-# epub_identifier = ''
-
-# A unique identification for the text.
-#
-# epub_uid = ''
-
-# A list of files that should not be packed into the epub file.
-epub_exclude_files = ['search.html']
-
-
 # -- Extension configuration -------------------------------------------------
 
 # readthedocs recommends configuring Sphinx to use gettext_uuid as True
@@ -171,16 +119,3 @@ gettext_uuid = False
 
 # readthedocs recommends configuring Sphinx to use gettext_compact as False to generate .pot files.
 gettext_compact = False
-
-languages = ['en']
-if os.path.isdir('locales'):
-    languages += os.listdir('locales')
-
-html_context = {
-    'current_version': 'v1',
-    'languages': languages,
-    'versions': [
-        'v3',
-        'v4'
-    ]
-}
