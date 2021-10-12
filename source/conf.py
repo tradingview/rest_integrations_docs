@@ -166,8 +166,3 @@ gettext_uuid = False
 
 # readthedocs recommends configuring Sphinx to use gettext_compact as False to generate .pot files.
 gettext_compact = False
-
-html_context = {
-    'current_version': 'v1',
-    'languages': ['en'],
-}
