@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = python -m sphinx
+SPHINXBUILD   = python3.8 -m sphinx
 SOURCEDIR     = source
 BUILDDIR      = build
 
@@ -19,10 +19,10 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 syncpackages:
-	pip install --user -r requirements.txt
+	python3.8 -m pip install --user -r requirements.txt
 
 install_hooks:
 	cp -r ./git-hooks/. ./.git/hooks
 
 install_tools:
-	pip install sphinx==1.8.5
+	python3.8 -m pip install sphinx==1.8.5
