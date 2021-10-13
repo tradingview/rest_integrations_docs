@@ -116,7 +116,7 @@ html_theme_options = {
 
 # -- Extension configuration -------------------------------------------------
 
-# readthedocs recommends configuring Sphinx to use gettext_uuid as True 
+# readthedocs recommends configuring Sphinx to use gettext_uuid as True
 # If True, then RTD creates '# 9f7272de60e648aca7445e7c0cbd450c' these lines in *.pot files
 gettext_uuid = False
 

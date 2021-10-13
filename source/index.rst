@@ -4,7 +4,9 @@ REST Integrations FAQ
 *********************************
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 5
    :name: mastertoc
 
    Introduction
+   Integration_architecture
+   trading/index
