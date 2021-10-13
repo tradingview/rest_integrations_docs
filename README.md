@@ -9,6 +9,9 @@ Follow these steps:
 
 Your docs will be in the `build/html` folder.
 
+To serve docs you can run:
+* `npx serve build/html`
+
 ## Notes for writers
 
 ### Rules for capitalization in titles
