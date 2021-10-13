@@ -1,1 +1,1 @@
-guzzle_sphinx_theme
+-e git+https://git.xtools.tv/tv/guzzle_sphinx_theme.git@master#egg=guzzle_sphinx_theme
