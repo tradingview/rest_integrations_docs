@@ -1,16 +1,18 @@
 # REST Integrations FAQ
 
-## How to build html docs
+## How to build docs
 Follow these steps:
 
-* Execute `sudo make install_tools`
-* Execute `make syncpackages` (this would download the theme)
-* Execute `make html`
+* Execute `sudo make init`
+* Execute `make doc`
 
 Your docs will be in the `build/html` folder.
 
-To serve docs you can run:
-* `npx serve build/html`
+## How to build docs in watch mode
+
+* Execute `make watch`
+
+Docs will be available at http://localhost:8000
 
 ## Notes for writers
 

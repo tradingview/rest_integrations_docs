@@ -1,9 +1,17 @@
 # Minimal makefile for Sphinx documentation
-#
+
+# Platform identification
+PYTHON = python3.8
+ifdef COMSPEC # win32 system
+PYTHON = python
+endif # COMSPEC
+ifdef ComSpec # win32 system
+PYTHON = python
+endif # ComSpec
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = python3.8 -m sphinx
+SPHINXBUILD   = "$(PYTHON)" -m sphinx
 SOURCEDIR     = source
 BUILDDIR      = build
 
@@ -19,10 +27,19 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 syncpackages:
-	python3.8 -m pip install --user -r requirements.txt
+	"$(PYTHON)" -m pip install --user -r requirements.txt
 
 install_hooks:
 	cp -r ./git-hooks/. ./.git/hooks
 
-install_tools:
-	python3.8 -m pip install sphinx==1.8.5
+init:
+	./init.sh $(PYTHON);
+	make install_hooks;
+	make syncpackages;
+
+doc:
+	make html
+	"$(PYTHON)" processLink.py
+
+watch:
+	./watch.sh $(PYTHON);
