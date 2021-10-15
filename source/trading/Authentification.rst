@@ -9,17 +9,20 @@ Authentication
 Password Bearer
 ...............
 | In this type of authorization, the user enters the login and password on the TradingView website.
-| The broker's server receives the entered user credentials in a POST request to the ``/authorize`` endpoint. Fields
-  expected in response:
+  The broker's server receives the entered user credentials in a POST request to the 
+  `/authorize <https://www.tradingview.com/rest-api-spec/#operation/authorize>`_ endpoint.
 
-* ``access_token`` - directly the value of access token, which will be used to sign requests to the broker's REST server
-* ``expiration`` - an optional parameter that defines the expiration time of the token in the form of a unix timestamp.
-  In the current implementation, with this authentication method, the token will not be updated, even if the expiration
-  field is received in the response and this moment of time approaches. This is due to TradingView's security policy,
-  which prohibits the storage of any user credentials from third-party resources on the TradingView side.
+| Fields expected in response:
 
-| By default, placeholders in the authorization pop-up window have the values ``login`` and ``password``. However, at
-  the request of the broker, they can be replaced. In this case, new placeholders must be provided in English.
+* ``access_token`` --- access token, which will be used to sign requests to the broker's REST server.
+* ``expiration`` --- token expiration time in Unix Timestamp format, optional parameter.
+
+| In the current implementation, the token will not be updated, even if the ``expiration`` field is received in the 
+ response and that point in time is approaching. This is due to TradingView's security policy, which prohibits the 
+ storage of any user credentials from third-party resources on the TradingView side.
+
+| By default, placeholders in the authorization pop-up window have the values ``login`` and ``password``.
+  If you wish to change these values, provide your version in English.
 
 OAuth2Bearer
 ............
@@ -29,34 +32,32 @@ OAuth2Bearer
   be unique. On the TradingView side, all OAuth secrets are kept in a special high-security secret vault. Security audits
   are performed regularly.
 
-.. important:: Since the procedure for refreshing the token occurs asynchronously and takes some time, it is possible
-  that there will be a period of time after the broker's server issues a new access token, during which it will receive
-  requests with the old access token, since the new access token is not yet managed to reach the client. Therefore,
-  the broker's server should not invalidate the old access token immediately after issuing a new one and accept requests
-  with the old access token for some time, at least until the requests come with the new access token.
+.. important:: The token is updated asynchronously and takes some time. Therefore, the broker's server must accept 
+  requests with the old access token until requests come with the new token. After that, the old token can be invalidated.
 
 OAuth2 Implicit flow
 ''''''''''''''''''''
-| This type of authorization is implemented in accordance with the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.2>`_.
-  The procedure for OAuth2 Implicit flow is as follows.
+| This type of authorization is implemented following `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.2>`_.
+  The procedure for *OAuth2 Implicit flow* is as follows.
 
 Authorization
 """""""""""""
-#. The user selects a broker in the Trading panel on the Chart page on the TradingView website.
-#. The user is shown a login popup where the user clicks the ``Continue`` button
-#. A new browser tab is opened by the Authorization URL of the broker, in the GET parameters of the request are transmitted:
+#. On the TradingView website on the Chart page in the Trading Panel, the user selects a broker. A login popup appears.
+#. User clicks the ``Continue`` button on this popup.
+#. A new browser tab opens at the broker's *Authorization URL*.
+#. The following parameters are sent in the GET request:
 
-    * ``response_type`` - the value will always be ``token``
-    * ``client_id`` - unique identifier of the client
-    * ``redirect_uri`` - Redirection Endpoint. For security reasons, it is better to configure the value of this
+    * ``response_type`` --- the value will always be ``token``.
+    * ``client_id`` --- unique identifier of the client.
+    * ``redirect_uri`` --- *Redirection Endpoint*. For security reasons, it is better to configure the value of this
       parameter on your server and, when receiving an authorization request, check this parameter for compliance with
       the one in the configuration
-    * ``scope`` - an optional parameter, the value of which is pre-registered on the TradingView side
-    * ``state`` - a string value used to maintain state between the request and the callback. Shouldn't be changed on
+    * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side
+    * ``state`` --- a string value used to maintain state between the request and the callback. Shouldn't be changed on
       the broker's server and should return to the callback unchanged.
-    * ``prompt`` - the parameter takes the value of ``login`` when requesting authorization and value of ``none`` when
+    * ``prompt`` --- the parameter takes the value of ``login`` when requesting authorization and value of ``none`` when
       requesting to refresh the token
-    * ``lang`` - a parameter on demand, transfers the locale of the TradingView site, which the user uses at the time of
+    * ``lang`` --- a parameter on demand, transfers the locale of the TradingView site, which the user uses at the time of
       authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, ``fr``, ``he``, ``hu``,
       ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``, ``tr``, ``uk``,
       ``vi``, ``zh``.
@@ -65,10 +66,10 @@ Authorization
 #. The broker's server authenticates and authorizes the user after submitting the form and, if successful, redirects
    the request to ``redirect_uri`` with parameters that are passed as a fragment
 
-    * ``access_token`` - directly the value of access token, which will be used to sign requests to the broker's REST
+    * ``access_token`` --- directly the value of access token, which will be used to sign requests to the broker's REST
       server
-    * ``state`` - the unchanged value of the state field from the original authorization request
-    * ``expires_in`` - an optional parameter that defines the token lifetime in seconds. If this parameter is omitted,
+    * ``state`` --- the unchanged value of the state field from the original authorization request
+    * ``expires_in`` --- an optional parameter that defines the token lifetime in seconds. If this parameter is omitted,
       the token will not be updated. But it must be borne in mind that this can harm the user's safety.
 
 .. important:: The browser tab on which the authorization process is underway will in any case be closed after 120 seconds
@@ -98,7 +99,7 @@ Refresh Token
 
 OAuth2 Code flow
 ''''''''''''''''
-| This type of authorization is implemented in accordance with the `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.1>`_.
+| This type of authorization is implemented following `RFC 6749 <https://datatracker.ietf.org/doc/html/rfc6749#section-4.1>`_.
 | Unlike OAuth2 Implicit flow, OAuth2 Code flow does not have a problem with user identification when refreshing
   an access token, so a refresh token can be used for this and there is no need for cookies. In addition, the procedure
   for obtaining the access token directly and updating it is performed between the TradingView servers and the broker,
