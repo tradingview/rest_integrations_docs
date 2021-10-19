@@ -22,7 +22,7 @@ from datetime import datetime
 
 # -- Project information -----------------------------------------------------
 
-project = u'REST Integrations Docs'
+project = u'Broker Integration Manual'
 copyright = str(datetime.now().year) + u', TradingView'
 author = u''
 
@@ -87,7 +87,7 @@ html_sidebars = {
     '**': ['logo-text.html', 'globaltoc.html', 'searchbox.html']
 }
 
-html_title = u'REST Integrations Docs'
+html_title = u'Broker Integration Manual'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -95,7 +95,7 @@ html_title = u'REST Integrations Docs'
 #
 html_theme_options = {
     # Set the name of the project to appear in the sidebar
-    'project_nav_name': u'REST Integrations FAQ',
+    'project_nav_name': u'Broker Integration Manual',
 }
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
