@@ -5,7 +5,7 @@ Trading integration
    :maxdepth: 3
    :name: appendixtoc
 
-   Authentification
    Configuring
-   Concepts
+   Authentification
    UI_elements
+   Mapping_symbols

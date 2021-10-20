@@ -1,43 +1,60 @@
-.. contents::
-   :depth: 5
+.. links
+.. _/accounts: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
+.. _/balances: https://www.tradingview.com/rest-api-spec/#operation/getBalances
+.. _/config: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
+.. _/depth: https://www.tradingview.com/rest-api-spec/#operation/getDepth
+.. _/instruments: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
+.. _/orders: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _/positions: https://www.tradingview.com/rest-api-spec/#operation/getPositions
+.. _/quotes: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
+.. _/state: https://www.tradingview.com/rest-api-spec/#operation/getState
 
 Configuring
 -----------
-| There are three levels of configuration:
 
-* *Broker level* --- applies to all subaccounts defined for the user.
-  It's performed via the `/config <https://www.tradingview.com/rest-api-spec/#operation/getConfiguration>`_ request.
-* *Subaccount level* --- extends to UI elements for a specific subaccount.
-  It's performed via the `/accounts <https://www.tradingview.com/rest-api-spec/#operation/getAccounts>`_ request.
-* *Instrument level* --- to configure UI elements for a specific instrument.
-  It's performed via the `/instruments <https://www.tradingview.com/rest-api-spec/#operation/getInstruments>`_ request.
+.. contents:: :local:
+   :depth: 3
 
-| All these requests are executed once when logging into the broker integration. The configuration priority of the same 
-  UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the previous one.
+Configuration levels
+....................
+There are three configuration levels.
+
+* *Broker level* applies to all subaccounts defined for the user. It's performed via the `/config`_ request.
+* *Subaccount level* extends to UI elements for a specific subaccount. It's performed via the `/accounts`_ 
+  request.
+* *Instrument level* to configure UI elements for a specific instrument. It's performed via the `/instruments`_ 
+  request.
+
+All these requests are executed once when logging into the broker integration. The configuration priority of the
+same UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the
+previous one.
 
 Pulling intervals
 .................
-| Pulling intervals are configurable at the broker level only. They are designed to determine the frequency of requests
-  to a specific endpoint. Consider the infrastructure when configuring the intervals to avoid dropping connections on 
-  the broker's side. High values in requests can cause rate limit errors.
+Pulling intervals are designed to determine the frequency of requests to a specific endpoint. They are configurable 
+at the broker level only. Consider the infrastructure when configuring the intervals to avoid dropping
+connections on the broker's side. High values in requests can cause rate limit errors.
   
-| TradingView does not strictly limit the amount of pulling intervals for requests, however, it is not recommended to 
-  set their values higher than the maximum recommended. Because the TradingView UI can become unresponsive to the user 
-  experience, which can lead to user complaints.
+TradingView does not strictly limit the amount of pulling intervals for requests, however, it is not recommended 
+to set their values higher than the maximum recommended. Because the TradingView UI can become 
+unresponsive to the user experience, which can lead to user complaints.
 
-| Matching fields to requests:
+Matching fields to requests:
 
-* ``quotes`` --- the `/quotes <https://www.tradingview.com/rest-api-spec/#operation/getQuotes>`_ 
-  and `/depth <https://www.tradingview.com/rest-api-spec/#operation/getDepth>`_ requests  (max 1000ms)
-* ``accountManager`` --- the `/state <https://www.tradingview.com/rest-api-spec/#operation/getDepth>`_ request (max 1500ms)
-* ``orders`` --- the `/orders <https://www.tradingview.com/rest-api-spec/#operation/getDepth>`_ request (max 1500ms)
-* ``positions`` --- the `/positions <https://www.tradingview.com/rest-api-spec/#operation/getDepth>`_ request (max 1500ms)
-* ``balances`` --- the `/balances <https://www.tradingview.com/rest-api-spec/#operation/getDepth>`_ request (max 1500ms)
+* ``quotes`` --- the `/quotes`_ and `/depth`_ requests (max 1000ms)
+* ``accountManager`` --- the `/state`_ request (max 1500ms)
+* ``orders`` --- the `/orders`_ request (max 1500ms)
+* ``positions`` --- the `/positions`_ request (max 1500ms)
+* ``balances`` --- the `/balances`_ request (max 1500ms)
 
-Durations
-.........
-| `TradingView REST API <https://www.tradingview.com/rest-api-spec>`_ allows you to configure the duration 
-  (or *Time In Force*) separately for each of the supported order types. By default, any item from the duration list will
-  be shown in the *Order Ticket* only for *Limit*, *Stop*, *Stop-Limit* orders. If this list should be different from the 
-  default for any Durations elements, you must submit it for this item in the ``supportedOrderTypes`` field.
-  ``supportedOrderTypes`` must be an array of order types for which this duration will be available.
+CORS policy
+...........
+Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example, 
+the German version of the site is located at ``de.tradingview.com``. TradingView can send a request from any of these 
+addresses.
+
+Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
+the request in each endpoint for each response code.
+
+In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
+This address is used on developers\' computers.

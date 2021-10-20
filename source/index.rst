@@ -10,4 +10,3 @@ Broker Integration Manual
    Introduction
    Integration_overview
    trading/index
-   Glossary
