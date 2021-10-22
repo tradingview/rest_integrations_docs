@@ -22,7 +22,7 @@ Glossary
    
    position
       The amount of assets that is owned (long position) or the amount of debt (short position). A trader takes a 
-      position when he make a purchase through a buy order or if he sell short assets.
+      position when he makes a purchase through a buy order or if he sells short assets.
    
    :abbr:`DOM (Depth Of Market)`
       Depth of Market, aka the Order Book, is a window that shows how many open buy and sell orders there are 

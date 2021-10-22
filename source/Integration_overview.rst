@@ -1,8 +1,7 @@
-.. links:
+.. links
 .. _/mapping: https://www.tradingview.com/rest-api-spec/#operation/getMapping
 .. _/permissions: https://www.tradingview.com/rest-api-spec/#operation/getPermissions
 .. _`tradingview.com/rest-api-test`: https://www.tradingview.com/rest-api-test/
-.. _`symbols.json`: https://s3.amazonaws.com/tradingview-symbology/symbols.json
 .. _`beta-rest.tradingview.com`: https://beta-rest.tradingview.com/
 
 Integration overview
@@ -61,16 +60,16 @@ Each environment has its URL.
 
 Six options for connecting environments are shown in the table.
 
-======================= ==================
+======================= =======================
 TradingView environment Broker environment
-======================= ==================
+======================= =======================
 production              production
 staging                 production
 localhost               production
 production              staging
 staging                 staging
 localhost               staging
-======================= ==================
+======================= =======================
 
 A TradingView website in a sandbox or production can only be connected to one broker environment at a time.
 You can switch between environments through the browser console. Switching instructions are available after 
