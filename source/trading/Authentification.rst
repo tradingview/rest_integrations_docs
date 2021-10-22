@@ -52,8 +52,8 @@ Let's consider :ref:`authorization<oauth2-implicit-flow-authorization>` and
 
 Authorization
 """""""""""""
-#. A user opens the *Chart* page on the TradingView website. Then he selects a broker in the *Trading Panel*.
-#. A login popup appears. The user clicks the *Continue* button on this popup.
+#. A user opens the "Chart" page on the TradingView website. Then he selects a broker in the "Trading Panel".
+#. A login popup appears. The user clicks the "Continue" button on this popup.
 #. A new browser tab opens at the broker's *Authorization URL*.
 #. The following parameters are sent in the GET request:
 
@@ -84,7 +84,7 @@ Authorization
       is omitted, the token will not be refreshed. But it must be borne in mind that this can harm the user's 
       safety.
 
-.. tip:: The authorization process takes place on a separate tab. It will close **120 seconds** after opening, 
+.. important:: The authorization process takes place on a separate tab. It will close **120 seconds** after opening, 
   even if no access token has been received. You should not require the user to do anything on this tab other than 
   enter credentials. For example, you want to give a user the ability to sign up. Place in the authorization tab a 
   link that opens a new sign up tab.

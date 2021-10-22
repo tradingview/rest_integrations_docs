@@ -19,11 +19,12 @@ Configuration levels
 ....................
 There are three configuration levels.
 
-* *Broker level* applies to all subaccounts defined for the user. It's performed via the `/config`_ request.
-* *Subaccount level* extends to UI elements for a specific subaccount. It's performed via the `/accounts`_ 
-  request.
-* *Instrument level* to configure UI elements for a specific instrument. It's performed via the `/instruments`_ 
-  request.
+* *Broker level* applies to all subaccounts defined for the user. 
+  It's performed via the `/config`_ request.
+* *Subaccount level* extends to UI elements for a specific subaccount. 
+  It's performed via the `/accounts`_ request.
+* *Instrument level* uses to configure UI elements for a specific instrument. 
+  It's performed via the `/instruments`_ request.
 
 All these requests are executed once when logging into the broker integration. The configuration priority of the
 same UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the

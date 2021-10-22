@@ -33,7 +33,7 @@ issue between the TradingView and broker symbols.
 
 How trading integration works
 .............................
-The trading integration uses a "client-server" architecture: requests from the user's browser are sent directly to
+The trading integration uses a client-server architecture: requests from the user's browser are sent directly to
 the broker's server. The TradingView server is not involved in this data exchange.
 An exception is a request to `/permissions`_.
 It is sent from the TradingView server to give the user access to the data.
@@ -51,29 +51,34 @@ Types of environments
 There are several environment variants are used in the development and support of the integration.
 Each environment has its URL.
 
-- The *production environment* is available to end-users. Real market data is used here. 
-  TradingView implements the production environment on its side, the broker on its side.
-- The *staging environment* is used for testing. Real market data is not used here. 
-  TradingView implements on its side, the broker on its side.
-- The *local environment* is used on developers\' computers. Real market data is not used here. 
-  Connections to the broker's staging environment are made from ``localhost: 6285``.
+- The *production environment* with the real market data is available to the end-users. TradingView implements the 
+  production environment on its side, and the brokers do it on theirs.
+- The *staging environment* is for testing and does not contain real market data. TradingView implements the staging 
+  environment on its side, and the brokers do it on theirs.
+- The *local environment* is used on developers\’ computers and does not contain real market data. Connections to the 
+  broker’s staging environment are made from the ``localhost:6285`` address.
 
-Six options for connecting environments are shown in the table.
+The table lists six pairs of environments connections.
 
-======================= =======================
-TradingView environment Broker environment
-======================= =======================
-production              production
-staging                 production
-localhost               production
-production              staging
-staging                 staging
-localhost               staging
-======================= =======================
++-------------------------+--------------------+
+| TradingView environment | Broker environment |
++=========================+====================+
+| production              | production         |
++-------------------------+--------------------+
+| staging                 | production         |
++-------------------------+--------------------+
+| localhost               | production         |
++-------------------------+--------------------+
+| production              | staging            |
++-------------------------+--------------------+
+| staging                 | staging            |
++-------------------------+--------------------+
+| localhost               | staging            |
++-------------------------+--------------------+
 
 A TradingView website in a sandbox or production can only be connected to one broker environment at a time.
-You can switch between environments through the browser console. Switching instructions are available after 
-configuration by the TradingView team.
+You can switch between environments through the browser console. Instructions can be provided after configuration 
+by the TradingView team.
 
 .. _cors-policy-label:
 
@@ -104,11 +109,6 @@ TradingView application.
 The user's locale can be determined through the ``locale`` query parameter, which is present in every request coming 
 from the client to the broker's server.
 
-Adding features after the integration release
-................................................
-New features need to be added to the broker's staging environment and tested in the sandbox.
-The feature gets into production only after successful testing by the TradingView testing team.
-
 CORS policy
 ...........
 Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example, 
@@ -120,3 +120,8 @@ the request in each endpoint for each response code.
 
 In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
 This address is used on developers\' computers.
+
+Adding features after the integration release
+................................................
+New features need to be added to the broker's staging environment and tested in the sandbox.
+The feature gets into production only after successful testing by the TradingView testing team.
