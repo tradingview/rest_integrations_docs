@@ -1,4 +1,15 @@
+.. links
+.. _`TradingView Web Platform`: https://www.tradingview.com/chart/
+.. _`Trading Platform`: https://www.tradingview.com/HTML5-stock-forex-bitcoin-charting-library/
+.. _`REST Web API`: https://www.tradingview.com/rest-api-spec/
+
 Introduction
 ============
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+This API lets brokers build a bridge to connect their backend systems to the TradingView interface. The brokers 
+then can be supported on the `TradingView Web Platform`_ and/or license the `Trading Platform`_. The same bridge is 
+used to enable both services, but each is licensed separately — so whether you go with one or both is up to you.
+
+The integration is very simple. The broker builds a `REST Web API`_ on its own servers based on our specification so 
+that it can be connected to TradingView. TradingView provides a sandbox and required technical assistance to get 
+your TradingView Web Platform integration started.

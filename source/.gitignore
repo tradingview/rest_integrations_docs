@@ -1,2 +1,4 @@
 *.pyc
 /_themes/
+.DS_store
+.vscode/

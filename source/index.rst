@@ -1,12 +1,12 @@
 .. Helpful doc https://devguide.python.org/documenting/#restructuredtext-primer
 
-REST Integrations FAQ
-*********************************
+Broker Integration Manual
+*************************
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 3
    :name: mastertoc
 
    Introduction
-   Integration_architecture
+   Integration_overview
    trading/index
