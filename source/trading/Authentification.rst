@@ -22,9 +22,9 @@ Fields expected in response:
 * ``access_token`` --- access token, which will be used to sign requests to the broker's REST server.
 * ``expiration`` --- token expiration time in Unix Timestamp format, optional parameter.
 
-In the current implementation, the token will not be updated, even if the ``expiration`` field is received in the 
-esponse and that point in time is approaching. This is due to TradingView's security policy, which prohibits the 
-torage of any user credentials from third-party resources on the TradingView side.
+In the current implementation, the token will not be refreshed, even if the ``expiration`` field is received in the 
+response and that point in time is approaching. This is due to TradingView's security policy, which prohibits the 
+storage of any user credentials from third-party resources on the TradingView side.
 
 By default, placeholders in the authorization pop-up window have the values ``login`` and ``password``.
 If you wish to change these values, provide your version in English.
@@ -37,7 +37,7 @@ TradingView's security policy does not allow the same OAuth secrets for all of t
 authorization option) must be unique. On the TradingView side, all OAuth secrets are kept in a special high-security 
 secret vault. Security audits are performed regularly.
 
-.. important:: The token is updated asynchronously and takes some time. Therefore, the broker's server must accept 
+.. important:: The token is refreshed asynchronously and takes some time. Therefore, the broker's server must accept 
   requests with the old access token until requests come with the new token. After that, the old token can be invalidated.
 
 .. _oauth2-implicit-flow:
@@ -81,7 +81,7 @@ Authorization
     * ``state`` --- the value of the ``state`` field from the original authorization request. Should return 
       unchanged.
     * ``expires_in`` --- an optional parameter that defines the token lifetime in seconds. If this parameter 
-      is omitted, the token will not be updated. But it must be borne in mind that this can harm the user's 
+      is omitted, the token will not be refreshed. But it must be borne in mind that this can harm the user's 
       safety.
 
 .. tip:: The authorization process takes place on a separate tab. It will close **120 seconds** after opening, 
@@ -93,10 +93,10 @@ Authorization
 
 Refresh Token
 """""""""""""
-When the access token expires, TradingView triggers a token update. It happens in the following scenario.
+When the access token expires, TradingView triggers a token renew. It happens in the following scenario.
 
 * TradingView opens a hidden iframe at the Broker's *Authorization URL*. GET request has the same parameters as during 
-  authorization. But the ``prompt`` parameter is set to ``none`` to tell the broker's server to update the access token 
+  authorization. But the ``prompt`` parameter is set to ``none`` to tell the broker's server to refresh the access token 
   in the background.
 * After receiving a request with the ``prompt: none`` parameter, the broker's server redirects the request to the 
   *Redirect URL* with a new access token. The page with the authorization form does not return to the user.
@@ -105,7 +105,7 @@ It is possible to leave the ``httpOnly`` cookie on the authorization page when t
 initial authentication. It will allow you to identify the user in the future.
 
 .. warning:: If third-party cookies are disabled in the user's browser, this cookie will not be set to the broker's server
-  in the token update request. For the :ref:`OAuth2 Implicit flow<oauth2-implicit-flow>`, this problem isn't solved.
+  in the token refresh request. For the :ref:`OAuth2 Implicit flow<oauth2-implicit-flow>`, this problem isn't solved.
   It is preferable to use the :ref:`OAuth2 Code flow<oauth2-code-flow>`, which does not have this issue when updating 
   the token.
 

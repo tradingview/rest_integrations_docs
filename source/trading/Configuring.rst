@@ -46,15 +46,3 @@ Matching fields to requests:
 * ``orders`` --- the `/orders`_ request (max 1500ms)
 * ``positions`` --- the `/positions`_ request (max 1500ms)
 * ``balances`` --- the `/balances`_ request (max 1500ms)
-
-CORS policy
-...........
-Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example, 
-the German version of the site is located at ``de.tradingview.com``. TradingView can send a request from any of these 
-addresses.
-
-Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
-the request in each endpoint for each response code.
-
-In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
-This address is used on developers\' computers.

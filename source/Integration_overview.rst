@@ -29,8 +29,8 @@ In what cases it is possible not to integrate data
 ..................................................
 Market data can come to the TradingView server from another source, for 
 example, directly from the exchange. There is no need for market data integration in this case.
-Implement only the `/mapping`_ endpoint to :ref:`map the names<mapping-symbols-label>` of the broker's instruments 
-to TradingView.
+In this case, broker implements `/mapping`_  endpoint to solve :ref:`the symbol names matching<mapping-symbols-label>` 
+issue between the TradingView and broker symbols.
 
 How trading integration works
 .............................
@@ -46,8 +46,8 @@ General issues
 
 .. _environments-label:
 
-Different environments
-......................
+Types of environments
+.....................
 
 There are several environment variants are used in the development and support of the integration.
 Each environment has its URL.
@@ -109,3 +109,15 @@ Adding features after the integration release
 ................................................
 New features need to be added to the broker's staging environment and tested in the sandbox.
 The feature gets into production only after successful testing by the TradingView testing team.
+
+CORS policy
+...........
+Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example, 
+the German version of the site is located at ``de.tradingview.com``. TradingView can send a request from any of these 
+addresses.
+
+Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
+the request in each endpoint for each response code.
+
+In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
+This address is used on developers\' computers.

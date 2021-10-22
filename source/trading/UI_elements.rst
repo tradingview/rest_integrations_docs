@@ -66,7 +66,7 @@ Regardless of the configuration level, values for the tables are returned in the
 object. The ``amData`` object is an array of tables. It contains a nested array of strings with a nested array of 
 columns as string values. This object must be the same size as the object defined in the configuration.
 
-Orders tickets
+Order Ticket
 ..............
 
 Durations
@@ -74,5 +74,5 @@ Durations
 `TradingView REST API`_ allows you to configure the duration (or *Time In Force*) separately for each of the 
 supported order types. By default, any item from the duration list will be shown in the *Order Ticket* only for 
 *Limit*, *Stop*, *Stop-Limit* orders. If this list should be different from the default for any Durations elements, 
-you must submit it for this item in the ``supportedOrderTypes`` field. ``supportedOrderTypes`` must be an array 
-of order types for which this duration will be available.
+you must submit it for this item in the ``supportedOrderTypes`` field. It must be an array of order types for which 
+this duration will be available.
