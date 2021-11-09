@@ -1,6 +1,8 @@
 .. links:
-.. _/mapping: https://www.tradingview.com/rest-api-spec/#operation/getMapping
-.. _`symbols.json`: https://s3.amazonaws.com/tradingview-symbology/symbols.json
+.. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
+.. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
+.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 
 Mapping symbols
 ---------------
@@ -23,9 +25,18 @@ instruments supported by the broker.
 
 How to match symbols
 ....................
-You can use `symbols.json`_ with a complete list of all symbols to search for a TradingView symbol. This file is 
-updated daily.
+You can use *symbols.json* (available upon request) with a complete list of all symbols to search for a 
+TradingView symbol. This file is updated daily.
 
-In response to the `/mapping`_ request, use the ``symbol-fullname`` field value as the TradingView symbol.
+In response to `/mapping`_ request, use the ``symbol-fullname`` field value as the TradingView symbol.
 If the broker partially uses TradingView data and partially connects its own, the mapping must be implemented 
 for all symbols.
+
+The ``symbol-type`` field in *symbols.json* aims to the market instrument type. A symbol can be traded on the different
+exchanges. In this case, ``symbol`` fields will be the same, and fields ``exchange-traded``, ``exchange-listed`` will
+differ. For example, *BLX* symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
+an index.
+
+When the user's subscription has ended, he cannot trade on the broker's platform. But the user can see already opened
+positions and order on the TradingView platform. In this case broker should send these symbols at `/instruments`_.
+And when a user tries to send an order, ruturn an error message.

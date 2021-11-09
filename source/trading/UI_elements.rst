@@ -1,14 +1,8 @@
 .. links
-.. _/accounts: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
-.. _/config: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
-.. _/state: https://www.tradingview.com/rest-api-spec/#operation/getState
+.. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
+.. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
+.. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`TradingView REST API`: https://www.tradingview.com/rest-api-spec
-
-.. todo
-   - Protect position
-   - Depth Of Market (DOM)
-   - Account Manager
-   - Chart trading
 
 UI elements
 -----------
@@ -45,7 +39,7 @@ For custom configuration of the ``Account Summary Row`` follow the steps below.
 
 If the display area of the ``Account Summary Row`` is undersized, the elements will be hidden sequentially, 
 starting with the very first. This can happen on low-resolution screens. Therefore, arrange information in order of 
-increasing importance.
+increasing importance.*
 
 Account Summary Tab
 ...................
@@ -66,8 +60,26 @@ Regardless of the configuration level, values for the tables are returned in the
 object. The ``amData`` object is an array of tables. It contains a nested array of strings with a nested array of 
 columns as string values. This object must be the same size as the object defined in the configuration.
 
+.. _section-uielements-orderticket:
+
 Order Ticket
-..............
+............
+
+.. seealso::
+   
+   Purchase behavior:
+
+   * Threre is a :term:`Short Position` and we set a trailing stop to buy.
+   * When the market price goes down, the :term:`Stop Order` price goes down as well.
+   * But, if the market price rises, the :term:`Stop Order` price remains unchanged.
+   * And in the end, if the market continues to grow and reaches the price set in the order, it will be executed.
+
+   Selling behavior:
+
+   * There is :term:`Long Position` and we set a trailing stop to sell.
+   * When the market price rises, the :term:`Stop order` price rises as well.
+   * But, if the market price goes down, the :term:`Stop order` price remains unchanged.
+   * And if the market continues to fall and reaches the price  established in the order, it will be executed.
 
 Durations
 ~~~~~~~~~
@@ -76,3 +88,47 @@ supported order types. By default, any item from the duration list will be shown
 *Limit*, *Stop*, *Stop-Limit* orders. If this list should be different from the default for any Durations elements, 
 you must submit it for this item in the ``supportedOrderTypes`` field. It must be an array of order types for which 
 this duration will be available.
+
+Protect Position
+~~~~~~~~~~~~~~~~
+
+Close Position
+~~~~~~~~~~~~~~
+
+Reverse Position
+~~~~~~~~~~~~~~~~
+
+Depth Of Market
+...............
+
+When the user places an order directly from the Chart or :term:`DOM`, no need to display and control the maximum 
+amount on broker side. Just when the order is placed with opening an order ticket ，displaying and controlling the
+maximum amount on broker side.
+
+.. _section-ui-accountmanager:
+
+.. 🚧
+Account Manager
+...............
+
+The *Account Manager* can be configured both at the broker configuration level and for each individual subaccount
+separately. You must use one of these options.
+
+At the broker level use `/config`_ → ``d`` → ``accountManager``.
+At the subaccount level use `/accounts`_ → ``[d]`` → ``ui`` → ``accountManager``). 
+
+But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
+
+Orders table
+~~~~~~~~~~~~
+
+Positions table
+'''''''''''''''
+
+Custom tabs
+"""""""""""
+
+.. _section-ui-chart:
+
+Chart trading
+.............

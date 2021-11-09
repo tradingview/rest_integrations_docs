@@ -5,6 +5,7 @@ Trading integration
    :maxdepth: 3
    :name: appendixtoc
 
+   Concepts
    Configuring
    Authentification
    UI_elements
