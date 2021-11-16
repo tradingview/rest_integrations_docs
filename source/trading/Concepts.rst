@@ -17,30 +17,37 @@ Concepts
 Orders
 ......
 
-.. seealso:: 🔥 
-   Orders statuses can be divided into two groups in our API:
-   - Transitional ("placing", "inactive", "working")
-   - Final ("rejected", "filled", "canceled")
-   The  status of an order can only change from transitional to final, but not vice versa.
+The orders statuses can be divided into two groups in our API:
 
-   Requests:
-   In response to the /orders request (requested periodically), we expect ALL orders of the current trading session and orders with transitional statuses from previous trading sessions.
-   In response to the /ordersHistory request (requested once after login), we expect all orders with final statuses from previous trading sessions.
+* transitional (``placing``, ``inactive``, ``working``),
+* final (``rejected``, ``filled``, ``canceled``).
 
-   Tab Display:
-   The Orders tab displays all orders that come in response to the /orders request.
-   The History tab displays all orders that come in response to the /ordersHistory request and orders from /orders that have the final status. So, orders with final status from /orders are simultaneously displayed on both the Orders and the History tabs.
+The status of an order can only change from transitional to final, but not vice versa.
+
+Requests:
+
+* In response to the `/orders`_ request, we expect ALL orders of the current trading session and orders with
+  transitional statuses from previous trading sessions.
+* In response to the `/ordersHistory`_ request, we expect ALL orders with final statuses from previous trading
+  sessions.
+
+Tab Display:
+
+* The Orders tab displays all orders that come in response to the `/orders`_ request.
+* The History tab displays all orders that come in response to the `/ordersHistory`_ request and orders from
+  `/orders`_ that have the final status. So, orders with final statuses from `/orders`_ are simultaneously displayed
+  on both the Orders and the History tabs.
 
 `/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. Orders
-with ``rejected``, ``filled``, ``cancelled`` statuses should be included in the list till the end of the trading
-session, or at least within 1 minute after changing order status.
+with final statuses should be included in the list till the end of the trading session, or at least within 1 minute
+after changing order status.
 
 Orders history
 .................
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status of ``rejected``, ``filled``, ``cancelled``. This endpoint is optional. If you don\’t support orders history,
-please set ``AccountFlags::supportOrdersHistory`` to ``false``. The ``accountId`` parameter is required.
+status. This endpoint is optional. If you don\’t support orders history, please set
+``AccountFlags::supportOrdersHistory`` to ``false``. The ``accountId`` parameter is required.
 
 .. _section-concepts-brackets:
 

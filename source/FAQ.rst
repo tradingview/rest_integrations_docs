@@ -172,7 +172,7 @@ How to define the ``accountId`` for the oders?
    We get the ``accountId`` in the `/accounts`_ and then send your ``id`` of the account selected by the user (active)
    during the request.
 
-🔥🎾 How can we map extra parameters required for order Placement in the order Custom fields. How can we map that in `/config`_ endpoint?
+How can we map extra parameters required for order Placement in the order Custom fields. How can we map that in `/config`_ endpoint?
    This can be done via ``orderDialogCustomFields`` object at the account level (`/accounts`_ → ``ui``) or at the
    instrument level (`/instruments`_ → ``ui``), with the latter taking precedence.
 
@@ -194,27 +194,13 @@ How does TradingView receive information about the events of the broker’s trad
 .. Orders History
 .. ..............
 
-🔥🎾 What is the difference between *Filled*, *Cancelled* and *Rejected* in Orders tab and in History tab. Are these only available for a single login session in the Orders tab? Or should they always be the same as History? Wouldn't this be duplication of data in such case?
+What is the difference between *Filled*, *Cancelled* and *Rejected* in Orders tab and in History tab. Are these only available for a single login session in the Orders tab? Or should they always be the same as History? Wouldn't this be duplication of data in such case?
    The orders statuses can be divided into two groups in our API:
    
    * transitional (``placing``, ``inactive``, ``working``),
    * final (``rejected``, ``filled``, ``canceled``).
    
-   The status of an order can only change from transitional to final, but not vice versa.
-   
-   Requests:
-   
-   * In response to the `/orders`_ request, we expect ALL orders of the current trading session and orders with
-     transitional statuses from previous trading sessions.
-   * In response to the `/ordersHistory`_ request, we expect ALL orders with final statuses from previous trading
-     sessions.
-   
-   Tab Display:
-   
-   * The Orders tab displays all orders that come in response to the `/orders`_ request.
-   * The History tab displays all orders that come in response to the `/ordersHistory`_ request and orders from
-     `/orders`_ that have the final status. So, orders with final statuses from `/orders`_ are simultaneously displayed
-     on both the Orders and the History tabs.
+   Check :ref:`Orders<section-concepts-orders>` section for details.
 
 .. Get Leverage
 .. ............
