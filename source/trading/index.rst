@@ -2,11 +2,11 @@ Trading integration
 ===================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :name: appendixtoc
 
-   Concepts
    Configuring
+   Concepts
    Authentification
    UI_elements
    Mapping_symbols

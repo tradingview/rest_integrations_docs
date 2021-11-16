@@ -4,9 +4,6 @@
 Glossary
 ========
 
-.. contents:: :local:
-   :depth: 2
-
 .. glossary::
    :sorted:
 
@@ -15,8 +12,8 @@ Glossary
       similar to the data from the exchanges, but there can be differences. 
 
    Mapping symbol
-      The mapping between the names of the broker’s instruments and TradingView instruments. This mapping 
-      avoids the problem of matching TradingView and broker symbol names.
+      The mapping between the names of the broker’s instruments and TradingView instruments. This mapping solves the
+      problem of TradingView and broker symbol names mimatching.
 
    Sandbox
       The sandbox is a fully functional copy of the TradingView website located at 

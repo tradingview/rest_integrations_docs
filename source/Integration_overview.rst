@@ -18,8 +18,8 @@
 Integration overview
 ========================
 
-.. contents:: :local:
-  :depth: 2
+.. .. contents:: :local:
+..   :depth: 0
 
 Integration architecture
 ------------------------
@@ -44,15 +44,15 @@ need for market data integration. In this case, broker implements `/mapping`_  e
 How trading integration works
 .............................
 The trading integration uses a client-server architecture: requests from the user's browser are sent directly to the
-broker's server. The TradingView server is not involved in this data exchange. An exception is a request to
+broker's server. The TradingView server is not involved in this data exchange. An exception is a request to the
 `/permissions`_. It is sent from the TradingView server to give the user access to the data.
   
 Requests from the client browser require a configured :ref:`CORS policy<cors-policy-label>` on the broker side.
 
-General issues
---------------
+Trading integration issues
+--------------------------
 
-.. _environments-label:
+.. _section-trading-environments:
 
 Types of environments
 .....................
@@ -167,7 +167,7 @@ Adding features after the integration release
 New features need to be added to the broker's staging environment and tested in the sandbox.
 The feature gets into production only after successful testing by the TradingView testing team.
 
-Data Integration issues
+Data integration issues
 -----------------------
 
 Data requirements
