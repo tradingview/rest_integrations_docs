@@ -5,7 +5,7 @@
 .. _`REST Web API`: https://www.tradingview.com/rest-api-spec/
 
 Broker Integration Manual
-*************************
+#########################
 
 .. toctree::
    :hidden:
@@ -26,7 +26,7 @@ specification so that it can be connected to TradingView. TradingView provides a
 assistance to get your TradingView Web Platform integration started.
 
 Documentation structure
-=======================
+-----------------------
 
 :doc:`Integration overview <Integration_overview>`
   This section will help you understand the structure of the integration and point out which parts you need to pay

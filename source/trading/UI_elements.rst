@@ -8,7 +8,7 @@ UI elements
 -----------
 
 .. contents:: :local:
-   :depth: 3
+   :depth: 1
 
 Account Summary Row
 ...................
@@ -66,7 +66,7 @@ the information it can be different for different subaccounts.
 For custom configuration of the *Account Summary Row* follow the steps below.
 
 #. Enable the ``supportCustomAccountSummaryRow`` flag in the `/accounts`_ request.
-#. Configure the *Account Summary Row* fields in the `/config`_ request in the ``d``  → ``accountSummaryRow`` object if
+#. Configure the *Account Summary Row* fields in the `/config`_ request in the ``d`` → ``accountSummaryRow`` object if
    you need to configure it at the broker level.
 #. Set up ``ui`` → ``accountSummaryRow`` object in the `/accounts`_ to configure the *Account Summary Row* fields at
    the account level. The account level setting has a higher priority and will be applied if there is a configuration at
@@ -153,7 +153,7 @@ The *Account Manager* can be configured both at the broker configuration level a
 separately. You must use one of these options.
 
 * At the broker level use `/config`_ → ``d`` → ``accountManager``.
-* At the subaccount level use `/accounts`_ → ``[d]`` → ``ui`` → ``accountManager``.
+* At the subaccount level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
 
 But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
 

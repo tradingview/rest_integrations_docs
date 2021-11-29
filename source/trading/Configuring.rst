@@ -12,8 +12,8 @@
 Configuring
 -----------
 
-.. contents:: :local:
-   :depth: 3
+.. .. contents:: :local:
+..    :depth: 1
 
 Configuration levels
 ....................

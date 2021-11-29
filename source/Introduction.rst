@@ -1,3 +1,4 @@
+.. 🧩
 .. links
 .. _`TradingView Web Platform`: https://www.tradingview.com/chart/
 .. _`REST Web API`: https://www.tradingview.com/rest-api-spec/

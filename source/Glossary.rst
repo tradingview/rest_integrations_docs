@@ -2,7 +2,7 @@
 .. _`Depth Of Market`: https://www.tradingview.com/support/solutions/43000516459-depth-of-market-dom/
 
 Glossary
-========
+********
 
 .. glossary::
    :sorted:
@@ -24,22 +24,22 @@ Glossary
       is placed, it follows a process of order execution.
    
    Position
-      Positions are on two main types. The amount of assets that is owned (:term:`long position`) or the amount of 
-      debt (:term:`short position`). A trader takes a position when makes a purchase through a buy order or if sells
+      There are positions of two main types - the amount of assets which is owned (:term:`long position`), or the
+      amount of debt (:term:`short position`). A trader takes a position when buys through a buy order, or if sells
       short assets.
-   
+
    Long position
-      A position gain when there is an increase in price and lose when there is a decrease. It involves owning a 
-      security. A long position formed as a result of buying a symbol.
+      A position gain when there is a price increase, and a position loss when there is a price decrease. It involves
+      owning a security. A long position formed as a result of buying a symbol.
 
    Short position
-      A position formed as a result of a short sale that hasn't yet been covered. It profits when the security falls
-      in price. A short often involves securities that are borrowed and then sold, to be bought back hopefully at a 
-      lower price.
+      A position formed as a result of a short sale that hasn’t yet been covered. It profits when the security falls in
+      price. A short often involves securities that are borrowed and then sold, to be bought back at a lower price,
+      hopefully.
 
    :abbr:`DOM (Depth Of Market)`
       `Depth Of Market`_, known as Order Book, shows data streamed from the broker which supports Level 2 data.
-      DOM shows the number of open buy and sell orders at different prices for a security.
+      DOM shows the number of open buy and sell orders at different securities\' prices.
 
    Limit order
       An order to buy or sell when a given or better price is reached.
@@ -48,8 +48,8 @@ Glossary
       An order to buy or sell at the market price as soon as it reaches a certain level.
 
    Stop-Limit
-      An order to buy or sell at a definitive price or better. But only after reaching a set price value. Essentially,
-      it's a combination of a :term:`Stop oder` and a :term:`Limit order`.
+      An order to buy or sell at a definitive or a better price, but only after reaching a set price value. Essentially,
+      it’s a combination of a :term:`Stop oder` and a :term:`Limit order`.
 
    Stop-Loss
       An order that is used to limit losses. It is triggered to close a position at a given price value when it moves
@@ -60,9 +60,16 @@ Glossary
       If the price of the security does not reach the limit price, the Take-Profit order does not get filled. 
 
    :abbr:`OCO (Order-Cancels-Order)`
-      Order-Cancels-Order, also known as One-Cancels-the-Other. A pair of conditional orders. If one order executes, 
+      Order-Cancels-Order, also known as One-Cancels-the-Other. A pair of conditional orders. If one order is executed,
       then the other is automatically cancelled.
    
    :abbr:`OSO (Order-Sends-Order)`
-      *Order-Sends-Order* also know as Order-Triggers-Other/One-Triggers-Other (OTO). A pair of conditional orders. If 
-      the primary order executes, a secondary order is automatically entered.
+      Order-Sends-Order also know as Order-Triggers-Other/One-Triggers-Other (OTO). A pair of conditional orders. If
+      the primary order is executed, a secondary order is automatically entered.
+
+   minTick
+      A minimum price movement.
+
+   pipSize
+      Size of 1 pip, for forex symbol usually equals ``minTick*10``. For example for EURUSD pair ``minTick=0.00001``
+      and ``pipSize=0,0001``.

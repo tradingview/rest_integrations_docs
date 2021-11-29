@@ -5,12 +5,13 @@
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
 .. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
+.. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
 
 Concepts
 --------
 
 .. contents:: :local:
-   :depth: 2
+   :depth: 1
 
 .. _section-concepts-orders:
 
@@ -42,12 +43,9 @@ Tab Display:
 with final statuses should be included in the list till the end of the trading session, or at least within 1 minute
 after changing order status.
 
-Orders history
-.................
-
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. If you don\’t support orders history, please set
-``AccountFlags::supportOrdersHistory`` to ``false``. The ``accountId`` parameter is required.
+status. This endpoint is optional. If you don\’t support orders history, please set ``d`` → ``config`` → 
+``supportOrdersHistory`` in the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
 
 .. _section-concepts-brackets:
 
@@ -124,11 +122,19 @@ When the user adds brackets to the position, the broker’s server recieves a PU
 contains ``stopLoss`` and ``takeProfit`` fields, or one of them.
 
 Then these bracket orders return with ``working`` status to `/orders`_ with next values:
+
 * ``parentId`` --- the value of the position id,
 * ``parentType`` --- the value of the ``position``,
 * ``qty`` --- 	the number of units.
 
 When the user closes position, the brackets should be cancelled and sent to `/orders`_ with the ``cancelled`` status.
+
+.. tip::
+
+  #. Open a position using a market order with :term:`Take-Profit` and :term:`Stop-Loss`.
+  #. Got a position with brackets (:term:`Take-Profit` and :term:`Stop-Loss`).
+  #. Close the position.
+  #. Brackets are canceled too.
 
 Position brackets are not supported
 '''''''''''''''''''''''''''''''''''
@@ -140,43 +146,39 @@ the broker’s side. When a position is closed, all orders in the transit status
 
 .. _section-concepts-positions:
 
-Positions
+🎾 Positions
 ..........
 
 Positions come in two main types: a :term:`Long position` is formed as a result of buying a symbol, when a 
 :term:`Short position` is formed as a result of selling a symbol.
 
 There are no positions for the *Crypto Spots*, but they are present for the *Crypto Derivatives*.
-For the *Forex* you can use multidirectional positions. Enable ``supportMulitposition`` flag on the 
+For the *Forex* you can use multidirectional positions. Enable ``supportMultiposition`` parameter in the 
 `/accounts`_ endpoint to use it.
-
-Available operations for the postions:
-* Protect Position
-* Close Position
-* Reverse Position
 
 You can display *Position* in the :ref:`Account Manager<section-ui-accountmanager>` and on the 
 :ref:`Chart<section-ui-chart>`.
 
-.. tip::
+Available operations for the postions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
+the `/accounts`_ → ``d`` → ``config`` to hide its operations.
 
-  #. Open a position using a market order with TP and SL.
-  #. Got a position with brackets (TP and SL).
-  #. Close the position.
-  #. brackets are canceled too.
+* Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
+* Set ``supportReversePosition`` to ``false`` to hide *Reverse Position*
 
 Pip Value
 .........
 
+The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<section-uielements-orderticket>`  (for
+those who use it).
+
 For Forex instruments, the ``pipValue`` size depends on the currency rapidly changing cross rates. You should always
 send the actual value. Besides `/instruments`_, pipValue can be sent via `/quotes`_ in the ``buyPipValue`` and
 ``sellPipValue`` fields. However, if you do not have support for different ``pipValue`` for buy and sell, you should
-pass the same values in both fields. The main purpose of ``pipValue`` is to calculate risks in an
-:ref:`Order Ticket<section-uielements-orderticket>` (for those who use it).
+pass the same values in both fields. 
 
 .. tip::
 
-   Calculating the *Pip Value* is easy. Let's say the currency is equal to ``CCC``.
+   Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
 
    * For the ``XXXCCC`` pair: ``pipValue = pipSize``
    * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX * pipSize``
