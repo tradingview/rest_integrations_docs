@@ -15,3 +15,8 @@ Data integration
 
 .. contents:: :local:
   :depth: 2
+
+===
+FAQ
+===
+

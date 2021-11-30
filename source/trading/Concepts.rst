@@ -165,16 +165,22 @@ the `/accounts`_ → ``d`` → ``config`` to hide its operations.
 * Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
 * Set ``supportReversePosition`` to ``false`` to hide *Reverse Position*
 
-Pip Value
+🎾 Pip Value
 .........
 
 The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<section-uielements-orderticket>`  (for
-those who use it).
+those who use it). This parameter\'s value is specified in the account currency.
 
 For Forex instruments, the ``pipValue`` size depends on the currency rapidly changing cross rates. You should always
 send the actual value. Besides `/instruments`_, pipValue can be sent via `/quotes`_ in the ``buyPipValue`` and
 ``sellPipValue`` fields. However, if you do not have support for different ``pipValue`` for buy and sell, you should
 pass the same values in both fields. 
+
+If ``supportPLUpdate`` is set to ``true``, ``pipValue`` used for the calculating position profit. But the profit is
+fixed when the position closed:
+
+* at *Bid* --- when :term:`Short position` closed,
+* at *Ask* --- whet :term:`Long position` closed.
 
 .. tip::
 
@@ -186,7 +192,7 @@ pass the same values in both fields.
 
    Next, we multiply by ``lotSize`` and ``qty`` for the current order.
 
-* ``minTick`` --- a minimum price movement,
-* ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``.
+* ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
+* ``minTick`` --- a minimum price movement.
 
 For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.
