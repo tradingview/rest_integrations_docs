@@ -37,15 +37,15 @@ architecture and trading integration based on a client-server architecture.
 
 Why data integration is needed
 ..............................
-The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as
-well as server alerts, etc. In order for the market data to be first received by the TradingView server, and then
-transferred to the client side, data integration is required. For CFDs, FOREX and CRYPTO the data is to be connected in
-any case as it is not linked to the particular exchange and is always different. 
+The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as 
+well as server alerts, etc. Data integration is required in order for the market data to be first received by the 
+TradingView server, and then transferred to the client side. For CFDs, FOREX and CRYPTO the data needs to be connected 
+in any case, as it is not linked to the particular exchange and is always different.
 
 In what cases it is possible not to integrate data
 ..................................................
 Market data can come to the TradingView server from another source, for example, directly from the exchange. There is no
-need for market data integration. In this case, broker implements `/mapping`_  endpoint to solve
+need for market data integration in this case, and the broker needs to implement `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
 Mandatory Endpoints by broker/exchange type
@@ -92,7 +92,8 @@ Features of the implementation of some endpoints
 Processed once at login: `/config`_, `/accounts`_, `/ordersHistory`_, `/permissions`_.
 
 The rest of the requests are sent either on a regular basis or are the result of user actions. In the first case, their
-freuency is set using :ref:`section-pulling-intervals` in the `/config`_. In the second case, in the `Trading`_ section.
+frequency is set using :ref:`section-pulling-intervals` in the `/config`_. In the second case, it happens in the
+`Trading`_ section.
 
 In some cases, the listed endpoints may not be implemented.
 
@@ -150,21 +151,21 @@ The table lists six pairs of environments connections.
 | localhost               | staging            |
 +-------------------------+--------------------+
 
-A TradingView website in a sandbox or production can only be connected to one broker environment at a time.
-You can switch between environments through the browser console. Instructions can be provided after configuration 
-by the TradingView team.
+A TradingView website in a sandbox or production can only be connected to one broker environment at a time. You can
+switch between environments through the browser console. Instructions can be provided after configuration by the
+TradingView team is completed.
 
 What is the Sandbox
 ...................
-The sandbox is a fully functional copy of the TradingView website located at `beta-rest.tradingview.com`_.
-Access to the resource is provided by adding an IP address to the whitelist on the TradingView side.
+The sandbox is a fully functional copy of the TradingView website located at `beta-rest.tradingview.com`_. Access to the
+resource is provided by adding an IP address to the whitelist on the TradingView side.
 
 When broker's integration can be placed in the Sandbox
 ......................................................
 There are two conditions to place a broker integration to the sandbox:
 
-- passing conformational tests at `tradingview.com/rest-api-test`_
-- availability of market data required for the integration to work on the TradingView staging server.
+* passing conformational (authorization & trading conformance) tests at `tradingview.com/rest-api-test`_,
+* availability of market data required for the integration to work on the TradingView staging server
 
 If the broker does not integrate market data but uses data obtained by TradingView from another source,
 it is necessary to implement the `/mapping`_ endpoint.
@@ -194,11 +195,11 @@ This address is used on developers\' computers.
 
 Why use HTTPS
 .............
-Please avoid using HTTP instead HTTPS.
-Our site through ``Content-Security-Policy`` is prohibited from accessing anything through the insecure HTTP protocol.
+Please avoid using HTTP instead of HTTPS.
+Our website  is prohibited from accessing anything through the insecure HTTP protocol by ``Content-Security-Policy``.
 HSTS disallows access to anything over the insecure HTTP protocol. Moreover, HSTS is exposed for **730 days** and
-applies to all subdomains. In order for us to be able to make an HTTP request to your staging even from our staging,
-we will have to:
+applies to all subdomains. In order for us to be able to make an HTTP request to your staging even from our staging, we
+will have to:
 
 * Turn off HSTS in production.
 * Wait for two years.
@@ -213,17 +214,16 @@ Data integration issues
 
 Data requirements
 .................
-All the data which are shown on TradingView have to meet the following standards:
+All the data which is shown on TradingView have to meet the following standards:
 
-* Real-time data obtained from the `/streaming`_ endpoint must match the
-  historical data, obtained from the `/history`_ API. The allowed count of mismatched
-  bars (candles) must not exceed 5% for frequently traded symbols, otherwise the
+* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_
+  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the
   integration to TradingView is not possible.
 
-* Historical data should look healthy. It must not contain unreasonable price gaps, holes in
-  history for 1 min and D-resolution, incorrect prices.
+* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history
+  holes, and incorrect prices.
 
 Source for comparison during testing
 ....................................
-We need a source which can be used to compare data received from your API. Chart would be
-the best option. If data is not available for free access we need an account to use them.
+We need a source which can be used to compare data received from your API, and chart would be the best option. If the
+data is not available to be accessed for free, we need an account to with the access to it.
