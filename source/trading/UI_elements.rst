@@ -98,7 +98,7 @@ Regardless of the configuration level, values for the tables are returned in the
 object. The ``amData`` object is an array of tables. It contains a nested array of strings with a nested array of 
 columns as string values. This object must be the same size as the object defined in the configuration.
 
-.. _section-uielements-orderticket:
+.. _trading-ui-orderticket:
 
 Order Ticket
 ............
@@ -143,7 +143,7 @@ When the user places an order directly from the Chart or :term:`DOM`, no need to
 amount on broker side. Just when the order is placed with opening an order ticket ，displaying and controlling the
 maximum amount on broker side.
 
-.. _section-ui-accountmanager:
+.. _trading-ui-accountmanager:
 
 .. 🚧
 Account Manager
@@ -166,7 +166,7 @@ But the data for the *Account manager* in any case is sent to `/state`_ → ``d`
 .. Custom tabs
 .. """""""""""
 
-.. _section-ui-chart:
+.. _trading-ui-chart:
 
 .. Chart trading
 .. .............

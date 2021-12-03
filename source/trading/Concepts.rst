@@ -13,7 +13,7 @@ Concepts
 .. contents:: :local:
    :depth: 1
 
-.. _section-concepts-orders:
+.. _trading-concepts-orders:
 
 Orders
 ......
@@ -39,29 +39,29 @@ Tab Display:
   `/orders`_ that have the final status. So, orders with final statuses from `/orders`_ are simultaneously displayed
   on both the Orders and the History tabs.
 
-`/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. Orders
-with final statuses should be included in the list till the end of the trading session, or at least within 1 minute
-after changing order status.
+`/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. However,
+orders, that have recieved final status must should be included in the list till the end of the trading session, or at 
+least within 1 minute after changing order status.
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. If you don\’t support orders history, please set ``d`` → ``config`` → 
-``supportOrdersHistory`` in the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
+status. This endpoint is optional. If you don\’t support orders history, please set ``supportOrdersHistory: false`` in 
+the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
 
-.. _section-concepts-brackets:
+.. _trading-concepts-brackets:
 
 Brackets
 ........
 
-By brackets in our UI we mean :ref:`orders<section-concepts-orders>`, the meaning of which is to protect the
-:ref:`position<section-concepts-positions>`. Brackets always have the opposite side to the order or position compared
+By brackets in our UI we mean :ref:`orders<trading-concepts-orders>`, the meaning of which is to protect the
+:ref:`position<trading-concepts-positions>`. Brackets always have the opposite side to the order or position compared
 to its parent. The quantity in bracket orders is always equal to the quantity of their parent order.
 
 Brackets can exist either in a pair (:term:`Stop-Loss` and :term:`Take-Profit`) or separately. This means that the
 order or position can have only one bracket order (*Stop-Loss* or *Take-Profit*). If a pair exists, bracket orders are
 linked by an :term:`OCO` (One-Cancels-the-Other) ​condition. It means that when one bracket order is executed, the other
-(if any) is automatically cancelled. When one of the brackets is partially executed, the quantity​ in the second bracket
-order ​should be​ automatically reduced to the remaining ​quantity of​ the partially executed bracket order ​on the broker’s
-side​.
+(if any) is automatically cancelled. When one of the brackets is partially executed, the ``quantity​`` in the second 
+bracket order ​should be​ automatically reduced to the remaining ​quantity of​ the partially executed bracket order ​on the 
+broker’s side​.
 
 Order Brackets
 ~~~~~~~~~~~~~~
@@ -74,10 +74,11 @@ Placing a parent order with brackets
 
 When placing an order with brackets through our UI, a POST request is sent to the broker’s server with ``stopLoss`` and
 ``takeProfit`` fields or one of them. If the parent order has not been executed immediately, then we expect the parent
-order to appear in working status, and one or two (depending on the presence of fields ``stopLoss`` and ``takeProfit``)
-in inactive status in the next response to the `/orders`_ request. It is necessary for bracket orders in `/orders`_ to
-have a ``parentId`` field, the value of which is the ``id`` of their parent order. The ``parentType`` field of bracket
-orders has the ``order`` value.
+order to appear in ``working`` status, and one or two (depending on the presence of fields ``stopLoss`` and 
+``takeProfit``) in ``inactive`` status in the next response to the `/orders`_ request. 
+
+It is necessary for bracket orders in `/orders`_ to have a ``parentId`` field, the value of which is the ``id`` of their
+parent order. The ``parentType`` field of bracket orders has the ``order`` value.
 
 Modifying parent order with brackets, adding or removing brackets
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -106,9 +107,22 @@ the brackets must also be cancelled.
 Position brackets
 ~~~~~~~~~~~~~~~~~
 
-Support of position brackets becomes problematic if a broker does not have support for multi positions. To support 
-position brackets in our UI, the ``supportPositionBrackets`` flag must be set to ``true``. When the user switches to
-edit mode, sections for bracket orders will appear.
+The UI behavior differs depending on whether the broker supports bracket position or not. To support position brackets,
+the ``supportPositionBrackets`` flag must be set to ``true``. So, when the user switches to edit mode, sections for
+bracket orders will appear.
+
+Support of position brackets vary if a broker does not have support for multiple positions at one instrument at the
+same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
+which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag in the
+`/accounts`_ to ``true``. Set it into ``false`` and the behavior will be as you wish. Trades will net position.
+
+Position brackets are not supported
+'''''''''''''''''''''''''''''''''''
+
+In this case, after the parent order is executed, the brackets don’t receive the position id to the ``parentId`` field
+and are no longer linked to the parent order. But the :term:`OSO` brackets binding between each other must be kept on
+the broker’s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
+``working``) are usually canceled.
 
 Position brackets are supported
 '''''''''''''''''''''''''''''''
@@ -123,9 +137,9 @@ contains ``stopLoss`` and ``takeProfit`` fields, or one of them.
 
 Then these bracket orders return with ``working`` status to `/orders`_ with next values:
 
-* ``parentId`` --- the value of the position id,
-* ``parentType`` --- the value of the ``position``,
-* ``qty`` --- 	the number of units.
+* ``parentId`` --- the value of the position ``id`` field,
+* ``parentType`` --- the value of the ``position`` field,
+* ``qty`` --- the number of units.
 
 When the user closes position, the brackets should be cancelled and sent to `/orders`_ with the ``cancelled`` status.
 
@@ -136,15 +150,7 @@ When the user closes position, the brackets should be cancelled and sent to `/or
   #. Close the position.
   #. Brackets are canceled too.
 
-Position brackets are not supported
-'''''''''''''''''''''''''''''''''''
-
-In this case, after the parent order is executed, the brackets don’t receive the position id to the `parentId` field
-and are no longer linked to the parent order. But the :term:`OSO` brackets binding between each other must be kept on
-the broker’s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
-``working``) are usually canceled.
-
-.. _section-concepts-positions:
+.. _trading-concepts-positions:
 
 Positions
 ..........
@@ -153,11 +159,11 @@ Positions come in two main types: a :term:`Long position` is formed as a result 
 :term:`Short position` is formed as a result of selling a symbol.
 
 There are no positions for the *Crypto Spots*, but they are present for the *Crypto Derivatives*.
-For the *Forex* you can use multidirectional positions. Enable ``supportMultiposition`` parameter in the 
-`/accounts`_ endpoint to use it.
+For the *Forex* you can use multidirectional positions. Set ``supportMultiposition: true`` in the `/accounts`_ to use 
+it.
 
-You can display *Position* in the :ref:`Account Manager<section-ui-accountmanager>` and on the 
-:ref:`Chart<section-ui-chart>`.
+You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the 
+:ref:`Chart<trading-ui-chart>`.
 
 Available operations for the postions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
 the `/accounts`_ → ``d`` → ``config`` to hide its operations.
@@ -165,10 +171,12 @@ the `/accounts`_ → ``d`` → ``config`` to hide its operations.
 * Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
 * Set ``supportReversePosition`` to ``false`` to hide *Reverse Position*
 
+.. _trading-concepts-pipvalue:
+
 Pip Value
 .........
 
-The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<section-uielements-orderticket>` (for 
+The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<trading-ui-orderticket>` (for 
 those who use it). This parameter\’s value is specified in the account currency.
 
 For Forex instruments, the ``pipValue`` size depends on the rapidly changing currency cross rates. You should always 

@@ -12,6 +12,8 @@ Authentication
 After passing the authentication, regardless of the method of obtaining the access token, all requests to the 
 broker's REST server will be use the ``Authorization: Bearer ACCESS_TOKEN`` header.
 
+.. _password-bearer-flow:
+
 Password Bearer
 ...............
 In this type of authorization, the user enters the login and password on the TradingView website.
@@ -33,7 +35,7 @@ If you wish to change these values, provide your version in English.
 OAuth2Bearer
 ............
 TradingView's security policy does not allow the same OAuth secrets for all of the six supported
-:ref:`connections<section-trading-environments>` between the TradingView client and the broker's server. Therefore, all
+:ref:`connections<trading-environments>` between the TradingView client and the broker's server. Therefore, all
 ``client_id`` values (and ``client_secret`` values in case of using the :ref:`OAuth2 Code flow<oauth2-code-flow>`
 authorization option) must be unique. On the TradingView side, all OAuth secrets are kept in a special high-security 
 secret vault. Security audits are performed regularly.

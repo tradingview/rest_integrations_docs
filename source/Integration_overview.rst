@@ -89,11 +89,11 @@ Mandatory Endpoints by broker/exchange type
 
 Features of the implementation of some endpoints
 ................................................
-Processed once at login: `/config`_, `/accounts`_, `/ordersHistory`_, `/permissions`_.
+Processed once at login: `/config`_, `/accounts`_, `/instruments`_, `/ordersHistory`_, `/permissions`_.
 
 The rest of the requests are sent either on a regular basis or are the result of user actions. In the first case, their
-frequency is set using :ref:`section-pulling-intervals` in the `/config`_. In the second case, it happens in the
-`Trading`_ section.
+frequency is set using :ref:`trading-configuring-pulling-intervals` in the `/config`_. In the second case, it happens in
+the `Trading`_ section.
 
 In some cases, the listed endpoints may not be implemented.
 
@@ -118,7 +118,7 @@ broker's server. The TradingView server is not involved in this data exchange. A
   
 Requests from the client browser require a configured :ref:`CORS policy<cors-policy-label>` on the broker side.
 
-.. _section-trading-environments:
+.. _trading-environments:
 
 Types of environments
 .....................
@@ -169,6 +169,8 @@ There are two conditions to place a broker integration to the sandbox:
 
 If the broker does not integrate market data but uses data obtained by TradingView from another source,
 it is necessary to implement the `/mapping`_ endpoint.
+
+.. _localization-support:
 
 Localization support
 ....................

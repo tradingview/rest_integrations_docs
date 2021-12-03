@@ -7,6 +7,6 @@ Trading integration
 
    Configuring
    Concepts
-   Authentification
+   Authentication
    UI_elements
    Mapping_symbols

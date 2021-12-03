@@ -71,8 +71,8 @@ Glossary
       A minimum price movement.
 
    pipSize
-      Size of 1 pip, for forex symbol usually equals ``minTick*10``. For example for EURUSD pair ``minTick=0.00001``
-      and ``pipSize=0,0001``.
+      Size of 1 pip. For the Forex symbol usually equals ``minTick*10``. For example for EURUSD pair: 
+      ``minTick=0.00001`` and ``pipSize=0,0001``.
 
    :abbr:`OHLC (Open-High-Low-Close chart)`
       An OHLC chart is a type of bar chart that shows open, high, low, and closing prices for each period.

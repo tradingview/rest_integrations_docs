@@ -30,7 +30,7 @@ All these requests are executed once when logging into the broker integration. T
 same UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the
 previous one.
 
-.. _section-pulling-intervals:
+.. _trading-configuring-pulling-intervals:
 
 Pulling intervals
 .................
