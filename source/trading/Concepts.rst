@@ -63,3 +63,19 @@ linked by an :term:`OCO` (One-Cancels-the-Other) ​condition. It means that whe
 bracket order ​should be​ automatically reduced to the remaining ​quantity of​ the partially executed bracket order ​on the 
 broker’s side​.
 
+Order Brackets
+~~~~~~~~~~~~~~
+
+The ``supportOrderBrackets`` flag must be set to ``true`` to support order brackets in our UI. In this case, sections
+for bracket orders will appear when switching to the order editing mode.
+
+Placing a parent order with brackets
+''''''''''''''''''''''''''''''''''''
+
+When placing an order with brackets through our UI, a POST request is sent to the broker’s server with ``stopLoss`` and
+``takeProfit`` fields or one of them. If the parent order has not been executed immediately, then we expect the parent
+order to appear in ``working`` status, and one or two (depending on the presence of fields ``stopLoss`` and 
+``takeProfit``) in ``inactive`` status in the next response to the `/orders`_ request. 
+
+It is necessary for bracket orders in `/orders`_ to have a ``parentId`` field, the value of which is the ``id`` of their
+parent order. The ``parentType`` field of bracket orders has the ``order`` value.
