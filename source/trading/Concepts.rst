@@ -115,3 +115,11 @@ Support of position brackets vary if a broker does not have support for multiple
 same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
 which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag in the
 `/accounts`_ to ``true``. Set it into ``false`` and the behavior will be as you wish. Trades will net position.
+
+Position brackets are not supported
+'''''''''''''''''''''''''''''''''''
+
+In this case, after the parent order is executed, the brackets don’t receive the position id to the ``parentId`` field
+and are no longer linked to the parent order. But the :term:`OSO` brackets binding between each other must be kept on
+the broker’s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
+``working``) are usually canceled.
