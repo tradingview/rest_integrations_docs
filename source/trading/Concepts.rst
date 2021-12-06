@@ -89,3 +89,11 @@ parent order, then it is necessary to send a removed bracket order with ``cancel
 the `/orders`_ request. Otherwise, an error will come up: this bracket will “hang” in our user interface in the table
 of orders and on the chart. The cancellation of one of the brackets should not lead to the cancellation of another
 bracket order and the parent order.
+
+Execution of a parent order with brackets
+'''''''''''''''''''''''''''''''''''''''''
+
+Bracket orders are bound to the parent order by the :term:`OSO` (One-Send-Other) condition. When a parent order is
+executed, bracket orders are transferred to the ``working`` status. If bracket positions are supported, the ``parentId``
+field of the brackets gets the ``id`` value of the position that resulted from the parent order execution, and the
+``parentType`` field of the bracket orders changes its value to ``position``.
