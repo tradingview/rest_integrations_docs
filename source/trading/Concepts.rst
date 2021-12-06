@@ -97,3 +97,21 @@ Bracket orders are bound to the parent order by the :term:`OSO` (One-Send-Other)
 executed, bracket orders are transferred to the ``working`` status. If bracket positions are supported, the ``parentId``
 field of the brackets gets the ``id`` value of the position that resulted from the parent order execution, and the
 ``parentType`` field of the bracket orders changes its value to ``position``.
+
+Canceling a parent order with brackets
+''''''''''''''''''''''''''''''''''''''
+
+Bracket orders are bound to the parent order by the :term:`OSO` condition. Therefore, when cancelling a parent order,
+the brackets must also be cancelled.
+
+Position brackets
+~~~~~~~~~~~~~~~~~
+
+The UI behavior differs depending on whether the broker supports bracket position or not. To support position brackets,
+the ``supportPositionBrackets`` flag must be set to ``true``. So, when the user switches to edit mode, sections for
+bracket orders will appear.
+
+Support of position brackets vary if a broker does not have support for multiple positions at one instrument at the
+same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
+which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag in the
+`/accounts`_ to ``true``. Set it into ``false`` and the behavior will be as you wish. Trades will net position.
