@@ -149,3 +149,24 @@ When the user closes position, the brackets should be cancelled and sent to `/or
   #. Got a position with brackets (:term:`Take-Profit` and :term:`Stop-Loss`).
   #. Close the position.
   #. Brackets are canceled too.
+
+.. _trading-concepts-positions:
+
+Positions
+..........
+
+Positions come in two main types: a :term:`Long position` is formed as a result of buying a symbol, when a 
+:term:`Short position` is formed as a result of selling a symbol.
+
+There are no positions for the *Crypto Spots*, but they are present for the *Crypto Derivatives*.
+For the *Forex* you can use multidirectional positions. Set ``supportMultiposition: true`` in the `/accounts`_ to use 
+it.
+
+You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the 
+:ref:`Chart<trading-ui-chart>`.
+
+Available operations for the postions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
+the `/accounts`_ → ``d`` → ``config`` to hide its operations.
+
+* Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
+* Set ``supportReversePosition`` to ``false`` to hide *Reverse Position*
