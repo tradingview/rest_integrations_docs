@@ -123,3 +123,29 @@ In this case, after the parent order is executed, the brackets don’t receive t
 and are no longer linked to the parent order. But the :term:`OSO` brackets binding between each other must be kept on
 the broker’s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
 ``working``) are usually canceled.
+
+Position brackets are supported
+'''''''''''''''''''''''''''''''
+
+When one of the bracket orders is executed, the position is reset to zero, and the other bracket order (if any) is
+transferred to the ``cancelled`` status. When one of the bracket orders is partially executed, the ​quantity​ in the
+position is reduced by the executed ​quantity​. The ​quantity​ in the other bracket order is given according to the left
+​quantity​ in the partially executed bracket order.
+
+When the user adds brackets to the position, the broker’s server recieves a PUT request `Modify Position`_, which
+contains ``stopLoss`` and ``takeProfit`` fields, or one of them.
+
+Then these bracket orders return with ``working`` status to `/orders`_ with next values:
+
+* ``parentId`` --- the value of the position ``id`` field,
+* ``parentType`` --- the value of the ``position`` field,
+* ``qty`` --- the number of units.
+
+When the user closes position, the brackets should be cancelled and sent to `/orders`_ with the ``cancelled`` status.
+
+.. tip::
+
+  #. Open a position using a market order with :term:`Take-Profit` and :term:`Stop-Loss`.
+  #. Got a position with brackets (:term:`Take-Profit` and :term:`Stop-Loss`).
+  #. Close the position.
+  #. Brackets are canceled too.
