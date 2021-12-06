@@ -79,3 +79,13 @@ order to appear in ``working`` status, and one or two (depending on the presence
 
 It is necessary for bracket orders in `/orders`_ to have a ``parentId`` field, the value of which is the ``id`` of their
 parent order. The ``parentType`` field of bracket orders has the ``order`` value.
+
+Modifying parent order with brackets, adding or removing brackets
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+The result of editing the order in our UI is a PUT request to the broker’s server with new order parameters, including
+``stopLoss`` and ``takeProfit`` fields, or one of them. If the user has deleted one of the brackets when changing the
+parent order, then it is necessary to send a removed bracket order with ``cancelled`` status in subsequent responses to
+the `/orders`_ request. Otherwise, an error will come up: this bracket will “hang” in our user interface in the table
+of orders and on the chart. The cancellation of one of the brackets should not lead to the cancellation of another
+bracket order and the parent order.
