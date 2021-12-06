@@ -13,7 +13,6 @@ Concepts
 .. contents:: :local:
    :depth: 1
 
-
 .. _trading-concepts-orders:
 
 Orders
@@ -47,3 +46,20 @@ least within 1 minute after changing order status.
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
 status. This endpoint is optional. If you don\’t support orders history, please set ``supportOrdersHistory: false`` in 
 the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
+
+.. _trading-concepts-brackets:
+
+Brackets
+........
+
+By brackets in our UI we mean :ref:`orders<trading-concepts-orders>`, the meaning of which is to protect the
+:ref:`position<trading-concepts-positions>`. Brackets always have the opposite side to the order or position compared
+to its parent. The quantity in bracket orders is always equal to the quantity of their parent order.
+
+Brackets can exist either in a pair (:term:`Stop-Loss` and :term:`Take-Profit`) or separately. This means that the
+order or position can have only one bracket order (*Stop-Loss* or *Take-Profit*). If a pair exists, bracket orders are
+linked by an :term:`OCO` (One-Cancels-the-Other) ​condition. It means that when one bracket order is executed, the other
+(if any) is automatically cancelled. When one of the brackets is partially executed, the ``quantity​`` in the second 
+bracket order ​should be​ automatically reduced to the remaining ​quantity of​ the partially executed bracket order ​on the 
+broker’s side​.
+
