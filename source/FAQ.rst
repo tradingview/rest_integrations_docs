@@ -230,6 +230,29 @@ What is the difference between *Filled*, *Cancelled* and *Rejected* statuses in 
 .. Close Position
 .. ..............
 
+Market Data
+-----------
+
+.. Quotes
+.. ......
+
+Is the `/quotes`_ endpoint required? Or do you have your own sources of quotes for securites?
+   This method is optional, but highly required. It is needed to display your quotes directly in the 
+   :ref:`Order Ticket<trading-ui-orderticket>`. This will reduce the chance of order execution at prices other
+   than what the user sees.
+
+Are requests for quotes coming from the client or from the server?
+   Requests to the `/quotes`_ going from the client, requests to the `/streaming`_ going from the server. The broker
+   should stream quotes to the `/streaming`_ for the server and simultaneously send them separately to each client in
+   the response to the `/quotes`_ requests.
+
+.. Depth
+.. .....
+
+How would we translate our logic into the `/depth`_ endpoint. And what will be the outcome in the UI panel?
+   Each price corresponds to the number (volume) of open buy and sell orders. This presentation of information
+   corresponds to how the :term:`DOM` usually works.
+
 Data Integration
 ----------------
 
