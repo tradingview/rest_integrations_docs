@@ -230,53 +230,6 @@ What is the difference between *Filled*, *Cancelled* and *Rejected* statuses in 
 .. Close Position
 .. ..............
 
-Market Data
------------
-
-.. Quotes
-.. ......
-
-Is the `/quotes`_ endpoint required? Or do you have your own sources of quotes for securites?
-   This method is optional, but highly required. It is needed to display your quotes directly in the 
-   :ref:`Order Ticket<trading-ui-orderticket>`. This will reduce the chance of order execution at prices other
-   than what the user sees.
-
-Are requests for quotes coming from the client or from the server?
-   Requests to the `/quotes`_ going from the client, requests to the `/streaming`_ going from the server. The broker
-   should stream quotes to the `/streaming`_ for the server and simultaneously send them separately to each client in
-   the response to the `/quotes`_ requests.
-
-.. Depth
-.. .....
-
-How would we translate our logic into the `/depth`_ endpoint. And what will be the outcome in the UI panel?
-   Each price corresponds to the number (volume) of open buy and sell orders. This presentation of information
-   corresponds to how the :term:`DOM` usually works.
-
-Data Permissions
-----------------
-
-.. Groups
-.. ......
-
-Should we implement `/permissions`_ if we return the same set of instruments for all users?
-   The `/permissions`_ endpoint specifies which groups are available for the certain user. It is only required if you
-   use groups of symbols to restrict access to instrument’s data.
-
-.. Permissions
-.. ...........
-
-What if a user may have a different set of instruments for different accounts, because there is no such parameter as account id in the `/permissions`?
-   Different sets of instruments for different accounts can be implemented via `/instruments`_. The permission mechanism
-   serves somewhat differently, for example, to restrict access to paid data.
-
-We sell data subscriptions. How can we inform that real-time data is available to the user?
-   A broker should implement the `/permissions`_ endpoint. Otherwise we will show :term:`BATS` data for these exchanges
-   if the user didn’t buy a subscription from us.
-
-   When user logs into the integration, we send requests to the `/permissions`_ for determing a list of the
-   subscriptions. We will show free BATS or delayed market data for users without real-time data subscriptions.
-
 Data Integration
 ----------------
 
