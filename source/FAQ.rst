@@ -22,6 +22,7 @@
 .. _`authentication`: https://www.tradingview.com/rest-api-spec/#section/Authentication
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 .. _`streamingHistoryEquality`: https://github.com/tradingview-inspect/tests/wiki/streamingHistoryEquality
+.. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
 
 FAQ
 ***
@@ -167,6 +168,14 @@ How often quotes and orders should be updated?
    * Default 500 ms and maximum 1000 ms for ``quotes``, and ``orders``.
    * Default 500 ms and maximum 1500 ms for ``positions``, ``accountManager``, and ``balances``.
 
+🎾 Is the ``balance`` in the `/state`_ an account balance calculated at the average ask price of the instruments included in it?
+   The balance line displays the number of funds available on the user's account. The riks calculation during trading 
+   order filling goes through ``equity`` calculated as ``balance + unrealizedPl``.
+
+🎾 If we dont' fill ``unrealizedPl``. How the market price will be calculated on the TradingView side?
+   The ``unrealizedPl`` field is required. It shouldn't be ignored. But in fact, it plays the role of an indicator of 
+   the current profit/loss from all open positions.
+
 .. Orders
 .. ......
 
@@ -209,11 +218,15 @@ What is the difference between *Filled*, *Cancelled* and *Rejected* statuses in 
 .. Preview Leverage
 .. ................
 
-.. Trading
-.. -------
+Trading
+-------
 
 .. Place Order
 .. ...........
+
+🎾 Should we ignore `Place Order`_ parameters ``currentAsk``/``currentBid`` for the market order?
+   If it is Forex trading, these fields are required. In other cases, they will not be considered. But these parameters
+   are required.
 
 .. Modify Order
 .. ............
