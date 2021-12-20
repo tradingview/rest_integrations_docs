@@ -23,6 +23,7 @@
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 .. _`streamingHistoryEquality`: https://github.com/tradingview-inspect/tests/wiki/streamingHistoryEquality
 .. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`JWT Bearer Flow example`: https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_jwt_flow.htm&type=5
 
 FAQ
 ***
@@ -95,6 +96,11 @@ Are you able to support the OAuth2 Client Credentials Grant for authorizing to o
    Our client uses OAuth 2.0 JWT Bearer Flow. Please check out `ServerOAuth2Bearer`_ section in our specs. We need
    X.509 cert to sign the JWT. Our client forms the JWT, signs it and sends it in the body of the POST request as
    ``assertion`` field and expects to get a token in response.
+
+🎾 Should a broker provide X.509 certificate or private key to sign the JWT?
+   Data feed currently supports the JWT assertion workflow. We need X.509 certificate to sign the JWT. Our client forms
+   a JWT, signs it, and sends it in the POST request body as ``assertion`` field. And expects to recieve a token in
+   response. See `JWT Bearer Flow example`_ for details.
 
 Authorization
 -------------
@@ -292,6 +298,9 @@ We sell data subscriptions. How can we inform your server that real-time data is
 Data Integration
 ----------------
 
+.. Symbol Info
+.. ...........
+
 How does *Symbol* differs to *Tickers*?
    *Symbol* — the name of the instrument that will be shown to users. *Ticker* — the name of the instrument that our 
    data feed will use for server requests (for example ``/history?symbol= {ticker}``). Ticker is optional. If there is 
@@ -345,6 +354,33 @@ How to use fileds ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to bui
    * ``bar-fillgaps`` generate of degenerate bars in the absence of trades (bars with zero volume and equal 
      :term:`OHLC` values).
 
+Should we change the session schedule during the summer/winter time changes?
+   You shouldn\'t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
+   time is carried out automatically following the ``timezone`` parameter in the `/symbol_info`_.
+
+Should we change the session schedule during the holidays?
+   You shouldn\'t change the session schedule without TradingView team's confirmation. We don\'t support holidays 
+   parameter at the moment, but we'll add it in the future.
+
+Is it possible to add breaks during the trading day?
+   That's not possible right now, as the trading day is continuous.
+
+Should we send ``StreamingDailyBarResponse``? Or it can be calculated from our 1-minute history intervals and live feed data?
+   You do not need to send it. If there is ``has-daily: false`` in the `/symbol_info`_, we will skip the daily updates. 
+   However, when it is impossible to build a day bar out of minute bars, we need to request it daily.
+
+How to set up a minimal price step (min tick size)?
+   Minimal tick size is set by ``pricescale`` and ``minmovement`` parameters in the `/symbol_info`_:
+   ``min tick size =  minmovement / pricescale``. For example, if you need to set a price step in ``0.01``, then you
+   need to set ``pricescale: 100``, and ``minmovement: 1``.
+
+🎾 Are there any restrictions on the number of symbol groups?
+   Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. The symbol can appear in
+   one group only.
+
+.. History
+.. .......
+
 Is `/history`_ requested only for those instruments for which we supply our quotes?
    The `/history`_ is requested for all instruments represented in the symbol field of the `/symbol_info`_.
 
@@ -367,31 +403,14 @@ How often do you request `/history`_ to update your database?
 What is the expected timestamp precision for the query parameters ``from`` and ``to``?
    The timestamp should be specified in seconds.
 
+Is it expected that the query to the `/history`_ should consider trades within the time interval, even for open and close prices?
+   We build bar from the `/streaming`_ ticks. For verification, we use `streamingHistoryEquality`_ test.
+
+.. Stream of prices
+.. ................
+
 How do you get prices from the brokers? The price can change more than ten times per second for each instrument.
    `/streaming`_ endpoint is a permanent connection used to accept changes in quotes for all instruments.
 
 The symbol id is required for the stream of prices response. Can we use ticker format instead. i.e. return ``BTC/USDT`` instead of ``BTCUSDT``?
    Yes, it will be the correct response format for the `/streaming`_. 
-
-Should we send ``StreamingDailyBarResponse``? Or it can be calculated from our 1-minute history intervals and live feed data?
-   You do not need to send it. If there is ``has-daily: false`` in the `/symbol_info`_, we will skip the daily updates. 
-   However, when it is impossible to build a day bar out of minute bars, we need to request it daily.
-
-Is it expected that the query to the `/history`_ should consider trades within the time interval, even for open and close prices?
-   We build bar from the `/streaming`_ ticks. For verification, we use `streamingHistoryEquality`_ test.
-
-Should we change the session schedule during the summer/winter time changes?
-   You shouldn\'t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
-   time is carried out automatically following the ``timezone`` parameter in the `/symbol_info`_.
-
-Should we change the session schedule during the holidays?
-   You shouldn\'t change the session schedule without TradingView team's confirmation. We don\'t support holidays 
-   parameter at the moment, but we'll add it in the future.
-
-Is it possible to add breaks during the trading day?
-   That's not possible right now, as the trading day is continuous.
-
-How to set up a minimal price step (min tick size)?
-   Minimal tick size is set by ``pricescale`` and ``minmovement`` parameters in the `/symbol_info`_:
-   ``min tick size =  minmovement / pricescale``. For example, if you need to set a price step in ``0.01``, then you
-   need to set ``pricescale: 100``, and ``minmovement: 1``.

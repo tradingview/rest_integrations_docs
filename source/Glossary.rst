@@ -81,4 +81,4 @@ Glossary
    
    Level 2 data
       Level 2 data shows the supply and demand of the price levels beyond or outside of the current price. This gives 
-      the user a visual display of the price range and associated liquidity at each price level. 
+      the user a visual display of the price range and associated liquidity at each price level.
