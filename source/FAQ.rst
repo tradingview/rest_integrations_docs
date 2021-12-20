@@ -19,6 +19,7 @@
 .. _`PasswordBearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/PasswordBearer
 .. _`OAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/OAuth2Bearer
 .. _`ServerOAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/ServerOAuth2Bearer
+.. _`authentication`: https://www.tradingview.com/rest-api-spec/#section/Authentication
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
 .. _`streamingHistoryEquality`: https://github.com/tradingview-inspect/tests/wiki/streamingHistoryEquality
 
@@ -36,8 +37,8 @@ Authentication
 --------------
 
 Are there any restrictions on the lifetime of tokens? What is the optimal lifetime?
-   Max lifetime is a 32-bit signed integer —-- ``2147483647``. It’s about 24.8 of a day. Furthermore, you can make it
-   never-ending if you don’t send ``expired_in`` parameter, but we think this is unsafe. The optimal token lifetime
+   Max lifetime is a 32-bit signed integer --- ``2147483647``. It\'s about 24.8 of a day. Furthermore, you can make it
+   never-ending if you don\'t send ``expired_in`` parameter, but we think this is unsafe. The optimal token lifetime
    should be in the range of 15-30 minutes.
 
 There is no ``prompt`` parameter in the OAuth specification? How is it used?
@@ -51,12 +52,12 @@ There is no ``prompt`` parameter in the OAuth specification? How is it used?
    * If you receive a request for authorization with ``prompt: none``, then immediately redirect with the token.
 
 Will the ``scope`` parameter be sent on authorization? What about its values? How do we deal with them?
-   :ref:`This parameter <oauth2-implicit-flow-authorization>` is optional. We don’t process it on our side, but wait for
+   :ref:`This parameter <oauth2-implicit-flow-authorization>` is optional. We don\'t process it on our side, but wait for
    its value from the broker. Following :rfc:`6749#section-3.3` the value of the parameter is expressed as a list of 
    space-delimited, case-sensitive strings. We will send a ``scope`` in the request upon authorization, but not when 
    refreshing a token.
 
-::
+.. code-block:: javascript
 
       {
          //...
@@ -64,14 +65,13 @@ Will the ``scope`` parameter be sent on authorization? What about its values? Ho
          //...
       }
 
-Do we have to implement all 4 authorization flows?
+Do we have to implement all 4 authentication flows?
    Integration is divided into 2 parts: data integration and trading integration. Data Integration supports
-   `PasswordBearer`_, `ServerOAuth2Bearer`_ authorization types. Integration of the trading part supports 
-   `PasswordBearer`_, `OAuth2Bearer`_ (Implicit Flow), `OAuth2Bearer`_ (Code Flow) authorization types.
-   The types of authorization for each part of the integration (:doc:`data <../trading/Authentication>` and 
-   :doc:`trading <../trading/Authentication>`) may differ.
+   `PasswordBearer`_, `ServerOAuth2Bearer`_ authentication types. Integration of the trading part supports 
+   `PasswordBearer`_, `OAuth2Bearer`_ (Implicit Flow), `OAuth2Bearer`_ (Code Flow) authentication types.
+   The types of authentication for each part of the integration (data and trading) may differ.
 
-Is the data integration API being requested by the user\`s browser or by TradingView server?
+Is the data integration API being requested by the user\'s browser or by TradingView server?
    Data integration API is requested only by TradingView servers. Authorization functionality is optional. You can 
    implement the `/authorize`_ if your data is not public.
 
@@ -86,14 +86,14 @@ Can you talk more about the `PasswordBearer`_ authorization flow?
    6. Then you get this token in all other requests to your REST server in the ``Authorization`` header.
 
 Can we use the same Client ID in both staging and production environments?
-   The Сlient IDs for each of the :ref:`6 environments connections <trading-environments>` must be unique, this 
+   The Client IDs for each of the :ref:`6 environments connections <trading-environments>` must be unique, this 
    is a requirement of our security team. The TradingView website in the sandbox or production can be connected to only 
    1 broker's environment at a time. 
 
 Are you able to support the OAuth2 Client Credentials Grant for authorizing to our server? 
    Our client uses OAuth 2.0 JWT Bearer Flow. Please check out `ServerOAuth2Bearer`_ section in our specs. We need
    X.509 cert to sign the JWT. Our client forms the JWT, signs it and sends it in the body of the POST request as
-   assertion field and expects to get a token in response.
+   ``assertion`` field and expects to get a token in response.
 
 Authorization
 -------------
@@ -127,14 +127,14 @@ How can I modify the columns in the “Positions panel”?
 How can I map Forex symbols?
    You cannot :doc:`map <trading/Mapping_symbols>` your Forex to any other exchange. The prices are different. If you 
    want to support Forex, you need to connect your Forex data feed to TradingView using `/symbol_info`_, `/history`_, 
-   `/streaming`_ endpoints. You don\’t need to provide `/mapping`_ for Forex, so you don’t need to implement it in this
+   `/streaming`_ endpoints. You don\'t need to provide `/mapping`_ for Forex, so you don\'t need to implement it in this
    case. `/mapping`_ is used for the exchange based instruments.
 
 Account
 -------
 
 Can a user login multiple times simultaneously (login with the same account from two browsers for example)?
-   That’s possible. Usually brokers limit number of concurrent session. For example, user can be connected from the
+   That\'s possible. Usually brokers limit number of concurrent session. For example, user can be connected from the
    desktop and mobile at the same time.
 
 .. Accounts
@@ -142,7 +142,7 @@ Can a user login multiple times simultaneously (login with the same account from
 
 Where can a user see the type of account ("live" or "demo")?
    The account type can be specified in the ``type`` parameter in the `/accounts`_ endpoint. A user can see this 
-   information when selecting an account in the extra menu.
+   information when selecting an account in the extra menu. We expect that recieved ID is unique on the broker side.
 
 .. image:: ../images/accounts-menu.png
    :alt: Names in the account menu.
@@ -177,11 +177,11 @@ How can we map extra parameters required for order *Placement* in the order *Cus
 .. Positions
 .. .........
 
-How does TradingView receive information about the events of the broker’s trading platform?
+How does TradingView receive information about the events of the broker\'s trading platform?
    We expect that all closed positions also will be sent to the `/positions`_ during the trading session.
 
-   The same applies to executed orders. If we get an order with ``filled`` status in the /orders, then we show the user
-   a message.
+   The same applies to executed orders. If we get an order with ``filled`` status in the `/orders`_, then we show the
+   user a message.
 
 .. Balances
 .. ........
@@ -249,9 +249,10 @@ Are requests for quotes coming from the client or from the server?
 .. Depth
 .. .....
 
-How would we translate our logic into the `/depth`_ endpoint. And what will be the outcome in the UI panel?
-   Each price corresponds to the number (volume) of open buy and sell orders. This presentation of information
-   corresponds to how the :term:`DOM` usually works.
+We have an *Order Book* on our platfom. How would we translate our logic into the `/depth`_ endpoint.
+   The `/depth`_ endpoint implementation is required for using :ref:`DOM <depth-of-market>` in our UI. Users get access 
+   to :term:`DOM` only if the broker provides :term:`Level 2 data`. You should set ``supportLevel2Data`` and 
+   ``supportDOM`` in the `/accounts`_ to ``true``, then implement `/depth`_.
 
 Data Permissions
 ----------------
@@ -259,23 +260,21 @@ Data Permissions
 .. Groups
 .. ......
 
-Should we implement `/permissions`_ if we return the same set of instruments for all users?
-   The `/permissions`_ endpoint specifies which groups are available for the certain user. It is only required if you
-   use groups of symbols to restrict access to instrument’s data.
-
 .. Permissions
 .. ...........
 
-What if a user may have a different set of instruments for different accounts, because there is no such parameter as account id in the `/permissions`?
+Should we implement `/permissions`_ if we return the same set of instruments for all users?
+   The `/permissions`_ endpoint specifies which groups are available for the certain user. It is only required if you
+   use groups of symbols to restrict access to instrument\'s data.
+
+What if a user may have a different set of instruments for different accounts, because there is no such parameter as account id in the `/permissions`_?
    Different sets of instruments for different accounts can be implemented via `/instruments`_. The permission mechanism
    serves somewhat differently, for example, to restrict access to paid data.
 
-We sell data subscriptions. How can we inform that real-time data is available to the user?
-   A broker should implement the `/permissions`_ endpoint. Otherwise we will show :term:`BATS` data for these exchanges
-   if the user didn’t buy a subscription from us.
-
-   When user logs into the integration, we send requests to the `/permissions`_ for determing a list of the
-   subscriptions. We will show free BATS or delayed market data for users without real-time data subscriptions.
+We sell data subscriptions. How can we inform your server that real-time data is available to the user?
+   A broker should implement the `/permissions`_ endpoint. When user logs into the integration, we send requests to the 
+   `/permissions`_ for determing a list of the data subscriptions. If the user has data subscription on your side he 
+   will not need to purchase one from TradingView.
 
 Data Integration
 ----------------
@@ -286,7 +285,7 @@ How does *Symbol* differs to *Tickers*?
    no *Ticker* then we will use *Symbol* for requests.
 
 If the broker is satisfied with TradingView instruments, can we not send anything to `/symbol_info`_ and not implement `/streaming`_ and `/history`_?
-   That’s right, the data integration is irrelevant when you are using only TradingView instruments.
+   That\'s right, the data integration is irrelevant when you are using only TradingView instruments.
 
 How to set up session time for data integration?
    The session schedule is regulated in the `/symbol_info`_ with next paremeters: ``session-regular``, 
@@ -296,9 +295,9 @@ I added some new symbols but they aren't displayed on the chart. Do you call `/s
    We request `/symbol_info`_ every hour and automatically update it if everything is ok. But if we find some critical 
    changes or invalid values, manual verification will be required.
 
-We want to show only our broker’s symbols in the symbol search to our users. How to set it up?
+We want to show only our broker\'s symbols in the symbol search to our users. How to set it up?
    After login into the brokerage account, a user has enabled filter in the symbol search. So the user can see the 
-   broker’s symbols only. But this filter can be disabled. This behavior cannot be changed.
+   broker\'s symbols only. But this filter can be disabled. This behavior cannot be changed.
 
 Following the `/symbol_info`_ specification, a symbol should contain uppercase letters, numbers, a dot or an underscore. But our exchange symbols contain the slash like ``BTC/USDT``. Is it allowed or we have to do a conversion to ``BTC_USDT``?
    You can add ticker field. We will use the ticker name for requests to API, it will be used prior to symbol filed. 
@@ -336,7 +335,7 @@ How to use fileds ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to bui
 Is `/history`_ requested only for those instruments for which we supply our quotes?
    The `/history`_ is requested for all instruments represented in the symbol field of the `/symbol_info`_.
 
-Which requests are going to the broker’s server from the TradingView server and not from the client?
+Which requests are going to the broker\'s server from the TradingView server and not from the client?
    Requests that are responsible for the data integration are sent from the TradingView server:  `/authorize`_, 
    `/groups`_, `/symbol_info`_, `/history`_, `/streaming`_.
 
@@ -350,7 +349,7 @@ What time intervals you will send in the request to the `/history`_?
 
 How often do you request `/history`_ to update your database?
    We send request to the `/history`_ once for the deep history filling. After that, we update the data twice a day. We 
-   request `/history`_ if we didn’t recive data from `/streaming`_ (as a result of provider’s server side issues).
+   request `/history`_ if we didn\'t recive data from `/streaming`_ (as a result of provider\'s server side issues).
 
 What is the expected timestamp precision for the query parameters ``from`` and ``to``?
    The timestamp should be specified in seconds.
@@ -369,11 +368,11 @@ Is it expected that the query to the `/history`_ should consider trades within t
    We build bar from the `/streaming`_ ticks. For verification, we use `streamingHistoryEquality`_ test.
 
 Should we change the session schedule during the summer/winter time changes?
-   You shouldn’t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
+   You shouldn\'t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
    time is carried out automatically following the ``timezone`` parameter in the `/symbol_info`_.
 
 Should we change the session schedule during the holidays?
-   You shouldn’t change the session schedule without TradingView team's confirmation. We don’t support holidays 
+   You shouldn\'t change the session schedule without TradingView team's confirmation. We don\'t support holidays 
    parameter at the moment, but we'll add it in the future.
 
 Is it possible to add breaks during the trading day?

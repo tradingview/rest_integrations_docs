@@ -97,7 +97,7 @@ the `Trading`_ section.
 
 In some cases, the listed endpoints may not be implemented.
 
-* `/mapping`_ --- no necessary if you work exclusively on your own symbols.
+* `/mapping`_ --- not necessary if you work exclusively on your own symbols.
 * `/executions`_ --- can be disabled through the config, but in this case, transactions will not be displayed on the 
   "Chart".
 * `/positions`_ --- can be disabled through the config, not used for Crypto Spot trading.
@@ -130,8 +130,8 @@ URL.
   production environment on its side, and the brokers do it on theirs.
 - The *staging environment* is for testing and does not contain real market data. TradingView implements the staging 
   environment on its side, and the brokers do it on theirs.
-- The *local environment* is used on developers\’ computers and does not contain real market data. Connections to the 
-  broker’s staging environment are made from the ``localhost:6285`` address.
+- The *local environment* is used on developers\' computers and does not contain real market data. Connections to the 
+  broker\'s staging environment are made from the ``localhost:6285`` address.
 
 The table lists six pairs of environments connections.
 

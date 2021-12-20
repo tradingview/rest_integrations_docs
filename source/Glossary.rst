@@ -1,5 +1,7 @@
 .. links
 .. _`Depth Of Market`: https://www.tradingview.com/support/solutions/43000516459-depth-of-market-dom/
+.. _`can be differences`: https://www.tradingview.com/support/solutions/43000473924-why-might-my-us-stock-data-look-incorrect/
+.. _`Cboe BZX`: http://markets.cboe.com/
 
 Glossary
 ********
@@ -8,11 +10,11 @@ Glossary
    :sorted:
 
    :abbr:`BATS (Better Alternative Trading System)`
-      BATS exchange based in Kansas City that provides all of its trading data for free. Their data is often very
-      similar to the data from the exchanges, but there can be differences. 
+      The `Cboe BZX`_ exchange (formerly BATS) provides US stock data for free. Their data is often very
+      similar to the data from the exchanges, but there `can be differences`_. 
 
    Mapping symbol
-      The mapping between the names of the broker’s instruments and TradingView instruments. This mapping solves the
+      The mapping between the names of the broker\'s instruments and TradingView instruments. This mapping solves the
       problem of TradingView and broker symbol names mimatching.
 
    Sandbox
@@ -33,12 +35,12 @@ Glossary
       owning a security. A long position formed as a result of buying a symbol.
 
    Short position
-      A position formed as a result of a short sale that hasn’t yet been covered. It profits when the security falls in
+      A position formed as a result of a short sale that hasn\'t yet been covered. It profits when the security falls in
       price. A short often involves securities that are borrowed and then sold, to be bought back at a lower price,
       hopefully.
 
    :abbr:`DOM (Depth Of Market)`
-      `Depth Of Market`_, known as Order Book, shows data streamed from the broker which supports Level 2 data.
+      `Depth Of Market`_, known as Order Book, shows data streamed from the broker which supports :term:`Level 2 data`.
       DOM shows the number of open buy and sell orders at different securities\' prices.
 
    Limit order
@@ -49,7 +51,7 @@ Glossary
 
    Stop-Limit
       An order to buy or sell at a definitive or a better price, but only after reaching a set price value. Essentially,
-      it’s a combination of a :term:`Stop oder` and a :term:`Limit order`.
+      it\'s a combination of a :term:`Stop oder` and a :term:`Limit order`.
 
    Stop-Loss
       An order that is used to limit losses. It is triggered to close a position at a given price value when it moves
@@ -76,3 +78,7 @@ Glossary
 
    :abbr:`OHLC (Open-High-Low-Close chart)`
       An OHLC chart is a type of bar chart that shows open, high, low, and closing prices for each period.
+   
+   Level 2 data
+      Level 2 data shows the supply and demand of the price levels beyond or outside of the current price. This gives 
+      the user a visual display of the price range and associated liquidity at each price level. 

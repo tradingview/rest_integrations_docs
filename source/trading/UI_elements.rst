@@ -1,6 +1,7 @@
 .. links
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
+.. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`TradingView REST API`: https://www.tradingview.com/rest-api-spec
 
@@ -38,7 +39,7 @@ at the broker or subaccount level. Setting at the broker level will allow displa
 subaccounts. Setting at the subaccount level allows you display information for the user-selected account. In this case,
 the information it can be different for different subaccounts.
 
-::
+.. code-block:: javascript
 
    {
       "s": "ok",
@@ -119,6 +120,11 @@ Order Ticket
    * But, if the market price goes down, the :term:`Stop order` price remains unchanged.
    * And if the market continues to fall and reaches the price  established in the order, it will be executed.
 
+.. image:: ../../images/order-dialog.png
+   :scale: 30 %
+   :alt: Order Dialog
+   :align: center
+
 Durations
 ~~~~~~~~~
 TradingView REST API allows you to configure the duration (or *Time In Force*) separately for each of the supported
@@ -136,26 +142,44 @@ available.
 .. Reverse Position
 .. ~~~~~~~~~~~~~~~~
 
+.. _depth-of-market:
+
 Depth Of Market
 ...............
 
-When the user places an order directly from the Chart or :term:`DOM`, no need to display and control the maximum 
-amount on broker side. Just when the order is placed with opening an order ticket ，displaying and controlling the
-maximum amount on broker side.
+*Depth of Market* or :term:`DOM` (also known as *Order Book*), is a window that shows how many open buy and sell orders
+there are at different prices for a security. Let\'s say the current price is $1, the DOM will show how many orders there 
+are at $0.90, $1.10, etc. It\'s a great tool to see where the supply and demand levels are.
+
+To enable :term:`DOM` in the TradingView UI follow the next steps:
+
+* Set ``supportLevel2Data`` in the `/accounts`_ to ``true`` if you have :term:`Level 2 data`.
+* Implement `/depth`_ endpoint.
+* Set ``supportDOM`` to ``true`` if you want to enable DOM in the UI.
+
+.. image:: ../../images/dom-panel.png
+   :scale: 50 %
+   :alt: DOM
+   :align: center
 
 .. _trading-ui-accountmanager:
 
-.. 🚧
+..
 Account Manager
 ...............
 
-The *Account Manager* can be configured both at the broker configuration level and for each individual subaccount
-separately. You must use one of these options.
+*Account manager* is a page in the bottom widget. This page can have multiple tables. The *Account Manager* can be 
+configured both at the broker configuration level and for each individual subaccount separately. You should use one of 
+these options.
 
 * At the broker level use `/config`_ → ``d`` → ``accountManager``.
 * At the subaccount level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
 
 But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
+
+.. image:: ../../images/account-manager.png
+   :alt: Account Manager
+   :align: center
 
 .. Orders table
 .. ~~~~~~~~~~~~

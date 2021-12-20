@@ -19,7 +19,7 @@ How to implement mapping
 ........................
 Mapping is set with the `/mapping`_ endpoint implementation. This endpoint must be accessible without 
 authorization. In TradingView production, it is automatically requested once a day. Based on the response to the 
-request, a mapping of instruments is generated on the TradingView side. In TradingView staging, the ``/mapping`` 
+request, a mapping of instruments is generated on the TradingView side. In TradingView staging, the `/mapping`_ 
 request is made manually if necessary. At the development stage, you can set a partial mapping, i.e. not for all 
 instruments supported by the broker.
 
@@ -39,4 +39,4 @@ an index.
 
 When the user's subscription has ended, he cannot trade on the broker's platform. But the user can see already opened
 positions and order on the TradingView platform. In this case broker should send these symbols at `/instruments`_.
-And when a user tries to send an order, ruturn an error message.
+And when a user tries to send an order, return an error message.

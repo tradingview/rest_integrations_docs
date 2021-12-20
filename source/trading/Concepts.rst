@@ -44,7 +44,7 @@ orders, that have recieved final status must should be included in the list till
 least within 1 minute after changing order status.
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. If you don\’t support orders history, please set ``supportOrdersHistory: false`` in 
+status. This endpoint is optional. If you don\'t support orders history, please set ``supportOrdersHistory: false`` in 
 the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
 
 .. _trading-concepts-brackets:
@@ -58,10 +58,10 @@ to its parent. The quantity in bracket orders is always equal to the quantity of
 
 Brackets can exist either in a pair (:term:`Stop-Loss` and :term:`Take-Profit`) or separately. This means that the
 order or position can have only one bracket order (*Stop-Loss* or *Take-Profit*). If a pair exists, bracket orders are
-linked by an :term:`OCO` (One-Cancels-the-Other) ​condition. It means that when one bracket order is executed, the other
-(if any) is automatically cancelled. When one of the brackets is partially executed, the ``quantity​`` in the second 
-bracket order ​should be​ automatically reduced to the remaining ​quantity of​ the partially executed bracket order ​on the 
-broker’s side​.
+linked by an :term:`OCO` (One-Cancels-the-Other) condition. It means that when one bracket order is executed, the other
+(if any) is automatically cancelled. When one of the brackets is partially executed, the ``quantity`` in the second 
+bracket order should be automatically reduced to the remaining quantity of the partially executed bracket order on the 
+broker\'s side.
 
 Order Brackets
 ~~~~~~~~~~~~~~
@@ -72,7 +72,7 @@ for bracket orders will appear when switching to the order editing mode.
 Placing a parent order with brackets
 ''''''''''''''''''''''''''''''''''''
 
-When placing an order with brackets through our UI, a POST request is sent to the broker’s server with ``stopLoss`` and
+When placing an order with brackets through our UI, a POST request is sent to the broker\'s server with ``stopLoss`` and
 ``takeProfit`` fields or one of them. If the parent order has not been executed immediately, then we expect the parent
 order to appear in ``working`` status, and one or two (depending on the presence of fields ``stopLoss`` and 
 ``takeProfit``) in ``inactive`` status in the next response to the `/orders`_ request. 
@@ -83,7 +83,7 @@ parent order. The ``parentType`` field of bracket orders has the ``order`` value
 Modifying parent order with brackets, adding or removing brackets
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-The result of editing the order in our UI is a PUT request to the broker’s server with new order parameters, including
+The result of editing the order in our UI is a PUT request to the broker\'s server with new order parameters, including
 ``stopLoss`` and ``takeProfit`` fields, or one of them. If the user has deleted one of the brackets when changing the
 parent order, then it is necessary to send a removed bracket order with ``cancelled`` status in subsequent responses to
 the `/orders`_ request. Otherwise, an error will come up: this bracket will “hang” in our user interface in the table
@@ -119,20 +119,20 @@ which can only be closed completely. If you support multi position set the ``sup
 Position brackets are not supported
 '''''''''''''''''''''''''''''''''''
 
-In this case, after the parent order is executed, the brackets don’t receive the position id to the ``parentId`` field
+In this case, after the parent order is executed, the brackets don\'t receive the position id to the ``parentId`` field
 and are no longer linked to the parent order. But the :term:`OSO` brackets binding between each other must be kept on
-the broker’s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
+the broker\'s side. When a position is closed, all orders in the transit statuses (``placing``, ``inactive``,
 ``working``) are usually canceled.
 
 Position brackets are supported
 '''''''''''''''''''''''''''''''
 
 When one of the bracket orders is executed, the position is reset to zero, and the other bracket order (if any) is
-transferred to the ``cancelled`` status. When one of the bracket orders is partially executed, the ​quantity​ in the
-position is reduced by the executed ​quantity​. The ​quantity​ in the other bracket order is given according to the left
-​quantity​ in the partially executed bracket order.
+transferred to the ``cancelled`` status. When one of the bracket orders is partially executed, the quantity in the
+position is reduced by the executed quantity. The quantity in the other bracket order is given according to the left
+quantity in the partially executed bracket order.
 
-When the user adds brackets to the position, the broker’s server recieves a PUT request `Modify Position`_, which
+When the user adds brackets to the position, the broker\'s server recieves a PUT request `Modify Position`_, which
 contains ``stopLoss`` and ``takeProfit`` fields, or one of them.
 
 Then these bracket orders return with ``working`` status to `/orders`_ with next values:
@@ -177,7 +177,7 @@ Pip Value
 .........
 
 The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<trading-ui-orderticket>` (for 
-those who use it). This parameter\’s value is specified in the account currency.
+those who use it). This parameter\'s value is specified in the account currency.
 
 For Forex instruments, the ``pipValue`` size depends on the rapidly changing currency cross rates. You should always 
 send the actual value. Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPipValue`` and 
