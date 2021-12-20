@@ -97,9 +97,9 @@ Are you able to support the OAuth2 Client Credentials Grant for authorizing to o
    X.509 cert to sign the JWT. Our client forms the JWT, signs it and sends it in the body of the POST request as
    ``assertion`` field and expects to get a token in response.
 
-🎾 Should a broker provide X.509 certificate or private key to sign the JWT?
+Should a broker provide X.509 certificate or private key to sign the JWT?
    Data feed currently supports the JWT assertion workflow. We need X.509 certificate to sign the JWT. Our client forms
-   a JWT, signs it, and sends it in the POST request body as ``assertion`` field. And expects to recieve a token in
+   a JWT, signs it, sends it in the POST request body as ``assertion`` field, and expects to recieve a token in
    response. See `JWT Bearer Flow example`_ for details.
 
 Authorization
@@ -174,13 +174,13 @@ How often quotes and orders should be updated?
    * Default 500 ms and maximum 1000 ms for ``quotes``, and ``orders``.
    * Default 500 ms and maximum 1500 ms for ``positions``, ``accountManager``, and ``balances``.
 
-🎾 Is the ``balance`` in the `/state`_ an account balance calculated at the average ask price of the instruments included in it?
-   The balance line displays the number of funds available on the user's account. The riks calculation during trading 
+Is the ``balance`` in the `/state`_ an account balance calculated at the average ask price of the instruments included in it?
+   The balance line displays the number of funds available in the user's account. The riks calculation during trading 
    order filling goes through ``equity`` calculated as ``balance + unrealizedPl``.
 
-🎾 If we dont' fill ``unrealizedPl``. How the market price will be calculated on the TradingView side?
-   The ``unrealizedPl`` field is required. It shouldn't be ignored. But in fact, it plays the role of an indicator of 
-   the current profit/loss from all open positions.
+If we dont' fill ``unrealizedPl``, how will the market price will be calculated on the TradingView side?
+   The ``unrealizedPl`` field is required. It shouldn't be ignored. In fact, it is an indicator of the current 
+   profit/loss from all open positions.
 
 .. Orders
 .. ......
@@ -230,9 +230,9 @@ Trading
 .. Place Order
 .. ...........
 
-🎾 Should we ignore `Place Order`_ parameters ``currentAsk``/``currentBid`` for the market order?
-   If it is Forex trading, these fields are required. In other cases, they will not be considered. But these parameters
-   are required.
+Should we ignore `Place Order`_ ``currentAsk``/``currentBid`` parameters for the market order?
+   If it is Forex trading, these fields are required. In other cases, these parametes are still required to be send, but 
+   remain unprocessed.
 
 .. Modify Order
 .. ............
@@ -374,9 +374,9 @@ How to set up a minimal price step (min tick size)?
    ``min tick size =  minmovement / pricescale``. For example, if you need to set a price step in ``0.01``, then you
    need to set ``pricescale: 100``, and ``minmovement: 1``.
 
-🎾 Are there any restrictions on the number of symbol groups?
-   Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. The symbol can appear in
-   one group only.
+Are there any restrictions on the symbol groups number?
+   Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. One symbol can only 
+   appear in one group.
 
 .. History
 .. .......
