@@ -1,12 +1,12 @@
 .. links
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 
-🎾 Session specification
-------------------------
+Session specification
+---------------------
 
 The session allows you to set a weekly trading schedule, with an accuracy up to a specific day of the week.
 
-Session boundaries specifies by several parameters in the `/symbol_info`_.
+Session boundaries are specified by several parameters in the `/symbol_info`_.
 
 +------------------------+----------------------------------------------------------------------------------------+
 | Parameter              | Description                                                                            |
@@ -27,14 +27,14 @@ Session boundaries specifies by several parameters in the `/symbol_info`_.
 
 Here are some examples:
 
-* Session 24/7, timezone UTC: resolutions are built from 00:00 UTC and close at 23:59 every day, including Saturday and 
+* Session 24/7, UTC timezone: resolutions are built from 00:00 UTC and close at 23:59 every day, including Saturday and 
   Sunday.
-* Session ``0930-1600``, timezone UTC: resolutions are built at 09:30 UTC, closing at 16:00 UTC every weekday.
+* Session ``0930-1600``, UTC timezone: resolutions are built at 09:30 UTC, closing at 16:00 UTC every weekday.
 * Session ``0930-1600`` New York timezone: bars open at 09:30 and close at 16:00 New York time every weekday.
 * Session ``1800-1700``, London timezone: overnight session, interim resolutions to be cut from Sunday 18:00 London 
   time.
 * Session ``0900-1700:1 | 1000-1700:2 | 1100-1700:34567``, where *1* is Sunday, *2* is Monday, etc.: Separate session 
-  for each day. It is important that the schedule doesn't overlap.
+  for each day. It is important that the schedule doesn\'t overlap.
 
 .. code-block:: json
 

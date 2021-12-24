@@ -1,11 +1,11 @@
 .. links
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 
-🎾 Symbol info
---------------
+Symbol info
+-----------
 
-A *symbol* is an array of strings. It is a name of the symbol that users will see. It must be unique. Symbol names are
-always in uppercase. The symbol name is validated with a regex: 
+A *symbol* is an array of strings. It is a name of the symbol that users will see. It must be unique. Symbol names are 
+always displayed in uppercase. The symbol name is validated with a regex:
 
 .. code-block:: none
 
@@ -17,8 +17,8 @@ hour. The answer must include a ``"s": "ok"`` field, and a ``"Content-Type": "ap
 With :ref:`division into symbol groups <groups-division>`, API must return symbols regardless of the parameters in the 
 query to the `/symbol_info`_.
 
-If the symbol groups exist, their names should have a perfix as broker's name. In this case, a request to the 
-`/symbol_info`_ without ``groups`` parameter must return and error.
+If the symbol groups exist, their names should have a perfix as broker\'s name. In this case, a request to the 
+`/symbol_info`_ without groups parameter must return and error.
 
 Rules of symbol naming
 ......................
@@ -26,6 +26,10 @@ Rules of symbol naming
 The symbols names, which are sending to the `/symbol_info`_  side are converted differently for different types of 
 instruments on the TradingView side. But all names must be specified in one piece, uppercase, without special 
 characters.
+
+The symbols names, which are being sent from the Broker to the `/symbol_info`_ side are converted differently for 
+different types of instruments on the TradingView side. But all names must be specified in one piece, uppercase, 
+without special characters.
 
 Stocks
 ~~~~~~

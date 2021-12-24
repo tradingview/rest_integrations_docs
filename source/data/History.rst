@@ -2,18 +2,18 @@
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 
-🎾 History
-----------
+History
+-------
 
 We need the `/history`_ endpoint to:
 
 * fill the database with deep history,
 * compensate data from the `/streaming`_ in case of problems.
 
-After filling our database, make regular requests to `/history`_ in the shallow history to keep the data up to date.
-Per request out data feed requests 1-minute bars per day. Requests are made sequentially from the current time to the 
-past. When we reach the date that you specify as the history depth, we will stop sending requests. It means here is no 
-deeper data for this symbol.
+After filling our database, make regular requests to `/history`_ in the shallow history to keep the data up to date. 
+Our data feed requests 1-minute bars for the whole day per request. Requests are made sequentially from the current 
+time to the past. When we reach the date that you specify as the history depth, we will stop sending requests. It means 
+that there is no deeper data for that symbol.
 
 So, if a request arrives in `/history`_ for a period without data, an empty value should be sent in the response:
 
@@ -29,7 +29,7 @@ So, if a request arrives in `/history`_ for a period without data, an empty valu
     "v": []
   }
 
-The request to `/history`_ can be of two types: 
+There can be two types of request to `/history`_:
 * with ``from`` and ``to`` parameters,
 * with ``countback`` and ``to`` parameters.
 
@@ -77,7 +77,7 @@ The response will be:
     ]
   }
 
-In the second case, when the ``countback`` specifies, we wait to receive exactly 3 bars. The ``from`` parameter is
+In the second case, we wait to receive exactly 3 bars when the ``countback`` is specified. The ``from`` parameter is 
 ignored. When a symbol has fewer bars history, an answer may contain less than 3 bars.
 
 .. code-block:: bash
