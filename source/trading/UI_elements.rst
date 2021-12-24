@@ -22,47 +22,45 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
 * ``unrealizedPL`` into the *Profit*,
 * ``equity`` into the *Equity*.
 
-::
+.. code-block:: json
 
-   {
-      "s": "ok",
-      "d": {
-         "balance": 41757.91,
-         "unrealizedPl": 1053.02,
-         "equity": 42857.56,
-         // ...
-         }
-   }
+  {
+    "s": "ok",
+    "d": {
+      "balance": 41757.91,
+      "unrealizedPl": 1053.02,
+      "equity": 42857.56,
+    }
+  }
 
 But *Account Summary Row* allows to display other required broker information after configuration. You can configure it
 at the broker or subaccount level. Setting at the broker level will allow displaying the same information for all
 subaccounts. Setting at the subaccount level allows you display information for the user-selected account. In this case,
 the information it can be different for different subaccounts.
 
-.. code-block:: javascript
+.. code-block:: json
 
-   {
-      "s": "ok",
-      "d": [
-         "ui": {
-            "accountSummaryRow": [
-               {
-                  "id": "accountBalance",
-                  "title": "Account Balance"
-               },
-               {
-                  "id": "Equity",
-                  "title": "Realized P/L"
-               },
-               {
-                  "id": "Open Profit",
-                  "title": "Unrealized P/L"
-               }
-            ],
-         },
-         // ...
-      ]
-   }
+  {
+    "s": "ok",
+    "d": [
+      "ui": {
+        "accountSummaryRow": [
+          {
+            "id": "accountBalance",
+            "title": "Account Balance"
+          },
+          {
+            "id": "Equity",
+            "title": "Realized P/L"
+          },
+          {
+            "id": "Open Profit",
+            "title": "Unrealized P/L"
+          }
+        ],
+      },
+    ]
+  }
 
 For custom configuration of the *Account Summary Row* follow the steps below.
 

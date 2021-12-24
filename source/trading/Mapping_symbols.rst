@@ -1,8 +1,6 @@
 .. links:
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
-.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
-.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 
 Mapping symbols
 ---------------

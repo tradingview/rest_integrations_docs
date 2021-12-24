@@ -4,6 +4,7 @@
 .. _`Trading`: https://www.tradingview.com/rest-api-spec/#tag/Trading
 
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
+.. _`/authorize`: https://www.tradingview.com/rest-api-spec/#operation/authorize
 .. _`/balances`: https://www.tradingview.com/rest-api-spec/#operation/getBalances
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
 .. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
@@ -20,6 +21,9 @@
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
+.. _`PasswordBearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/PasswordBearer
+.. _`OAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/OAuth2Bearer
+.. _`ServerOAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/ServerOAuth2Bearer
 
 Integration overview
 ********************
@@ -122,7 +126,6 @@ Requests from the client browser require a configured :ref:`CORS policy<cors-pol
 
 Types of environments
 .....................
-
 There are several environment variants used in the development and support of the integration. Each environment has its
 URL.
 
@@ -214,8 +217,13 @@ The feature gets into production only after successful testing by the TradingVie
 Data integration issues
 -----------------------
 
-Data requirements
-.................
+🔥 Source for comparison during testing
+.......................................
+We need a source which can be used to compare data received from your API, and chart would be the best option. If the
+data is not available to be accessed for free, we need an account to with the access to it. For example, two deals were made in one minute:
+
+🎾 Data requirements
+....................
 All the data which is shown on TradingView have to meet the following standards:
 
 * Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_
@@ -225,7 +233,73 @@ All the data which is shown on TradingView have to meet the following standards:
 * Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history
   holes, and incorrect prices.
 
-Source for comparison during testing
-....................................
-We need a source which can be used to compare data received from your API, and chart would be the best option. If the
-data is not available to be accessed for free, we need an account to with the access to it.
+At the Chart user sees bars built from streaming ticks. Some time later after Chart reloading by user the `/streaming`_ 
+data is replaced by the data from the `/history`_. It is important that the data from `/streaming`_ and `/history`_ 
+are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
+`/history`_ shouldn\`t change.
+
+.. tip::
+
+  To make sure you meet this requirement, record your streaming trades in a few minutes.
+
+.. code-block:: json
+
+  {
+    "id":"BTCUSDT",
+    "p":33405.5,
+    "t":1624797120,
+    "f":"t",
+    "s":0.092
+  },
+  {
+    "id":"BTCUSDT",
+    "p":33417.5,
+    "t":1624797179,
+    "f":"t",
+    "s":0.057
+  }
+
+We can build 1-minute bar from this data:
+
+.. code-block:: json
+
+  {
+    "s":"ok",
+    "t":[1624797120],
+    "o":[33405.5],
+    "h":[33417.5],
+    "l":[33405.5],
+    "c":[33417.5],
+    "v":[0.149]
+  }
+
+Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``v`` --- sum of sizes (``s``).
+
+Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
+The resulting bar must match the bar built from `/streaming`_.
+
+🎾 Endpoints requirements
+.........................
+Data integration requires the implementation of three endpoints:
+
+* `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
+* `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
+  daily bars may be required.
+* `/streaming`_ --- a permanent HTTP connection, a stream of messages on comleted deals; data feed should provide 
+  trades and quotes. In some cases, daily bars may be required.
+
+If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
+supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
+
+🎾 Types of environments
+........................
+On the TradingView side during integration development we use two environments: staging and production. But on the
+broker side should use production data feed. This feed will be connected to the TradingView production environment 
+after successfully passing the tests.
+
+In future, if the need of adding new symbols will appear, it's necessary to add  separate URL (or individual account)
+with an extended set of data. This feed will be tested on our staging server. After successfully passing the tests this 
+feed will be connected to the TradingView production.
+
+The data is requested with our API client applications running on the servers. The end-user browser never sends a 
+request to these endpoins.

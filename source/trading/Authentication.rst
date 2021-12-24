@@ -65,17 +65,17 @@ Authorization
 3. A new browser tab opens at the broker's *Authorization URL*.
 4. The following query parameters are sent in the GET request:
 
-    * ``response_type`` --- the value will always be ``token``.
-    * ``client_id`` --- unique identifier of the client.
-    * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, it is better to configure the value of 
+   * ``response_type`` --- the value will always be ``token``.
+   * ``client_id`` --- unique identifier of the client.
+   * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, it is better to configure the value of 
       this parameter on your server and, when receiving an authorization request, check this parameter for 
       compliance with the one in the configuration.
-    * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side.
-    * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
+   * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side.
+   * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
       modified on the broker's server and should return to the callback unchanged.
-    * ``prompt`` --- the parameter takes the ``login`` value when requesting authorization and the ``none`` value when
+   * ``prompt`` --- the parameter takes the ``login`` value when requesting authorization and the ``none`` value when
       requesting to refresh the token.
-    * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at 
+   * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at 
       the time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, 
       ``fr``, ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, 
       ``sv``, ``th``, ``tr``, ``uk``, ``vi``, ``zh``.
@@ -133,15 +133,15 @@ Authorization
 3. A new browser tab opens at the broker's *Authorization URL*.
 4. The following query parameters are sent in the GET request:
 
-    * ``response_type`` --- the value will always be ``token``.
-    * ``client_id`` --- a unique identifier of the client.
-    * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, when receiving an authorization request, check
+   * ``response_type`` --- the value will always be ``token``.
+   * ``client_id`` --- a unique identifier of the client.
+   * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, when receiving an authorization request, check
       this parameter for compliance with the one in the configuration.
-    * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side, if it is
+   * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side, if it is
       provided by the broker.
-    * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
+   * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
       modified on the broker's server and should return to the callback unchanged.
-    * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at the
+   * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at the
       time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, ``fr``,
       ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``,
       ``tr``, ``uk``, ``vi``, ``zh``.
@@ -150,26 +150,26 @@ Authorization
 6. The broker's server authenticates and authorizes the user after submitting the form.
 7. If successful, the broker's server redirects the request to ``redirect_uri`` with GET parameters:
 
-    * ``code`` --- an authorization code with a short expiration time, which will subsequently be exchanged for an
+   * ``code`` --- an authorization code with a short expiration time, which will subsequently be exchanged for an
       access token.
-    * ``state`` --- the value of the ``state`` field from the original authorization request. Should return unchanged.
+   * ``state`` --- the value of the ``state`` field from the original authorization request. Should return unchanged.
 
 8. The TradingView server sends a POST request for an access token in the ``application / x-www-form-urlencoded`` format 
    to the token endpoint of the broker's server with the following parameters:
 
-    * ``grant_type`` --- the value always equal to ``authorization_code``.
-    * ``code`` --- authorization code obtained from a response to authorization request.
-    * ``client_id`` --- a unique identifier of the client.
-    * ``client_secret`` --- a unique client secret. This parameter has been added for compatibility with the 
+   * ``grant_type`` --- the value always equal to ``authorization_code``.
+   * ``code`` --- authorization code obtained from a response to authorization request.
+   * ``client_id`` --- a unique identifier of the client.
+   * ``client_secret`` --- a unique client secret. This parameter has been added for compatibility with the 
       `Auth0 service`_, where it is required.
-    * ``redirect_uri`` --- the same *Redirect URI* as in the authorization request.
+   * ``redirect_uri`` --- the same *Redirect URI* as in the authorization request.
 
 9. The broker's server sends a response to a request for an access token with the following fields in its body:
 
-    * ``token_type`` --- the value must be ``bearer``.
-    * ``access_token`` --- access token that will be used in REST requests to the broker's server.
-    * ``expires_in`` --- token lifetime in seconds.
-    * ``refresh_token`` --- a token that is exchanged for a new access token before the expiration of the current 
+   * ``token_type`` --- the value must be ``bearer``.
+   * ``access_token`` --- access token that will be used in REST requests to the broker's server.
+   * ``expires_in`` --- token lifetime in seconds.
+   * ``refresh_token`` --- a token that is exchanged for a new access token before the expiration of the current 
       access token.
 
 .. _oauth2-implicit-code-refresh-token:
@@ -180,9 +180,9 @@ Token refreshing
 When the *access token* expiration is approaching, TradingView automatically starts the token renewal procedure.
 A request for a token endpoint is sent to the broker's server with the following parameters:
 
-      * ``grant_type`` --- the value will always be ``refresh_token``.
-      * ``refresh_token`` --- a refresh token received in the same request as the current access token.
-      * ``client_secret`` --- the value of the client secret provided by the broker.
+* ``grant_type`` --- the value will always be ``refresh_token``.
+* ``refresh_token`` --- a refresh token received in the same request as the current access token.
+* ``client_secret`` --- the value of the client secret provided by the broker.
 
 The response is expected to be the same as for the request to obtain an access token during the initial
 authorization.

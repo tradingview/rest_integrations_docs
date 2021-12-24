@@ -15,8 +15,8 @@ Concepts
 
 .. _trading-concepts-orders:
 
-Orders
-......
+Orders and Orders history
+.........................
 
 The orders statuses can be divided into two groups in our API:
 
@@ -195,8 +195,8 @@ fixed when the position is closed:
    Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
 
    * For the ``XXXCCC`` pair: ``pipValue = pipSize``
-   * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX * pipSize``
-   * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC`` or ``pipValue = pipSize / CCCXXX``
+   * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
+   * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
 
    Next, we multiply by ``lotSize`` and ``qty`` for the current order.
 

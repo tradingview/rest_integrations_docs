@@ -59,13 +59,11 @@ Will the ``scope`` parameter be sent on authorization? What about its values? Ho
    space-delimited, case-sensitive strings. We will send a ``scope`` in the request upon authorization, but not when 
    refreshing a token.
 
-.. code-block:: javascript
+.. code-block:: json
 
-      {
-         //...
-         "scope": "read trade marketdata stream",
-         //...
-      }
+  {
+    "scope": "read trade marketdata stream",
+  }
 
 Do we have to implement all 4 authentication flows?
    Integration is divided into 2 parts: data integration and trading integration. Data Integration supports
@@ -325,18 +323,18 @@ Following the `/symbol_info`_ specification, a symbol should contain uppercase l
    You can add ticker field. We will use the ticker name for requests to API, it will be used prior to symbol filed. 
    Ticker has no strict requirements. symbol is what we show on the chart. so, you can have two fields:
 
-.. code-block:: javascript
+.. code-block:: json
 
-   "ticker": [
-      "BTC/USDT",
-      "ETH/USDT",
-      "LTC/USDT"
-   ],
-   "symbol": [
-      "BTCUSDT",
-      "ETHUSDT",
-      "LTCUSDT"
-   ],
+  "ticker": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "LTC/USDT"
+  ],
+  "symbol": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "LTCUSDT"
+  ],
 
 Does ``has-no-volume`` parameter indicate whether we can report trading volume of the symbol?
    If you can provide trading volume, just set ``has-no-volume: false`` in the `/symbol_info`_.

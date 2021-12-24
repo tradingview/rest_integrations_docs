@@ -3,7 +3,6 @@ Trading integration
 
 .. toctree::
    :maxdepth: 2
-   :name: appendixtoc
 
    Configuring
    Concepts
