@@ -8,10 +8,8 @@ Mapping symbols
 What is mapping
 ...............
 We call *mapping symbols* the matching between the names of the broker's instruments and TradingView.
-This mapping solves the problem of TradingView and broker symbol names mimatching.
-
-Mapping is necessary if the broker does not integrate its data in whole or in part on the TradingView servers but
-uses the data already connected.
+This mapping solves the problem of TradingView and broker symbol names mismatching. If the broker's doesn't use 
+TradingView\'s data, then mapping is necessary.
 
 How to implement mapping
 ........................

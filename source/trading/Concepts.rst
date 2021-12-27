@@ -40,12 +40,12 @@ Tab Display:
   on both the Orders and the History tabs.
 
 `/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. However,
-orders, that have recieved final status must should be included in the list till the end of the trading session, or at 
+orders, that have recieved final status should be included in the list utill the end of the trading session, or at 
 least within 1 minute after changing order status.
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. If you don\'t support orders history, please set ``supportOrdersHistory: false`` in 
-the `/accounts`_ to ``false``. The ``accountId`` parameter is required.
+status. This endpoint is optional. If you don\'t support orders history, please set ``supportOrdersHistory`` in the 
+`/accounts`_ to ``false``. The ``accountId`` parameter is required.
 
 .. _trading-concepts-brackets:
 
@@ -66,8 +66,8 @@ broker\'s side.
 Order Brackets
 ~~~~~~~~~~~~~~
 
-The ``supportOrderBrackets`` flag must be set to ``true`` to support order brackets in our UI. In this case, sections
-for bracket orders will appear when switching to the order editing mode.
+The ``supportOrderBrackets`` flag in the `/accounts`_ must be set to ``true`` to support order brackets in our UI. In 
+this case, sections for bracket orders will appear when switching to the order editing mode.
 
 Placing a parent order with brackets
 ''''''''''''''''''''''''''''''''''''
@@ -108,13 +108,13 @@ Position brackets
 ~~~~~~~~~~~~~~~~~
 
 The UI behavior differs depending on whether the broker supports bracket position or not. To support position brackets,
-the ``supportPositionBrackets`` flag must be set to ``true``. So, when the user switches to edit mode, sections for
-bracket orders will appear.
+the ``supportPositionBrackets`` flag in the `/accounts`_ must be set to ``true``. So, when the user switches to edit 
+mode, sections for bracket orders will appear.
 
 Support of position brackets vary if a broker does not have support for multiple positions at one instrument at the
 same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
-which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag in the
-`/accounts`_ to ``true``. Set it into ``false`` and the behavior will be as you wish. Trades will net position.
+which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag to ``true``. 
+Set it into ``false`` and the behavior will be as you wish. Trades will net position.
 
 Position brackets are not supported
 '''''''''''''''''''''''''''''''''''

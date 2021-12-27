@@ -4,8 +4,8 @@
 Bar building
 ------------
 
-Broker\'s feed must support 1-minutes resolutions to build bars. If it is imposible to build daily resolutions from 
-1-minutes, set ``has-daily`` flag to ``true`` and send daily resolutions to the `/symbol_info`_.
+Broker\'s feed must support 1-minute resolutions to build bars. If it is imposible to build daily resolutions from 
+1-minute, set ``has-daily`` flag to ``true`` and send daily resolutions to the `/symbol_info`_.
 
 Daily bars are being built as follows: data is taken unchanged from the feed. If the feed doesn\'t provide them, daily 
 bars are built from ticks, that are inside all sessions of the current day. The daily bar has a bar start time, which 

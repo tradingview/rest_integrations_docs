@@ -10,7 +10,7 @@ We need the `/history`_ endpoint to:
 * fill the database with deep history,
 * compensate data from the `/streaming`_ in case of problems.
 
-After filling our database, make regular requests to `/history`_ in the shallow history to keep the data up to date. 
+After filling our database, make regular requests to `/history`_ in the shallow history to keep the data relevant. 
 Our data feed requests 1-minute bars for the whole day per request. Requests are made sequentially from the current 
 time to the past. When we reach the date that you specify as the history depth, we will stop sending requests. It means 
 that there is no deeper data for that symbol.
@@ -30,6 +30,7 @@ So, if a request arrives in `/history`_ for a period without data, an empty valu
   }
 
 There can be two types of request to `/history`_:
+
 * with ``from`` and ``to`` parameters,
 * with ``countback`` and ``to`` parameters.
 

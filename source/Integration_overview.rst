@@ -235,7 +235,7 @@ All the data which is displayed at TradingView has to meet the following standar
 User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
 `/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
 are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
-`/history`_ shouldn\`t change.
+`/history`_ shouldn\'t change.
 
 .. tip::
 
@@ -296,7 +296,7 @@ We use two environments on the TradingView side during integration development: 
 production data feed shall be used on the broker's side. This feed will be connected to the TradingView production 
 environment after successfully passed tests.
 
-In the future, if new symbols need to be added, it\`s necessary to add a separate URL (or individual account) with an 
+In the future, if new symbols need to be added, it\'s necessary to add a separate URL (or individual account) with an 
 extended set of data. This feed will be tested on our staging server. After successfully passed tests this feed will 
 be connected to the TradingView production.
 

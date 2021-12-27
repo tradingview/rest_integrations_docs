@@ -76,12 +76,13 @@ For custom configuration of the *Account Summary Row* follow the steps below.
 
 If the display area of the *Account Summary Row* is undersized, the elements will be hidden sequentially, 
 starting with the very first. This can happen on low-resolution screens. Therefore, arrange information in order of 
-increasing importance.*
+increasing importance.
 
 Account Summary Tab
 ...................
-The *Account Summary Tab* displays the fields received by `/state`_ request as a set of tables. By default, one 
-table is displayed. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the filed is optional).
+The *Account Summary Tab* displays the fields received by `/state`_ request as a set of tables. Only one 
+table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the field 
+is optional).
 
 The information displayed in the *Account Summary Tab* can be flexibly configured at the broker or subaccount level.
 The settings made at the broker level will be displayed the same for all subaccounts. Setting at the subaccount level 
@@ -166,9 +167,9 @@ To enable :term:`DOM` in the TradingView UI follow the next steps:
 Account Manager
 ...............
 
-*Account manager* is a page in the bottom widget. This page can have multiple tables. The *Account Manager* can be 
-configured both at the broker configuration level and for each individual subaccount separately. You should use one of 
-these options.
+*Account manager* is a panel on the bottom of the screen. This panel can have multiple tables. The *Account Manager* 
+can be configured both at the broker configuration level and for each individual subaccount separately. You should use 
+one of these options.
 
 * At the broker level use `/config`_ → ``d`` → ``accountManager``.
 * At the subaccount level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.

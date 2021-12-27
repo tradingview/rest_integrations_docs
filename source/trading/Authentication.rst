@@ -10,7 +10,7 @@ Authentication
    :depth: 2
 
 After passing the authentication, regardless of the method of obtaining the access token, all requests to the 
-broker's REST server will be use the ``Authorization: Bearer ACCESS_TOKEN`` header.
+broker's REST server will use the ``Authorization: Bearer ACCESS_TOKEN`` header.
 
 .. _password-bearer-flow:
 
@@ -23,7 +23,7 @@ Fields expected in response:
 
 * ``access_token`` --- access token, which will be added to the Authorization Header for requests to the broker's REST
   server.
-* ``expiration`` --- token expiration time in Unix Timestamp format, optional parameter.
+* ``expiration`` --- token expiration time in Unix Timestamp format, an optional parameter.
 
 In the current implementation, the token will not be refreshed, even if the ``expiration`` field is received in the 
 response and that point in time is approaching. For better security, please use 
@@ -60,25 +60,25 @@ procedures.
 
 Authorization
 """""""""""""
-1. A user opens the "Chart" page on the TradingView website, then selects a broker in the "Trading Panel".
-2. A login popup appears. The user clicks the "Continue" button on this popup.
+1. A user opens the *Chart* page on the TradingView website, then selects a broker in the *Trading Panel*.
+2. A login popup appears. The user clicks the *Continue* button on this popup.
 3. A new browser tab opens at the broker's *Authorization URL*.
 4. The following query parameters are sent in the GET request:
 
    * ``response_type`` --- the value will always be ``token``.
    * ``client_id`` --- unique identifier of the client.
    * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, it is better to configure the value of 
-      this parameter on your server and, when receiving an authorization request, check this parameter for 
-      compliance with the one in the configuration.
+     this parameter on your server and, when receiving an authorization request, check this parameter for 
+     compliance with the one in the configuration.
    * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side.
-   * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
-      modified on the broker's server and should return to the callback unchanged.
+   * ``state`` --- a string value used to maintain the state between the request and the callback. Should not be
+     modified on the broker's server and should return to the callback unchanged.
    * ``prompt`` --- the parameter takes the ``login`` value when requesting authorization and the ``none`` value when
-      requesting to refresh the token.
+     requesting to refresh the token.
    * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at 
-      the time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, 
-      ``fr``, ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, 
-      ``sv``, ``th``, ``tr``, ``uk``, ``vi``, ``zh``.
+     the time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, 
+     ``fr``, ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, 
+     ``sv``, ``th``, ``tr``, ``uk``, ``vi``, ``zh``.
 
 5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form and if successful redirects
@@ -86,10 +86,10 @@ Authorization
 
    * ``access_token`` --- the value of access token which will be used to sign requests to the broker's REST server.
    * ``state`` --- the value of the ``state`` field from the original authorization request. Should return unchanged.
-   * ``expires_in`` --- an optional parameter that defines the token lifetime in seconds. If this parameter is
-     omitted, the token will not be refreshed. But it must be borne in mind that this can harm the user's safety.
+   * ``expires_in`` --- an optional parameter that defines the token\'s lifetime in seconds. If this parameter is
+     omitted, the token will not be refreshed. Note, that this can harm the user\'s safety.
 
-.. important:: The authorization process takes place on a separate tab. It will close **120 seconds** after opening, 
+.. important:: The authorization process takes place on a separate tab. It will close in **120 seconds** after opening, 
   even if no access token has been received. You should not require the user to do anything on this tab other than 
   enter credentials. For example, you want to give a user the ability to sign up. Place a link that opens a new sign up
   tab in the authorization tab.
@@ -136,41 +136,41 @@ Authorization
    * ``response_type`` --- the value will always be ``token``.
    * ``client_id`` --- a unique identifier of the client.
    * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, when receiving an authorization request, check
-      this parameter for compliance with the one in the configuration.
+     this parameter for compliance with the one in the configuration.
    * ``scope`` --- an optional parameter, the value of which is pre-registered on the TradingView side, if it is
-      provided by the broker.
+     provided by the broker.
    * ``state`` --- a string value used to maintain the state between the request and the callback. Shouldn't be
-      modified on the broker's server and should return to the callback unchanged.
+     modified on the broker's server and should return to the callback unchanged.
    * ``lang`` --- a parameter on demand, transfers the locale of the TradingView platform, which a trader uses at the
-      time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, ``fr``,
-      ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``,
-      ``tr``, ``uk``, ``vi``, ``zh``.
+     time of authorization from the list ``ar``, ``br``, ``cs``, ``de``, ``el``, ``en``, ``es``, ``fa``, ``fr``,
+     ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``,
+     ``tr``, ``uk``, ``vi``, ``zh``.
 
 5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form.
 7. If successful, the broker's server redirects the request to ``redirect_uri`` with GET parameters:
 
    * ``code`` --- an authorization code with a short expiration time, which will subsequently be exchanged for an
-      access token.
+     access token.
    * ``state`` --- the value of the ``state`` field from the original authorization request. Should return unchanged.
 
-8. The TradingView server sends a POST request for an access token in the ``application / x-www-form-urlencoded`` format 
-   to the token endpoint of the broker's server with the following parameters:
+8. The TradingView server sends a POST request for an access token in the ``application/x-www-form-urlencoded`` 
+   format to the token endpoint of the broker's server with the following parameters:
 
    * ``grant_type`` --- the value always equal to ``authorization_code``.
    * ``code`` --- authorization code obtained from a response to authorization request.
    * ``client_id`` --- a unique identifier of the client.
    * ``client_secret`` --- a unique client secret. This parameter has been added for compatibility with the 
-      `Auth0 service`_, where it is required.
+     `Auth0 service`_, where it is required.
    * ``redirect_uri`` --- the same *Redirect URI* as in the authorization request.
 
 9. The broker's server sends a response to a request for an access token with the following fields in its body:
 
    * ``token_type`` --- the value must be ``bearer``.
-   * ``access_token`` --- access token that will be used in REST requests to the broker's server.
+   * ``access_token`` --- access token\'s that will be used in REST requests to the broker's server.
    * ``expires_in`` --- token lifetime in seconds.
    * ``refresh_token`` --- a token that is exchanged for a new access token before the expiration of the current 
-      access token.
+     access token.
 
 .. _oauth2-implicit-code-refresh-token:
 
