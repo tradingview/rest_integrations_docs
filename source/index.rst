@@ -11,7 +11,6 @@ Broker Integration Manual
    :hidden:
    :maxdepth: 1
 
-
    Integration_overview
    trading/index
    data/index

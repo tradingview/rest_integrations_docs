@@ -22,7 +22,6 @@
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 .. _`PasswordBearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/PasswordBearer
-.. _`OAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/OAuth2Bearer
 .. _`ServerOAuth2Bearer`: https://www.tradingview.com/rest-api-spec/#section/Authentication/ServerOAuth2Bearer
 
 Integration overview
@@ -217,24 +216,24 @@ The feature gets into production only after successful testing by the TradingVie
 Data integration issues
 -----------------------
 
-🔥 Source for comparison during testing
+Source for comparison during testing
 .......................................
 We need a source which can be used to compare data received from your API, and chart would be the best option. If the
-data is not available to be accessed for free, we need an account to with the access to it. For example, two deals were made in one minute:
+data is not available to be accessed for free, we need an account to with the access to it.
 
-🎾 Data requirements
-....................
-All the data which is shown on TradingView have to meet the following standards:
+Data requirements
+..................
+All the data which is displayed at TradingView has to meet the following standards:
 
-* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_
-  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the
+* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
+  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the 
   integration to TradingView is not possible.
 
-* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history
+* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
   holes, and incorrect prices.
 
-At the Chart user sees bars built from streaming ticks. Some time later after Chart reloading by user the `/streaming`_ 
-data is replaced by the data from the `/history`_. It is important that the data from `/streaming`_ and `/history`_ 
+User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
+`/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
 are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
 `/history`_ shouldn\`t change.
 
@@ -278,28 +277,28 @@ Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``
 Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
 The resulting bar must match the bar built from `/streaming`_.
 
-🎾 Endpoints requirements
-.........................
+Endpoints requirements
+......................
 Data integration requires the implementation of three endpoints:
 
 * `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
 * `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
   daily bars may be required.
-* `/streaming`_ --- a permanent HTTP connection, a stream of messages on comleted deals; data feed should provide 
+* `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
   trades and quotes. In some cases, daily bars may be required.
 
 If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
 supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
 
-🎾 Types of environments
-........................
-On the TradingView side during integration development we use two environments: staging and production. But on the
-broker side should use production data feed. This feed will be connected to the TradingView production environment 
-after successfully passing the tests.
+Types of environments
+......................
+We use two environments on the TradingView side during integration development: staging and production, however, 
+production data feed shall be used on the broker's side. This feed will be connected to the TradingView production 
+environment after successfully passed tests.
 
-In future, if the need of adding new symbols will appear, it's necessary to add  separate URL (or individual account)
-with an extended set of data. This feed will be tested on our staging server. After successfully passing the tests this 
-feed will be connected to the TradingView production.
+In the future, if new symbols need to be added, it\`s necessary to add a separate URL (or individual account) with an 
+extended set of data. This feed will be tested on our staging server. After successfully passed tests this feed will 
+be connected to the TradingView production.
 
 The data is requested with our API client applications running on the servers. The end-user browser never sends a 
 request to these endpoins.
