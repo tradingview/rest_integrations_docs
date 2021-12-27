@@ -80,7 +80,7 @@ Can you talk more about the `PasswordBearer`_ authorization flow?
 
    1. The user selects a broker in the Trading Panel at the TradingView website.
    2. A popup for entering broker credentials is opened for the user.
-   3. The user enters broker\'s credentials and presses the “Connect” button (submits the form).
+   3. The user enters broker\'s credentials and presses the âConnectâ button (submits the form).
    4. Your REST server receives a POST request to `/authorize`_ endpoint with credentials in it.
    5. Your REST server validates the credentials and, if successful, gives a response with a token.
    6. Then you get this token in all other requests to your REST server in the ``Authorization`` header.
@@ -122,7 +122,7 @@ What about the ``locale`` parameter in Configuration, do we need to support all 
    With this parameter we provide information about locale used by the user accessing the integration. You can use this
    information to create a more comfortable UX for the user.
 
-How can I modify the columns in the “Positions panel”?
+How can I modify the columns in the âPositions panelâ?
    To get this done, you can use the ``positionCustomFields`` in the `/config`_ endpoint. If you want to use different
    custom columns for different accounts, use the ``positionCustomFields`` of the `/accounts`_ endpoint.
 
@@ -184,8 +184,8 @@ If we dont' fill ``unrealizedPl``, how will the market price will be calculated 
 .. ......
 
 How can we map extra parameters required for order *Placement* in the order *Custom fields*. How can we map that in `/config`_ endpoint?
-   This can be done via ``orderDialogCustomFields`` object at the account level (`/accounts`_ → ``ui``) or at the
-   instrument level (`/instruments`_ → ``ui``), with the latter taking precedence.
+   This can be done via ``orderDialogCustomFields`` object at the account level (`/accounts`_ â ``ui``) or at the
+   instrument level (`/instruments`_ â ``ui``), with the latter taking precedence.
 
 .. Positions
 .. .........
@@ -270,3 +270,145 @@ We have an *Order Book* on our platfom. How would we translate our logic into th
    The `/depth`_ endpoint implementation is required for using :ref:`DOM <depth-of-market>` in our UI. Users get access 
    to :term:`DOM` only if the broker provides :term:`Level 2 data`. You should set ``supportLevel2Data`` and 
    ``supportDOM`` in the `/accounts`_ to ``true``, then implement `/depth`_.
+
+Data Permissions
+----------------
+
+.. Groups
+.. ......
+
+.. Permissions
+.. ...........
+
+Should we implement `/permissions`_ if we return the same set of instruments for all users?
+   The `/permissions`_ endpoint specifies which groups are available for the certain user. It is only required if you
+   use groups of symbols to restrict access to instrument\'s data.
+
+What if a user may have a different set of instruments for different accounts, because there is no such parameter as account id in the `/permissions`_?
+   Different sets of instruments for different accounts can be implemented via `/instruments`_. The permission mechanism
+   serves somewhat differently, for example, to restrict access to paid data.
+
+We sell data subscriptions. How can we inform your server that real-time data is available to the user?
+   A broker should implement the `/permissions`_ endpoint. When user logs into the integration, we send requests to the 
+   `/permissions`_ for determing a list of the data subscriptions. If the user has data subscription on your side he 
+   will not need to purchase one from TradingView.
+
+Data Integration
+----------------
+
+.. Symbol Info
+.. ...........
+
+How does *Symbol* differs to *Tickers*?
+   *Symbol* â the name of the instrument that will be shown to users. *Ticker* â the name of the instrument that our 
+   data feed will use for server requests (for example ``/history?symbol= {ticker}``). Ticker is optional. If there is 
+   no *Ticker* then we will use *Symbol* for requests.
+
+If the broker is satisfied with TradingView instruments, can we not send anything to `/symbol_info`_ and not implement `/streaming`_ and `/history`_?
+   That\'s right, the data integration is irrelevant when you are using only TradingView instruments.
+
+How to set up session time for data integration?
+   The session schedule is regulated in the `/symbol_info`_ with next paremeters: ``session-regular``, 
+   ``session-premarket``, ``session-postmarket``, and ``session-extended``.
+
+I added some new symbols but they aren't displayed on the chart. Do you call `/symbol_info`_ regularly or do you need to do it manually?
+   We request `/symbol_info`_ every hour and automatically update it if everything is ok. But if we find some critical 
+   changes or invalid values, manual verification will be required.
+
+We want to show only our broker\'s symbols in the symbol search to our users. How to set it up?
+   After login into the brokerage account, a user has enabled filter in the symbol search. So the user can see the 
+   broker\'s symbols only. But this filter can be disabled. This behavior cannot be changed.
+
+Following the `/symbol_info`_ specification, a symbol should contain uppercase letters, numbers, a dot or an underscore. But our exchange symbols contain the slash like ``BTC/USDT``. Is it allowed or we have to do a conversion to ``BTC_USDT``?
+   You can add ticker field. We will use the ticker name for requests to API, it will be used prior to symbol filed. 
+   Ticker has no strict requirements. symbol is what we show on the chart. so, you can have two fields:
+
+.. code-block:: json
+
+  "ticker": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "LTC/USDT"
+  ],
+  "symbol": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "LTCUSDT"
+  ],
+
+Does ``has-no-volume`` parameter indicate whether we can report trading volume of the symbol?
+   If you can provide trading volume, just set ``has-no-volume: false`` in the `/symbol_info`_.
+
+Our trading session opens at 17:00-16:00 CT. And we have pre-market at 16:50 CT. Should we report about pre-market within the main session?
+   It depends on the bar building. We build bars using the ``session-regular`` value. For example, we build all the 
+   resolutions (5 min, 1 hour, 4 hours etc.) for the session 17:00-16:00 from 17:00, even if ``session-premarket`` 
+   value recieved.
+
+How to use fileds ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to build bars?
+   * If you need to build bars from trades, use ``bar-source: trade``. If you need to build from bids, use 
+     ``bar-source: bid``.
+   * ``bar-transform`` is required to align the bars. It's needed for cases when open price is always equal to close 
+     price of the previous bar. If you don't have any alignments, just omit this field.
+   * ``bar-fillgaps`` generate of degenerate bars in the absence of trades (bars with zero volume and equal 
+     :term:`OHLC` values).
+
+Should we change the session schedule during the summer/winter time changes?
+   You shouldn\'t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
+   time is carried out automatically following the ``timezone`` parameter in the `/symbol_info`_.
+
+Should we change the session schedule during the holidays?
+   You shouldn\'t change the session schedule without TradingView team's confirmation. We don\'t support holidays 
+   parameter at the moment, but we'll add it in the future.
+
+Is it possible to add breaks during the trading day?
+   That's not possible right now, as the trading day is continuous.
+
+Should we send ``StreamingDailyBarResponse``? Or it can be calculated from our 1-minute history intervals and live feed data?
+   You do not need to send it. If there is ``has-daily: false`` in the `/symbol_info`_, we will skip the daily 
+   updates. However, when it is impossible to build a day bar out of minute bars, we need to request it daily.
+
+How to set up a minimal price step (min tick size)?
+   Minimal tick size is set by ``pricescale`` and ``minmovement`` parameters in the `/symbol_info`_:
+   ``min tick size =  minmovement / pricescale``. For example, if you need to set a price step in ``0.01``, then you
+   need to set ``pricescale: 100``, and ``minmovement: 1``.
+
+Are there any restrictions on the symbol groups number?
+   Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. One symbol can only 
+   appear in one group.
+
+.. History
+.. .......
+
+Is `/history`_ requested only for those instruments for which we supply our quotes?
+   The `/history`_ is requested for all instruments represented in the symbol field of the `/symbol_info`_.
+
+Which requests are going to the broker\'s server from the TradingView server and not from the client?
+   Requests that are responsible for the data integration are sent from the TradingView server:  `/authorize`_, 
+   `/groups`_, `/symbol_info`_, `/history`_, `/streaming`_.
+
+Should we implement the ``countback`` parameter? It is marked as optional in the API.
+   Your server should operate both requests: implement both parameters ``from`` and ``to``, as well as ``countback`` and
+   ``to``. You can see the examples of such requests in the :doc:`History <../data/History>` section.
+
+What time intervals you will send in the request to the `/history`_?
+   We need 1-minute intervals only. However, we may need 1-day intervals in some cases. We are building interim 
+   resolution on our side.
+
+How often do you request `/history`_ to update your database?
+   We send request to the `/history`_ once for the deep history filling. After that, we update the data twice a day. We 
+   request `/history`_ if we didn\'t recive data from `/streaming`_ (as a result of provider\'s server side issues).
+
+What is the expected timestamp precision for the query parameters ``from`` and ``to``?
+   The timestamp should be specified in seconds.
+
+Is it expected that the query to the `/history`_ should consider trades within the time interval, even for open and close prices?
+   We build bar from the `/streaming`_ ticks. For verification, we use `streamingHistoryEquality`_ test.
+
+.. Stream of prices
+.. ................
+
+How do you get prices from the brokers? The price can change more than ten times per second for each instrument.
+   `/streaming`_ endpoint is a permanent connection used to accept changes in quotes for all instruments.
+
+The symbol id is required for the stream of prices response. Can we use ticker format instead. i.e. return ``BTC/USDT`` instead of ``BTCUSDT``?
+   Yes, it will be the correct response format for the `/streaming`_. 
