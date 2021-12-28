@@ -1,19 +1,19 @@
 .. links
-.. _/accounts: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
-.. _/balances: https://www.tradingview.com/rest-api-spec/#operation/getBalances
-.. _/config: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
-.. _/depth: https://www.tradingview.com/rest-api-spec/#operation/getDepth
-.. _/instruments: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
-.. _/orders: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
-.. _/positions: https://www.tradingview.com/rest-api-spec/#operation/getPositions
-.. _/quotes: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
-.. _/state: https://www.tradingview.com/rest-api-spec/#operation/getState
+.. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
+.. _`/balances`: https://www.tradingview.com/rest-api-spec/#operation/getBalances
+.. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
+.. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
+.. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
+.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
+.. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
+.. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 
 Configuring
 -----------
 
-.. contents:: :local:
-   :depth: 3
+.. .. contents:: :local:
+..    :depth: 1
 
 Configuration levels
 ....................
@@ -29,6 +29,8 @@ There are three configuration levels.
 All these requests are executed once when logging into the broker integration. The configuration priority of the
 same UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the
 previous one.
+
+.. _trading-configuring-pulling-intervals:
 
 Pulling intervals
 .................
