@@ -72,19 +72,19 @@ Data tests
   symbolsUnauthorizedRequest
 
 +--------------------------------------------+-----------------------------------------------+
-| Test                                       | Github Link                                   |
+| Test description                           | GituHb Link                                   |
 +============================================+===============================================+
-| authBasicFieldsFormat                      | `authBasicFieldsFormat`_                      |
+| :doc:`authBasicFieldsFormat`               | `authBasicFieldsFormat`_                      |
 +--------------------------------------------+-----------------------------------------------+
-| authBasicNewTokenPerRequest                | `authBasicNewTokenPerRequest`_                |
+| :doc:`authBasicNewTokenPerRequest`         | `authBasicNewTokenPerRequest`_                |
 +--------------------------------------------+-----------------------------------------------+
-| authOAuth2FieldsFormat                     | `authOAuth2FieldsFormat`_                     |
+| :doc:`authOAuth2FieldsFormat`              | `authOAuth2FieldsFormat`_                     |
 +--------------------------------------------+-----------------------------------------------+
-| authOAuth2NewTokenPerRequest               | `authOAuth2NewTokenPerRequest`_               |
+| :doc:`authOAuth2NewTokenPerRequest`        | `authOAuth2NewTokenPerRequest`_               |
 +--------------------------------------------+-----------------------------------------------+
-| groupsResponseFieldsCorrectness            | `groupsResponseFieldsCorrectness`_            |
+| :doc:`groupsResponseFieldsCorrectness`     | `groupsResponseFieldsCorrectness`_            |
 +--------------------------------------------+-----------------------------------------------+
-| groupsUnauthorizedRequest                  | `groupsUnauthorizedRequest`_                  |
+| :doc:`groupsUnauthorizedRequest`           | `groupsUnauthorizedRequest`_                  |
 +--------------------------------------------+-----------------------------------------------+
 | historyBeyondLeftBoundary                  | `historyBeyondLeftBoundary`_                  |
 +--------------------------------------------+-----------------------------------------------+

@@ -13,6 +13,7 @@ Broker Integration Manual
 
    Integration_overview
    trading/index
+   data/index
    FAQ
    Glossary
 
@@ -35,7 +36,6 @@ Documentation structure
   API implementation.
 
 :doc:`Data integration <data/index>`
-  .. This section will be ready soon.
   Here you can read about data integration. This section helps you manipulate data permissions, set up a list of 
   instruments and stream of price.
 
