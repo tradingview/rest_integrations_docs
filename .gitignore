@@ -3,3 +3,4 @@
 /src/
 /.vscode/
 /source/_build/**
+.DS_Store
