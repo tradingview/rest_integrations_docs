@@ -5,8 +5,8 @@ groupsUnauthorizedRequest
 -------------------------
 .. Unauthorized request
 
-Sending `/groups`_ request without token, expecting to get status code ``401``. This test will be skipped if the API 
-does not use authorization.
+* Sending `/groups`_ request without token, expecting to get status code ``401``. 
+* This test will be skipped if the API does not use authorization.
 
 Request error
   Error on sending HTTP request to `/groups`_ endpoint.

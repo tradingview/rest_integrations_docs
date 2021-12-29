@@ -5,7 +5,7 @@ authOAuth2NewTokenPerRequest
 ----------------------------
 .. New token in each response.
 
-In addition to general validation, it is verified that expiration is in the future.
+* In addition to general validation, it is verified that expiration is in the future.
 
 Request error
   Error on sending HTTP request to `/authorize`_ endpoint

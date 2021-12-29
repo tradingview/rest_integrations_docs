@@ -5,7 +5,7 @@ authBasicNewTokenPerRequest
 ---------------------------
 .. New token in each response
 
-Expect that each request to `/authorize`_ returns new unique token.
+* Expect that each request to `/authorize`_ returns new unique token.
 
 Request error
   Error on sending HTTP request to `/authorize`_ endpoint

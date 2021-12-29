@@ -14,6 +14,7 @@ Broker Integration Manual
    Integration_overview
    trading/index
    data/index
+   data_tests/index
    FAQ
    Glossary
 
@@ -38,6 +39,9 @@ Documentation structure
 :doc:`Data integration <data/index>`
   Here you can read about data integration. This section helps you manipulate data permissions, set up a list of 
   instruments and stream of price.
+
+:doc:`Data integration tests <data_tests/index>`
+  Here you can find a description of the tests that should be passed during the data integration phase.
 
 :doc:`FAQ <FAQ>`
   There are short answers for simple questions and links to sections that answer complex questions.

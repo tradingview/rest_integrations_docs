@@ -5,7 +5,7 @@ groupsResponseFieldsCorrectness
 -------------------------------
 .. Response format correctness for `/groups`_
 
-This test checks if response format for `/groups`_ is correct.
+* This test checks if response format for `/groups`_ is correct.
 
 Request error
   Error on sending HTTP request to `/groups`_ endpoint.

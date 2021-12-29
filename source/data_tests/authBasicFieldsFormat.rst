@@ -5,7 +5,7 @@ authBasicFieldsFormat
 ---------------------
 .. Response format correctness test (`/authorize`_).
 
-In addition to general validation, it is verified that expiration is in the future.
+* In addition to general validation, it is verified that expiration is in the future.
 
 Request error
   Error on sending HTTP request to `/authorize`_ endpoint
