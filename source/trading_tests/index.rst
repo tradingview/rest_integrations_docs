@@ -21,17 +21,16 @@ While preparing for implementation, the broker provides a list of features avail
 that list, we compile a set of test cases and pass them to the broker. These test cases help to make sure that the 
 integration with the TradingView user interface works correctly.
 
-We provide a special `auto-test service`_ of the `TradingView REST API`_. Please be aware that your API implementation 
+We provide a special `auto-test service`_ for the `TradingView REST API`_. Please be aware that your API implementation 
 needs to pass these tests successfully in order to be added to the :ref:`TradingView sandbox<hat-is-the-sandbox>`.
 
-You can request access to the service even if only one part of the endpoints (either data or trading) is implemented. 
+You can request access to the service if only even one part of the endpoints (either data or trading) is implemented. 
 Below is a guide on how to use this service.
 
 Test structure
 --------------
 
-We use `Jenkins`_ environment for the automated tests, where you can test both - the trading and data integration 
-endpoints implementation.
+We provide `Jenkins`_ for the automated testing of the trading and data integration endpoints implementation.
 
 Use `Data_Integrations section`_ to test data integration, and `Trading section`_ for trading integration.
 
@@ -49,13 +48,12 @@ Each section contains a project with the broker's name on it.
 
 There are two options for authorisation into the broker's API server. 
 
-* The first option uses a login-password pair. 
-* In the second one, you can use a token. Even using OAuth2 you can implement an `/authorize`_ endpoint specifically for 
-  testing, or use a permanent token.
+* The first option uses a login-password pair.
+* The second option uses a token. You can use permanent token here. Or you can implement an `/authorize`_ endpoint 
+  specifically for testing.
 
-Select the appropriate option and tell us the credentials and your API server address in order to use the 
+Select the desired option and then provide us with the credentials and API server address in order to use the 
 `auto-test service`_.
-
 
 Launching the tests
 -------------------
@@ -91,7 +89,7 @@ Go to the **Allure Report** section to view the test results. It is available in
    :align: center
 
 The **Categories** section shows information about failed tests. So, in the **Suites** section you can find the 
-results of the faild and passed tests. 
+results of the failed and passed tests. 
 
 In addition to the error message itself, pay attention to the following fields:
 
