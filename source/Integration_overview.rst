@@ -1,5 +1,5 @@
 .. links
-.. _`tradingview.com/rest-api-test`: https://www.tradingview.com/rest-api-test/
+.. _`auto-test service`: https://cu-jenkins.xtools.tv
 .. _`beta-rest.tradingview.com`: https://beta-rest.tradingview.com/
 .. _`Trading`: https://www.tradingview.com/rest-api-spec/#tag/Trading
 
@@ -157,6 +157,8 @@ A TradingView website in a sandbox or production can only be connected to one br
 switch between environments through the browser console. Instructions can be provided after configuration by the
 TradingView team is completed.
 
+.. _what-is-the-sandbox:
+
 What is the Sandbox
 ...................
 The sandbox is a fully functional copy of the TradingView website located at `beta-rest.tradingview.com`_. Access to the
@@ -166,7 +168,7 @@ When broker's integration can be placed in the Sandbox
 ......................................................
 There are two conditions to place a broker integration to the sandbox:
 
-* passing conformational (authorization & trading conformance) tests at `tradingview.com/rest-api-test`_,
+* passing conformational (authorization & trading conformance) tests at the `auto-test service`_,
 * availability of market data required for the integration to work on the TradingView staging server
 
 If the broker does not integrate market data but uses data obtained by TradingView from another source,

@@ -159,7 +159,7 @@ Authorization
 
    * ``grant_type`` --- the value always equal to ``authorization_code``.
    * ``code`` --- authorization code obtained from a response to authorization request.
-   * ``client_id`` --- a unique identifier of the client.
+   * ``client_id`` --- a :ref:`unique identifier <faq-unique-client-secrets>` of the client.
    * ``client_secret`` --- a unique client secret. This parameter has been added for compatibility with the 
      `Auth0 service`_, where it is required.
    * ``redirect_uri`` --- the same *Redirect URI* as in the authorization request.
@@ -182,7 +182,8 @@ A request for a token endpoint is sent to the broker's server with the following
 
 * ``grant_type`` --- the value will always be ``refresh_token``.
 * ``refresh_token`` --- a refresh token received in the same request as the current access token.
-* ``client_secret`` --- the value of the client secret provided by the broker.
+* ``client_secret`` --- the value of the :ref:`unique client secret <faq-unique-client-secrets>` provided by the 
+  broker.
 
 The response is expected to be the same as for the request to obtain an access token during the initial
 authorization.

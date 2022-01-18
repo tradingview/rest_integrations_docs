@@ -36,3 +36,6 @@ an index.
 When the user's subscription has ended, he cannot trade on the broker's platform. But the user can see already opened
 positions and order on the TradingView platform. In this case broker should send these symbols at `/instruments`_.
 And when a user tries to send an order, return an error message.
+
+Use :doc:`our test <../trading_tests/index>` to check the accuracy of symbol mapping. The test will verify, that 
+symbols in the `/instruments`_ are matching with symbols in the TradingView\'s data.

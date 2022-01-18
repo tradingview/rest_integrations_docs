@@ -85,10 +85,12 @@ Can you talk more about the `PasswordBearer`_ authorization flow?
    5. Your REST server validates the credentials and, if successful, gives a response with a token.
    6. Then you get this token in all other requests to your REST server in the ``Authorization`` header.
 
+.. _faq-unique-client-secrets:
+
 Can we use the same Client ID in both staging and production environments?
-   The Client IDs for each of the :ref:`6 environments connections <trading-environments>` must be unique, this 
-   is a requirement of our security team. The TradingView website in the sandbox or production can be connected to only 
-   1 broker's environment at a time. 
+   The ``client_id`` and ``client_secret`` for each of the :ref:`six environments connections <trading-environments>` 
+   must be unique, this is a requirement of our security team. The TradingView website in the sandbox or production 
+   can be connected to only one broker's environment at a time. 
 
 Are you able to support the OAuth2 Client Credentials Grant for authorizing to our server? 
    Our client uses OAuth 2.0 JWT Bearer Flow. Please check out `ServerOAuth2Bearer`_ section in our specs. We need
@@ -149,7 +151,8 @@ Where can a user see the type of account (*live* or *demo*)?
    The account type can be specified in the ``type`` parameter in the `/accounts`_ endpoint. A user can see this 
    information when selecting an account in the extra menu. We expect that recieved ID is unique on the broker side.
 
-.. image:: ../images/accounts-menu.png
+.. image:: ../images/FaqAccountAccountMenuXL.png
+   :scale: 30 %
    :alt: Names in the account menu.
    :align: center
 
