@@ -70,9 +70,9 @@ Launching the tests
 
 The following parameters are used for the build:
 
-* ``REST_API_URL`` - your `TradingView REST API`_ implementation address;
-* ``LOGIN``, ``PASSWORD`` - data for ``REST_API_URL`` access with the login/password authorization;
-* ``ACCESS_TOKEN`` - token (in case token authorization is used).
+* ``REST_API_URL`` --- your `TradingView REST API`_ implementation address;
+* ``LOGIN``, ``PASSWORD`` --- data for ``REST_API_URL`` access with the login/password authorization;
+* ``ACCESS_TOKEN`` --- token (in case token authorization is used).
 
 The fields contain default data (pre-sent by the broker). The value of sensitive ``PASSWORD`` or ``ACCESS_TOKEN`` 
 parameters can be masked. The values can be changed if required.

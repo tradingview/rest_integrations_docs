@@ -35,6 +35,10 @@ Documentation structure
   Here you can read about the features of the trading integration. It is also describes the relationship between UI and
   API implementation.
 
+:doc:`Trading integration tests <trading_tests/index>`
+  Here you can find a description of the conformational tests that should be passed successfully before placing a 
+  broker integration to the sandbox.
+
 .. :doc:`Data integration <data/index>`
 ..   Here you can read about data integration. This section helps you manipulate data permissions, set up a list of 
 ..   instruments and stream of price.
