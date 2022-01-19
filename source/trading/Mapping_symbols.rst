@@ -19,6 +19,8 @@ request, a mapping of instruments is generated on the TradingView side. In Tradi
 request is made manually if necessary. At the development stage, you can set a partial mapping, i.e. not for all 
 instruments supported by the broker.
 
+.. _trading-mapping-how-to-match-symbols:
+
 How to match symbols
 ....................
 You can use *symbols.json* (available upon request) with a complete list of all symbols to search for a 
@@ -30,7 +32,7 @@ for all symbols.
 
 The ``symbol-type`` field in *symbols.json* aims to the market instrument type. A symbol can be traded on the different
 exchanges. In this case, ``symbol`` fields will be the same, and fields ``exchange-traded``, ``exchange-listed`` will
-differ. For example, *BLX* symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
+differ. For example, ``BLX`` symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
 an index.
 
 When the user's subscription has ended, he cannot trade on the broker's platform. But the user can see already opened

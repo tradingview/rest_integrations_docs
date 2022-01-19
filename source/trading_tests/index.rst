@@ -15,7 +15,7 @@ Trading integration tests
 Test stages
 -----------
 In general, trading integration testing is independent of the :doc:`data integration <../data/index>` (exceptions are 
-:doc:`described separately <../trading/Mapping_symbols>`) and happens in several stages.
+:ref:`described separately<trading-mapping-how-to-match-symbols>`) and happens in several stages.
 
 While preparing for implementation, the broker provides a list of features available to its platform users. Based on 
 that list, we compile a set of test cases and pass them to the broker. These test cases help to make sure that the 
@@ -58,13 +58,18 @@ Select the desired option and then provide us with the credentials and API serve
 Launching the tests
 -------------------
 
+.. image:: ../../images/TradingTests_Launching_JenkinsBuildWithParametersA.png
+   :scale: 80 %
+   :alt: Plans list
+   :align: center
+
 * Go to your build plan (Jenkins → Trading → Broker_name) to run the test.
 * Open the **Build with Parameters** section.
 * Change the build parameters if necessary.
 * Click the **Build** button.
 
-.. image:: ../../images/TradingTests_Launching_JenkinsBuildWithParameters.png
-   :scale: 80 %
+.. image:: ../../images/TradingTests_Launching_JenkinsBuildWithParametersB.png
+   :scale: 40 %
    :alt: Plans list
    :align: center
 
@@ -72,7 +77,8 @@ The following parameters are used for the build:
 
 * ``REST_API_URL`` --- your `TradingView REST API`_ implementation address;
 * ``LOGIN``, ``PASSWORD`` --- data for ``REST_API_URL`` access with the login/password authorization;
-* ``ACCESS_TOKEN`` --- token (in case token authorization is used).
+* ``ACCESS_TOKEN`` --- token (in case token authorization is used);
+* ``SSHOST`` --- Symbol Search host.
 
 The fields contain default data (pre-sent by the broker). The value of sensitive ``PASSWORD`` or ``ACCESS_TOKEN`` 
 parameters can be masked. The values can be changed if required.
