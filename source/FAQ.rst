@@ -151,8 +151,8 @@ Where can a user see the type of account (*live* or *demo*)?
    The account type can be specified in the ``type`` parameter in the `/accounts`_ endpoint. A user can see this 
    information when selecting an account in the extra menu. We expect that recieved ID is unique on the broker side.
 
-.. image:: ../images/FaqAccountAccountMenuXL.png
-   :scale: 30 %
+.. image:: ../images/Faq_Account_AccountMenu.png
+   :scale: 50 %
    :alt: Names in the account menu.
    :align: center
 

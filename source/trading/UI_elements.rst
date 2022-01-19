@@ -119,7 +119,7 @@ Order Ticket
    * But, if the market price goes down, the :term:`Stop order` price remains unchanged.
    * And if the market continues to fall and reaches the price  established in the order, it will be executed.
 
-.. image:: ../../images/UiElementsOrderTicket.png
+.. image:: ../../images/Trading_UiElements_OrderTicket.png
    :scale: 35 %
    :alt: Order Dialog
    :align: center
@@ -156,7 +156,7 @@ To enable :term:`DOM` in the TradingView UI follow the next steps:
 * Implement `/depth`_ endpoint.
 * Set ``supportDOM`` to ``true`` if you want to enable DOM in the UI.
 
-.. image:: ../../images/UiElementsDepthOfMarket.png
+.. image:: ../../images/Trading_UiElements_DepthOfMarket.png
    :scale: 60 %
    :alt: DOM
    :align: center
@@ -176,7 +176,7 @@ one of these options.
 
 But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
 
-.. image:: ../../images/UiElementsAccountManager.png
+.. image:: ../../images/Trading_UiElements_AccountManager.png
    :alt: Account Manager
    :align: center
 

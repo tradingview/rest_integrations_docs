@@ -1,6 +1,6 @@
 .. links
 .. _`Jenkins`: https://cu-jenkins.xtools.tv
-.. _`auto-test service`: https://cu-jenkins.xtools.tv
+.. _`autotest service`: https://cu-jenkins.xtools.tv
 .. _`TradingView REST API`: https://www.tradingview.com/rest-api-spec/
 .. _`Data_integrations section`: https://cu-jenkins.xtools.tv/job/Data_integration/
 .. _`Trading section`: https://cu-jenkins.xtools.tv/job/Trading/
@@ -21,7 +21,7 @@ While preparing for implementation, the broker provides a list of features avail
 that list, we compile a set of test cases and pass them to the broker. These test cases help to make sure that the 
 integration with the TradingView user interface works correctly.
 
-We provide a special `auto-test service`_ for the `TradingView REST API`_. Please be aware that your API implementation 
+We provide a special `autotest service`_ for the `TradingView REST API`_. Please be aware that your API implementation 
 needs to pass these tests successfully in order to be added to the :ref:`TradingView sandbox<hat-is-the-sandbox>`.
 
 You can request access to the service if only even one part of the endpoints (either data or trading) is implemented. 
@@ -30,18 +30,18 @@ Below is a guide on how to use this service.
 Test structure
 --------------
 
-We provide `Jenkins`_ for the automated testing of the trading and data integration endpoints implementation.
+We provide `Jenkins <autotest service>`_ for the automated testing of the trading and data integration endpoints implementation.
 
 Use `Data_Integrations section`_ to test data integration, and `Trading section`_ for trading integration.
 
-.. image:: ../../images/JenkinsSections.png
+.. image:: ../../images/TradingTests_TestStructure_JenkinsSections.png
    :scale: 100 %
    :alt: Sections list
    :align: center
 
 Each section contains a project with the broker's name on it.
 
-.. image:: ../../images/JenkinsSectionsPlan.png
+.. image:: ../../images/TradingTests_TestStructure_JenkinsPlans.png
    :scale: 100 %
    :alt: Plans list
    :align: center
@@ -53,7 +53,7 @@ There are two options for authorisation into the broker's API server.
   specifically for testing.
 
 Select the desired option and then provide us with the credentials and API server address in order to use the 
-`auto-test service`_.
+`autotest service`_.
 
 Launching the tests
 -------------------
@@ -63,7 +63,7 @@ Launching the tests
 * Change the build parameters if necessary.
 * Click the **Build** button.
 
-.. image:: ../../images/JenkinsBuildWithParameters.png
+.. image:: ../../images/TradingTests_Launching_JenkinsBuildWithParameters.png
    :scale: 80 %
    :alt: Plans list
    :align: center
@@ -83,7 +83,7 @@ Results analysis
 Go to the **Allure Report** section to view the test results. It is available in the panel on the left side and in the 
 **Build History** below.
 
-.. image:: ../../images/JenkinsAllureReport.png
+.. image:: ../../images/TradingTests_Results_AllureReport.png
    :scale: 80 %
    :alt: Plans list
    :align: center
@@ -97,7 +97,7 @@ In addition to the error message itself, pay attention to the following fields:
 * **Response** --- response received;
 * **Error** --- the results of comparison of the response received vs. expected response.
 
-.. image:: ../../images/JenkinsAllureErrors.png
+.. image:: ../../images/TradingTests_Results_AllureErrors.png
    :scale: 80 %
    :alt: Plans list
    :align: center

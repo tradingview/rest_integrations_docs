@@ -1,5 +1,5 @@
 .. links
-.. _`auto-test service`: https://cu-jenkins.xtools.tv
+.. _`autotest service`: https://cu-jenkins.xtools.tv
 .. _`beta-rest.tradingview.com`: https://beta-rest.tradingview.com/
 .. _`Trading`: https://www.tradingview.com/rest-api-spec/#tag/Trading
 
@@ -168,7 +168,7 @@ When broker's integration can be placed in the Sandbox
 ......................................................
 There are two conditions to place a broker integration to the sandbox:
 
-* passing conformational (authorization & trading conformance) tests at the `auto-test service`_,
+* passing conformational (authorization & trading conformance) tests at the `autotest service`_,
 * availability of market data required for the integration to work on the TradingView staging server
 
 If the broker does not integrate market data but uses data obtained by TradingView from another source,
