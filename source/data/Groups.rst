@@ -1,15 +1,12 @@
 .. links
 .. _`/groups`: https://www.tradingview.com/rest-api-spec/#operation/getGroups
-.. _`/permissions`: https://www.tradingview.com/rest-api-spec/#operation/getPermissions
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 
 Groups
 ------
 
-The group is a set of symbols with the same permission. Implementing of the `/groups`_ is only necessary if you use 
-symbol groups to restrict access to the instruments. The `/groups`_ allow you to specify a list of groups. The 
-`/permissions`_ specifies which groups are available to a particular user. After logging into broker\'s account, the 
-user gets access to one or several groups (it depends on `/permissions`_).
+The group is a set of symbols with the same type. Implementing of the `/groups`_ is only necessary if you use symbol 
+groups to group symbols by type. The `/groups`_ allow you to specify a list of groups.
 
 .. important::
   Please plan your symbol grouping carefully. Groups cannot be deleted, you can only remove all the symbols from 
@@ -17,10 +14,6 @@ user gets access to one or several groups (it depends on `/permissions`_).
 
 If a broker has many various groups of instruments, we recommend split them into groups. So, the requests to the 
 `/symbol_info`_ should be processed with the ``group`` parameter. If the ``group`` parameter isn\'t specified in the 
-`/symbol_info`_ request, you should return an error.
-
-If a broker has many various groups of instruments, we recommend split them into groups. So, the requests to the 
-`/symbol_info`_ should be processed with the group parameter. If the group parameter isn\'t specified in the 
 `/symbol_info`_ request, you should return an error.
 
 .. tip:: 
@@ -33,11 +26,7 @@ If there is no division into groups, API must ignore all the parameters in the q
 example, API must return the same symbols both for a request with the ``"group": "XXX"`` (for any group) and for a
 request without this parameter.
 
-If there is no division into gruops, API must ignore all the parameters in the query to the `/symbol_info`_. For 
-example, API must return the same symbols both for a request with the ``"group": "XXX"`` (for any group) and for a 
-request without this parameter.
-
-An example of division into groups for Cypto exchanges:
+An example of division into groups for Crypto exchanges:
 
 .. code-block:: json
 

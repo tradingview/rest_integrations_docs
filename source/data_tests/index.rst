@@ -1,4 +1,9 @@
 .. links
+.. _`/authorize`: https://www.tradingview.com/rest-api-spec/#operation/authorize
+.. _`/groups`: https://www.tradingview.com/rest-api-spec/#operation/getGroups
+.. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
+.. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
+.. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 .. _`authBasicFieldsFormat`: https://github.com/tradingview-inspect/tests/wiki/authBasicFieldsFormatauthBasicFieldsFormat
 .. _`authBasicNewTokenPerRequest`: https://github.com/tradingview-inspect/tests/wiki/authBasicNewTokenPerRequest
 .. _`authOAuth2FieldsFormat`: https://github.com/tradingview-inspect/tests/wiki/authOAuth2FieldsFormat
@@ -32,109 +37,143 @@
 .. _`symbolsResponseFieldsCorrectness`: https://github.com/tradingview-inspect/tests/wiki/symbolsResponseFieldsCorrectness
 .. _`symbolsUnauthorizedRequest`: https://github.com/tradingview-inspect/tests/wiki/symbolsUnauthorizedRequest
 
-Data tests
-==========
+Data integration tests
+======================
 
-.. toctree::
-  :maxdepth: 1
+.. contents:: :local:
+   :depth: 1
 
-  authBasicFieldsFormat
-  authBasicNewTokenPerRequest
-  authOAuth2FieldsFormat
-  authOAuth2NewTokenPerRequest
-  groupsResponseFieldsCorrectness
-  groupsUnauthorizedRequest
-  historyBeyondLeftBoundary
-  historyCountbackMinutes
-  historyDailyHistoryAvailability
-  historyFromEqTo
-  historyFutureDaily
-  historyFutureMinutes
-  historyNoDataChanges
-  historyNoDataWithNb
-  historyOutsideBarsInclusion
-  historyPriceMatch
-  historyRepeatability
-  historySeveralShortQueriesEqualsLargeQuery
-  historyTimeCorrectness
-  historyUnauthorizedRequest
-  streamingAskBidQuoteTradeExistence
-  streamingDailyBarsUpdate
-  streamingFieldsFormat
-  streamingHistoryEquality
-  streamingNoDelays
-  streamingPermanentConnection
-  streamingSymbolsCheck
-  streamingTimeGrow
-  streamingTransferEncodingHeader
-  streamingUnauthorizedRequest
-  symbolsResponseFieldsCorrectness
-  symbolsUnauthorizedRequest
+.. .. toctree::
+..   :maxdepth: 1
+
+..   authBasicFieldsFormat
+..   authBasicNewTokenPerRequest
+..   authOAuth2FieldsFormat
+..   authOAuth2NewTokenPerRequest
+..   groupsResponseFieldsCorrectness
+..   groupsUnauthorizedRequest
+..   historyBeyondLeftBoundary
+..   historyCountbackMinutes
+..   historyDailyHistoryAvailability
+..   historyFromEqTo
+..   historyFutureDaily
+..   historyFutureMinutes
+..   historyNoDataChanges
+..   historyNoDataWithNb
+..   historyOutsideBarsInclusion
+..   historyPriceMatch
+..   historyRepeatability
+..   historySeveralShortQueriesEqualsLargeQuery
+..   historyTimeCorrectness
+..   historyUnauthorizedRequest
+..   streamingAskBidQuoteTradeExistence
+..   streamingDailyBarsUpdate
+..   streamingFieldsFormat
+..   streamingHistoryEquality
+..   streamingNoDelays
+..   streamingPermanentConnection
+..   streamingSymbolsCheck
+..   streamingTimeGrow
+..   streamingTransferEncodingHeader
+..   streamingUnauthorizedRequest
+..   symbolsResponseFieldsCorrectness
+..   symbolsUnauthorizedRequest
+
+`/authorize`_ tests
+-------------------
 
 +--------------------------------------------+-----------------------------------------------+
-| Test                                       | Github Link                                   |
+| Test description                           | GituHb Link                                   |
 +============================================+===============================================+
-| authBasicFieldsFormat                      | `authBasicFieldsFormat`_                      |
+| :doc:`authBasicFieldsFormat`               | `authBasicFieldsFormat`_                      |
 +--------------------------------------------+-----------------------------------------------+
-| authBasicNewTokenPerRequest                | `authBasicNewTokenPerRequest`_                |
+| :doc:`authBasicNewTokenPerRequest`         | `authBasicNewTokenPerRequest`_                |
 +--------------------------------------------+-----------------------------------------------+
-| authOAuth2FieldsFormat                     | `authOAuth2FieldsFormat`_                     |
+| :doc:`authOAuth2FieldsFormat`              | `authOAuth2FieldsFormat`_                     |
 +--------------------------------------------+-----------------------------------------------+
-| authOAuth2NewTokenPerRequest               | `authOAuth2NewTokenPerRequest`_               |
+| :doc:`authOAuth2NewTokenPerRequest`        | `authOAuth2NewTokenPerRequest`_               |
 +--------------------------------------------+-----------------------------------------------+
-| groupsResponseFieldsCorrectness            | `groupsResponseFieldsCorrectness`_            |
+
+`/groups`_ tests
+----------------
+
 +--------------------------------------------+-----------------------------------------------+
-| groupsUnauthorizedRequest                  | `groupsUnauthorizedRequest`_                  |
+| Test description                           | GituHb Link                                   |
++============================================+===============================================+
+| :doc:`groupsResponseFieldsCorrectness`     | `groupsResponseFieldsCorrectness`_            |
 +--------------------------------------------+-----------------------------------------------+
-| historyBeyondLeftBoundary                  | `historyBeyondLeftBoundary`_                  |
+| :doc:`groupsUnauthorizedRequest`           | `groupsUnauthorizedRequest`_                  |
 +--------------------------------------------+-----------------------------------------------+
-| historyCountbackMinutes                    | `historyCountbackMinutes`_                    |
-+--------------------------------------------+-----------------------------------------------+
-| historyDailyHistoryAvailability            | `historyDailyHistoryAvailability`_            |
-+--------------------------------------------+-----------------------------------------------+
-| historyFromEqTo                            | `historyFromEqTo`_                            |
-+--------------------------------------------+-----------------------------------------------+
-| historyFutureDaily                         | `historyFutureDaily`_                         |
-+--------------------------------------------+-----------------------------------------------+
-| historyFutureMinutes                       | `historyFutureMinutes`_                       |
-+--------------------------------------------+-----------------------------------------------+
-| historyNoDataChanges                       | `historyNoDataChanges`_                       |
-+--------------------------------------------+-----------------------------------------------+
-| historyNoDataWithNb                        | `historyNoDataWithNb`_                        |
-+--------------------------------------------+-----------------------------------------------+
-| historyOutsideBarsInclusion                | `historyOutsideBarsInclusion`_                |
-+--------------------------------------------+-----------------------------------------------+
-| historyPriceMatch                          | `historyPriceMatch`_                          |
-+--------------------------------------------+-----------------------------------------------+
-| historyRepeatability                       | `historyRepeatability`_                       |
-+--------------------------------------------+-----------------------------------------------+
-| historySeveralShortQueriesEqualsLargeQuery | `historySeveralShortQueriesEqualsLargeQuery`_ |
-+--------------------------------------------+-----------------------------------------------+
-| historyTimeCorrectness                     | `historyTimeCorrectness`_                     |
-+--------------------------------------------+-----------------------------------------------+
-| historyUnauthorizedRequest                 | `historyUnauthorizedRequest`_                 |
-+--------------------------------------------+-----------------------------------------------+
-| streamingAskBidQuoteTradeExistence         | `streamingAskBidQuoteTradeExistence`_         |
-+--------------------------------------------+-----------------------------------------------+
-| streamingDailyBarsUpdate                   | `streamingDailyBarsUpdate`_                   |
-+--------------------------------------------+-----------------------------------------------+
-| streamingFieldsFormat                      | `streamingFieldsFormat`_                      |
-+--------------------------------------------+-----------------------------------------------+
-| streamingHistoryEquality                   | `streamingHistoryEquality`_                   |
-+--------------------------------------------+-----------------------------------------------+
-| streamingNoDelays                          | `streamingNoDelays`_                          |
-+--------------------------------------------+-----------------------------------------------+
-| streamingPermanentConnection               | `streamingPermanentConnection`_               |
-+--------------------------------------------+-----------------------------------------------+
-| streamingSymbolsCheck                      | `streamingSymbolsCheck`_                      |
-+--------------------------------------------+-----------------------------------------------+
-| streamingTimeGrow                          | `streamingTimeGrow`_                          |
-+--------------------------------------------+-----------------------------------------------+
-| streamingTransferEncodingHeader            | `streamingTransferEncodingHeader`_            |
-+--------------------------------------------+-----------------------------------------------+
-| streamingUnauthorizedRequest               | `streamingUnauthorizedRequest`_               |
-+--------------------------------------------+-----------------------------------------------+
-| symbolsResponseFieldsCorrectness           | `symbolsResponseFieldsCorrectness`_           |
-+--------------------------------------------+-----------------------------------------------+
-| symbolsUnauthorizedRequest                 | `symbolsUnauthorizedRequest`_                 |
-+--------------------------------------------+-----------------------------------------------+
+
+`/history`_ tests
+----------------
+
++---------------------------------------------------+-----------------------------------------------+
+| Test description                                  | GituHb Link                                   |
++===================================================+===============================================+
+| :doc:`historyBeyondLeftBoundary`                  | `historyBeyondLeftBoundary`_                  |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyCountbackMinutes`                    | `historyCountbackMinutes`_                    |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyDailyHistoryAvailability`            | `historyDailyHistoryAvailability`_            |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyFromEqTo`                            | `historyFromEqTo`_                            |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyFutureDaily`                         | `historyFutureDaily`_                         |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyFutureMinutes`                       | `historyFutureMinutes`_                       |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyNoDataChanges`                       | `historyNoDataChanges`_                       |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyNoDataWithNb`                        | `historyNoDataWithNb`_                        |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyOutsideBarsInclusion`                | `historyOutsideBarsInclusion`_                |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyPriceMatch`                          | `historyPriceMatch`_                          |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyRepeatability`                       | `historyRepeatability`_                       |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historySeveralShortQueriesEqualsLargeQuery` | `historySeveralShortQueriesEqualsLargeQuery`_ |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyTimeCorrectness`                     | `historyTimeCorrectness`_                     |
++---------------------------------------------------+-----------------------------------------------+
+| :doc:`historyUnauthorizedRequest`                 | `historyUnauthorizedRequest`_                 |
++---------------------------------------------------+-----------------------------------------------+
+
+`/streaming`_ tests
+----------------
+
++-------------------------------------------+---------------------------------------+
+| Test description                          | GituHb Link                           |
++===========================================+=======================================+
+| :doc:`streamingAskBidQuoteTradeExistence` | `streamingAskBidQuoteTradeExistence`_ |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingDailyBarsUpdate`           | `streamingDailyBarsUpdate`_           |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingFieldsFormat`              | `streamingFieldsFormat`_              |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingHistoryEquality`           | `streamingHistoryEquality`_           |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingNoDelays`                  | `streamingNoDelays`_                  |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingPermanentConnection`       | `streamingPermanentConnection`_       |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingSymbolsCheck`              | `streamingSymbolsCheck`_              |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingTimeGrow`                  | `streamingTimeGrow`_                  |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingTransferEncodingHeader`    | `streamingTransferEncodingHeader`_    |
++-------------------------------------------+---------------------------------------+
+| :doc:`streamingUnauthorizedRequest`       | `streamingUnauthorizedRequest`_       |
++-------------------------------------------+---------------------------------------+
+
+`/symbol_info`_ tests
+----------------
+
++-----------------------------------------+-------------------------------------+
+| Test description                        | GituHb Link                         |
++=========================================+=====================================+
+| :doc:`symbolsResponseFieldsCorrectness` | `symbolsResponseFieldsCorrectness`_ |
++-----------------------------------------+-------------------------------------+
+| :doc:`symbolsUnauthorizedRequest`       | `symbolsUnauthorizedRequest`_       |
++-----------------------------------------+-------------------------------------+
