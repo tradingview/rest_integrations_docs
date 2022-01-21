@@ -92,8 +92,7 @@ bracket order with ``cancelled`` status in subsequent responses to  the `/orders
 come up: this bracket will “hang” in our user interface in the table of orders and on the chart. 
 
 The cancellation of one of the brackets should not lead to the cancellation of another bracket order and the parent 
-order. But, this operation should remove information about canceled bracket from the parent order (``stopLoss`` and 
-``takeProfit`` fields).
+order.
 
 Execution of a parent order with brackets
 '''''''''''''''''''''''''''''''''''''''''
