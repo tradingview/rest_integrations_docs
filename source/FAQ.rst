@@ -80,7 +80,7 @@ Can you talk more about the `PasswordBearer`_ authorization flow?
 
    1. The user selects a broker in the Trading Panel at the TradingView website.
    2. A popup for entering broker credentials is opened for the user.
-   3. The user enters broker\'s credentials and presses the âConnectâ button (submits the form).
+   3. The user enters broker\'s credentials and presses the Connect button (submits the form).
    4. Your REST server receives a POST request to `/authorize`_ endpoint with credentials in it.
    5. Your REST server validates the credentials and, if successful, gives a response with a token.
    6. Then you get this token in all other requests to your REST server in the ``Authorization`` header.
@@ -124,7 +124,7 @@ What about the ``locale`` parameter in Configuration, do we need to support all 
    With this parameter we provide information about locale used by the user accessing the integration. You can use this
    information to create a more comfortable UX for the user.
 
-How can I modify the columns in the âPositions panelâ?
+How can I modify the columns in the Positions panel?
    To get this done, you can use the ``positionCustomFields`` in the `/config`_ endpoint. If you want to use different
    custom columns for different accounts, use the ``positionCustomFields`` of the `/accounts`_ endpoint.
 
@@ -187,8 +187,8 @@ If we dont' fill ``unrealizedPl``, how will the market price will be calculated 
 .. ......
 
 How can we map extra parameters required for order *Placement* in the order *Custom fields*. How can we map that in `/config`_ endpoint?
-   This can be done via ``orderDialogCustomFields`` object at the account level (`/accounts`_ â ``ui``) or at the
-   instrument level (`/instruments`_ â ``ui``), with the latter taking precedence.
+   This can be done via ``orderDialogCustomFields`` object at the account level (`/accounts`_ --- ``ui``) or at the
+   instrument level (`/instruments`_ --- ``ui``), with the latter taking precedence.
 
 .. Positions
 .. .........
@@ -303,7 +303,7 @@ Data Integration
 .. ...........
 
 How does *Symbol* differs to *Tickers*?
-   *Symbol* â the name of the instrument that will be shown to users. *Ticker* â the name of the instrument that our 
+   *Symbol* the name of the instrument that will be shown to users. *Ticker* the name of the instrument that our 
    data feed will use for server requests (for example ``/history?symbol= {ticker}``). Ticker is optional. If there is 
    no *Ticker* then we will use *Symbol* for requests.
 
