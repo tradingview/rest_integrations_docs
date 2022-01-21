@@ -10,7 +10,7 @@ Trading integration tests
 =========================
 
 .. contents:: :local:
-   :depth: 1
+  :depth: 1
 
 Test stages
 -----------
