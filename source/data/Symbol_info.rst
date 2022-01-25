@@ -23,10 +23,6 @@ If the symbol groups exist, their names should have a perfix as broker\'s name. 
 Rules of symbol naming
 ......................
 
-The symbols names, which are sending to the `/symbol_info`_  side are converted differently for different types of 
-instruments on the TradingView\'s side. But all names must be specified in one piece, uppercase, without special 
-characters.
-
 The symbols names, which are being sent from the Broker to the `/symbol_info`_ side are converted differently for 
 different types of instruments on the TradingView\'s side. But all names must be specified in one piece, uppercase, 
 without special characters.

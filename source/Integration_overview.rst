@@ -13,7 +13,7 @@
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
-.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
 .. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/permissions`: https://www.tradingview.com/rest-api-spec/#operation/getPermissions

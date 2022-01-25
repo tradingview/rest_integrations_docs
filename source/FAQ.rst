@@ -124,7 +124,7 @@ What about the ``locale`` parameter in Configuration, do we need to support all 
    With this parameter we provide information about locale used by the user accessing the integration. You can use this
    information to create a more comfortable UX for the user.
 
-How can I modify the columns in the Positions panel?
+How can I modify the columns in the Positions panel?
    To get this done, you can use the ``positionCustomFields`` in the `/config`_ endpoint. If you want to use different
    custom columns for different accounts, use the ``positionCustomFields`` of the `/accounts`_ endpoint.
 
