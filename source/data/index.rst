@@ -2,7 +2,7 @@ Data integration
 ================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    Authentication
    Groups

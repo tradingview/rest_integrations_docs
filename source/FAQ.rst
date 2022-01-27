@@ -39,8 +39,8 @@ Authentication
 --------------
 
 Are there any restrictions on the lifetime of tokens? What is the optimal lifetime?
-   Max lifetime is a 32-bit signed integer --- ``2147483647``. It\'s about 24.8 of a day. Furthermore, you can make it
-   never-ending if you don\'t send ``expired_in`` parameter, but we think this is unsafe. The optimal token lifetime
+   Max lifetime is a 32-bit signed integer --- ``2147483647`` ms. It\'s about 24.8 of a day. Furthermore, you can make
+   it never-ending if you don\'t send ``expired_in`` parameter, but we think this is unsafe. The optimal token lifetime
    should be in the range of 15-30 minutes.
 
 There is no ``prompt`` parameter in the OAuth specification? How is it used?
@@ -348,12 +348,11 @@ Our trading session opens at 17:00-16:00 CT. And we have pre-market at 16:50 CT.
    value recieved.
 
 How to use fileds ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to build bars?
-   * If you need to build bars from trades, use ``bar-source: trade``. If you need to build from bids, use 
-     ``bar-source: bid``.
-   * ``bar-transform`` is required to align the bars. It's needed for cases when open price is always equal to close 
-     price of the previous bar. If you don't have any alignments, just omit this field.
-   * ``bar-fillgaps`` generate of degenerate bars in the absence of trades (bars with zero volume and equal 
-     :term:`OHLC` values).
+   * If you build bars from trades, use ``bar-source: trade``. If you build from bids, use ``bar-source: bid``.
+   * ``bar-transform`` is required when historical bars are aligned. It's needed for cases when open price is always
+     equal to close price of the previous bar. If you don't have any alignments, just omit this field.
+   * ``bar-fillgaps`` indicates the presence of degenerate bars in the absence of trades (bars with zero volume and
+     equal :term:`OHLC` values).
 
 Should we change the session schedule during the summer/winter time changes?
    You shouldn\'t change the session schedule without TradingView team's confirmation. The transition to summer/winter 
@@ -368,7 +367,7 @@ Is it possible to add breaks during the trading day?
 
 Should we send ``StreamingDailyBarResponse``? Or it can be calculated from our 1-minute history intervals and live feed data?
    You do not need to send it. If there is ``has-daily: false`` in the `/symbol_info`_, we will skip the daily 
-   updates. However, when it is impossible to build a day bar out of minute bars, we need to request it daily.
+   updates. However, when it is impossible to build a daily bar from the 1-minute bars, we use daily bars from the API.
 
 How to set up a minimal price step (min tick size)?
    Minimal tick size is set by ``pricescale`` and ``minmovement`` parameters in the `/symbol_info`_:

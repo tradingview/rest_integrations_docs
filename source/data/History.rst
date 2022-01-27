@@ -10,12 +10,15 @@ We need the `/history`_ endpoint to:
 * fill the database with deep history,
 * compensate data from the `/streaming`_ in case of problems.
 
-After filling our database, make regular requests to `/history`_ in the shallow history to keep the data relevant. 
-Our data feed requests 1-minute bars for the whole day per request. Requests are made sequentially from the current 
-time to the past. When we reach the date that you specify as the history depth, we will stop sending requests. It means 
-that there is no deeper data for that symbol.
+After initial filling of the database we make regular requests to `/history`_ endpoint to keep the data relevant. Our 
+data feed requests 1-minute bars for the whole day per request. Requests are made sequentially from the current time 
+to the past. 
 
-So, if a request arrives in `/history`_ for a period without data, an empty value should be sent in the response:
+.. 🔥 TODO | Need to discuss no_data response
+.. When we reach the date that you specify as the history depth, we will stop sending requests. It means 
+.. that there is no deeper data for that symbol.
+
+The API should respond with an empty response in case of requesting the range containing no historical data.
 
 .. code-block:: json
 
@@ -34,7 +37,7 @@ There can be two types of request to `/history`_:
 * with ``from`` and ``to`` parameters,
 * with ``countback`` and ``to`` parameters.
 
-In the first case, we wait to recieve all bars inside ``from`` and ``to`` interval:
+In the first case we expect to receive all bars inside the given interval, including the border ones.
 
 .. code-block:: bash
 
@@ -78,8 +81,11 @@ The response will be:
     ]
   }
 
-In the second case, we wait to receive exactly 3 bars when the ``countback`` is specified. The ``from`` parameter is 
-ignored. When a symbol has fewer bars history, an answer may contain less than 3 bars.
+In the second case, we expect to receive exactly 3 bars when the ``countback`` is specified. The ``from`` parameter is 
+ignored. 
+
+.. 🔥 DELETE | Rare specific case
+.. When a symbol has fewer bars history, an answer may contain less than 3 bars.
 
 .. code-block:: bash
 
