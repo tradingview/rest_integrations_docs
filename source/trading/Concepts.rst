@@ -185,9 +185,10 @@ Pip Value
 The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<trading-ui-orderticket>` (for 
 those who use it). This parameter\'s value is specified in the account currency.
 
-``pipValue`` is equal to ``minTick`` for non-forex symbols. For Forex pairs it equals either the ``minTick``, or the
-``minTick`` multiplied by ``10``. For Forex instruments, the ``pipValue`` size depends on the rapidly changing currency
-cross rates. You should always send the actual value.
+``pipValue`` is a cost of ``pipSize`` in the account currency. So, when account currency and instrument currency 
+coinside ``pipValue = pipSize``. ``pipSize = minTick`` in all cases expect currency pairs. For Forex pairs it equals
+either the ``minTick``, or the ``minTick`` multiplied by ``10``. For Forex instruments, the ``pipValue`` size depends
+on the rapidly changing currency cross rates. You should always send the actual value.
 
 Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPipValue`` and ``sellPipValue`` fields. 
 However, if you do not have support for different ``pipValue`` for buy and sell, you should pass the same values in 
@@ -199,17 +200,17 @@ fixed when the position is closed:
 * at Bid — when Short position closed,
 * at Ask — whet Long position closed.
 
-.. tip::
+.. .. tip::
 
-   Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
+..    Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
 
-   * For the ``XXXCCC`` pair: ``pipValue = pipSize``
-   * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
-   * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
+..    * For the ``XXXCCC`` pair: ``pipValue = pipSize``
+..    * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
+..    * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
 
-   Next, we multiply by ``lotSize`` and ``qty`` for the current order.
+..    Next, we multiply by ``lotSize`` and ``qty`` for the current order.
 
-* ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
-* ``minTick`` --- a minimum price movement.
+.. * ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
+.. * ``minTick`` --- a minimum price movement.
 
-For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.
+.. For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.
