@@ -185,9 +185,9 @@ Pip Value
 The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<trading-ui-orderticket>` (for 
 those who use it). This parameter\'s value is specified in the account currency.
 
-``pipValue`` is a cost of ``pipSize`` in the account currency. So, when account currency and instrument currency 
-coinside ``pipValue = pipSize``. ``pipSize = minTick`` in all cases expect currency pairs. For Forex pairs it equals
-either the ``minTick``, or the ``minTick`` multiplied by ``10``. For Forex instruments, the ``pipValue`` size depends
+``pipValue`` is a cost of ``pipSize`` in the account currency. So, ``pipValue = pipSize`` when account currency and 
+instrument currency match. ``pipSize = minTick`` for all instruments, except currency pairs. For Forex pairs it equals 
+either the ``minTick`` or the ``minTick`` multiplied by ``10``. For Forex instruments, the ``pipValue`` size depends
 on the rapidly changing currency cross rates. You should always send the actual value.
 
 Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPipValue`` and ``sellPipValue`` fields. 
