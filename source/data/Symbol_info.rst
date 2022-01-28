@@ -4,15 +4,16 @@
 Symbol info
 -----------
 
-A *symbol* is an array of strings. It is a name of the symbol that users will see. It must be unique. Symbol names are 
-always displayed in uppercase. The symbol name is validated with a regex:
+A ``symbol`` field is an array of strings. It is a name of the symbol that users will see. It must be unique. Symbol 
+names are always displayed in uppercase. The symbol name is validated with a regex:
 
 .. code-block:: none
 
   ^[A-Z0-9!&*+\-./\\_|=;]+$
 
-The `/symbol_info`_ endpoint is a list of instruments and a set of rules for them. This endpoint is requested every 
-hour. The answer must include a ``"s": "ok"`` field, and a ``"Content-Type": "application/json"`` header.
+The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them. This endpoint is requested
+every hour. The response body (JSON) must include an ``s`` field. The response header must include ``Content-Type`` 
+header with ``application/json`` value.
 
 With :ref:`division into symbol groups <groups-division>`, API must return symbols regardless of the parameters in the 
 query to the `/symbol_info`_.
@@ -23,13 +24,7 @@ If the symbol groups exist, their names should have a perfix as broker\'s name. 
 Rules of symbol naming
 ......................
 
-The symbols names, which are sending to the `/symbol_info`_  side are converted differently for different types of 
-instruments on the TradingView\'s side. But all names must be specified in one piece, uppercase, without special 
-characters.
-
-The symbols names, which are being sent from the Broker to the `/symbol_info`_ side are converted differently for 
-different types of instruments on the TradingView\'s side. But all names must be specified in one piece, uppercase, 
-without special characters.
+Here are the rules of symbol naming for different types of instruments on the TradingView\'s side.
 
 Stocks
 ~~~~~~

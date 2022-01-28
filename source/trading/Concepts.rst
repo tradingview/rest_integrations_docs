@@ -57,11 +57,12 @@ By brackets in our UI we mean :ref:`orders<trading-concepts-orders>`, the meanin
 to its parent. The quantity in bracket orders is always equal to the quantity of their parent order.
 
 Brackets can exist either in a pair (:term:`Stop-Loss` and :term:`Take-Profit`) or separately. This means that the
-order or position can have only one bracket order (*Stop-Loss* or *Take-Profit*). If a pair exists, bracket orders are
-linked by an :term:`OCO` (One-Cancels-the-Other) condition. It means that when one bracket order is executed, the other
-(if any) is automatically cancelled. When one of the brackets is partially executed, the ``quantity`` in the second 
-bracket order should be automatically reduced to the remaining quantity of the partially executed bracket order on the 
-broker\'s side.
+order or position can have only one bracket order (*Stop-Loss* or *Take-Profit*). 
+
+If a pair exists, bracket orders are linked by an :term:`OCO` (One-Cancels-the-Other) condition. It means that when 
+one bracket order is executed, the other (if any) is automatically cancelled. When one of the brackets is partially 
+executed, the ``quantity`` in the second  bracket order should be automatically reduced to the remaining quantity of 
+the partially executed bracket order on the  broker\'s side.
 
 Order Brackets
 ~~~~~~~~~~~~~~
@@ -84,19 +85,24 @@ Modifying parent order with brackets, adding or removing brackets
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 The result of editing the order in our UI is a PUT request to the broker\'s server with new order parameters, including
-``stopLoss`` and ``takeProfit`` fields, or one of them. If the user has deleted one of the brackets when changing the
-parent order, then it is necessary to send a removed bracket order with ``cancelled`` status in subsequent responses to
-the `/orders`_ request. Otherwise, an error will come up: this bracket will “hang” in our user interface in the table
-of orders and on the chart. The cancellation of one of the brackets should not lead to the cancellation of another
-bracket order and the parent order.
+``stopLoss`` and ``takeProfit`` fields, or one of them. 
+
+If the user has deleted one of the brackets when changing the parent order, then it is necessary to send a removed
+bracket order with ``cancelled`` status in subsequent responses to  the `/orders`_ request. Otherwise, an error will 
+come up: this bracket will “hang” in our user interface in the table of orders and on the chart. 
+
+The cancellation of one of the brackets should not lead to the cancellation of another bracket order and the parent 
+order.
 
 Execution of a parent order with brackets
 '''''''''''''''''''''''''''''''''''''''''
 
 Bracket orders are bound to the parent order by the :term:`OSO` (One-Send-Other) condition. When a parent order is
-executed, bracket orders are transferred to the ``working`` status. If bracket positions are supported, the ``parentId``
-field of the brackets gets the ``id`` value of the position that resulted from the parent order execution, and the
-``parentType`` field of the bracket orders changes its value to ``position``.
+executed, bracket orders are transferred to the ``working`` status. 
+
+If bracket positions are supported, the ``parentId`` field of the brackets gets the ``id`` value of the position that 
+resulted from the parent order execution, and the ``parentType`` field of the bracket orders changes its value to 
+``position``.
 
 Canceling a parent order with brackets
 ''''''''''''''''''''''''''''''''''''''
@@ -179,10 +185,14 @@ Pip Value
 The main purpose of ``pipValue`` is to calculate risks in an :ref:`Order Ticket<trading-ui-orderticket>` (for 
 those who use it). This parameter\'s value is specified in the account currency.
 
-For Forex instruments, the ``pipValue`` size depends on the rapidly changing currency cross rates. You should always 
-send the actual value. Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPipValue`` and 
-``sellPipValue`` fields. However, if you do not have support for different ``pipValue`` for buy and sell, you should 
-pass the same values in both fields.
+``pipValue`` is a cost of ``pipSize`` in the account currency. So, ``pipValue = pipSize`` when account currency and 
+instrument currency match. ``pipSize = minTick`` for all instruments, except currency pairs. For Forex pairs it equals 
+either the ``minTick`` or the ``minTick`` multiplied by ``10``. For Forex instruments, the ``pipValue`` size depends
+on the rapidly changing currency cross rates. You should always send the actual value.
+
+Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPipValue`` and ``sellPipValue`` fields. 
+However, if you do not have support for different ``pipValue`` for buy and sell, you should pass the same values in 
+both fields.
 
 If ``supportPLUpdate`` is set to ``true``, ``pipValue`` used for the calculating position profit. But the profit is 
 fixed when the position is closed:
@@ -190,17 +200,17 @@ fixed when the position is closed:
 * at Bid — when Short position closed,
 * at Ask — whet Long position closed.
 
-.. tip::
+.. .. tip::
 
-   Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
+..    Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
 
-   * For the ``XXXCCC`` pair: ``pipValue = pipSize``
-   * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
-   * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
+..    * For the ``XXXCCC`` pair: ``pipValue = pipSize``
+..    * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
+..    * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
 
-   Next, we multiply by ``lotSize`` and ``qty`` for the current order.
+..    Next, we multiply by ``lotSize`` and ``qty`` for the current order.
 
-* ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
-* ``minTick`` --- a minimum price movement.
+.. * ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
+.. * ``minTick`` --- a minimum price movement.
 
-For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.
+.. For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.

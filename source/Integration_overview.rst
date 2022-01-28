@@ -13,7 +13,7 @@
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
-.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
 .. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/permissions`: https://www.tradingview.com/rest-api-spec/#operation/getPermissions
@@ -214,3 +214,88 @@ Adding features after the integration release
 ................................................
 New features need to be added to the broker's staging environment and tested in the sandbox.
 The feature gets into production only after successful testing by the TradingView testing team.
+
+.. Data integration issues
+.. -----------------------
+
+.. Data requirements
+.. ..................
+.. All the data which is displayed at TradingView has to meet the following standards:
+
+.. * Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
+..   API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the 
+..   integration to TradingView is not possible.
+
+.. * Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
+..   holes, and incorrect prices.
+
+.. User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
+.. `/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
+.. are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
+.. `/history`_ shouldn\'t change.
+
+.. .. tip::
+
+..   To make sure you meet this requirement, record your streaming trades in a few minutes.
+
+.. .. code-block:: json
+
+..   {
+..     "id":"BTCUSDT",
+..     "p":33405.5,
+..     "t":1624797120,
+..     "f":"t",
+..     "s":0.092
+..   },
+..   {
+..     "id":"BTCUSDT",
+..     "p":33417.5,
+..     "t":1624797179,
+..     "f":"t",
+..     "s":0.057
+..   }
+
+.. We can build 1-minute bar from this data:
+
+.. .. code-block:: json
+
+..   {
+..     "s":"ok",
+..     "t":[1624797120],
+..     "o":[33405.5],
+..     "h":[33417.5],
+..     "l":[33405.5],
+..     "c":[33417.5],
+..     "v":[0.149]
+..   }
+
+.. Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``v`` --- sum of sizes (``s``).
+
+.. Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
+.. The resulting bar must match the bar built from `/streaming`_.
+
+.. Endpoints requirements
+.. ......................
+.. Data integration requires the implementation of three endpoints:
+
+.. * `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
+.. * `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
+..   daily bars may be required.
+.. * `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
+..   trades and quotes. In some cases, daily bars may be required.
+
+.. If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
+.. supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
+
+.. Types of environments
+.. ......................
+.. We use two environments on the TradingView side during integration development: staging and production, however, 
+.. production data feed shall be used on the broker's side. This feed will be connected to the TradingView production 
+.. environment after successfully passed tests.
+
+.. In the future, if new symbols need to be added, it\'s necessary to add a separate URL (or individual account) with an 
+.. extended set of data. This feed will be tested on our staging server. After successfully passed tests this feed will 
+.. be connected to the TradingView production.
+
+.. The data is requested with our API client applications running on the servers. The end-user browser never sends a 
+.. request to these endpoins.
