@@ -46,7 +46,7 @@ Each section contains a project with the broker's name on it.
    :alt: Plans list
    :align: center
 
-There are three options for authorisation into the broker's API server. 
+There are three options for authorization into the broker's API server. 
 
 * You can implement an `/authorize`_ endpoint specifically for testing and use a login-password pair.
 * Use a permanent hardwired token.
