@@ -46,11 +46,11 @@ Each section contains a project with the broker's name on it.
    :alt: Plans list
    :align: center
 
-There are two options for authorisation into the broker's API server. 
+There are three options for authorisation into the broker's API server. 
 
-* The first option uses a login-password pair.
-* The second option uses a token. You can use permanent token here. Or you can implement an `/authorize`_ endpoint 
-  specifically for testing.
+* You can implement an `/authorize`_ endpoint specifically for testing and use a login-password pair.
+* Use a permanent hardwired token.
+* Leave ``ACCESS_TOKEN`` field empty, and enter it manually.
 
 Select the desired option and then provide us with the credentials and API server address in order to use the 
 `autotest service`_.
