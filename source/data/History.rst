@@ -17,8 +17,8 @@ to the past.
 If there is no data in the requested and previous time periods then you should set the status code to ``no_data``. The
 API should respond with an empty response in case of requesting the range containing no historical data.
 
-We will request `/history`_ until the date that the broker reported at the **Data requirements from**. Without this
-date, we will request a history up to 1800.
+We will request `/history`_ until the date that the broker reported in the **Data requirements from**. Without this
+date, we will request a history up to 1800 year.
 
 .. code-block:: json
 

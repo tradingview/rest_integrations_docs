@@ -11,9 +11,9 @@ tries to recreate it. TradingView establishes up to 4 simultaneous connections t
 same data to all of them. Unnecessary restrictions (firewall, rate limits, etc.) should be disabled on the broker's 
 side for the provided TradingView IP addresses.
 
-We use HTTP 1.1 `chunked transfer encoding`_ as a streaming transport. WebSocket protocol is not supported at the moment.
-All intermediate proxies must also support this mode. All messages must end with ``\n``. Streaming should contain 
-real-time data only. It shouldn\'t contain snapshots of data. Server must not close the connection.
+We use HTTP 1.1 `chunked transfer encoding`_ as a streaming transport, WebSocket protocol is not supported. All 
+intermediate proxies must also support this mode. All messages must end with ``\n``. Streaming should contain real-time
+data only. It shouldn\'t contain snapshots of data. Server must not close the connection.
 
 Data feed should provide trades and quotes:
 
