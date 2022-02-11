@@ -14,11 +14,11 @@ After initial filling of the database we make regular requests to `/history`_ en
 data feed requests 1-minute bars for the whole day per request. Requests are made sequentially from the current time 
 to the past. 
 
-.. 🔥 TODO | Need to discuss no_data response
-.. When we reach the date that you specify as the history depth, we will stop sending requests. It means 
-.. that there is no deeper data for that symbol.
+If there is no data in the requested and previous time periods then you should set the status code to ``no_data``. The
+API should respond with an empty response in case of requesting the range containing no historical data.
 
-The API should respond with an empty response in case of requesting the range containing no historical data.
+We will request `/history`_ until the date that the broker reported at the **Data requirements from**. Without this
+date, we will request a history up to 1800.
 
 .. code-block:: json
 
@@ -83,9 +83,6 @@ The response will be:
 
 In the second case, we expect to receive exactly 3 bars when the ``countback`` is specified. The ``from`` parameter is 
 ignored. 
-
-.. 🔥 DELETE | Rare specific case
-.. When a symbol has fewer bars history, an answer may contain less than 3 bars.
 
 .. code-block:: bash
 

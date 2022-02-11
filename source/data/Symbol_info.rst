@@ -41,23 +41,12 @@ Stocks
 
 Stocks from the different exchanges under one prefix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-``<Traded Exchange>:<Symbol>.<Exchange suffix>``
+``<Traded Exchange>:<Exchange suffix>_<Symbol>``
 
 .. code-block:: cfg
 
-	CFD at NASDAQ:AAPL → EXCHANGENAME:AAPL.NASDAQ
-	CFD at ASX:AAPL → EXCHANGENAME:AAPL.ASX
-	
-Indexes
-~~~~~~~
-``<Index>:<Symbol>``
-
-.. code-block:: cfg
-
-	$MYLX → INDEX:MYLX
-	.MYLX → INDEX:MYLX
-	$TXDV → INDEX:TXDV
-	.TXDV → INDEX:TXDV
+	CFD at NASDAQ:AAPL → EXCHANGENAME:NASDAQ_AAPL
+	CFD at ASX:AAPL → EXCHANGENAME:ASX_AAPL
 	
 Forex
 ~~~~~
@@ -84,34 +73,6 @@ If more than one contract is expired in one month, the expiration day is added t
 
 	BTCUSD → OKEX:BTCUSD24M2020
 	ETHBTC → BITMEX:ETHBTC30U2020
-
-+-----------+-------+
-| Month     | Code  |
-+===========+=======+
-| January   | ``F`` |
-+-----------+-------+
-| February  | ``G`` |
-+-----------+-------+
-| March     | ``H`` |
-+-----------+-------+
-| April     | ``J`` |
-+-----------+-------+
-| May       | ``K`` |
-+-----------+-------+
-| June      | ``M`` |
-+-----------+-------+
-| July      | ``N`` |
-+-----------+-------+
-| August    | ``Q`` |
-+-----------+-------+
-| September | ``U`` |
-+-----------+-------+
-| October   | ``V`` |
-+-----------+-------+
-| November  | ``X`` |
-+-----------+-------+
-| December  | ``Z`` |
-+-----------+-------+
 
 Crypto
 ~~~~~~

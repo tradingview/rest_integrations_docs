@@ -215,87 +215,119 @@ Adding features after the integration release
 New features need to be added to the broker's staging environment and tested in the sandbox.
 The feature gets into production only after successful testing by the TradingView testing team.
 
-.. Data integration issues
-.. -----------------------
+Data integration issues
+-----------------------
 
-.. Data requirements
-.. ..................
-.. All the data which is displayed at TradingView has to meet the following standards:
+Data requirements
+..................
 
-.. * Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
-..   API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the 
-..   integration to TradingView is not possible.
+All the data which is displayed at TradingView has to meet the following standards:
 
-.. * Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
-..   holes, and incorrect prices.
+* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
+  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the 
+  integration to TradingView is not possible.
 
-.. User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
-.. `/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
-.. are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
-.. `/history`_ shouldn\'t change.
+* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
+  holes, and incorrect prices.
 
-.. .. tip::
+User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
+`/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
+are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
+`/history`_ shouldn\'t change.
 
-..   To make sure you meet this requirement, record your streaming trades in a few minutes.
+.. tip::
 
-.. .. code-block:: json
+  To make sure you meet this requirement, record your streaming trades in a few minutes.
 
-..   {
-..     "id":"BTCUSDT",
-..     "p":33405.5,
-..     "t":1624797120,
-..     "f":"t",
-..     "s":0.092
-..   },
-..   {
-..     "id":"BTCUSDT",
-..     "p":33417.5,
-..     "t":1624797179,
-..     "f":"t",
-..     "s":0.057
-..   }
+.. code-block:: json
 
-.. We can build 1-minute bar from this data:
+  {
+    "id":"BTCUSDT",
+    "p":33405.5,
+    "t":1624797120,
+    "f":"t",
+    "s":0.092
+  },
+  {
+    "id":"BTCUSDT",
+    "p":33417.5,
+    "t":1624797179,
+    "f":"t",
+    "s":0.057
+  }
 
-.. .. code-block:: json
+We can build 1-minute bar from this data:
 
-..   {
-..     "s":"ok",
-..     "t":[1624797120],
-..     "o":[33405.5],
-..     "h":[33417.5],
-..     "l":[33405.5],
-..     "c":[33417.5],
-..     "v":[0.149]
-..   }
+.. code-block:: json
 
-.. Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``v`` --- sum of sizes (``s``).
+  {
+    "s":"ok",
+    "t":[1624797120],
+    "o":[33405.5],
+    "h":[33417.5],
+    "l":[33405.5],
+    "c":[33417.5],
+    "v":[0.149]
+  }
 
-.. Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
-.. The resulting bar must match the bar built from `/streaming`_.
+Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``v`` --- sum of sizes (``s``).
 
-.. Endpoints requirements
-.. ......................
-.. Data integration requires the implementation of three endpoints:
+Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
+The resulting bar must match the bar built from `/streaming`_.
 
-.. * `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
-.. * `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
-..   daily bars may be required.
-.. * `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
-..   trades and quotes. In some cases, daily bars may be required.
+Endpoints requirements
+......................
+Data integration requires the implementation of three endpoints:
 
-.. If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
-.. supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
+* `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
+* `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
+  daily bars may be required.
+* `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
+  trades and quotes. In some cases, daily bars may be required.
 
-.. Types of environments
-.. ......................
-.. We use two environments on the TradingView side during integration development: staging and production, however, 
-.. production data feed shall be used on the broker's side. This feed will be connected to the TradingView production 
-.. environment after successfully passed tests.
+If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
+supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
 
-.. In the future, if new symbols need to be added, it\'s necessary to add a separate URL (or individual account) with an 
-.. extended set of data. This feed will be tested on our staging server. After successfully passed tests this feed will 
-.. be connected to the TradingView production.
+Types of environments
+......................
 
-.. The data is requested with our API client applications running on the servers. The end-user browser never sends a 
-.. request to these endpoins.
+We strongly recommend using two environments in the integration process: staging and production. Each environment must 
+have a separate URL.
+
+First, the broker's staging connects to the staging of TradingView. Initial automated testing is done here, and then 
+manual tests are performed after. 
+
+.. important::
+  The broker staging API should provide real data.
+
+When the acceptance tests are successful, the broker deploys own code to the production environment. The final testing 
+of the broker's production API and the deployment of the TradingView client applications are to be performed here.
+
+All changes on the broker side go through the following steps after the deployment to the TradingView production:
+
+* Changes are made in the broker's staging environment.
+* They are then tested on the TradingView side.
+* The broker transfers the changes to the production once confirmed by TradingView.
+
+Both environments on the TradingView side are switched to the production URL once the broker's API is deployed to 
+production.
+
+.. note::
+  Thus, there will be 4 client applications running on the TradingView side all the time, which will interact with the 
+  broker's production API: 2 in the staging, and 2 in the production.
+
+Each of these applications will maintain at least one persistent HTTP connection to the `/streaming`_ endpoint and make
+regular requests to the `/symbol_info`_, `/history`_. The data is requested only by our API client applications running
+on the servers. The end-user browser never makes requests to these endpoints.
+
+TradingView client applications use a separate set of credentials per environment by default (if authorised).
+
+Therefore, the broker should provide at least two independent sets of credentials to its production API: one is for 
+clients in the TradingView production, one is for clients in the staging, testing and development.
+
+If the number of simultaneous connections is limited to one connection per account, the broker needs to provide the 
+required number of credentials sets:
+
+* two for client applications in the staging,
+* two for client applications in the production,
+* two for development and testing.
