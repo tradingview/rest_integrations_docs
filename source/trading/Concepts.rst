@@ -40,7 +40,7 @@ Tab Display:
   on both the Orders and the History tabs.
 
 `/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. However,
-orders, that have recieved final status should be included in the list utill the end of the trading session, or at 
+orders, that have receieved final status should be included in the list util the end of the trading session, or at 
 least within 1 minute after changing order status.
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
