@@ -14,7 +14,7 @@ historyCountbackMinutes
   skipped.
 
 Request error
-  Error on sending HTTP request to `/history`_ enpoint.
+  Error on sending HTTP request to `/history`_ endpoint.
 
 Read error
   Error reading body of HTTP response to request to `/history`_ endpoint.

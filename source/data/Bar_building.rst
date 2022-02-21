@@ -11,7 +11,7 @@ field in `/symbol_info`_ response must be set to ``true``.
 Daily bars are built from lower resolution (1-minute typically) or taken from the API if they are available. Daily bar 
 time matches the start of the 1st session of the day.
 
-We build intemediate resolutions ourselves. Intermediate resolution bars are affected by ``session-regular`` and 
+We build intermediate resolutions ourselves. Intermediate resolution bars are affected by ``session-regular`` and 
 ``timezone`` in the `/symbol_info`_.  The time of the first bar of every resolution matches with the beginning of the 
 session.
 

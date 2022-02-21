@@ -15,7 +15,7 @@ Glossary
 
    Mapping symbol
       The mapping between the names of the broker\'s instruments and TradingView instruments. This mapping solves the
-      problem of TradingView and broker symbol names mimatching.
+      problem of TradingView and broker symbol names mismatching.
 
    Sandbox
       The sandbox is a fully functional copy of the TradingView website located at 

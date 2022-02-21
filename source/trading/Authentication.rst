@@ -109,7 +109,7 @@ When the access token expires, TradingView triggers a token renew. It happens in
 It is possible to set the ``httpOnly`` cookie on the authorization page when the token is renewed after passing the 
 initial authentication. It will allow you to identify the user in the future.
 
-.. warning:: If third-party cookies are disabled in the user's browser, you will not be able to idenfify that user
+.. warning:: If third-party cookies are disabled in the user's browser, you will not be able to identity that user
   with the ``httpOnly`` cookie. It is preferable to use the :ref:`OAuth2 Code flow<oauth2-code-flow>`, which does not
   have this issue when updating the token.
 

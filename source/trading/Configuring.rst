@@ -19,9 +19,9 @@ Configuration levels
 ....................
 There are three configuration levels.
 
-* *Broker level* applies to all subaccounts defined for the user. 
+* *Broker level* applies to all sub-accounts defined for the user. 
   It's performed via the `/config`_ request.
-* *Subaccount level* extends to UI elements for a specific subaccount. 
+* *Sub-account level* extends to UI elements for a specific sub-account. 
   It's performed via the `/accounts`_ request.
 * *Instrument level* uses to configure UI elements for a specific instrument. 
   It's performed via the `/instruments`_ request.

@@ -3,9 +3,9 @@
 
 historyFromEqTo
 ---------------
-.. It is expected that only one bar is returned to the request where ``from`` quals ``to``.
+.. It is expected that only one bar is returned to the request where ``from`` equals ``to``.
 
-If bar exists, then this bar will be returned to the request where ``from`` equals ``to`` and quals this bar\'s time.
+If bar exists, then this bar will be returned to the request where ``from`` equals ``to`` and equals this bar\'s time.
 
 Request error
   Error on sending HTTP request to `/history`_ endpoint.
@@ -20,7 +20,7 @@ Parse error
   Error parsing response body.
 
 Invalid bars number
-  🔥
+..  🔥
 
 Wrong bar
   Returned bar does not match the requested one.

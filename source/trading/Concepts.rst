@@ -138,7 +138,7 @@ transferred to the ``cancelled`` status. When one of the bracket orders is parti
 position is reduced by the executed quantity. The quantity in the other bracket order is given according to the left
 quantity in the partially executed bracket order.
 
-When the user adds brackets to the position, the broker\'s server recieves a PUT request `Modify Position`_, which
+When the user adds brackets to the position, the broker\'s server receives a PUT request `Modify Position`_, which
 contains ``stopLoss`` and ``takeProfit`` fields, or one of them.
 
 Then these bracket orders return with ``working`` status to `/orders`_ with next values:
@@ -171,7 +171,7 @@ it.
 You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the 
 :ref:`Chart<trading-ui-chart>`.
 
-Available operations for the postions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
+Available operations for the positions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
 the `/accounts`_ → ``d`` → ``config`` to hide its operations.
 
 * Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
@@ -199,18 +199,3 @@ fixed when the position is closed:
 
 * at Bid — when Short position closed,
 * at Ask — whet Long position closed.
-
-.. .. tip::
-
-..    Calculating the *Pip Value* is easy. Let's say the account currency is equal to ``CCC``.
-
-..    * For the ``XXXCCC`` pair: ``pipValue = pipSize``
-..    * For the ``CCCXXX`` pair: ``pipValue = 1 / CCCXXX_price * pipSize``
-..    * For the ``YYYXXX`` pair: ``pipValue = pipSize * XXXCCC_price`` or ``pipValue = pipSize / CCCXXX_price``
-
-..    Next, we multiply by ``lotSize`` and ``qty`` for the current order.
-
-.. * ``pipSize`` --- size of 1 pip, for Forex symbol usually equals ``minTick * 10``,
-.. * ``minTick`` --- a minimum price movement.
-
-.. For example for EURUSD pair ``minTick = 0.00001`` and ``pipSize = 0,0001``.

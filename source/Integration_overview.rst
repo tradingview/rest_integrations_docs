@@ -320,7 +320,7 @@ Each of these applications will maintain at least one persistent HTTP connection
 regular requests to the `/symbol_info`_, `/history`_. The data is requested only by our API client applications running
 on the servers. The end-user browser never makes requests to these endpoints.
 
-TradingView client applications use a separate set of credentials per environment by default (if authorised).
+TradingView client applications use a separate set of credentials per environment by default (if authorized).
 
 Therefore, the broker should provide at least two independent sets of credentials to its production API: one is for 
 clients in the TradingView production, one is for clients in the staging, testing and development.
