@@ -14,7 +14,7 @@ Broker Integration Manual
    Integration_overview
    trading/index
    trading_tests/index
-   data
+   data/index
    FAQ
    Glossary
 
@@ -40,9 +40,9 @@ Documentation structure
   Here you can find a description of the conformational tests that should be passed successfully before placing a 
   broker integration to the sandbox.
 
-.. :doc:`Data integration <data/index>`
-..   Here you can read about data integration. This section helps you manipulate data permissions, set up a list of 
-..   instruments and stream of price.
+:doc:`Data integration <data/index>`
+  Here you can read about data integration. This section helps you manipulate data permissions, set up a list of 
+  instruments and stream of price.
 
 .. :doc:`Data integration tests <data_tests/index>`
 ..   Here you can find a description of the tests that should be passed during the data integration phase.

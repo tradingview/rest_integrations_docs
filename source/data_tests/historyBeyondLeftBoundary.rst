@@ -13,7 +13,7 @@ historyBeyondLeftBoundary
   skipped.
 
 Request error
-  Error on sending HTTP request to `/history`_ enpoint.
+  Error on sending HTTP request to `/history`_ endpoint.
 
 Data is available
   There is data beyond data boundary.

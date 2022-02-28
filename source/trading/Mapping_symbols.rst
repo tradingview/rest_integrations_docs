@@ -23,7 +23,7 @@ instruments supported by the broker.
 
 How to match symbols
 ....................
-You can use *symbols.json* (available upon request) with a complete list of all symbols to search for a 
+You can use *symbols-brokers.json* (available upon request) with a complete list of all symbols to search for a 
 TradingView symbol. This file is updated daily.
 
 In response to a request to the `/mapping`_, use the ``symbol-fullname`` field value as the TradingView symbol.

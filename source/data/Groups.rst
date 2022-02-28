@@ -17,7 +17,7 @@ If a broker has many various groups of instruments, we recommend split them into
 `/symbol_info`_ request, you should return an error.
 
 .. tip:: 
-  Each integration is limited up to 10 symbol groups. Each symbol group is limited up to 10K symbols in it. You cannot 
+  Each integration is limited by 10 symbol groups. Each symbol group can contain up to 10K symbols in it. You cannot 
   put the same symbol into 2 different groups.
 
 .. _groups-division:
@@ -26,7 +26,7 @@ If there is no division into groups, API must ignore all the parameters in the q
 example, API must return the same symbols both for a request with the ``"group": "XXX"`` (for any group) and for a
 request without this parameter.
 
-An example of division into groups for Crypto exchanges:
+An example of division into groups for Crypto brokers:
 
 .. code-block:: json
 
@@ -47,7 +47,7 @@ An example of division into groups for Crypto exchanges:
     }
   }
 
-An example of division into groups for the Forex and CFD exchanges:
+An example of division into groups for the Forex and CFD brokers:
 
 .. code-block:: json
 

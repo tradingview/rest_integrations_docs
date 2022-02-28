@@ -99,7 +99,7 @@ Are you able to support the OAuth2 Client Credentials Grant for authorizing to o
 
 Should a broker provide X.509 certificate or private key to sign the JWT?
    Data feed currently supports the JWT assertion workflow. We need X.509 certificate to sign the JWT. Our client forms
-   a JWT, signs it, sends it in the POST request body as ``assertion`` field, and expects to recieve a token in
+   a JWT, signs it, sends it in the POST request body as ``assertion`` field, and expects to receive a token in
    response. See `JWT Bearer Flow example`_ for details.
 
 Authorization
@@ -149,14 +149,14 @@ Can a user login multiple times simultaneously (login with the same account from
 
 Where can a user see the type of account (*live* or *demo*)?
    The account type can be specified in the ``type`` parameter in the `/accounts`_ endpoint. A user can see this 
-   information when selecting an account in the extra menu. We expect that recieved ID is unique on the broker side.
+   information when selecting an account in the extra menu. We expect that received ID is unique on the broker side.
 
 .. image:: ../images/Faq_Account_AccountMenu.png
    :scale: 50 %
    :alt: Names in the account menu.
    :align: center
 
-When user has several accounts, how to define the ``accountId`` for the oders?
+When user has several accounts, how to define the ``accountId`` for the orders?
    We get the ``accountId`` in the `/accounts`_ and then send this ``id`` of the account selected by the user (active 
    account) in the request.
 
@@ -176,10 +176,10 @@ How often quotes and orders should be updated?
    * Default 500 ms and maximum 1500 ms for ``positions``, ``accountManager``, and ``balances``.
 
 Is the ``balance`` in the `/state`_ an account balance calculated at the average ask price of the instruments included in it?
-   The balance line displays the number of funds available in the user's account. The riks calculation during trading 
+   The balance line displays the number of funds available in the user's account. The risk calculation during trading 
    order filling goes through ``equity`` calculated as ``balance + unrealizedPl``.
 
-If we dont' fill ``unrealizedPl``, how will the market price will be calculated on the TradingView side?
+If we don't fill ``unrealizedPl``, how will the market price will be calculated on the TradingView side?
    The ``unrealizedPl`` field is required. It shouldn't be ignored. In fact, it is an indicator of the current 
    profit/loss from all open positions.
 
@@ -232,8 +232,8 @@ Trading
 .. ...........
 
 Should we ignore `Place Order`_ ``currentAsk``/``currentBid`` parameters for the market order?
-   If it is Forex trading, these fields are required. In other cases, these parametes are still required to be send, but 
-   remain unprocessed.
+   If it is Forex trading, these fields are required. In other cases, these parameters are still required to be send,
+   but remain unprocessed.
 
 .. Modify Order
 .. ............
@@ -256,7 +256,7 @@ Market Data
 .. Quotes
 .. ......
 
-Is the `/quotes`_ endpoint required? Or do you have your own sources of quotes for securites?
+Is the `/quotes`_ endpoint required? Or do you have your own sources of quotes for securities?
    This method is optional, but highly required. It is needed to display your quotes directly in the 
    :ref:`Order Ticket<trading-ui-orderticket>`. This will reduce the chance of order execution at prices other
    than what the user sees.
@@ -269,7 +269,7 @@ Are requests for quotes coming from the client or from the server?
 .. Depth
 .. .....
 
-We have an *Order Book* on our platfom. How would we translate our logic into the `/depth`_ endpoint.
+We have an *Order Book* on our platform. How would we translate our logic into the `/depth`_ endpoint.
    The `/depth`_ endpoint implementation is required for using :ref:`DOM <depth-of-market>` in our UI. Users get access 
    to :term:`DOM` only if the broker provides :term:`Level 2 data`. You should set ``supportLevel2Data`` and 
    ``supportDOM`` in the `/accounts`_ to ``true``, then implement `/depth`_.
@@ -293,7 +293,7 @@ What if a user may have a different set of instruments for different accounts, b
 
 We sell data subscriptions. How can we inform your server that real-time data is available to the user?
    A broker should implement the `/permissions`_ endpoint. When user logs into the integration, we send requests to the 
-   `/permissions`_ for determing a list of the data subscriptions. If the user has data subscription on your side he 
+   `/permissions`_ for determining a list of the data subscriptions. If the user has data subscription on your side he 
    will not need to purchase one from TradingView.
 
 Data Integration
@@ -311,7 +311,7 @@ If the broker is satisfied with TradingView instruments, can we not send anythin
    That\'s right, the data integration is irrelevant when you are using only TradingView instruments.
 
 How to set up session time for data integration?
-   The session schedule is regulated in the `/symbol_info`_ with next paremeters: ``session-regular``, 
+   The session schedule is regulated in the `/symbol_info`_ with next parameters: ``session-regular``, 
    ``session-premarket``, ``session-postmarket``, and ``session-extended``.
 
 I added some new symbols but they aren't displayed on the chart. Do you call `/symbol_info`_ regularly or do you need to do it manually?
@@ -345,9 +345,9 @@ Does ``has-no-volume`` parameter indicate whether we can report trading volume o
 Our trading session opens at 17:00-16:00 CT. And we have pre-market at 16:50 CT. Should we report about pre-market within the main session?
    It depends on the bar building. We build bars using the ``session-regular`` value. For example, we build all the 
    resolutions (5 min, 1 hour, 4 hours etc.) for the session 17:00-16:00 from 17:00, even if ``session-premarket`` 
-   value recieved.
+   value received.
 
-How to use fileds ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to build bars?
+How to use fields ``bar-source``, ``bar-transform``, and ``bar-fillgaps`` to build bars?
    * If you build bars from trades, use ``bar-source: trade``. If you build from bids, use ``bar-source: bid``.
    * ``bar-transform`` is required when historical bars are aligned. It's needed for cases when open price is always
      equal to close price of the previous bar. If you don't have any alignments, just omit this field.
@@ -398,7 +398,7 @@ What time intervals you will send in the request to the `/history`_?
 
 How often do you request `/history`_ to update your database?
    We send request to the `/history`_ once for the deep history filling. After that, we update the data twice a day. We 
-   request `/history`_ if we didn\'t recive data from `/streaming`_ (as a result of provider\'s server side issues).
+   request `/history`_ if we didn\'t receive data from `/streaming`_ (as a result of provider\'s server side issues).
 
 What is the expected timestamp precision for the query parameters ``from`` and ``to``?
    The timestamp should be specified in seconds.

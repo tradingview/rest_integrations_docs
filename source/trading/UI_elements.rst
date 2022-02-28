@@ -14,7 +14,7 @@ UI elements
 Account Summary Row
 ...................
 The *Account Summary Row* is a line that is always displayed after login into the integration. It contains the most 
-important information about the current state of the subaccount currently selected by the user. 
+important information about the current state of the sub-account currently selected by the user. 
 
 By default, *Account Summary Row* displays the values of the `/state`_ request into three fields:
 
@@ -34,9 +34,9 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
   }
 
 But *Account Summary Row* allows to display other required broker information after configuration. You can configure it
-at the broker or subaccount level. Setting at the broker level will allow displaying the same information for all
-subaccounts. Setting at the subaccount level allows you display information for the user-selected account. In this case,
-the information it can be different for different subaccounts.
+at the broker or sub-account level. Setting at the broker level will allow displaying the same information for all
+sub-accounts. Setting at the sub-account level allows you display information for the user-selected account. In this case,
+the information it can be different for different sub-accounts.
 
 .. code-block:: json
 
@@ -84,10 +84,10 @@ The *Account Summary Tab* displays the fields received by `/state`_ request as a
 table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the field 
 is optional).
 
-The information displayed in the *Account Summary Tab* can be flexibly configured at the broker or subaccount level.
-The settings made at the broker level will be displayed the same for all subaccounts. Setting at the subaccount level 
+The information displayed in the *Account Summary Tab* can be flexibly configured at the broker or sub-account level.
+The settings made at the broker level will be displayed the same for all sub-accounts. Setting at the sub-account level 
 will allow displaying information for the account selected by the user, and the information may be different for 
-different subaccounts.
+different sub-accounts.
 
 * At the broker level, the ``accountManager`` object is returned in the `/config`_ request.
 * At the account level, the ``accountManager`` object is returned in the `/accounts`_ request inside the ``ui`` object.
@@ -107,7 +107,7 @@ Order Ticket
    
    Purchase behavior:
 
-   * Threre is a :term:`Short Position` and we set a trailing stop to buy.
+   * There is a :term:`Short Position` and we set a trailing stop to buy.
    * When the market price goes down, the :term:`Stop Order` price goes down as well.
    * But, if the market price rises, the :term:`Stop Order` price remains unchanged.
    * And in the end, if the market continues to grow and reaches the price set in the order, it will be executed.
@@ -147,8 +147,8 @@ Depth Of Market
 ...............
 
 *Depth of Market* or :term:`DOM` (also known as *Order Book*), is a window that shows how many open buy and sell orders
-there are at different prices for a security. Let\'s say the current price is $1, the DOM will show how many orders there 
-are at $0.90, $1.10, etc. It\'s a great tool to see where the supply and demand levels are.
+there are at different prices for a security. Let\'s say the current price is $1, the DOM will show how many orders
+there are at $0.90, $1.10, etc. It\'s a great tool to see where the supply and demand levels are.
 
 To enable :term:`DOM` in the TradingView UI follow the next steps:
 
@@ -168,11 +168,11 @@ Account Manager
 ...............
 
 *Account manager* is a panel on the bottom of the screen. This panel can have multiple tables. The *Account Manager* 
-can be configured both at the broker configuration level and for each individual subaccount separately. You should use 
+can be configured both at the broker configuration level and for each individual sub-account separately. You should use 
 one of these options.
 
 * At the broker level use `/config`_ → ``d`` → ``accountManager``.
-* At the subaccount level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
+* At the sub-account level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
 
 But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
 
