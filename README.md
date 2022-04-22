@@ -3,7 +3,7 @@
 ## How to build docs
 Follow these steps:
 
-* Execute `sudo make init`
+* Execute `make init`
 * Execute `make doc`
 
 Your docs will be in the `build/html` folder.

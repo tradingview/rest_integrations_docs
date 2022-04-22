@@ -26,20 +26,15 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-syncpackages:
-	"$(PYTHON)" -m pip install --user -r requirements.txt
-
 install_hooks:
 	cp -r ./git-hooks/. ./.git/hooks
 
 init:
 	./init.sh $(PYTHON);
 	make install_hooks;
-	make syncpackages;
 
 doc:
-	make html
-	"$(PYTHON)" processLink.py
+	./doc.sh $(PYTHON);
 
 watch:
 	./watch.sh $(PYTHON);
