@@ -1,17 +1,7 @@
 #!/bin/bash -e
 "$1" -m pip install --user virtualenv
 
-PWD=`pwd`
-
-"$1" -m venv venv
-
-echo $PWD
-
-activate () {
-	. $PWD/venv/bin/activate
-}
-
-activate
+source ./source.sh "$1"
 
 "$1" -m pip install markupsafe==1.1.1
 "$1" -m pip install jinja2==2.10.1
