@@ -38,8 +38,10 @@ init:
 	make syncpackages;
 
 doc:
+	./source.sh $(PYTHON);
 	make html
 	"$(PYTHON)" processLink.py
 
 watch:
+	./source.sh $(PYTHON);
 	./watch.sh $(PYTHON);
