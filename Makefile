@@ -27,6 +27,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 syncpackages:
+	./source.sh $(PYTHON);
 	"$(PYTHON)" -m pip install -r requirements.txt
 
 install_hooks:
@@ -40,6 +41,7 @@ init:
 doc:
 	./source.sh $(PYTHON);
 	make html
+	./source.sh $(PYTHON);
 	"$(PYTHON)" processLink.py
 
 watch:
