@@ -27,7 +27,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 syncpackages:
-	"$(PYTHON)" -m pip install --user -r requirements.txt
+	"$(PYTHON)" -m pip install -r requirements.txt
 
 install_hooks:
 	cp -r ./git-hooks/. ./.git/hooks
