@@ -46,6 +46,6 @@ Matching fields to requests:
 
 * ``quotes`` --- the `/quotes`_ and `/depth`_ requests (max 1000ms)
 * ``accountManager`` --- the `/state`_ request (max 1500ms)
-* ``orders`` --- the `/orders`_ request (max 1500ms)
+* ``orders`` --- the `/orders`_ request (max 1000ms)
 * ``positions`` --- the `/positions`_ request (max 1500ms)
 * ``balances`` --- the `/balances`_ request (max 1500ms)
