@@ -14,6 +14,9 @@ Your docs will be in the `build/html` folder.
 
 Docs will be available at http://localhost:8000
 
+## Troubleshooting
+If you encounter errors make sure you have Python 3.10 installed and run in the project directory in the console `rm -rf venv` before `make init`
+
 ## Notes for writers
 
 ### Rules for capitalization in titles
