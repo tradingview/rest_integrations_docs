@@ -32,12 +32,9 @@ date, we will request a history up to 1800 year.
     "v": []
   }
 
-There can be two types of request to `/history`_:
+The endpoint request contains two time parameters: ``from`` and ``to`` (``countback`` is deprecated).
 
-* with ``from`` and ``to`` parameters,
-* with ``countback`` and ``to`` parameters.
-
-In the first case we expect to receive all bars inside the given interval, including the border ones.
+We expect to receive all bars inside the given interval, including the border ones.
 
 .. code-block:: bash
 
@@ -78,50 +75,5 @@ The response will be:
       5.365,
       2.288,
       17.36
-    ]
-  }
-
-In the second case, we expect to receive exactly 3 bars when the ``countback`` is specified. The ``from`` parameter is 
-ignored. 
-
-.. code-block:: bash
-
-  /history?symbol=BTCUSDT&resolution=1&from=1637502014&to=1637502267&countback=3
-
-The response will be:
-
-.. code-block:: json
-
-  {
-    "s": "ok",
-    "t": [
-      1585132560,
-      1585133820,
-      1585134120
-    ],
-    "o": [
-      6500,
-      6588,
-      6591.5
-    ],
-    "h": [
-      6500,
-      6591.5,
-      6603.5
-    ],
-    "l": [
-      6500,
-      6588,
-      6591.5
-    ],
-    "c": [
-      6500,
-      6591.5,
-      6603.5
-    ],
-    "v": [
-      0.001,
-      0.001,
-      0.001
     ]
   }
