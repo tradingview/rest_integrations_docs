@@ -1,7 +1,7 @@
 # Minimal makefile for Sphinx documentation
 
 # Platform identification
-PYTHON = python3.10
+PYTHON = python3.8
 ifdef COMSPEC # win32 system
 PYTHON = python
 endif # COMSPEC
