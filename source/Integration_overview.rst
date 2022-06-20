@@ -137,21 +137,32 @@ URL.
 
 The table lists six pairs of environments connections.
 
-+-------------------------+--------------------+
-| TradingView environment | Broker environment |
-+=========================+====================+
-| production              | production         |
-+-------------------------+--------------------+
-| staging                 | production         |
-+-------------------------+--------------------+
-| localhost               | production         |
-+-------------------------+--------------------+
-| production              | staging            |
-+-------------------------+--------------------+
-| staging                 | staging            |
-+-------------------------+--------------------+
-| localhost               | staging            |
-+-------------------------+--------------------+
+.. +-------------------------+--------------------+
+.. | TradingView environment | Broker environment |
+.. +=========================+====================+
+.. | production              | production         |
+.. +-------------------------+--------------------+
+.. | staging                 | production         |
+.. +-------------------------+--------------------+
+.. | localhost               | production         |
+.. +-------------------------+--------------------+
+.. | production              | staging            |
+.. +-------------------------+--------------------+
+.. | staging                 | staging            |
+.. +-------------------------+--------------------+
+.. | localhost               | staging            |
+.. +-------------------------+--------------------+
+
+=========================  ====================
+TradingView environment    Broker environment
+=========================  ====================
+production                 production
+staging                    production
+localhost                  production
+production                 staging
+staging                    staging
+localhost                  staging
+=========================  ====================
 
 A TradingView website in a sandbox or production can only be connected to one broker environment at a time. You can
 switch between environments through the browser console. Instructions can be provided after configuration by the
