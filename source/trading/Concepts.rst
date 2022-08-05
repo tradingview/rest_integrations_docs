@@ -110,6 +110,22 @@ Canceling a parent order with brackets
 Bracket orders are bound to the parent order by the :term:`OSO` condition. Therefore, when cancelling a parent order,
 the brackets must also be cancelled.
 
+Leverage
+''''''''
+
+If you support leverage, the ``supportLeverage`` flag in the `/accounts`_ must be set to ``true``.
+
+Trailing stop bracket
+'''''''''''''''''''''
+
+In order to support placing Trailing Stop brackets the ``supportTrailingStop`` in the `/accounts`_ must be set to
+``true``. When this parameter is enabled, it will be possible to change Stop Loss bracket to Trailing Stop by clicking
+on the bracket's name in the UI.
+
+.. important::
+  No other order besides Trailing Stop should contain ``trailingStopPips`` parameter, even if the value of this
+  parameter will be set to zero.
+
 Position brackets
 ~~~~~~~~~~~~~~~~~
 
