@@ -388,10 +388,6 @@ Which requests are going to the broker\'s server from the TradingView server and
    Requests that are responsible for the data integration are sent from the TradingView server:  `/authorize`_, 
    `/groups`_, `/symbol_info`_, `/history`_, `/streaming`_.
 
-Should we implement the ``countback`` parameter? It is marked as optional in the API.
-   Your server should operate both requests: implement both parameters ``from`` and ``to``, as well as ``countback`` and
-   ``to``. You can see the examples of such requests in the :doc:`History <../data/History>` section.
-
 What time intervals you will send in the request to the `/history`_?
    We need 1-minute intervals only. However, we may need 1-day intervals in some cases. We are building interim 
    resolution on our side.
