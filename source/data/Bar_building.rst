@@ -5,8 +5,8 @@ Bar building
 ------------
 
 The API must support 1-minute resolution of the historical data. Daily resolution must be provided only if automatic 
-building from 1-minute resolution data produces incorrect results. When daily resolution is provided, the ``has-daily`` 
-field in `/symbol_info`_ response must be set to ``true``.
+building from 1-minute resolution data produces incorrect results. By default we expect to get daily resolutions from
+the data feed. If you don't provide them, set ``has-daily`` flag in response to `/symbol_info`_ to ``false``.
 
 Daily bars are built from lower resolution (1-minute typically) or taken from the API if they are available. Daily bar 
 time matches the start of the 1st session of the day.
