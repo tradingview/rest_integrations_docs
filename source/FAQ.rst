@@ -39,7 +39,7 @@ Authentication
 --------------
 
 Are there any restrictions on the lifetime of tokens? What is the optimal lifetime?
-   Max lifetime is a 32-bit signed integer --- ``2147483647`` ms. It\'s about 24.8 of a day. Furthermore, you can make
+   Max lifetime is a 32-bit signed integer --- ``2147483647`` ms. It\'s about 24.8 days. Furthermore, you can make
    it never-ending if you don\'t send ``expired_in`` parameter, but we think this is unsafe. The optimal token lifetime
    should be in the range of 15-30 minutes.
 
@@ -257,7 +257,7 @@ Market Data
 .. ......
 
 Is the `/quotes`_ endpoint required? Or do you have your own sources of quotes for securities?
-   This method is optional, but highly required. It is needed to display your quotes directly in the 
+   This method is optional, but highly recommended. It is needed to display your quotes directly in the 
    :ref:`Order Ticket<trading-ui-orderticket>`. This will reduce the chance of order execution at prices other
    than what the user sees.
 

@@ -60,7 +60,7 @@ Forex
 	EURUSD → FX:EURUSD
 	USDEUR → FX:USDEUR
 	
-Features
+Futures
 ~~~~~~~~
 ``<Exchange>:<Root><2 Digit Day(optional)><Month Code><4 Digit Year>``
 

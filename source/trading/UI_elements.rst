@@ -39,7 +39,7 @@ wish to change that behavior, provide ``equity`` in the response to `/state`_.
 But *Account Summary Row* allows to display other required broker information after configuration. You can configure it
 at the broker or sub-account level. Setting at the broker level will allow displaying the same information for all
 sub-accounts. Setting at the sub-account level allows you display information for the user-selected account. In this case,
-the information it can be different for different sub-accounts.
+the information can be different for different sub-accounts.
 
 .. code-block:: json
 

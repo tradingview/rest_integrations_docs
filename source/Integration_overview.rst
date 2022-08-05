@@ -108,7 +108,7 @@ In some cases, the listed endpoints may not be implemented.
 * `/balances`_ --- can be disabled, used for Crypto Spot only.
 * `/depth`_ --- can be disabled if you are not going to support :term:`DOM` display.
 * `/permissions`_, `/groups`_ --- it's set up on our side, if you are not going to restrict certain groups of users 
-  access to certain data (for example, on geographically, or depending on the tariff plan), we will not activated it 
+  access to certain data (for example, on geographically, or depending on the tariff plan), we will not activate it 
   on our side.
 
 Trading integration issues
