@@ -44,7 +44,7 @@ The TradingView website can only receive data from the TradingView server. Indic
 well as server alerts, etc. Data integration is required in order for the market data to be first received by the 
 TradingView server, and then transferred to the client side. For FOREX and CRYPTO the data needs to be connected 
 in any case, as it is not linked to the particular exchange and is always different. For CFD it is possible to use
-existing data via `/mapping`_ if the CFD in question is being mapped onto an existing stock exchange.
+existing data via `/mapping`_ if the CFD is mapped to a specific exchange stock.
 
 In what cases it is possible not to integrate data
 ..................................................
