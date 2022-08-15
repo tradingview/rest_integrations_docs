@@ -134,7 +134,7 @@ the ``supportPositionBrackets`` flag in the `/accounts`_ must be set to ``true``
 mode, sections for bracket orders will appear.
 
 Support of position brackets vary if a broker does not have support for multiple positions at one instrument at the
-same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
+same time. Multiple position means that each trade opens its own separate position, to which you can add brackets and 
 which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag to ``true``. 
 
 Position brackets are not supported
