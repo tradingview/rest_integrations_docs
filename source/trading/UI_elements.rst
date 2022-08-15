@@ -22,8 +22,9 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
 * ``unrealizedPL`` into the *Profit*,
 * ``equity`` into the *Equity*.
 
-The ``equity`` parameter is optional and can be calculated automatically as ``balance`` + ``unrealizedPl``. If you
-wish to change that behavior, provide ``equity`` in the response to `/state`_.
+The ``equity`` parameter is used in the order ticket to calculate risks. This parameter is optional and can be
+calculated automatically as ``balance`` + ``unrealizedPl``. If you calculate equity in a different way, provide the
+required value of ``equity`` in the responce to `/state`_.
 
 .. code-block:: json
 
