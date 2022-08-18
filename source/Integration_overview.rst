@@ -197,6 +197,8 @@ addresses.
 Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
 the request in each endpoint for each response code.
 
+During sandbox testing it is also necessary to allow requests from ``beta-rest.xstaging.tv``.
+
 In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
 This address is used on developers\' computers.
 
