@@ -39,6 +39,9 @@ Stocks
 	AAN → TSXV:AAN
 	AFLT → MICEX:AFLT
 
+.. note::
+  CFDs require ``is-cfd`` flag set to ``true``
+
 Stocks from the different exchanges under one prefix
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ``<Traded Exchange>:<Exchange suffix>_<Symbol>``
@@ -57,7 +60,7 @@ Forex
 	EURUSD → FX:EURUSD
 	USDEUR → FX:USDEUR
 	
-Features
+Futures
 ~~~~~~~~
 ``<Exchange>:<Root><2 Digit Day(optional)><Month Code><4 Digit Year>``
 
@@ -73,6 +76,9 @@ If more than one contract is expired in one month, the expiration day is added t
 
 	BTCUSD → OKEX:BTCUSD24M2020
 	ETHBTC → BITMEX:ETHBTC30U2020
+
+.. note::
+  Futures require ``root`` and ``root-description`` parameters
 
 Crypto
 ~~~~~~

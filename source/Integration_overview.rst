@@ -42,8 +42,9 @@ Why data integration is needed
 ..............................
 The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as 
 well as server alerts, etc. Data integration is required in order for the market data to be first received by the 
-TradingView server, and then transferred to the client side. For CFDs, FOREX and CRYPTO the data needs to be connected 
-in any case, as it is not linked to the particular exchange and is always different.
+TradingView server, and then transferred to the client side. For FOREX and CRYPTO the data needs to be connected 
+in any case, as it is not linked to the particular exchange and is always different. For CFD it is possible to use
+existing data via `/mapping`_ if the CFD is mapped to a specific exchange stock.
 
 In what cases it is possible not to integrate data
 ..................................................
@@ -107,7 +108,7 @@ In some cases, the listed endpoints may not be implemented.
 * `/balances`_ --- can be disabled, used for Crypto Spot only.
 * `/depth`_ --- can be disabled if you are not going to support :term:`DOM` display.
 * `/permissions`_, `/groups`_ --- it's set up on our side, if you are not going to restrict certain groups of users 
-  access to certain data (for example, on geographically, or depending on the tariff plan), we will not activated it 
+  access to certain data (for example, on geographically, or depending on the tariff plan), we will not activate it 
   on our side.
 
 Trading integration issues
@@ -195,6 +196,8 @@ addresses.
 
 Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
 the request in each endpoint for each response code.
+
+During sandbox testing it is also necessary to allow requests from ``beta-rest.xstaging.tv``.
 
 In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
 This address is used on developers\' computers.
