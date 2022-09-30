@@ -22,6 +22,10 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
 * ``unrealizedPL`` into the *Profit*,
 * ``equity`` into the *Equity*.
 
+The ``equity`` parameter is used in the order ticket to calculate risks. This parameter is optional and can be
+calculated automatically as ``balance`` + ``unrealizedPl``. If you calculate equity in a different way, provide the
+required value of ``equity`` in the responce to `/state`_.
+
 .. code-block:: json
 
   {
@@ -36,7 +40,7 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
 But *Account Summary Row* allows to display other required broker information after configuration. You can configure it
 at the broker or sub-account level. Setting at the broker level will allow displaying the same information for all
 sub-accounts. Setting at the sub-account level allows you display information for the user-selected account. In this case,
-the information it can be different for different sub-accounts.
+the information can be different for different sub-accounts.
 
 .. code-block:: json
 
@@ -150,11 +154,11 @@ Depth Of Market
 there are at different prices for a security. Let\'s say the current price is $1, the DOM will show how many orders
 there are at $0.90, $1.10, etc. It\'s a great tool to see where the supply and demand levels are.
 
-To enable :term:`DOM` in the TradingView UI follow the next steps:
+By default :term:`DOM` widget in the UI is enabled. If you wish to hide it, set ``supportDOM`` flag in `/accounts`_ to
+``false``. If you provide :term:`Level 2 data`, you can enable it in the TradingView UI by following the next steps:
 
-* Set ``supportLevel2Data`` in the `/accounts`_ to ``true`` if you have :term:`Level 2 data`.
+* Set ``supportLevel2Data`` in the `/accounts`_ to ``true``.
 * Implement `/depth`_ endpoint.
-* Set ``supportDOM`` to ``true`` if you want to enable DOM in the UI.
 
 .. image:: ../../images/Trading_UiElements_DepthOfMarket.png
    :scale: 60 %

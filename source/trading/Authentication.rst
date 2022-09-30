@@ -133,7 +133,7 @@ Authorization
 3. A new browser tab opens at the broker's *Authorization URL*.
 4. The following query parameters are sent in the GET request:
 
-   * ``response_type`` --- the value will always be ``token``.
+   * ``response_type`` --- the value will always be ``code``.
    * ``client_id`` --- a unique identifier of the client.
    * ``redirect_uri`` --- `Redirection Endpoint`_. For security reasons, when receiving an authorization request, check
      this parameter for compliance with the one in the configuration.

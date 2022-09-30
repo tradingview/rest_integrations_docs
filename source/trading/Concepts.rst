@@ -6,6 +6,7 @@
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
 .. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
 .. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
+.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 
 Concepts
 --------
@@ -44,8 +45,7 @@ orders, that have received final status should be included in the list until the
 least within 1 minute after changing order status.
 
 `/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. If you don\'t support orders history, please set ``supportOrdersHistory`` in the 
-`/accounts`_ to ``false``. The ``accountId`` parameter is required.
+status. This endpoint is optional. Set ``supportOrdersHistory`` flag in `/accounts`_ to ``true`` if you provide orders history for accounts. The ``accountId`` parameter is required.
 
 .. _trading-concepts-brackets:
 
@@ -110,6 +110,22 @@ Canceling a parent order with brackets
 Bracket orders are bound to the parent order by the :term:`OSO` condition. Therefore, when cancelling a parent order,
 the brackets must also be cancelled.
 
+Leverage
+''''''''
+
+If you support leverage, the ``supportLeverage`` flag in the `/accounts`_ must be set to ``true``.
+
+Trailing stop bracket
+'''''''''''''''''''''
+
+In order to support placing Trailing Stop brackets the ``supportTrailingStop`` in the `/accounts`_ must be set to
+``true``. When this parameter is enabled, it will be possible to change Stop Loss bracket to Trailing Stop by clicking
+on the bracket's name in the UI.
+
+.. important::
+  No other order besides Trailing Stop should contain ``trailingStopPips`` parameter, even if the value of this
+  parameter will be set to zero.
+
 Position brackets
 ~~~~~~~~~~~~~~~~~
 
@@ -118,9 +134,8 @@ the ``supportPositionBrackets`` flag in the `/accounts`_ must be set to ``true``
 mode, sections for bracket orders will appear.
 
 Support of position brackets vary if a broker does not have support for multiple positions at one instrument at the
-same time. Muliple position means that each trade opens its own separate position, to which you can add brackets and 
+same time. Multiple position means that each trade opens its own separate position, to which you can add brackets and 
 which can only be closed completely. If you support multi position set the ``supportMultiposition`` flag to ``true``. 
-Set it into ``false`` and the behavior will be as you wish. Trades will net position.
 
 Position brackets are not supported
 '''''''''''''''''''''''''''''''''''
@@ -172,10 +187,8 @@ You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanage
 :ref:`Chart<trading-ui-chart>`.
 
 Available operations for the positions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
-the `/accounts`_ → ``d`` → ``config`` to hide its operations.
-
-* Set ``supportPositionBrackets`` to ``false`` to hide *Protect Position*
-* Set ``supportReversePosition`` to ``false`` to hide *Reverse Position*
+the `/accounts`_ → ``d`` → ``config`` to hide its operations. Set ``supportReversePosition`` to ``false`` to hide
+*Reverse Position*.
 
 .. _trading-concepts-pipvalue:
 
@@ -194,7 +207,8 @@ Besides `/instruments`_, ``pipValue`` can be sent via `/quotes`_ in the ``buyPip
 However, if you do not have support for different ``pipValue`` for buy and sell, you should pass the same values in 
 both fields.
 
-If ``supportPLUpdate`` is set to ``true``, ``pipValue`` used for the calculating position profit. But the profit is 
+By default we use ``pipValue`` parameter to display profit/loss. If you provide ``unrealizedPl`` parameter in
+`/positions`_, you should set ``supportPLUpdate`` flag in `/accounts`_ to ``false``. But the profit is 
 fixed when the position is closed:
 
 * at Bid — when Short position closed,

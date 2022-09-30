@@ -32,9 +32,8 @@ date, we will request a history up to 1800 year.
     "v": []
   }
 
-The endpoint request contains two time parameters: ``from`` and ``to`` (``countback`` is deprecated).
-
-We expect to receive all bars inside the given interval, including the border ones.
+Request to history consists of ``from`` and ``to`` parameters. We expect to receive all bars inside the given interval,
+including the border ones.
 
 .. code-block:: bash
 
