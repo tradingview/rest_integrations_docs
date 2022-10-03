@@ -76,4 +76,3 @@ The response will be:
       17.36
     ]
   }
-

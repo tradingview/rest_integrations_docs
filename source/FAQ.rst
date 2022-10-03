@@ -299,8 +299,8 @@ We sell data subscriptions. How can we inform your server that real-time data is
 Data Integration
 ----------------
 
-.. Symbol Info
-.. ...........
+Symbol Info
+...........
 
 How does *Symbol* differs to *Tickers*?
    *Symbol* the name of the instrument that will be shown to users. *Ticker* the name of the instrument that our 
@@ -378,8 +378,15 @@ Are there any restrictions on the symbol groups number?
    Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. One symbol can only 
    appear in one group.
 
-.. History
-.. .......
+We show different prices for different customer groups. How to connect the symbols so that these customer groups see their price category?
+   We display the ``mid`` price on the TradingView chart, which is the same for all price categories of
+   the symbol. We show user-specific quotes in the quotes field of the :ref:`order dialog<trading-ui-orderticket>` 
+   that we request from `/quotes`_. Thus, there is no need to integrate all price options into TradingView. 
+   It is enough to connect only one price option to our backend, and user-specific quotes will be requested from the 
+   browser with a specific account.
+
+History
+.......
 
 Is `/history`_ requested only for those instruments for which we supply our quotes?
    The `/history`_ is requested for all instruments represented in the symbol field of the `/symbol_info`_.
@@ -402,8 +409,8 @@ What is the expected timestamp precision for the query parameters ``from`` and `
 Is it expected that the query to the `/history`_ should consider trades within the time interval, even for open and close prices?
    We build bar from the `/streaming`_ ticks. For verification, we use `streamingHistoryEquality`_ test.
 
-.. Stream of prices
-.. ................
+Stream of prices
+................
 
 How do you get prices from the brokers? The price can change more than ten times per second for each instrument.
    `/streaming`_ endpoint is a permanent connection used to accept changes in quotes for all instruments.

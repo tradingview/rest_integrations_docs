@@ -52,8 +52,8 @@ Market data can come to the TradingView server from another source, for example,
 need for market data integration in this case, and the broker needs to implement `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
-Mandatory Endpoints by broker/exchange type
-...........................................
+Recommended endpoints by broker/exchange type
+.............................................
 
 +-------------------+---------+-------------+--------------------+----------------+
 | Broker type       | FX/CFD  | Crypto Spot | Crypto Derivatives | Stocks/Futures |
@@ -103,7 +103,7 @@ In some cases, the listed endpoints may not be implemented.
 
 * `/mapping`_ --- not necessary if you work exclusively on your own symbols.
 * `/executions`_ --- can be disabled through the config, but in this case, transactions will not be displayed on the 
-  "Chart".
+  chart.
 * `/positions`_ --- can be disabled through the config, not used for Crypto Spot trading.
 * `/balances`_ --- can be disabled, used for Crypto Spot only.
 * `/depth`_ --- can be disabled if you are not going to support :term:`DOM` display.
@@ -234,7 +234,7 @@ All the data which is displayed at TradingView has to meet the following standar
   holes, and incorrect prices.
 
 User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
-`/history`_ some time after user reloads the Chart. It is important that the data from `/streaming`_ and `/history`_ 
+`/history`_ some time after user reloads the chart. It is important that the data from `/streaming`_ and `/history`_ 
 are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
 `/history`_ shouldn\'t change.
 
