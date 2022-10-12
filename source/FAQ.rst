@@ -378,11 +378,11 @@ Are there any restrictions on the symbol groups number?
    Data integration is limited to 10 groups of symbols, no more than 10 thousand symbols each. One symbol can only 
    appear in one group.
 
-We show different prices for different customer groups. How do we connect the symbols, so that different customer groups see their price category?
+We show different prices for different customer groups. How to connect the symbols so that these customer groups see their price category?
    We display the ``mid`` price on the TradingView chart, which is the same for all price categories of
    the symbol. We show user-specific quotes in the quotes field of the :ref:`order dialog<trading-ui-orderticket>` 
    that we request from `/quotes`_. Thus, there is no need to integrate all price options into TradingView. 
-   It is enough to connect only 1 price option to our backend, and user-specific quotes will be requested from the 
+   It is enough to connect only one price option to our backend, and user-specific quotes will be requested from the 
    browser with a specific account.
 
 History
