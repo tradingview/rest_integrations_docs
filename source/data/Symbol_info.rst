@@ -27,7 +27,7 @@ If the symbol groups exist, their names should have a prefix as broker\'s name. 
 Symbol naming rules
 ......................
 
-Here are the rules of symbol naming for different types of instruments on the TradingView\'s side.
+Here are the symbol naming rules for different instrument types on the TradingView\'s side.
 
 Stocks
 ~~~~~~
@@ -100,16 +100,16 @@ Price display
 To manage how the price displays on the chart, use the following parameters in ``/symbol_info``.
 
 -  ``minmovement`` indicates the number of units that make one price tick.
--  ``pricescale`` indicates how many decimal places the price has.
--  ``minmovement2`` indicates the pip size for forex prices or how to separate the main and additional fractions.
+-  ``pricescale`` indicates how many decimal places a security price has.
+-  ``minmovement2`` indicates the pip size for forex prices or how to separate the main and additional fractions for fractional prices.
 
 The parameter values are set depending on the price format chosen. 
 There are two ways to display a security price:
 
--  The **decimal** format is used for most instruments, such as stocks, indices, and futures.
--  The **fractional** format is used only for futures traded on the CBOT (Chicago Board of Trade), 
-   including the futures on bulk commodities (grains etc.) and US Federal Reserve Government bonds. 
-   This format also has a variety which is a fraction of the fractional price format.
+-  The `decimal <#decimal-format>`__ format is used for most instruments, such as stocks, indices, and futures.
+-  The `fractional <#fractional-format>`__ format is used only for futures traded on the CBOT (Chicago Board of Trade), 
+   including futures on bulk commodities (grains, etc.) and US Federal Reserve Government bonds. 
+   This format also has a variety that is a fractional format of the fractional price.
 
 Decimal format
 ~~~~~~~~~~~~~~
@@ -121,18 +121,24 @@ For the decimal format:
    For example, if the price has two decimal places ``300.01``, ``pricescale`` must be ``100``. 
    If it has three decimal places ``300.001``, ``pricescale`` must be ``1000``, etc. 
    If the price doesn't have decimals, ``pricescale`` must be ``1``.
--  The ``minmovement2`` value must always be ``0``, except for `forex symbols <#forex-symbols>`__ (must always be ``10``).
+-  The ``minmovement2`` value must always be ``0``, except for `forex symbols <#forex-symbols>`__.
 
 Forex symbols
 ^^^^^^^^^^^^^
 
 Forex symbols have the decimal price format. 
-However, ``minmovement2`` doesn't affect the formatting. 
+However, ``minmovement2`` doesn't affect the price formatting. 
 It indicates the pip size on the chart, and its values must always be ``10^n``, where ``n`` is the number of pips. 
 A pip is the smallest whole unit measurement of the spread. 
-A pip equals 1/100 of 1%, or 0.0001. On the chart, this number is smaller than the main digits.
+A pip equals 1/100 of 1%, or 0.0001. On the chart, the pip is displayed smaller than the price digits.
 
-If ``minmovement2`` is ``0`` for forex symbols, the spread will be displayed in ticks, not pips.
+.. image:: ../../images/forex-price.png
+   :scale: 35 %
+   :alt: Order Dialog
+   :align: center
+
+.. note::
+	If ``minmovement2`` is ``0`` for forex symbols, the spread is displayed in ticks, not pips.
 
 Fractional format
 ~~~~~~~~~~~~~~~~~
@@ -148,15 +154,15 @@ For the fractional format:
    For example, if ``minmovement: 1`` and ``pricescale: 32``, the fraction numerator values can vary from 0 to 31.
 -  The ``minmovement2`` value must always be ``0``, except for the fraction of fractional format.
 
-Fraction of fractional
-^^^^^^^^^^^^^^^^^^^^^^^^
+Fractional format of the fractional price
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The fraction of fractional price format is a special case of the fractional one. 
-In this case, ``minmovement2`` indicates the part of the fraction.
+The fractional format of the fractional price is a particular case of the fractional price format. 
+In this case, ``minmovement2`` indicates the part of the fraction and can differ from ``0``.
 
 For example, for the ``76'27'2`` price: 76 is an integral part of the price, 27 is a fractional part of the price,
-and 2 is a fractional part of the fractional part.
-For example, if you specify ``minmovement: 1``, ``pricescale: 128``, ``minmovement2: 4``.
+and 2 is a fractional part of the first fractional part (27).
+To display such a price, you can specify the parameters in the following way: ``minmovement: 1``, ``pricescale: 128``, and ``minmovement2: 4``.
 
 Tick size
 ---------
