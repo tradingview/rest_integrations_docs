@@ -97,13 +97,13 @@ Crypto
 Price display
 ......................
 
-To manage how the price displays on the chart, use the following parameters in ``/symbol_info``.
+To manage how the price displays on the chart, use the following parameters in `/symbol_info`_.
 
 -  ``minmovement`` indicates the number of units that make one price tick.
 -  ``pricescale`` indicates how many decimal places a security price has.
--  ``minmovement2`` indicates the pip size for forex prices or how to separate the main and additional fractions for fractional prices.
+-  ``minmovement2`` indicates the pip size for Forex prices or how to separate the main and additional fractions for fractional prices.
 
-The parameter values are set depending on the price format chosen. 
+The parameter values depend on the price format chosen. 
 There are two ways to display a security price:
 
 -  The `decimal <#decimal-format>`__ format is used for most instruments, such as stocks, indices, and futures.
@@ -121,24 +121,23 @@ For the decimal format:
    For example, if the price has two decimal places ``300.01``, ``pricescale`` must be ``100``. 
    If it has three decimal places ``300.001``, ``pricescale`` must be ``1000``, etc. 
    If the price doesn't have decimals, ``pricescale`` must be ``1``.
--  The ``minmovement2`` value must always be ``0``, except for `forex symbols <#forex-symbols>`__.
+-  The ``minmovement2`` value must always be ``0``, except for `Forex symbols <#forex-symbols>`__.
 
 Forex symbols
 ^^^^^^^^^^^^^
 
-Forex symbols have the decimal price format. 
-However, ``minmovement2`` doesn't affect the price formatting. 
-It indicates the pip size on the chart, and its values must always be ``10^n``, where ``n`` is the number of pips. 
-A pip is the smallest whole unit measurement of the spread. 
-A pip equals 1/100 of 1%, or 0.0001. On the chart, the pip is displayed smaller than the price digits.
+Forex symbols have the decimal price format, however, the ``minmovement2`` value must differ from ``0``.
+In this case, ``minmovement2`` indicates the pip size on the chart and the value must be ``10^n``, where ``n`` is the number of pips. 
+A pip is the smallest whole unit measurement of the spread and equals 1/100 of 1%, or 0.0001. 
+On the chart, the pip is displayed smaller than the price digits.
 
-.. image:: ../../images/forex-price.png
-   :scale: 35 %
+.. image:: ../../images/Data_SymbolInfo_PriceDisplay_ForexSymbols.png
+   :scale: 100 %
    :alt: Order Dialog
    :align: center
 
 .. note::
-	If ``minmovement2`` is ``0`` for forex symbols, the spread is displayed in ticks, not pips.
+	If ``minmovement2`` is ``0`` for Forex symbols, the spread is displayed in ticks, not pips.
 
 Fractional format
 ~~~~~~~~~~~~~~~~~
