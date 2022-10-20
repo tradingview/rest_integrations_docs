@@ -109,7 +109,7 @@ There are two ways to display a security price:
 -  The `decimal <#decimal-format>`__ format is used for most instruments, such as stocks, indices, and futures.
 -  The `fractional <#fractional-format>`__ format is used only for futures traded on the CBOT (Chicago Board of Trade), 
    including futures on bulk commodities (grains, etc.) and US Federal Reserve Government bonds. 
-   This format also has a variety that is a fractional format of the fractional price.
+   This format also has a variety — that is a fractional format of the fractional price.
 
 Decimal format
 ~~~~~~~~~~~~~~
