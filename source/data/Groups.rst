@@ -2,6 +2,8 @@
 .. _`/groups`: https://www.tradingview.com/rest-api-spec/#operation/getGroups
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 
+.. _groups-endpoint:
+
 Groups
 ------
 
