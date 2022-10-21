@@ -60,4 +60,4 @@ If you need to manage symbol access for users, implement the following endpoints
 Restricting access is needed when you want to divide content for subscribed and free users.
 
 .. note::
-Learn more about access restrictions in the :ref:`Permissions <permissions-endpoint>` and :ref:`Groups <groups-endpoint>` articles.
+    Learn more about access restrictions in the :ref:`Permissions <permissions-endpoint>` and :ref:`Groups <groups-endpoint>` articles.

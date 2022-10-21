@@ -6,6 +6,7 @@ Data integration
 
    Authentication
    Groups
+   Permissions
    Symbol_info
    History
    Session_specification
