@@ -97,7 +97,7 @@ Crypto
 Price display
 ......................
 
-To manage how the price displays on the chart, use the following parameters in `/symbol_info`_.
+To manage how the price is displayed on the chart, use the following parameters in `/symbol_info`_.
 
 -  ``minmovement`` indicates the number of units that make one price tick.
 -  ``pricescale`` indicates how many decimal places a security price has.
