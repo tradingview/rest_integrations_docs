@@ -128,7 +128,7 @@ Forex symbols
 
 Forex symbols have the decimal price format, however, the ``minmovement2`` value must differ from ``0``.
 In this case, ``minmovement2`` indicates the pip size on the chart and the value must be ``10^n``, where ``n`` is the number of pips. 
-A pip is the smallest whole unit measurement of the spread and equals 1/100 of 1%, or 0.0001. 
+A pip is the smallest whole unit measurement of the spread.
 On the chart, the pip is displayed smaller than the price digits.
 
 .. image:: ../../images/Data_SymbolInfo_PriceDisplay_ForexSymbols.png
@@ -170,5 +170,5 @@ Tick size (minimum price step) is the minimum price amount a security can move i
 The tick size is calculated as ``minmovement``/ ``pricescale``.
 For example, if you need a price step to be ``0.25``:
 
--  Set ``minmovement: 5`` and ``pricescale: 100`` for the decimal format.
+-  Set ``minmovement: 25`` and ``pricescale: 100`` for the decimal format.
 -  Set ``minmovement: 1`` and ``pricescale: 4`` for the fractional format.
