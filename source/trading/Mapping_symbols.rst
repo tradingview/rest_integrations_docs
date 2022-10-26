@@ -38,7 +38,7 @@ If the broker partially uses TradingView data and partially connects its own, th
 for all symbols.
 
 The ``symbol-type`` field in *symbols.json* aims to the market instrument type. A symbol can be traded on different
-exchanges. In this case, the ``symbol`` fields will be the same, and the ``exchange-traded`` and ``exchange-listed`` fields will
+exchanges. In this case, the ``symbol`` fields will be the same, whereas the ``exchange-traded`` and ``exchange-listed`` fields will
 differ. For example, the ``BLX`` symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
 an index.
 
