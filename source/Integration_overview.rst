@@ -124,14 +124,15 @@ Requests from the client browser require a configured :ref:`CORS policy<cors-pol
 
 Types of environments
 .....................
-There are several environment variants used in the development and support of the integration. Each environment has its
-URL.
 
-- The *production environment* with the real market data is available to the end-users. TradingView implements the 
+There are three environment types used in the integration development and support.
+Each environment type contains real market data and has its own URL.
+
+- The *production environment* is available to end users. TradingView implements the 
   production environment on its side, and the brokers do it on theirs.
-- The *staging environment* is for testing and does not contain real market data. TradingView implements the staging 
+- The *staging environment* is used for testing. TradingView implements the staging 
   environment on its side, and the brokers do it on theirs.
-- The *local environment* is used on developers\' computers and does not contain real market data. Connections to the 
+- The *local environment* is used on developers\' computers. Connections to the 
   broker\'s staging environment are made from the ``localhost:6285`` address.
 
 The table lists six pairs of environments connections.
