@@ -293,7 +293,7 @@ What if a user may have a different set of instruments for different accounts, b
 
 We sell data subscriptions. How can we inform your server that real-time data is available to the user?
    A broker should implement the `/permissions`_ endpoint. When user logs into the integration, we send requests to the 
-   `/permissions`_ for determining a list of the data subscriptions. If the user has data subscription on your side he 
+   `/permissions`_ for determining a list of the data subscriptions. If the user has data subscription on your side, they 
    will not need to purchase one from TradingView.
 
 Data Integration
