@@ -12,7 +12,9 @@ What is mapping
 
 *Symbol mapping* is the matching between the names of the broker's and TradingView instruments.
 It helps both brokers and TradingView operate with symbols in a convenient way and avoid symbol mismatching.
-The mapping is necessary if you don't use TradingView data.
+
+.. important::
+    The mapping is necessary when you use Tradinview data available from a third-party source.
 
 How to implement mapping
 ........................
