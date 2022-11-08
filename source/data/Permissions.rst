@@ -63,12 +63,12 @@ When you decide on the type you want to implement, notify your TradingView manag
 +=============================+===========================================================================================================================================+==========================+
 | No restrictions             | Any user can view the data.                                                                                                               | No                       |
 +-----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Hidden from the search bar  | Symbols don't appear in the search results unless a user logs into the broker account.                                                   | Yes                      |
-|                             | However, any user can open the chart by entering the full symbol name (i.e., EXCHNAME:SYM1SYM2).                                           |                          |
+| Hidden from the search bar  | Symbols don't appear in the search results unless a user logs into the broker account.                                                    | Yes                      |
+|                             | However, any user can open the chart by entering the full symbol name (i.e., EXCHNAME:SYM1SYM2).                                          |                          |
 +-----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Available only after login  | Symbol data and direct symbol search are unavailable unless a user logs into the broker account.                                       | Yes                      |
+| Available only after login  | Symbol data and direct symbol search are unavailable unless a user logs into the broker account.                                          | Yes                      |
 +-----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 | Available on subscriptions  | The subscribed users log into the broker account and get real-time data even from those exchanges that require fee-paying in TradingView. | Yes                      |
-| from the broker's side      | This type prevents users from paying twice: on the broker's and TradingView's platforms.                                              |                          |
+| from the broker's side      | This type prevents users from paying twice: on the broker's and TradingView's platforms.                                                  |                          |
 +-----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 
