@@ -41,15 +41,15 @@ architecture and trading integration based on a client-server architecture.
 Why data integration is needed
 ..............................
 The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as 
-well as server alerts, etc. Data integration is required in order for the market data to be first received by the 
-TradingView server, and then transferred to the client side. For FOREX and CRYPTO the data needs to be connected 
+well as server alerts, etc. Data integration is required for the market data to be first received by the 
+TradingView server, and then transferred to the client side. For FOREX and CRYPTO, the data needs to be connected 
 in any case, as it is not linked to the particular exchange and is always different. For CFD it is possible to use
 existing data via `/mapping`_ if the CFD is mapped to a specific exchange stock.
 
 In what cases it is possible not to integrate data
 ..................................................
 Market data can come to the TradingView server from another source, for example, directly from the exchange. There is no
-need for market data integration in this case, and the broker needs to implement `/mapping`_ endpoint to solve 
+need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
 Recommended endpoints by broker/exchange type
@@ -117,7 +117,7 @@ Trading integration issues
 How trading integration works
 .............................
 The trading integration uses a client-server architecture: requests from the user's browser are sent directly to the
-broker's server. The TradingView server is not involved in this data exchange. An exception is a request to the
+broker's server. The TradingView server is not involved in this data exchange. An exception is a request to
 `/permissions`_. It is sent from the TradingView server to give the user access to the data.
   
 Requests from the client browser require a configured :ref:`CORS policy<cors-policy-label>` on the broker side.
@@ -137,7 +137,7 @@ Each environment type contains real market data and has its own URL.
 - The *local environment* is used on developers\' computers. Connections to the 
   broker\'s staging environment are made from the ``localhost:6285`` address.
 
-The table lists six pairs of environments connections.
+The table lists six pairs of environment connections.
 
 +-------------------------+--------------------+
 | TradingView environment | Broker environment |
@@ -156,7 +156,7 @@ The table lists six pairs of environments connections.
 +-------------------------+--------------------+
 
 A TradingView website in a sandbox or production can only be connected to one broker environment at a time. You can
-switch between environments through the browser console. Instructions can be provided after configuration by the
+switch between environments through the browser console. Instructions can be provided after the configuration by the
 TradingView team is completed.
 
 .. _what-is-the-sandbox:
@@ -166,8 +166,8 @@ What is the Sandbox
 The sandbox is a fully functional copy of the TradingView website located at `beta-rest.tradingview.com`_. Access to the
 resource is provided by adding an IP address to the whitelist on the TradingView side.
 
-When broker's integration can be placed in the Sandbox
-......................................................
+When the broker's integration can be placed in the Sandbox
+...........................................................
 There are two conditions to place a broker integration to the sandbox:
 
 * passing conformational (authorization & trading conformance) tests at the `autotest service`_,
@@ -180,7 +180,7 @@ it is necessary to implement the `/mapping`_ endpoint.
 
 Localization support
 ....................
-Usually, the integration of a specific broker is aimed at an audience using their own national language.
+Usually, the integration of a specific broker is aimed at an audience using their national language.
 However, English language support is required for all requests coming from the main locale of the 
 TradingView application.
 
@@ -198,7 +198,7 @@ addresses.
 Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
 the request in each endpoint for each response code.
 
-During sandbox testing it is also necessary to allow requests from ``beta-rest.xstaging.tv``.
+During sandbox testing, it is also necessary to allow requests from ``beta-rest.xstaging.tv``.
 
 In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
 This address is used on developers\' computers.
@@ -208,7 +208,7 @@ Why use HTTPS
 Please avoid using HTTP instead of HTTPS.
 Our website  is prohibited from accessing anything through the insecure HTTP protocol by ``Content-Security-Policy``.
 HSTS disallows access to anything over the insecure HTTP protocol. Moreover, HSTS is exposed for **730 days** and
-applies to all subdomains. In order for us to be able to make an HTTP request to your staging even from our staging, we
+applies to all subdomains. For us to be able to make an HTTP request to your staging even from our staging, we
 will have to:
 
 * Turn off HSTS in production.
@@ -228,15 +228,15 @@ Data requirements
 All the data which is displayed at TradingView has to meet the following standards:
 
 * Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
-  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise the 
-  integration to TradingView is not possible.
+  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise, 
+  integration into TradingView is not possible.
 
 * Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
   holes, and incorrect prices.
 
-User sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from the 
-`/history`_ some time after user reloads the chart. It is important that the data from `/streaming`_ and `/history`_ 
-are the same. Data mismatch can lead to false triggering of alerts for the user, which is unacceptable. The data in the 
+The user sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from 
+`/history`_ sometime after the user reloads the chart. The data from `/streaming`_ and `/history`_ must be the same.
+Data mismatch can lead to a false alert triggering for the user, which is unacceptable. The data in 
 `/history`_ shouldn\'t change.
 
 .. tip::
@@ -246,18 +246,18 @@ are the same. Data mismatch can lead to false triggering of alerts for the user,
 .. code-block:: json
 
   {
-    "id":"BTCUSDT",
-    "p":33405.5,
-    "t":1624797120,
-    "f":"t",
-    "s":0.092
+    "id": "BTCUSDT",
+    "p": 33405.5,
+    "t": 1624797120,
+    "f": "t",
+    "s": 0.092
   },
   {
-    "id":"BTCUSDT",
-    "p":33417.5,
-    "t":1624797179,
-    "f":"t",
-    "s":0.057
+    "id": "BTCUSDT",
+    "p": 33417.5,
+    "t": 1624797179,
+    "f": "t",
+    "s": 0.057
   }
 
 We can build 1-minute bar from this data:
@@ -265,18 +265,18 @@ We can build 1-minute bar from this data:
 .. code-block:: json
 
   {
-    "s":"ok",
-    "t":[1624797120],
-    "o":[33405.5],
-    "h":[33417.5],
-    "l":[33405.5],
-    "c":[33417.5],
-    "v":[0.149]
+    "s": "ok",
+    "t": [1624797120],
+    "o": [33405.5],
+    "h": [33417.5],
+    "l": [33405.5],
+    "c": [33417.5],
+    "v": [0.149]
   }
 
-Here are ``o`` --- price of the first deal, ``c`` --- price of the last deal, ``v`` --- sum of sizes (``s``).
+Here, ``o`` is the price of the first deal, ``c`` is the price of the last deal, and ``v`` is the sum of sizes (``s``).
 
-Then we make a request to the `/history`_ : ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
+Then we request `/history`_: ``/history?symbol=BTCUSD&resolution=1&from=1624797120&to=1624797179``.
 The resulting bar must match the bar built from `/streaming`_.
 
 Endpoints requirements
@@ -284,7 +284,7 @@ Endpoints requirements
 Data integration requires the implementation of three endpoints:
 
 * `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
-* `/history`_ --- full data history for each symbol gaps on 1-minute bars (candles); in some cases, the history of 
+* `/history`_ --- full data history for each symbol gap on 1-minute bars (candles); in some cases, the history of 
   daily bars may be required.
 * `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
   trades and quotes. In some cases, daily bars may be required.
@@ -318,7 +318,7 @@ production.
 
 .. note::
   Thus, there will be 4 client applications running on the TradingView side all the time, which will interact with the 
-  broker's production API: 2 in the staging, and 2 in the production.
+  broker's production API: two in the staging and two in the production.
 
 Each of these applications will maintain at least one persistent HTTP connection to the `/streaming`_ endpoint and make
 regular requests to the `/symbol_info`_, `/history`_. The data is requested only by our API client applications running

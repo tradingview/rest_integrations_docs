@@ -35,7 +35,7 @@ exchanges. In this case, ``symbol`` fields will be the same, and fields ``exchan
 differ. For example, ``BLX`` symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
 an index.
 
-When the user's subscription has ended, he cannot trade on the broker's platform. But the user can see already opened
+When the user's subscription has ended, they cannot trade on the broker's platform. But the user can see already opened
 positions and order on the TradingView platform. In this case broker should send these symbols at `/instruments`_.
 And when a user tries to send an order, return an error message.
 

@@ -33,7 +33,7 @@ Documentation structure
   attention to and which ones you may not implement.
 
 :doc:`Trading integration <trading/index>`
-  Here you can read about the features of the trading integration. It is also describes the relationship between UI and
+  Here you can read about the features of the trading integration. It also describes the relationship between UI and
   API implementation.
 
 :doc:`Trading integration tests <trading_tests/index>`
