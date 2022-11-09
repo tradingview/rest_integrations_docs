@@ -25,7 +25,7 @@ How to implement
 
 Before implementing the `/permissions`_ endpoint, follow the steps below:
 
-1. Choose the way you want to `restrict access to the market data <#type-of-the-market-data-restrictions>`__.
+1. Choose the way you want to `restrict access to the market data <#types-of-the-market-data-restrictions>`__.
 2. Notify your TradingView manager about it.
 3. Unless you settle on having no data restrictions, implement the `/groups`_ endpoint, which gets a list of symbols with different access levels.
 
