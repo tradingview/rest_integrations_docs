@@ -14,12 +14,12 @@ What is mapping
 It helps both brokers and TradingView operate with symbols in a convenient way and avoid symbol mismatching.
 
 .. important::
-    The mapping is necessary when you use Tradinview data available from a third-party source.
+    The mapping is necessary when you use TradingView data available from a third-party source.
 
 How to implement mapping
 ........................
 
-To implement symbol mapping, use the `/mapping`_ endpoint 
+To implement symbol mapping, use the `/mapping`_ endpoint.
 This endpoint must be accessible without authorization.
 
 In TradingView production, `/mapping`_ is automatically requested once a day. 
