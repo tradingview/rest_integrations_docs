@@ -2,42 +2,76 @@
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
 
-Mapping symbols
+Symbol mapping
 ---------------
 
-What is mapping
-...............
-We call *mapping symbols* the matching between the names of the broker's instruments and TradingView.
-This mapping solves the problem of TradingView and broker symbol names mismatching. If the broker's doesn't use 
-TradingView\'s data, then mapping is necessary.
+*Symbol mapping* is the matching between the broker's and TradingView symbols.
+It helps both brokers and TradingView operate with symbols in a convenient way and avoid symbol mismatching.
 
-How to implement mapping
-........................
-Mapping is set with the `/mapping`_ endpoint implementation. This endpoint must be accessible without 
-authorization. In TradingView production, it is automatically requested once a day. Based on the response to the 
-request, a mapping of instruments is generated on the TradingView side. In TradingView staging, the `/mapping`_ 
-request is made manually if necessary. At the development stage, you can set a partial mapping, i.e. not for all 
-instruments supported by the broker.
+When to implement
+..................
+
+The mapping is necessary when you use TradingView data available from a third-party source.
+If you plan to use your symbols *only*, you don't need to implement mapping.
+However, if you decide to use both TradingView (available from a third-party source) and your own data, you must implement mapping for all symbols, including yours.
+
+How to implement
+.................
+
+To implement symbol mapping, use the `/mapping`_ endpoint.
+
+.. note::
+  `/mapping`_ must be accessible without authorization.
+
+The endpoint must return an object in the following format:
+
+.. code:: 
+  {
+    "symbols": [
+      {
+        "f": ["EURUSD"],
+        "s": "FX_IDC:EURUSD"
+      },
+      {
+        "f": ["AAPLE"],
+        "s": "NASDAQ:AAPLE"
+      }
+    ],
+    "fields": ["brokerSymbol"]
+  }
+
+Here, ``symbols`` is an array of objects describing symbols. Every object contains two required properties:
+
+- ``f`` is a broker symbol name. Note that the ``f`` value must always consist of an array with only one string element.
+- ``s`` is a TradingView symbol name with a prefix. Refer to the `broker-symbols.json file <#how-to-match-symbols>`__ to find the TradingView symbols corresponding to the broker ones.
+
+The ``fields`` property must always contain an array with a ``brokerSymbol`` value.
 
 .. _trading-mapping-how-to-match-symbols:
 
 How to match symbols
 ....................
-You can use *symbols-brokers.json* (available upon request) with a complete list of all symbols to search for a 
-TradingView symbol. This file is updated daily.
 
-In response to a request to the `/mapping`_, use the ``symbol-fullname`` field value as the TradingView symbol.
-If the broker partially uses TradingView data and partially connects its own, the mapping must be implemented 
-for all symbols.
+To match symbols properly, refer to the *broker-symbols.json* file which contains a list of symbols available on TradingView.
+This file is updated daily.
 
-The ``symbol-type`` field in *symbols.json* aims to the market instrument type. A symbol can be traded on the different
-exchanges. In this case, ``symbol`` fields will be the same, and fields ``exchange-traded``, ``exchange-listed`` will
-differ. For example, ``BLX`` symbol is traded on the NYSE and NASDAQ. But ``NYSE:BLX`` is a stock, and ``NASDAQ:BLX`` is
-an index.
+.. note::
+  The *broker-symbols.json* file is available upon request. Ask your TradingView manager to get access to it.
 
-When the user's subscription has ended, they cannot trade on the broker's platform. But the user can see already opened
-positions and order on the TradingView platform. In this case broker should send these symbols at `/instruments`_.
-And when a user tries to send an order, return an error message.
+In the file, each symbol has its own meta-data such as full name and description.
+The ``symbol-fullname`` property contains the full symbol name with a prefix.
+As response to a request, use its value in the ``symbols.s`` property as the TradingView symbol name.
 
-Use :doc:`our test <../trading_tests/index>` to check the accuracy of symbol mapping. The test will verify, that 
-symbols in the `/instruments`_ are matching with symbols in the TradingView\'s data.
+How often requests are made
+............................
+
+In TradingView production and staging, `/mapping`_ is requested twice a day.
+Based on the response, mapping is generated on the TradingView side.
+During development, you can implement partial mapping, not for all supported instruments.
+At the development stage, you can set a partial mapping, not for all instruments supported by the broker.
+
+How to test the endpoint
+..........................
+
+Use the :doc:`trading integration test <../trading_tests/index>` to check the accuracy of symbol mapping. 
+The test verifies that symbols in the `/instruments`_ match TradingView symbols.
