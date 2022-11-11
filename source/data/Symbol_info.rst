@@ -164,7 +164,7 @@ and 2 is a fractional part of the first fractional part (27).
 To display such a price, you can specify the parameters in the following way: ``minmovement: 1``, ``pricescale: 128``, and ``minmovement2: 4``.
 
 Tick size
----------
+............
 
 Tick size (minimum price step) is the minimum price amount a security can move in exchange. 
 The tick size is calculated as ``minmovement``/ ``pricescale``.
