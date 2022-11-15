@@ -60,7 +60,7 @@ This file is updated daily.
 
 In the file, each symbol has its own meta-data such as full name and description.
 The ``symbol-fullname`` property contains the full symbol name with a prefix.
-As response to a request, use its value in the ``symbols.s`` property as the TradingView symbol name.
+As response to a request, use ``symbol-fullname`` value in the ``symbols.s`` property as the TradingView symbol name.
 
 How often requests are made
 ............................
@@ -68,10 +68,9 @@ How often requests are made
 In TradingView production and staging, `/mapping`_ is requested twice a day.
 Based on the response, mapping is generated on the TradingView side.
 During development, you can implement partial mapping, not for all supported instruments.
-At the development stage, you can set a partial mapping, not for all instruments supported by the broker.
 
 How to test the endpoint
 ..........................
 
 Use the :doc:`trading integration test <../trading_tests/index>` to check the accuracy of symbol mapping. 
-The test verifies that symbols in the `/instruments`_ match TradingView symbols.
+The test verifies that symbols in the `/instruments`_ match the TradingView symbols.
