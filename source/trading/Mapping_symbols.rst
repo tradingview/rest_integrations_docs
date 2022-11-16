@@ -25,7 +25,8 @@ To implement symbol mapping, use the `/mapping`_ endpoint.
 
 The endpoint must return an object in the following format:
 
-.. code:: 
+.. code-block:: json
+
   {
     "symbols": [
       {
@@ -65,12 +66,15 @@ As response to a request, use ``symbol-fullname`` value in the ``symbols.s`` pro
 How often requests are made
 ............................
 
-In TradingView production and staging, `/mapping`_ is requested twice a day.
-Based on the response, mapping is generated on the TradingView side.
 During development, you can implement partial mapping, not for all supported instruments.
+If you want TradingView manually request `/mapping`_, contact your TradingView manager.
+
+During the final testing, TradingView sets automatic requests which will be triggered twice a day.
 
 How to test the endpoint
 ..........................
 
 Use the :doc:`trading integration test <../trading_tests/index>` to check the accuracy of symbol mapping. 
-The test verifies that symbols in the `/instruments`_ match the TradingView symbols.
+The test verifies that: 
+  - `/mapping`_ contains existing TradingView symbols.
+  - `/instruments`_ contains only those broker symbols for which mapping was implemented.
