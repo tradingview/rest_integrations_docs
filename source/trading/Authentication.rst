@@ -12,6 +12,10 @@ Authentication
 After passing the authentication, regardless of the method of obtaining the access token, all requests to the 
 broker's REST server will use the ``Authorization: Bearer ACCESS_TOKEN`` header.
 
+.. important:: 
+  The authentication page must only contain objects relevant to logging and signing-up processes.
+  Placing irrelevant links, promos, etc., is not allowed as it goes against the TradingView guidelines and affects the overall user experience.
+
 .. _password-bearer-flow:
 
 Password Bearer
