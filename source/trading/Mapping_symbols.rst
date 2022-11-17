@@ -54,12 +54,10 @@ the symbols in the `/instruments`_ are matching with TradingView symbols.
 How to restrict access to different symbols
 ............................................
 
-If you need to manage symbol access for users, implement the following endpoints:
-
-- `/groups`_ gets a list of symbols with different access level.
-- `/permissions`_ gets a list of groups allowed for a user.
-
-Restricting access is needed when you want to divide content for subscribed and free users.
+If you need to restrict access to some symbol groups for specific users,
+for example, depending on the users location or their subscription plan, implement the `/permissions`_ endpoint.
+It gets a list of groups allowed for a user.
 
 .. note::
-    Learn more about access restrictions in the :ref:`Permissions <permissions-endpoint>` and :ref:`Groups <groups-endpoint>` articles.
+    Learn more about access restrictions and use-cases in the :ref:`Permissions <permissions-endpoint>` article.
+

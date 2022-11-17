@@ -5,16 +5,46 @@
 .. _permissions-endpoint:
 
 Permissions
---------------
+-------------
 
 The `/permissions`_ endpoint gets a list of groups allowed for a user.
+
+When permissions needed
+........................
+
 Use `/permissions`_ when you need to restrict access to some symbol groups for specific users.
+For example, restrictions can be made depending on the users location or their subscription plan.
 
-.. note::
-  If all users have the same set of instruments, you don't need to implement `/permissions`_.
+.. note:: 
+  If all users have the same access on market data, you don't need to implement `/permissions`_.
 
-How it works
-.............
+When you decide that you need to implement `/permissions`_, you need to choose the way you want to restrict access to the market data.
+
+Types of the market data restrictions
+=======================================
+
+There are four types of market data restrictions.
+
+.. important::
+  Choose the restriction type you want to implement and notify your TradingView manager as soon as you decide on exchanges and symbols that you will use.
+  We highly recommend not switching from one restriction type to another as it requires time-consuming and resource-intensive activities.
+
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Type                        | Description                                                                                                                                 | Implementation required  |
++=============================+=============================================================================================================================================+==========================+
+| No restrictions             | Any user can view the data.                                                                                                                 | No                       |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Hidden from the search bar  | Symbols don't appear in the search results unless a user logs into their broker account.                                                    | Yes                      |
+|                             | However, any user can open the chart by entering the full symbol name (i.e., EXCHNAME:SYM1SYM2).                                            |                          |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Available only after login  | Symbol data and direct symbol search are unavailable unless a user logs into their broker account.                                          | Yes                      |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Available on subscriptions  | The subscribed users log into their broker account and get real-time data even from those exchanges that require fee-paying in TradingView. | Yes                      |
+| from the broker's side      | This type prevents users from paying twice: on the broker's and TradingView's platforms.                                                    |                          |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+How restrictions work
+......................
 
 When a user logs into their broker account,
 TradingView requests `/permissions`_ to receive a list of groups the user subscribed to. 
@@ -47,27 +77,4 @@ Its response must contain an object with an array of groups.
       ]
     }
   }
-
-Types of the market data restrictions
-......................................
-
-There are four types of market data restrictions.
-
-.. important::
-  Choose the restriction type you want to implement and notify your TradingView manager as soon as you decide on exchanges and symbols that you will use.
-  We highly recommend not switching from one restriction type to another as it requires time-consuming and resource-intensive activities.
-
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Type                        | Description                                                                                                                                 | Implementation required  |
-+=============================+=============================================================================================================================================+==========================+
-| No restrictions             | Any user can view the data.                                                                                                                 | No                       |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Hidden from the search bar  | Symbols don't appear in the search results unless a user logs into their broker account.                                                    | Yes                      |
-|                             | However, any user can open the chart by entering the full symbol name (i.e., EXCHNAME:SYM1SYM2).                                            |                          |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Available only after login  | Symbol data and direct symbol search are unavailable unless a user logs into their broker account.                                          | Yes                      |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
-| Available on subscriptions  | The subscribed users log into their broker account and get real-time data even from those exchanges that require fee-paying in TradingView. | Yes                      |
-| from the broker's side      | This type prevents users from paying twice: on the broker's and TradingView's platforms.                                                    |                          |
-+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 
