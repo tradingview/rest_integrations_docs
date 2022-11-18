@@ -176,19 +176,22 @@ When the user closes position, the brackets should be cancelled and sent to `/or
 Positions
 ..........
 
-Positions come in two main types: a :term:`Long position` is formed as a result of buying a symbol, when a 
-:term:`Short position` is formed as a result of selling a symbol.
+There are two types of positions:
 
-There are no positions for the *Crypto Spots*, but they are present for the *Crypto Derivatives*.
-For the *Forex* you can use multidirectional positions. Set ``supportMultiposition: true`` in the `/accounts`_ to use 
-it.
+- :term:`Long position` is formed as a result of buying a symbol.
+- :term:`Short position` is formed as a result of selling a symbol.
 
-You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the 
-:ref:`Chart<trading-ui-chart>`.
+You can display *Positions* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the :ref:`Chart<trading-ui-chart>`.
 
-Available operations for the positions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
-the `/accounts`_ → ``d`` → ``config`` to hide its operations. Set ``supportReversePosition`` to ``false`` to hide
-*Reverse Position*.
+There are several details about positions that you need to consider:
+
+- There are no positions for *Crypto Spots*, but they are present for *Crypto Derivatives*.
+- Available operations for the positions include *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
+the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
+- For *Forex*, you can use multidirectional positions. To do this, set ``supportMultiposition: true`` in the `/accounts`_ endpoint.
+- To hide *Reverse Position*, set the ``supportReversePosition`` flag to ``false`` in the `/accounts`_ endpoint.
+- If users enabled the *Instant orders placement* in the *Chart settings → Trading* section, they won't be able to partially close position by clicking the *Close position* button either on *Chart* or in *Account manager*.
+This behavior will occur even if you set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
 
 .. _trading-concepts-pipvalue:
 
