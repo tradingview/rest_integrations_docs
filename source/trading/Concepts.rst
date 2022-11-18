@@ -1,12 +1,13 @@
 .. links
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
+.. _`/closePosition`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
+.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
 .. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
 .. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
-.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 
 Concepts
 --------
@@ -189,7 +190,7 @@ There are several details about positions that you need to consider:
 - Available operations for the positions include *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
 - For *Forex*, you can use multidirectional positions. To do this, set ``supportMultiposition: true`` in the `/accounts`_ endpoint.
 - To hide *Reverse Position*, set the ``supportReversePosition`` flag to ``false`` in the `/accounts`_ endpoint.
-- If users enabled the *Instant orders placement* option in the *Chart settings → Trading* section, they won't be able to partially close the position by clicking the *Close position* button either on *Chart* or in the *Account manager*. This behavior will occur even if you set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
+- If users enabled the *Instant orders placement* option in the *Chart settings → Trading* section, they won't be able to partially close the position by clicking the *Close position* button either on *Chart* or in the *Account manager*. This behavior will occur even if you set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint. Also, when *Instant orders placement* is enabled, the ``amount`` property won't be returned in the `/closePosition`_ endpoint.
 
 .. _trading-concepts-pipvalue:
 
