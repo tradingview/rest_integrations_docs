@@ -182,7 +182,7 @@ There are two types of positions:
 - :term:`Long position` is formed as a result of buying a symbol.
 - :term:`Short position` is formed as a result of selling a symbol.
 
-You can display *Positions* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the :ref:`Chart<trading-ui-chart>`.
+You can display *Positions* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the *Chart*.
 
 There are several details about positions that you need to consider:
 
