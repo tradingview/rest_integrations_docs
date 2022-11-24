@@ -162,9 +162,9 @@ The tradingView team will provide the steps after they complete the configuratio
 
 .. _what-is-the-sandbox:
 
-What is the Sandbox
+What is the sandbox
 ...................
-The sandbox is a fully functional copy of the TradingView website located at `beta-rest.tradingview.com`_. Access to the
+The sandbox is a fully functional copy of the TradingView website located at `beta-rest.xstaging.tv`_. Access to the
 resource is provided by adding an IP address to the whitelist on the TradingView side.
 
 When the broker's integration can be placed in the Sandbox
@@ -199,7 +199,7 @@ addresses.
 Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
 the request in each endpoint for each response code.
 
-During sandbox testing, it is also necessary to allow requests from ``beta-rest.xstaging.tv``.
+During sandbox testing, it is also necessary to allow requests from ``*.xstaging.tv``.
 
 In addition, in the broker staging environment it is necessary to allow requests from the ``localhost:6285``.
 This address is used on developers\' computers.
