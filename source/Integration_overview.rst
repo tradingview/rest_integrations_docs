@@ -140,21 +140,22 @@ Each environment type contains real market data and has its own URL.
 
 The table below describes six pairs of environment connections between TradingView and the broker.
 
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| TradingView environment  | Broker environment  | Description                                                                                                                           |
-+==========================+=====================+=======================================================================================================================================+
-| Localhost                | Staging             | An environment that TradingView developers use for implementing broker-specific features.                                             |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Staging                  | Staging             | A pre-release environment that the broker uses for testing new features or making changes.                                            |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Production               | Staging             | A post-release environment that the broker uses for testing new features or making changes without affecting the broker's production. |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Localhost                | Production          | An environment that TradingView developers use for troubleshooting.                                                                   |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Staging                  | Production          | A pre-release environment that TradingView developers use for testing features the broker implements.                                 |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-| Production               | Production          | A live production environment that is ready for users.                                                                                |
-+--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| TradingView environment  | Broker environment  | Description                                                                                                                                         |
++==========================+=====================+=====================================================================================================================================================+
+| Localhost                | Staging             | An environment that TradingView developers use for implementing broker-specific features.                                                           |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Staging                  | Staging             | A pre-release environment that the broker uses for testing new features or making changes.                                                          |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Production               | Staging             | A post-release environment that the broker uses for testing new features or making changes without affecting the broker's production.               |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Localhost                | Production          | An environment that TradingView developers use for troubleshooting.                                                                                 |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Staging                  | Production          | A pre-release environment that TradingView developers use for testing features implemented by the broker.                                           |
+|                          |                     | During this stage, TradingView performs the final testing of the broker's production API and the deployment of the TradingView client applications. |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| Production               | Production          | A live production environment that is ready for users.                                                                                              |
++--------------------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The TradingView website in a staging or production environment can only be connected to one broker environment at a time.
 You can switch between environments through the browser console.
