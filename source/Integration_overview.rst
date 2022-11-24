@@ -124,40 +124,41 @@ Requests from the client browser require a configured :ref:`CORS policy<cors-pol
 
 .. _trading-environments:
 
-Types of environments
-.....................
+Environment types
+...................
 
 There are three environment types used in the integration development and support.
 Each environment type contains real market data and has its own URL.
 
-- The *production environment* is available to end users. TradingView implements the 
-  production environment on its side, and the brokers do it on theirs.
-- The *staging environment* is used for testing. TradingView implements the staging 
-  environment on its side, and the brokers do it on theirs.
-- The *local environment* is used on developers\' computers. Connections to the 
-  broker\'s staging environment are made from the ``localhost:6285`` address.
+- The *production environment* is available to end users. 
+- The *staging environment* is used for testing.
+- The *local environment* is used on the TradingView developers\' computers. They connect to the 
+  broker\'s staging environment from the ``localhost:6285`` address.
 
-The table lists six pairs of environment connections.
+.. note::
+  TradingView and the broker **both** implement the production and staging environments on their sides.
 
-+-------------------------+--------------------+
-| TradingView environment | Broker environment |
-+=========================+====================+
-| production              | production         |
-+-------------------------+--------------------+
-| staging                 | production         |
-+-------------------------+--------------------+
-| localhost               | production         |
-+-------------------------+--------------------+
-| production              | staging            |
-+-------------------------+--------------------+
-| staging                 | staging            |
-+-------------------------+--------------------+
-| localhost               | staging            |
-+-------------------------+--------------------+
+The table below describes six pairs of environment connections between TradingView and the broker.
 
-A TradingView website in a sandbox or production can only be connected to one broker environment at a time. You can
-switch between environments through the browser console. Instructions can be provided after the configuration by the
-TradingView team is completed.
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| TradingView environment  | Broker environment  | Description                                                                                                                           |
++==========================+=====================+=======================================================================================================================================+
+| Localhost                | Staging             | An environment that TradingView developers use for implementing broker-specific features.                                             |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Staging                  | Staging             | A pre-release environment that the broker uses for testing new features or making changes.                                            |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Production               | Staging             | A post-release environment that the broker uses for testing new features or making changes without affecting the broker's production. |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Localhost                | Production          | An environment that TradingView developers use for troubleshooting.                                                                   |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Staging                  | Production          | A pre-release environment that TradingView developers use for testing features the broker implements.                                 |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| Production               | Production          | A live production environment that is ready for users.                                                                                |
++--------------------------+---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+The TradingView website in a staging or production environment can only be connected to one broker environment at a time.
+You can switch between environments through the browser console.
+The tradingView team will provide the steps after they complete the configuration.
 
 .. _what-is-the-sandbox:
 
