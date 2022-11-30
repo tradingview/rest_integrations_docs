@@ -205,6 +205,10 @@ If you want users to be able to close their positions partially, set ``supportPa
 In the *Close position* pop-up window, an additional *Partial close* option appears, and users can specify the number of units to close.
 In this case, the specified number is returned as the ``amount`` property in the `Close Position`_ endpoint.
 
+.. image:: ../../images/Trading_UiElements_ClosePositionPartially.png
+    :alt: Close Position Partially
+    :align: center
+
 .. important::
   Users won't be able to partially close the position if they enable the *Instant orders placement* option in the *Chart settings → Trading* section.
   Also in this case, the ``amount`` property is not returned in the `Close Position`_ endpoint.
@@ -221,6 +225,7 @@ There are two ways to do this:
 - Via the *Account manager* panel, by clicking the right mouth button on the position and selecting *Reverse Position*.
 
   .. image:: ../../images/Trading_UiElements_ReversePosition.png
+   :scale: 80 %
     :alt: Reverse Position
     :align: center
 
