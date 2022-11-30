@@ -218,9 +218,10 @@ In this case, the specified number is returned as the ``amount`` property in the
 Reverse Position
 ~~~~~~~~~~~~~~~~~
 
-Users can reverse strategy's positions from long to short or from short to long.
-There are two ways to do this:
+Users can reverse positions from long to short or from short to long.
+There are three ways to do this:
 
+- Via the *Chart*.
 - Via the :ref:`DOM panel <depth-of-market>`, by clicking the *Reverse* button.
 - Via the *Account manager* panel, by clicking the right mouth button on the position and selecting *Reverse Position*.
 
@@ -236,7 +237,7 @@ Also, you can make the integration natively support the position reverse.
 To do this, set ``supportNativeReversePosition: true`` in the `/accounts`_ endpoint.
 In this case, TradingView sends requests to the `Modify Position`_ endpoint with the ``side`` parameter set.
 
-If ``supportNativeReversePosition: false``, TradingView sends requests to the `Place order`_ endpoint.
+If ``supportNativeReversePosition: false``, TradingView sends a market order with a double quantity and the opposite side of the position via the `Place Order`_ endpoint.
 
 .. _trading-concepts-pipvalue:
 
