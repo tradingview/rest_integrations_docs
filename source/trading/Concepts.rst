@@ -189,7 +189,23 @@ There are several details about positions that you need to consider:
 - There are no positions for *Crypto Spots*, but they are present for *Crypto Derivatives*.
 - Available operations for the positions include *Protect Position*, :ref:`Reverse Position<reverse-position>`, and `Close Position`_. Use flags in the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
 - For *Forex*, you can use multidirectional positions. To do this, set ``supportMultiposition: true`` in the `/accounts`_ endpoint.
-- If users enable the *Instant orders placement* option in the *Chart settings → Trading* section, they won't be able to partially close the position by clicking the *Close position* button either on *Chart* or in the *Account manager*. This behavior will occur even if you set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint. Also, when *Instant orders placement* is enabled, the ``amount`` property won't be returned in the `/closePosition`_ endpoint.
+
+Close Position
+~~~~~~~~~~~~~~~
+
+Users can close their positions on the *Chart* or via the *Account manager* panel by right-clicking a position and selecting *Close Position*.
+
+.. image:: ../../images/Trading_UiElements_ClosePosition.png
+    :alt: Close Position
+    :align: center
+
+If you want users to be able to close their positions partially, set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
+In the *Close position* pop-up window, an additional *Partial close* option appears, and users can specify the number of units to close.
+In this case, the specified number is returned as the ``amount`` property in the `/closePosition`_ endpoint.
+
+.. important::
+  Users won't be able to partially close the position if they enable the *Instant orders placement* option in the *Chart settings → Trading* section.
+  Also in this case, the ``amount`` property is not returned in the `/closePosition`_ endpoint.
 
 .. _trading-concepts-pipvalue:
 
