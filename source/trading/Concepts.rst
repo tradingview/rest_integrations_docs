@@ -209,6 +209,24 @@ In this case, the specified number is returned as the ``amount`` property in the
 
 .. _trading-concepts-pipvalue:
 
+.. _reverse-position:
+
+Reverse Position
+~~~~~~~~~~~~~~~~~
+
+Users can reverse strategy's positions from long to short or from short to long.
+There are two ways to do this:
+
+- Via the :ref:`DOM panel <depth-of-market>`, by clicking the *Reverse* button.
+- Via the *Account manager* panel, by clicking the right mouth button on the position and selecting *Reverse Position*.
+
+  .. image:: ../../images/Trading_UiElements_ReversePosition.png
+    :alt: Reverse Position
+    :align: center
+
+.. note::
+  If you want to hide the *Reverse Position* option, set ``supportReversePosition: false`` in the `/accounts`_ endpoint.
+
 Pip Value
 .........
 
