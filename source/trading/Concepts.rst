@@ -187,8 +187,10 @@ You can display *Positions* in the :ref:`Account Manager<trading-ui-accountmanag
 There are several details about positions that you need to consider:
 
 - There are no positions for *Crypto Spots*, but they are present for *Crypto Derivatives*.
-- Available operations for the positions include *Protect Position*, :ref:`Reverse Position<reverse-position>`, and `Close Position`_. Use flags in the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
+- Available operations for the positions include *Protect Position*, :ref:`Reverse Position<reverse-position>`, and :ref:`Close Position <close-position>`. Use flags in the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
 - For *Forex*, you can use multidirectional positions. To do this, set ``supportMultiposition: true`` in the `/accounts`_ endpoint.
+
+.. _close-position:
 
 Close Position
 ~~~~~~~~~~~~~~~
