@@ -112,7 +112,7 @@ Authorization
 .. ......
 
 Should we implement `/logout`_ endpoints for :ref:`Implicit flow<oauth2-implicit-flow>`?
-   Implementation of `/logout`_ is optional. Use it if you need to know when a user is logging out of his session.
+   Implementation of `/logout`_ is optional. Use it if you need to know when a user is logging out of their session.
 
 Broker Configuration
 --------------------

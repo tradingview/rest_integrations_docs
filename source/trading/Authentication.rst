@@ -80,7 +80,7 @@ Authorization
      ``fr``, ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, 
      ``sv``, ``th``, ``tr``, ``uk``, ``vi``, ``zh``.
 
-5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
+5. The broker's server gives a page with an authorization form and prompts the user to enter their credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form and if successful redirects
    the request to ``redirect_uri`` with following parameters that are passed as a fragment:
 
@@ -146,7 +146,7 @@ Authorization
      ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``,
      ``tr``, ``uk``, ``vi``, ``zh``.
 
-5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
+5. The broker's server gives a page with an authorization form and prompts the user to enter their credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form.
 7. If successful, the broker's server redirects the request to ``redirect_uri`` with GET parameters:
 
