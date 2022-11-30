@@ -1,13 +1,13 @@
 .. links
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
-.. _`/closePosition`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
 .. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
-.. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
 .. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
+.. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
+.. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
 
 Concepts
 --------
@@ -201,13 +201,11 @@ Users can close their positions on the *Chart* or via the *Account manager* pane
 
 If you want users to be able to close their positions partially, set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
 In the *Close position* pop-up window, an additional *Partial close* option appears, and users can specify the number of units to close.
-In this case, the specified number is returned as the ``amount`` property in the `/closePosition`_ endpoint.
+In this case, the specified number is returned as the ``amount`` property in the `Close Position`_ endpoint.
 
 .. important::
   Users won't be able to partially close the position if they enable the *Instant orders placement* option in the *Chart settings → Trading* section.
-  Also in this case, the ``amount`` property is not returned in the `/closePosition`_ endpoint.
-
-.. _trading-concepts-pipvalue:
+  Also in this case, the ``amount`` property is not returned in the `Close Position`_ endpoint.
 
 .. _reverse-position:
 
@@ -226,6 +224,14 @@ There are two ways to do this:
 
 .. note::
   If you want to hide the *Reverse Position* option, set ``supportReversePosition: false`` in the `/accounts`_ endpoint.
+
+Also, you can make the integration natively support the position reverse.
+To do this, set ``supportNativeReversePosition: true`` in the `/accounts`_ endpoint.
+In this case, TradingView sends requests to the `Modify Position`_ endpoint with the ``side`` parameter set.
+
+If ``supportNativeReversePosition: false``, TradingView sends requests to the `Place order`_ endpoint.
+
+.. _trading-concepts-pipvalue:
 
 Pip Value
 .........
