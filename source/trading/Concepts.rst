@@ -195,11 +195,11 @@ There are several details about positions that you need to consider:
 Close Position
 ~~~~~~~~~~~~~~~
 
-Users can close their positions on the *Chart* or via the *Account manager* panel by right-clicking a position and selecting *Close Position*.
+Users can close their positions in three ways:
 
-.. image:: ../../images/Trading_UiElements_ClosePosition.png
-    :alt: Close Position
-    :align: center
+- Via the *Chart*.
+- Via the :ref:`DOM panel <depth-of-market>`.
+- Via the *Account manager* panel, by right-clicking the position and selecting *Close Position*.
 
 If you want users to be able to close their positions partially, set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
 In the *Close position* pop-up window, an additional *Partial close* option appears, and users can specify the number of units to close.
@@ -218,17 +218,11 @@ In this case, the specified number is returned as the ``amount`` property in the
 Reverse Position
 ~~~~~~~~~~~~~~~~~
 
-Users can reverse positions from long to short or from short to long.
-There are three ways to do this:
+Users can reverse positions from long to short or from short to long in three ways:
 
 - Via the *Chart*.
 - Via the :ref:`DOM panel <depth-of-market>`, by clicking the *Reverse* button.
-- Via the *Account manager* panel, by clicking the right mouth button on the position and selecting *Reverse Position*.
-
-  .. image:: ../../images/Trading_UiElements_ReversePosition.png
-   :scale: 80 %
-    :alt: Reverse Position
-    :align: center
+- Via the *Account manager* panel, by right-clicking the position and selecting *Reverse Position*.
 
 .. note::
   If you want to hide the *Reverse Position* option, set ``supportReversePosition: false`` in the `/accounts`_ endpoint.
