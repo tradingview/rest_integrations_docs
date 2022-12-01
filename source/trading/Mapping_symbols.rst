@@ -11,8 +11,8 @@ It helps both brokers and TradingView operate with symbols in a convenient way a
 When to implement
 ..................
 
-The mapping is necessary when you use TradingView data available from a third-party source.
-If you plan to use your symbols *only*, you don't need to implement mapping.
+The mapping is required when you use TradingView data that is available from a third-party source.
+If you plan to use *only* your symbols, you don't need to implement mapping.
 However, if you decide to use both TradingView (available from a third-party source) and your own data, you must implement mapping for all symbols, including yours.
 
 How to implement
@@ -77,4 +77,4 @@ How to test the endpoint
 Use the :doc:`trading integration test <../trading_tests/index>` to check the accuracy of symbol mapping. 
 The test verifies that: 
   - `/mapping`_ contains existing TradingView symbols.
-  - `/instruments`_ contains only those broker symbols for which mapping was implemented.
+  - `/instruments`_ contains only those broker symbols for which mapping is implemented.
