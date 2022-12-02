@@ -3,10 +3,11 @@
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
 .. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
-.. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
-.. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
-.. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
 .. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
+.. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
+.. _`Close Position`: https://www.tradingview.com/rest-api-spec/#operation/closePosition
+.. _`Modify Position`: https://www.tradingview.com/rest-api-spec/#operation/modifyPosition
+.. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
 
 Concepts
 --------
@@ -176,19 +177,61 @@ When the user closes position, the brackets should be cancelled and sent to `/or
 Positions
 ..........
 
-Positions come in two main types: a :term:`Long position` is formed as a result of buying a symbol, when a 
-:term:`Short position` is formed as a result of selling a symbol.
+There are two types of positions:
 
-There are no positions for the *Crypto Spots*, but they are present for the *Crypto Derivatives*.
-For the *Forex* you can use multidirectional positions. Set ``supportMultiposition: true`` in the `/accounts`_ to use 
-it.
+- :term:`Long position` is formed as a result of buying a symbol.
+- :term:`Short position` is formed as a result of selling a symbol.
 
-You can display *Position* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the 
-:ref:`Chart<trading-ui-chart>`.
+You can display *Positions* in the :ref:`Account Manager<trading-ui-accountmanager>` and on the *Chart*.
 
-Available operations for the positions: *Protect Position*, *Reverse Position*, and `Close Position`_. Use flags in
-the `/accounts`_ → ``d`` → ``config`` to hide its operations. Set ``supportReversePosition`` to ``false`` to hide
-*Reverse Position*.
+There are several details about positions that you need to consider:
+
+- There are no positions for *Crypto Spots*, but they are present for *Crypto Derivatives*.
+- Available operations for the positions include *Protect Position*, :ref:`Reverse Position<reverse-position>`, and :ref:`Close Position <close-position>`. Use flags in the `/accounts`_ → ``d`` → ``config`` to hide or enable the operations.
+- You can use multidirectional positions for those instruments that support this feature, e.g., for crypto derivatives and *Forex*. To do this, set ``supportMultiposition: true`` in the `/accounts`_ endpoint.
+
+.. _close-position:
+
+Close Position
+~~~~~~~~~~~~~~~
+
+Users can close their positions in three ways:
+
+- Via the *Chart*.
+- Via the :ref:`DOM panel <depth-of-market>`.
+- Via the *Account manager* panel, by right-clicking the position and selecting *Close Position*.
+
+If you want users to be able to close their positions partially, set ``supportPartialClosePosition: true`` in the `/accounts`_ endpoint.
+In the *Close position* pop-up window, an additional *Partial close* option appears, and users can specify the number of units to close.
+In this case, the specified number is returned as the ``amount`` property in the `Close Position`_ endpoint.
+
+.. image:: ../../images/Trading_UiElements_ClosePositionPartially.png
+    :alt: Close Position Partially
+    :align: center
+
+.. important::
+  Users won't be able to partially close the position if they enable the *Instant orders placement* option in the *Chart settings → Trading* section.
+  Also in this case, the ``amount`` property is not returned in the `Close Position`_ endpoint.
+
+.. _reverse-position:
+
+Reverse Position
+~~~~~~~~~~~~~~~~~
+
+Users can reverse positions from long to short or from short to long in three ways:
+
+- Via the *Chart*.
+- Via the :ref:`DOM panel <depth-of-market>`, by clicking the *Reverse* button.
+- Via the *Account manager* panel, by right-clicking the position and selecting *Reverse Position*.
+
+.. note::
+  If you want to hide the *Reverse Position* option, set ``supportReversePosition: false`` in the `/accounts`_ endpoint.
+
+Also, you can make the integration natively support the position reverse.
+To do this, set ``supportNativeReversePosition: true`` in the `/accounts`_ endpoint.
+In this case, TradingView sends requests to the `Modify Position`_ endpoint with the ``side`` parameter set.
+
+If ``supportNativeReversePosition: false``, TradingView sends a market order with a double quantity and the opposite side of the position via the `Place Order`_ endpoint.
 
 .. _trading-concepts-pipvalue:
 

@@ -142,9 +142,6 @@ available.
 .. Close Position
 .. ~~~~~~~~~~~~~~
 
-.. Reverse Position
-.. ~~~~~~~~~~~~~~~~
-
 .. _depth-of-market:
 
 Depth Of Market
