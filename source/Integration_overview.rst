@@ -1,6 +1,6 @@
 .. links
 .. _`autotest service`: https://cu-jenkins.xtools.tv
-.. _`beta-rest.tradingview.com`: https://beta-rest.tradingview.com/
+.. _`beta-rest.xstaging.tv`: https://beta-rest.xstaging.tv/
 .. _`Trading`: https://www.tradingview.com/rest-api-spec/#tag/Trading
 
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
@@ -147,7 +147,7 @@ The table below describes six pairs of environment connections between TradingVi
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Staging                 | Staging            | An environment that the broker uses during integration development in the TradingView sandbox.                                                      |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-| Production              | Staging            | An environment that TradingView and the broker use for testing any changes the broker made after releasing to the TradingView production.           |
+| Production              | Staging            | An environment that TradingView and the broker use to test any changes the broker made after release to the TradingView production environment.     |
 |                         |                    | Used to ensure that changes do not affect the broker production environment.                                                                        |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Localhost               | Production         | An environment that TradingView developers use for troubleshooting.                                                                                 |
