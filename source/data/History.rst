@@ -25,8 +25,10 @@ Your data should meet the following requirements:
 - The daily bar time should be 00:00 UTC and expected to be a trading day, not a day when the session starts.
 - The monthly bar time should be 00:00 UTC and be the first trading day of the month.
 
-If there is no data in the requested and previous periods, you should set the status code to ``no_data``.
-The API should respond with an empty response in case of requesting the range containing no historical data.
+.. important::
+  If there is no data in the requested period, consider the following:
+    - Set the status code to ``no_data`` or return an empty response in case there is no historical data in the previous periods.
+    - Return an empty response in case there is historical data in the previous periods.
 
 TradingView requests `/history`_ until the date that the broker reported in the **Data requirements form**. Without this
 date, TradingView requests history up to 1800 year.
