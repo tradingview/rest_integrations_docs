@@ -83,13 +83,13 @@ The response example is demonstrated below:
 
 .. tabs::
 
-   .. tab:: No data response
-
+  .. code-tab:: json No data response
+  
       {
         "s": "no_data"
       }
 
-   .. tab:: Empty bar response
+  .. code-tab:: json Empty bar response
 
       {
         "s": "ok",
