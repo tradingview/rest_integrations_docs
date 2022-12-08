@@ -36,26 +36,14 @@ date, TradingView requests history up to 1800 year.
 Example
 ........
 
-.. code-block:: json
-
-  {
-    "s": "ok",
-    "t": [],
-    "o": [],
-    "h": [],
-    "l": [],
-    "c": [],
-    "v": []
-  }
-
-Request to `/history`_ consists of ``from`` and ``to`` parameters. TradingView expects to receive all bars inside the given interval,
-including the border ones.
+Requests to `/history`_ consist of ``from`` and ``to`` parameters.
+TradingView expects to receive all bars (except bars with ``"v": [0]``) inside the given interval, including the border ones.
 
 .. code-block:: bash
 
   /history?symbol=BTCUSDT&resolution=1&from=1637502014&to=1637502267
 
-The response will be:
+The response example is demonstrated below:
 
 .. code-block:: json
 
