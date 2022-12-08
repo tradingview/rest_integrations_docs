@@ -80,20 +80,14 @@ No data in requested period
 ############################
 
 If there is no data in the requested period, consider the following:
-  - Set the status code to ``no_data`` or return an empty response in case there is no historical data in the previous periods.
-  - Return an empty response in case there is historical data in the previous periods.
+- Set the status code to ``no_data`` or return an empty response in case there is no historical data in the previous periods.
+- Return an empty response in case there is historical data in the previous periods.
 
 The response examples are listed below:
 
 .. tabs::
 
-   .. tab:: No data response
-
-      {
-        "s": "no_data"
-      }
-
-   .. tab:: Empty response
+  .. code-tab:: json Empty response
 
       {
         "s": "ok",
@@ -103,4 +97,10 @@ The response examples are listed below:
         "l": [],
         "c": [],
         "v": []
+      }
+  
+  .. code-tab:: json No data response
+
+      {
+        "s": "no_data"
       }
