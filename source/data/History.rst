@@ -25,16 +25,11 @@ Your data should meet the following requirements:
 - The daily bar time should be 00:00 UTC and expected to be a trading day, not a day when the session starts.
 - The monthly bar time should be 00:00 UTC and be the first trading day of the month.
 
-.. important::
-  If there is no data in the requested period, consider the following:
-    - Set the status code to ``no_data`` or return an empty response in case there is no historical data in the previous periods.
-    - Return an empty response in case there is historical data in the previous periods.
-
 TradingView requests `/history`_ until the date that the broker reported in the **Data requirements form**. Without this
 date, TradingView requests history up to 1800 year.
 
-Example
-........
+Response example
+.................
 
 Requests to `/history`_ consist of ``from`` and ``to`` parameters.
 TradingView expects to receive all bars (except bars with ``"v": [0]``) inside the given interval, including the border ones.
@@ -80,3 +75,32 @@ The response example is demonstrated below:
       17.36
     ]
   }
+
+No data in requested period
+############################
+
+If there is no data in the requested period, consider the following:
+  - Set the status code to ``no_data`` or return an empty response in case there is no historical data in the previous periods.
+  - Return an empty response in case there is historical data in the previous periods.
+
+The response examples are listed below:
+
+.. tabs::
+
+   .. tab:: No data response
+
+      {
+        "s": "no_data"
+      }
+
+   .. tab:: Empty response
+
+      {
+        "s": "ok",
+        "t": [],
+        "o": [],
+        "h": [],
+        "l": [],
+        "c": [],
+        "v": []
+      }
