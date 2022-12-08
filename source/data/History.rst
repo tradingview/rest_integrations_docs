@@ -80,3 +80,23 @@ The response example is demonstrated below:
       17.36
     ]
   }
+
+.. tabs::
+
+   .. tab:: No data response
+
+      {
+        "s": "no_data"
+      }
+
+   .. tab:: Empty bar response
+
+      {
+        "s": "ok",
+        "t": [],
+        "o": [],
+        "h": [],
+        "l": [],
+        "c": [],
+        "v": []
+      }
