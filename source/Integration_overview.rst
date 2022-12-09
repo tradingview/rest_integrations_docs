@@ -153,7 +153,7 @@ The table below describes six pairs of environment connections between TradingVi
 | Localhost               | Production         | An environment that TradingView developers use for troubleshooting.                                                                                 |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Staging                 | Production         | A pre-release environment that TradingView developers use for testing features implemented by the broker.                                           |
-|                         |                    | During this stage, TradingView performs the final testing of the broker's production API and the deployment of the TradingView client applications. |
+|                         |                    | At this stage, TradingView performs the final testing of the broker's production API and deploys the TradingView client applications.               |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Production              | Production         | A live production environment that is ready for users.                                                                                              |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
