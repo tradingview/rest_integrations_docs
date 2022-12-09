@@ -160,7 +160,7 @@ The table below describes six pairs of environment connections between TradingVi
 
 The TradingView website in a staging or production environment can only be connected to one broker environment at a time.
 You can switch between environments through the browser console.
-The tradingView team will provide the steps after they complete the configuration.
+The TradingView team will provide the steps after they complete the configuration.
 
 .. _what-is-the-sandbox:
 
