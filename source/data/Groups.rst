@@ -74,7 +74,7 @@ An example of division into groups for the Forex and CFD brokers:
 Adding groups after release
 ............................
 
-To add a new symbol group after release, implement the groups and add them into the staging environment.
+To add new symbol groups after release, implement the groups and add them into the staging environment.
 After that, notify the TradingView team.
 
 .. note:: 
