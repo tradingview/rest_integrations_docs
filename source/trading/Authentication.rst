@@ -12,6 +12,10 @@ Authentication
 After passing the authentication, regardless of the method of obtaining the access token, all requests to the 
 broker's REST server will use the ``Authorization: Bearer ACCESS_TOKEN`` header.
 
+.. important:: 
+  The authentication page must only contain objects relevant to logging and signing-up processes.
+  Placing irrelevant links, promos, etc., is not allowed as it goes against the TradingView guidelines and affects the overall user experience.
+
 .. _password-bearer-flow:
 
 Password Bearer
@@ -80,7 +84,7 @@ Authorization
      ``fr``, ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, 
      ``sv``, ``th``, ``tr``, ``uk``, ``vi``, ``zh``.
 
-5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
+5. The broker's server gives a page with an authorization form and prompts the user to enter their credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form and if successful redirects
    the request to ``redirect_uri`` with following parameters that are passed as a fragment:
 
@@ -146,7 +150,7 @@ Authorization
      ``he``, ``hu``, ``id``, ``in``, ``it``, ``ja``, ``kr``, ``ms``, ``nl``, ``pl``, ``ro``, ``ru``, ``sv``, ``th``,
      ``tr``, ``uk``, ``vi``, ``zh``.
 
-5. The broker's server gives a page with an authorization form and prompts the user to enter his credentials.
+5. The broker's server gives a page with an authorization form and prompts the user to enter their credentials.
 6. The broker's server authenticates and authorizes the user after submitting the form.
 7. If successful, the broker's server redirects the request to ``redirect_uri`` with GET parameters:
 

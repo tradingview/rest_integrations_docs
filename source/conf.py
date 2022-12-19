@@ -44,6 +44,7 @@ release = u'1.0.0' # Could be referenced from *.rst with |release| macro
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
+    'sphinx_tabs.tabs'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
