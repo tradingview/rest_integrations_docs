@@ -9,25 +9,16 @@ Permissions
 
 The `/permissions`_ endpoint gets a list of groups allowed for a user.
 
-When permissions needed
-........................
+When permissions are needed
+............................
 
-Use `/permissions`_ when you need to restrict access to some symbol groups for specific users.
+Use `/permissions`_ when you need to restrict access to the market data for specific users.
 For example, restrictions can be made depending on the users location or their subscription plan.
 
 .. note:: 
   If all users have the same access on market data, you don't need to implement `/permissions`_.
 
-When you decide that you need to implement `/permissions`_, you need to choose the way you want to restrict access to the market data.
-
-Types of the market data restrictions
-=======================================
-
-There are four types of market data restrictions.
-
-.. important::
-  Choose the restriction type you want to implement and notify your TradingView manager as soon as you decide on exchanges and symbols that you will use.
-  We highly recommend not switching from one restriction type to another as it requires time-consuming and resource-intensive activities.
+There are four types how restrictions on market data can be implemented:
 
 +-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 | Type                        | Description                                                                                                                                 | Implementation required  |
@@ -43,17 +34,21 @@ There are four types of market data restrictions.
 | from the broker's side      | This type prevents users from paying twice: on the broker's and TradingView's platforms.                                                    |                          |
 +-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 
+.. important::
+  Choose the restriction type you want to implement and notify your TradingView manager as soon as you decide on exchanges and symbols that you will use.
+  After that, we highly recommend not switching from one restriction type to another as it requires time-consuming and resource-intensive activities.
+
 How restrictions work
 ......................
 
 When a user logs into their broker account,
-TradingView requests `/permissions`_ to receive a list of groups the user subscribed to. 
+TradingView requests `/permissions`_ to receive a list of groups the user subscribed to.
 The user gains access to one or more groups depending on the list received.
 
 How to implement
 .................
 
-Before implementing the `/permissions`_ endpoint, follow the steps below:
+Before implementing the `/permissions`_ endpoint, you need to:
 
 1. Choose the way you want to `restrict access to the market data <#types-of-the-market-data-restrictions>`__.
 2. Notify your TradingView manager about it.
@@ -77,4 +72,3 @@ Its response must contain an object with an array of groups.
       ]
     }
   }
-
