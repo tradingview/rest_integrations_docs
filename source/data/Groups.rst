@@ -72,3 +72,12 @@ An example of division into groups for the Forex and CFD brokers:
       ]
     }
   }
+
+Adding groups after release
+............................
+
+To add new symbol groups after release, implement the groups and add them into the staging environment.
+After that, notify the TradingView team.
+
+.. note:: 
+  New group testing takes 1−2 weeks.

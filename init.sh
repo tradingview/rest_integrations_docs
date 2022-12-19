@@ -8,3 +8,4 @@ source ./source.sh "$1"
 "$1" -m pip install lxml
 "$1" -m pip install doc8
 "$1" -m pip install -r requirements.txt
+"$1" -m pip install sphinx-tabs
