@@ -68,9 +68,9 @@ Authorize tests
 | :doc:`authBasicNewTokenPerRequest`  | Checks that each request returns a unique token.     |
 +-------------------------------------+------------------------------------------------------+
 | :doc:`authOAuth2FieldsFormat`       | Checks that response fields match the specification. |
-+--------------------------------------------+-----------------------------------------------+
++-------------------------------------+------------------------------------------------------+
 | :doc:`authOAuth2NewTokenPerRequest` | Checks that each request returns a unique token.     |
-+--------------------------------------------+-----------------------------------------------+
++-------------------------------------+------------------------------------------------------+
 
 Groups tests
 -------------
