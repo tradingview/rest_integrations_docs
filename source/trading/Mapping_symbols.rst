@@ -46,7 +46,7 @@ Here, ``symbols`` is an array of objects describing symbols. Every object contai
 - ``f`` is a broker symbol name. Note that the ``f`` value must always consist of an array with only one string element.
 - ``s`` is a TradingView symbol name with a prefix. Refer to the `broker-symbols.json file <#how-to-match-symbols>`__ to find the TradingView symbols corresponding to the broker ones.
 
-The ``fields`` property must always contain an array with a ``brokerSymbol`` value.
+The ``fields`` property should always contain an array with the only one element that has the ``brokerSymbol`` value.
 
 .. _trading-mapping-how-to-match-symbols:
 
