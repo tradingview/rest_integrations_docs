@@ -13,7 +13,7 @@ When to implement
 
 The mapping is required when you use TradingView data that is available from a third-party source.
 If you plan to use *only* your symbols, you don't need to implement mapping.
-However, if you decide to use both TradingView (available from a third-party source) and your own data, you must implement mapping for all symbols, including yours.
+However, if you decide to use both TradingView and your own data, you must implement mapping for all symbols, including yours.
 
 How to implement
 .................
@@ -41,7 +41,7 @@ The endpoint must return an object in the following format:
     "fields": ["brokerSymbol"]
   }
 
-Here, ``symbols`` is an array of objects describing symbols. Every object contains two required properties:
+Here, ``symbols`` is an array of objects that contain two required properties:
 
 - ``f`` is a broker symbol name. Note that the ``f`` value must always consist of an array with only one string element.
 - ``s`` is a TradingView symbol name with a prefix. Refer to the `broker-symbols.json file <#how-to-match-symbols>`__ to find the TradingView symbols corresponding to the broker ones.
@@ -61,7 +61,7 @@ This file is updated daily.
 
 In the file, each symbol has its own meta-data such as full name and description.
 The ``symbol-fullname`` property contains the full symbol name with a prefix.
-As response to a request, use ``symbol-fullname`` value in the ``symbols.s`` property as the TradingView symbol name.
+As response to a request, use the ``symbol-fullname`` value in the ``symbols.s`` property as the TradingView symbol name.
 
 How often requests are made
 ............................
