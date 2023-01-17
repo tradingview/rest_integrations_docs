@@ -6,6 +6,9 @@ Session specification
 
 The session allows you to set a weekly trading schedule, with an accuracy up to a specific day of the week.
 
+How to set session boundaries
+..............................
+
 Session boundaries are specified by several parameters in the `/symbol_info`_.
 
 +------------------------+----------------------------------------------------------------------------------------+
@@ -24,6 +27,13 @@ Session boundaries are specified by several parameters in the `/symbol_info`_.
 |                        | The start time equal the start time of ``session-premarket``.                          |
 |                        | The end time equal the end time of ``session-postmarket``.                             |
 +------------------------+----------------------------------------------------------------------------------------+
+
+. .. note:: 
+  Session time must be accurate to the minute, however, the last minute is not included in the session on the TradingView side.
+  For example, if you specify that the session closes at ``23:59``, the last trade time included in TradingView will be ``23:58:59``.
+
+How to use
+...........
 
 Here are some examples:
 
