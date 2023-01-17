@@ -31,8 +31,8 @@ Run tests
 5. Wait for the tests to complete. You can check the progress bar in *Build history*.
 6. Select the latest build number to view `test results <#test-results>`__.
 
-Test results
-.............
+Check test results
+...................
 
 On the project's page → *Build History*, you can see the list of latest builds.
 Click on the last build number to see the results.
