@@ -28,7 +28,7 @@ Session boundaries are specified by several parameters in the `/symbol_info`_.
 |                        | The end time equal the end time of ``session-postmarket``.                             |
 +------------------------+----------------------------------------------------------------------------------------+
 
-. .. note:: 
+.. note:: 
   Session time must be accurate to the minute, however, the last minute is not included in the session on the TradingView side.
   For example, if you specify that the session closes at ``23:59``, the last trade time included in TradingView will be ``23:58:59``.
 
