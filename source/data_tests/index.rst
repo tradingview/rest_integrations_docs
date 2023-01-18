@@ -4,7 +4,7 @@
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
-.. _`Jenkins`: cu-jenkins.xtools.tv
+.. _`Jenkins`: https://cu-jenkins.xtools.tv/
 
 Data integration tests
 ======================
@@ -22,6 +22,10 @@ Run tests
 1. Log into `Jenkins`_. You'll see the main page of your build plans.
 2. Select *Data_Integrations → inspect_<project_name>* to open your project page.
 3. Go to *Build with parameters* and select the parameters that correspond to the endpoints of your API. Here, you can select all endpoints at once or just one.
+
+  .. note:: 
+    The ``/history`` and ``/streaming`` tests require the passing of the ``/symbol`` and ``/groups`` tests (if you have groups implemented).
+    Otherwise, even if there are no issues with ``/history`` and ``/streaming``, the tests will fail.
 
   .. image:: ../../images/DataTests_BuildWithParameters.png
       :alt: Build with parameters
