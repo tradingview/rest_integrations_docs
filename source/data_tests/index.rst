@@ -24,7 +24,7 @@ Run tests
 3. Go to *Build with parameters* and select the parameters that correspond to the endpoints of your API. Here, you can select all endpoints at once or just one.
 
   .. note:: 
-    The ``/history`` and ``/streaming`` tests require the passing of the ``/symbol`` and ``/groups`` tests (if you have groups implemented).
+    The ``/history`` and ``/streaming`` tests require the ``/symbol`` and ``/groups`` (if you have groups implemented) tests to pass.
     Otherwise, even if there are no issues with ``/history`` and ``/streaming``, the tests will fail.
 
   .. image:: ../../images/DataTests_BuildWithParameters.png
