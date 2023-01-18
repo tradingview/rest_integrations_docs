@@ -56,7 +56,7 @@ The table below describes optional endpoints which can be required in several ca
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/getLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 |                    |                                                                               |                                                                                                                        |
-| `/getLeverage`_    |                                                                               |                                                                                                                        |
+| `/setLeverage`_    |                                                                               |                                                                                                                        |
 |                    |                                                                               |                                                                                                                        |
 | `/previewLeverage`_|                                                                               |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
@@ -75,6 +75,7 @@ The table below describes optional endpoints which can be required in several ca
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
 .. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
 .. _`/executions`: https://www.tradingview.com/rest-api-spec/#operation/getExecutions
+.. _`/getLeverage`: https://www.tradingview.com/rest-api-spec/#operation/getLeverage
 .. _`/groups`: https://www.tradingview.com/rest-api-spec/#operation/getGroups
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
@@ -82,9 +83,12 @@ The table below describes optional endpoints which can be required in several ca
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
 .. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
-.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/permissions`: https://www.tradingview.com/rest-api-spec/#operation/getPermissions
+.. _`/previewLeverage`: https://www.tradingview.com/rest-api-spec/#operation/previewLeverage
+.. _`/previewOrder`: https://www.tradingview.com/rest-api-spec/#operation/previewOrder
+.. _`/positions`: https://www.tradingview.com/rest-api-spec/#operation/getPositions
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
+.. _`/setLeverage`: https://www.tradingview.com/rest-api-spec/#operation/setLeverage
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
