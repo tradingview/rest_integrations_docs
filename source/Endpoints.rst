@@ -55,7 +55,9 @@ The table below describes optional endpoints which can be required in several ca
 | `/depth`_          | Gets current depth of market for the instrument.                              | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/getLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
-| `/setLeverage`_    |                                                                               |                                                                                                                        |
+|                    |                                                                               |                                                                                                                        |
+| `/getLeverage`_    |                                                                               |                                                                                                                        |
+|                    |                                                                               |                                                                                                                        |
 | `/previewLeverage`_|                                                                               |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/groups`_         | Gets a list of possible symbol groups.                                        | Required when different types of instruments are used or when you need to restrict access on market data for users.    |
@@ -76,6 +78,7 @@ The table below describes optional endpoints which can be required in several ca
 .. _`/groups`: https://www.tradingview.com/rest-api-spec/#operation/getGroups
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/instruments`: https://www.tradingview.com/rest-api-spec/#operation/getInstruments
+.. _`/logout`: https://www.tradingview.com/rest-api-spec/#operation/logout
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
 .. _`/orders`: https://www.tradingview.com/rest-api-spec/#operation/getOrders
 .. _`/ordersHistory`: https://www.tradingview.com/rest-api-spec/#operation/getOrdersHistory
