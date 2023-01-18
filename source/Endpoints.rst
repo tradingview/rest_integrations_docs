@@ -19,7 +19,9 @@ The table below lists the required endpoints and their descriptions.
 +------------------+------------------------------------------------------------------------------------------------------+
 | `/state`_        | Gets account information.                                                                            |
 +------------------+------------------------------------------------------------------------------------------------------+
-| `/quotes`_       | Gets current prices of the instruments. Note that `/quotes`_ is not a strictly required endpoint.    |
+| `/quotes`_       | Gets current prices of the instruments.                                                              |
+|                  |                                                                                                      |                                                                                                                        |
+|                  | Note that `/quotes`_ is not a strictly required endpoint.                                            |                                                                                                                        |
 |                  | However, TradingView highly recommends implementing it due to possible delays in data from exchange. |
 |                  | This may lead users' orders to execute at unexpected prices.                                         |
 +------------------+------------------------------------------------------------------------------------------------------+
@@ -61,10 +63,13 @@ The table below describes optional endpoints which can be required in several ca
 | `/previewLeverage`_|                                                                               |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/groups`_         | Gets a list of possible symbol groups.                                        | Required when different types of instruments are used or when you need to restrict access on market data for users.    |
+|                    |                                                                               |                                                                                                                        |
 | `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/symbol_info`_    | Gets a list of all instruments.                                               | Required when data integration is used.                                                                                |
+|                    |                                                                               |                                                                                                                        |
 | `/history`_        | Gets history data for instruments.                                            |                                                                                                                        |
+|                    |                                                                               |                                                                                                                        |
 | `/streaming`_      | Gets real-time prices for instruments.                                        |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 
