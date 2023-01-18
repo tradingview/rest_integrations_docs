@@ -19,7 +19,7 @@ The table below lists the required endpoints and their descriptions.
 +------------------+------------------------------------------------------------------------------------------------------+
 | `/state`_        | Gets account information.                                                                            |
 +------------------+------------------------------------------------------------------------------------------------------+
-| `/quotes`_       | Gets current prices of the instruments. <br> Note that `/quotes`_ is not a strictly required endpoint. |
+| `/quotes`_       | Gets current prices of the instruments. Note that `/quotes`_ is not a strictly required endpoint.    |
 |                  | However, TradingView highly recommends implementing it due to possible delays in data from exchange. |
 |                  | This may lead users' orders to execute at unexpected prices.                                         |
 +------------------+------------------------------------------------------------------------------------------------------+
