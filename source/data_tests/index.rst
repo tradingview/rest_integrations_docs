@@ -33,7 +33,7 @@ Run tests
 
 4. Select *Build*.
 5. Wait for the tests to complete. You can check the progress bar in *Build history*.
-6. Select the latest build number to view `test results <#test-results>`__.
+6. Select the latest build number to view `test results <#check-test-results>`__.
 
 Check test results
 ...................
@@ -46,7 +46,7 @@ Click on the last build number to see the results.
     :align: center
 
 
-The build number can be highlighted in one of the following colors:
+The build is accompanied with an indicator in one of the following colors:
 
 - Green indicates that all tests passed. In this case, contact the TradingView team for further instructions.
 - Yellow or red indicates that there are issues in the tests that need to be fixed. Select a test in the *Test Result* list to view the issue description. It contains a link to a dump file with request contents and a link to the test description in the broker manual. Fix the issues and run the tests again.
