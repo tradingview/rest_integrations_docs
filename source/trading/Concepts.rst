@@ -255,4 +255,4 @@ By default we use ``pipValue`` parameter to display profit/loss. If you provide 
 fixed when the position is closed:
 
 * at Bid — when Short position closed,
-* at Ask — whet Long position closed.
+* at Ask — when Long position closed.
