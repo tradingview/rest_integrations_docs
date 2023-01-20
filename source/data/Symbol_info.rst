@@ -90,7 +90,7 @@ Crypto
 .. code-block:: cfg
 
 	BTCUSD → OKEX:BTCUSD // crypto pair
-	BTCUSDTPERP → OKEX:BTCUSDTPERP // perpetual swap contract
+	BTCUSDT.P → OKEX:BTCUSDT.P // perpetual swap contract
 	BTCUSDT25H2022 → BITMEX:BTCUSDT25H2022 // futures contract
 
 

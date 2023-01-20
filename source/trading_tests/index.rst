@@ -30,7 +30,7 @@ Below is a guide on how to use this service.
 Test structure
 --------------
 
-We provide `Jenkins <autotest service>`_ for the automated testing of the trading and data integration endpoints implementation.
+We provide `Jenkins`_ for the automated testing of the trading and data integration endpoints implementation.
 
 Use `Data_Integrations section`_ to test data integration, and `Trading section`_ for trading integration.
 
