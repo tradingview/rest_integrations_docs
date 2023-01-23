@@ -4,6 +4,8 @@
 .. _`/mapping`: https://www.tradingview.com/rest-api-spec/#operation/getMapping
 .. _`/permissions`: https://www.tradingview.com/rest-api-spec/#operation/getPermissions
 
+.. _symbol-mapping:
+
 Symbol mapping
 ---------------
 
