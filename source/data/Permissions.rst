@@ -10,7 +10,7 @@ Permissions
 The `/permissions`_ endpoint gets a list of groups allowed for a user.
 
 This endpoint is used when you want to restrict access to the market data or simply hide data for specific users.
-For example, such restrictions can be made depending on the users location or their subscription plan.
+For example, such restrictions can be made depending on the users' location or their subscription plan.
 
 The ways how you can restrict access depend on whether you use :ref:`symbol mapping <symbol-mapping>` or not,
 in other words, whether you use TradingView data available from a third-party source or not.
