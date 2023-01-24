@@ -7,6 +7,9 @@
 Permissions
 -------------
 
+.. contents:: :local:
+  :depth: 2
+
 The `/permissions`_ endpoint gets a list of groups allowed for a user.
 Use this endpoint when you want to restrict access to the market data or hide data for specific users.
 For example, such restrictions can be made depending on the users' location or subscription plan.
@@ -17,10 +20,6 @@ How to restrict access to market data
 How you restrict access depends on whether you use :ref:`symbol mapping <symbol-mapping>` or not,
 in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-broker-s-data-only>`__.
 
-.. important::
-  Choose how you want to restrict your data and let your TradingView manager know once you decide on exchanges and symbols that you will use.
-  After that, we highly recommend not switching from one restriction type to another, as it requires time-consuming and resource-intensive actions.
-
 Integration includes data available on TradingView
 ###################################################
 
@@ -28,7 +27,7 @@ When :ref:`mapping symbols <symbol-mapping>` to existing TradingView data, there
 when real-time data requires payment on the TradingView platform.
 To prevent users from paying twice: on the broker's and TradingView's platforms,
 TradingView can provide real-time data to verified users of your integration.
-In this case, you need to implement the `/permissions` endpoint.
+In this case, you need to implement the `/permissions`_ endpoint.
 
 .. important::
   TradingView will provide you with the group names that needs to be returned in the `/permissions`_ response.
@@ -59,9 +58,8 @@ How to implement
 
 Before implementing the `/permissions`_ endpoint, you need to:
 
-1. Choose the way you want to restrict access to the market data.
-2. Notify your TradingView manager about it.
-3. Unless you settle on having no data restrictions, implement the `/groups`_ endpoint, which gets a list of symbols with different access levels.
+1. Choose how you want to restrict your data and let your TradingView manager know about it. After that, we highly recommend not switching from one restriction type to another, as it requires time-consuming and resource-intensive actions.
+2. Unless you settle on having no data restrictions, implement the `/groups`_ endpoint, which gets a list of symbols with different access levels.
 
 .. note::
   Learn more about :ref:`Groups <groups-endpoint>`.
