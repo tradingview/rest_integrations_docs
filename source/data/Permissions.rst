@@ -7,9 +7,6 @@
 Permissions
 -------------
 
-.. contents:: :local:
-  :depth: 2
-
 The `/permissions`_ endpoint gets a list of groups allowed for a user.
 Use this endpoint when you want to restrict access to the market data or hide data for specific users.
 For example, such restrictions can be made depending on the users' location or subscription plan.
