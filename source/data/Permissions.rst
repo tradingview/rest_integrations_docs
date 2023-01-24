@@ -12,7 +12,7 @@ Use this endpoint when you want to restrict access to the market data or hide da
 For example, such restrictions can be made depending on the users' location or subscription plan.
 
 How you restrict access depends on whether you use :ref:`symbol mapping <symbol-mapping>` or not,
-in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-brokers-data-only>`__.
+in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-broker-s-data-only>`__.
 
 .. important::
   Choose how you want to restrict your data and let your TradingView manager know once you decide on exchanges and symbols that you will use.
