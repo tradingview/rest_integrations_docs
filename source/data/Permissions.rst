@@ -11,6 +11,9 @@ The `/permissions`_ endpoint gets a list of groups allowed for a user.
 Use this endpoint when you want to restrict access to the market data or hide data for specific users.
 For example, such restrictions can be made depending on the users' location or subscription plan.
 
+How to restrict access to market data
+.......................................
+
 How you restrict access depends on whether you use :ref:`symbol mapping <symbol-mapping>` or not,
 in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-broker-s-data-only>`__.
 
@@ -19,7 +22,7 @@ in other words, whether you use `TradingView data <#integration-includes-data-av
   After that, we highly recommend not switching from one restriction type to another, as it requires time-consuming and resource-intensive actions.
 
 Integration includes data available on TradingView
-...................................................
+###################################################
 
 When :ref:`mapping symbols <symbol-mapping>` to existing TradingView data, there may be cases,
 when real-time data requires payment on the TradingView platform.
@@ -31,7 +34,7 @@ In this case, you need to implement the `/permissions` endpoint.
   TradingView will provide you with the group names that needs to be returned in the `/permissions`_ response.
 
 Integration includes broker's data only
-........................................
+########################################
 
 If you use only your own market data in the integration, you can choose one of the two types for data visibility.
 
