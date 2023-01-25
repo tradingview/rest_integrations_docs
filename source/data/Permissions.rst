@@ -15,24 +15,24 @@ How to restrict access to market data
 .......................................
 
 How you restrict access depends on whether you use :ref:`symbol mapping <symbol-mapping>` or not,
-in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-broker-s-data-only>`__.
+in other words, whether you use `TradingView data <#integration-includes-data-available-on-tradingview>`__ available from a third-party source or `not <#integration-includes-broker-s-data>`__.
 
 Integration includes data available on TradingView
 ###################################################
 
-When :ref:`mapping symbols <symbol-mapping>` to existing TradingView data, there may be cases,
-when real-time data requires payment on the TradingView platform.
-To prevent users from paying twice: on the broker's and TradingView's platforms,
+When :ref:`mapping symbols <symbol-mapping>` to data that is already available on TradingView, there may be cases,
+when real-time data requires subscription on the TradingView side.
+To prevent users from paying twice: on the broker's (if the broker does not cover the real-time data subscription for users, or if the real-time data provision is not a subject to a local compliance requirement) and TradingView's ends,
 TradingView can provide real-time data to verified users of your integration.
 In this case, you need to implement the `/permissions`_ endpoint.
 
 .. important::
   TradingView will provide you with the group names that needs to be returned in the `/permissions`_ response.
 
-Integration includes broker's data only
-########################################
+Integration includes broker's data
+###################################
 
-If you use only your own market data in the integration, you can choose one of the two types for data visibility.
+If you use your own market data in the integration, you can choose one of the two types for data visibility.
 
 +-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
 | Type                        | Description                                                                                                                                 | `/permissions`_ required |
@@ -42,6 +42,10 @@ If you use only your own market data in the integration, you can choose one of t
 | Hidden from Symbol Search   | Symbols don't appear in Symbol Search until allowed to a user via the `/permissions`_ endpoint.                                             | Yes                      |
 |                             | However, any user can open the Chart by entering the full symbol name (i.e., EXCHANGE:SYM1SYM2).                                            |                          |
 +-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+.. important::
+  If you use your own data, the group names are the ones that you created using the `/groups`_ endpoint.
+  For more information about groups, refer to the :ref:`Groups <groups-endpoint>` article.
 
 How restrictions work
 ......................
@@ -57,9 +61,6 @@ Before implementing the `/permissions`_ endpoint, you need to:
 
 1. Choose how you want to restrict your data and let your TradingView manager know about it. After that, we highly recommend not switching from one restriction type to another, as it requires time-consuming and resource-intensive actions.
 2. Unless you settle on having no data restrictions, implement the `/groups`_ endpoint, which gets a list of symbols with different access levels.
-
-.. note::
-  Learn more about :ref:`Groups <groups-endpoint>`.
 
 When you finish with the steps above, implement the `/permissions`_ endpoint.
 Its response must contain an object with an array of groups.
