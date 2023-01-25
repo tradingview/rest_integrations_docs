@@ -5,35 +5,40 @@
 Groups
 ------
 
-The `/groups`_ endpoint gets a list of possible symbol groups for users.
+The `/groups`_ endpoint gets a list of possible symbol groups in the integration.
 Groups are sets of symbols of the same type.
 
-Implementing `/groups`_ is needed in two cases:
+The `/groups`_ implementation is necessary in two cases:
 
-- If you plan to add different types of instruments, for example, one group is for Forex, the other one is for Crypto, etc.
+- If you plan to add different types of instruments, for example, one group for Forex, another for Crypto, etc.
 - If you plan to restrict users from accessing certain symbols depending on their location or subscription plan.
 
 .. important::
   Plan your symbol grouping carefully.
-  Groups cannot be deleted, you can only remove all the symbols from them.
+  Groups cannot be deleted, you can only remove all symbols from them.
 
-Group limitations
-...................
+Usage details
+...............
 
-There are several limitations on groups that you need to consider:
+There are several usage details on groups that you need to consider:
 
-- Each integration can only contain up to 10 symbol groups.
-- Each symbol group can contain up to 10,000 symbols in it. 
+- Each integration can contain no more than 10 symbol groups.
+- Each symbol group can contain up to 10,000 symbols. 
 - You cannot put the same symbol into two different groups.
+- Any user can have access to any number of groups.
 
 How to use
 .............
 
-If you decide to split symbols into groups, the requests to `/symbol_info`_ should be processed with the ``group`` parameter.
+Requests to the `/symbol_info`_ endpoint include the ``group`` parameter which represents a group name.
+`/symbol_info`_ returns only those symbols that belong to the specified group.
+This way, TradingView can get information about which group each symbol belongs to.
+
+If you choose to split symbols into groups, requests to `/symbol_info`_ should always be handled with the ``group`` parameter.
 If the ``group`` parameter isn't specified, you should return an error.
 
-If you don't want to split symbols into groups, you API must ignore all the parameters in the query to `/symbol_info`_.
-For example, your API must return the same symbols both for a request with ``"group": "example_group"`` (for any group) and for a request without ``group``.
+If you don't want to group symbols, your API should ignore all `/symbol_info`_ query parameters.
+For example, your API should return the same symbols for both a request with ``"group": "example_group"`` (for any group) and a request without ``group``.
 
 Examples
 .........
@@ -91,3 +96,10 @@ After that, notify the TradingView team.
 
 .. note:: 
   New group testing takes 1−2 weeks.
+
+Access restrictions for users
+..............................
+
+If you plan to restrict access to some symbol groups, you also need to implement the `/permissions`_ endpoint.
+It gets the list of groups available for a particular user.
+So, when a TradingView user logs into their broker account, they will have access to one or more groups, depending on the list returned in `/permissions`_.
