@@ -13,22 +13,19 @@ The `/groups`_ implementation is necessary in two cases:
 - If you plan to add different types of instruments, for example, one group for Forex, another for Crypto, etc.
 - If you plan to restrict users from accessing certain symbols depending on their location or subscription plan.
 
-.. important::
-  Plan your symbol grouping carefully.
-  Groups cannot be deleted, you can only remove all symbols from them.
-
 Usage details
 ...............
 
-There are several usage details on groups that you need to consider:
+There are several usage details and limitations on groups that you should consider:
 
+- Groups cannot be deleted, you can only remove all symbols from them.
 - Each integration can contain no more than 10 symbol groups.
 - Each symbol group can contain up to 10,000 symbols. 
 - You cannot put the same symbol into two different groups.
 - Any user can have access to any number of groups.
 
-How to use
-.............
+Where groups are used
+.......................
 
 Requests to the `/symbol_info`_ endpoint include the ``group`` parameter which represents a group name.
 `/symbol_info`_ returns only those symbols that belong to the specified group.
@@ -39,6 +36,13 @@ If the ``group`` parameter isn't specified, you should return an error.
 
 If you don't want to group symbols, your API should ignore all `/symbol_info`_ query parameters.
 For example, your API should return the same symbols for both a request with ``"group": "example_group"`` (for any group) and a request without ``group``.
+
+Access restrictions for users
+###############################
+
+If you plan to restrict access to some symbol groups for users, you also need to implement the `/permissions`_ endpoint.
+It gets the list of groups available for a particular user.
+So, when a TradingView user logs into their broker account, they will have access to one or more groups, depending on the list returned in `/permissions`_.
 
 Examples
 .........
@@ -88,18 +92,11 @@ An example of division into groups for the Forex and CFD brokers:
     }
   }
 
-Adding groups after release
-............................
+How to add groups after release
+.................................
 
 To add new symbol groups after release, implement the groups and add them into the staging environment.
 After that, notify the TradingView team.
 
 .. note:: 
   New group testing takes 1−2 weeks.
-
-Access restrictions for users
-..............................
-
-If you plan to restrict access to some symbol groups, you also need to implement the `/permissions`_ endpoint.
-It gets the list of groups available for a particular user.
-So, when a TradingView user logs into their broker account, they will have access to one or more groups, depending on the list returned in `/permissions`_.
