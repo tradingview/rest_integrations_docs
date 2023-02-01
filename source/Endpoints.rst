@@ -6,7 +6,7 @@ Required endpoints
 
 The table below lists the required endpoints and their descriptions.
 
-.. list-table::
+.. list-table:: Table
    :widths: 25 25 50
    :header-rows: 1
 
