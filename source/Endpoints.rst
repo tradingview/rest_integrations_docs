@@ -7,23 +7,23 @@ Required endpoints
 The table below lists the required endpoints and their descriptions.
 
 .. list-table:: Table
-   :widths: 25 25 50
+   :widths: 25 75
    :header-rows: 1
 
-    * - Endpoint
-      - Description
-    * - `/accounts`_
-      - Gets a list of accounts owned by a user.
-    * - `/config`_
-      - Gets localized configuration.
-    * - `/instruments`_
-      - Gets the list of the instruments that are available for trading with the specified account.
-    * - `/orders`_
-      - Gets current session orders for the account.
-    * - `/state`_
-      - Gets account information.
-    * - `/quotes`_
-      - Gets current prices of the instruments.<br>Note that `/quotes`_ is not a strictly required endpoint. However, TradingView highly recommends implementing it due to possible delays in data from exchange. This may lead users' orders to execute at unexpected prices. 
+   * - Endpoint
+     - Description
+   * - `/accounts`_
+     - Gets a list of accounts owned by a user.
+   * - `/config`_
+     - Gets localized configuration.
+   * - `/instruments`_
+     - Gets the list of the instruments that are available for trading with the specified account.
+   * - `/orders`_
+     - Gets current session orders for the account.
+   * - `/state`_
+     - Gets account information.
+   * - `/quotes`_
+     - Gets current prices of the instruments.<br>Note that `/quotes`_ is not a strictly required endpoint. However, TradingView highly recommends implementing it due to possible delays in data from exchange. This may lead users' orders to execute at unexpected prices. 
 
 ---
 
