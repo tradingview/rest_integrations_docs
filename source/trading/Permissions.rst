@@ -19,7 +19,7 @@ There are several cases when it might be needed:
 To have such restrictions, you need to implement the `/permissions`_ endpoint that gets a list of groups allowed for a user.
 
 .. note::
-  You don't need to implement `/permissions` if you don't plan to hide any data.
+  You don't need to implement `/permissions`_ if you don't plan to hide any data.
 
 How restrictions work
 ......................
