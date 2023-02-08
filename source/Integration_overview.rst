@@ -52,6 +52,21 @@ Market data can come to the TradingView server from another source, for example,
 need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
+Is it possible to restrict access to market data
+..................................................
+
+You can restrict access to market data or hide symbols for some users.
+There are several cases when it might be needed:
+
+- Symbols can be hidden depending on users' location, for example, users from Spain will see symbols that are hidden from Italian users.
+- Symbols can be shown only after login. Otherwise, symbols will be hidden from the *Symbol Search* bar.
+- Some real-time data may require subscriptions on the TradingView side. To prevent users from paying twice: on the broker's and TradingView's ends, TradingView can provide real-time data to verified users of the integration.
+
+To have such restrictions, you need to implement the `/permissions`_ endpoint.
+Refer to the :ref:`Permissions<permissions-endpoint>` article for more information.
+
+If you don't plan to hide any data, you don't need to implement `/permissions`.
+
 Recommended endpoints by broker/exchange type
 .............................................
 
