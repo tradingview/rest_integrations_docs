@@ -9,3 +9,4 @@ Trading integration
    Authentication
    UI_elements
    Mapping_symbols
+   Permissions
