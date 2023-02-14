@@ -56,18 +56,9 @@ Is it possible to restrict access to market data
 ..................................................
 
 You can restrict access to market data or hide symbols for some users.
-There are several cases when it might be needed:
-
-- Symbols can be hidden depending on the users' location. For example, users from Spain will be able to see symbols that are hidden from Italian users.
-- Symbols can be hidden from the *Symbol Search* bar. However, any user can open a chart by entering a full symbol name (i.e., EXCHANGE:SYM1SYM2).
-- Symbols can only be displayed after users log in.
-- In case of using data provided by TradingView, real-time data may require a subscription on the TradingView side.
-  To prevent users from paying twice: on the broker's (if the broker does not cover the real-time data subscription for users, or if the real-time data provision is not a subject to local compliance requirements) and TradingView's ends, TradingView can provide real-time data to verified users of the integration.
-
+For example, restrictions can be made depending on users login, their location, or subscription plan.
 To have such restrictions, you need to implement the `/permissions`_ endpoint.
 Refer to the :ref:`Permissions<permissions-endpoint>` article for more information.
-
-If you don't plan to hide any data, you don't need to implement `/permissions`_.
 
 Recommended endpoints by broker/exchange type
 .............................................
