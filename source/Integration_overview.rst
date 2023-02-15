@@ -56,7 +56,7 @@ Is it possible to restrict access to market data
 ..................................................
 
 You can restrict access to market data or hide symbols for some users.
-For example, restrictions can be made depending on the users' login, their location, or subscription plan.
+For example, restrictions can be made depending on the users' login, location, or subscription plan.
 To have such restrictions, you need to implement the `/permissions`_ endpoint.
 Refer to the :ref:`Permissions<permissions-endpoint>` article for more information.
 
