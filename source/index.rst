@@ -16,6 +16,7 @@ Broker Integration Manual
    trading/index
    trading_tests/index
    data/index
+   data_tests/index
    FAQ
    Glossary
 

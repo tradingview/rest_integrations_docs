@@ -52,6 +52,71 @@ Market data can come to the TradingView server from another source, for example,
 need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
+Is it possible to restrict access to market data
+..................................................
+
+You can restrict access to market data or hide symbols for some users.
+For example, restrictions can be made depending on the users' login, location, or subscription plan.
+To have such restrictions, you need to implement the `/permissions`_ endpoint.
+Refer to the :ref:`Permissions<permissions-endpoint>` article for more information.
+
+Recommended endpoints by broker/exchange type
+.............................................
+
++-------------------+---------+-------------+--------------------+----------------+
+| Broker type       | FX/CFD  | Crypto Spot | Crypto Derivatives | Stocks/Futures |
++-------------------+         |             |                    |                |
+| Endpoints         |         |             |                    |                |
++===================+=========+=============+====================+================+
+| `/accounts`_      | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/balances`_      | —       | Yes         | —                  | —              |
++-------------------+---------+-------------+--------------------+----------------+
+| `/config`_        | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/depth`_         | —       | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/executions`_    | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/history`_       | Yes     | Yes         | Yes                | —              |
++-------------------+---------+-------------+--------------------+----------------+
+| `/instruments`_   | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/mapping`_       | —       | —           | —                  | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/orders`_        | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/ordersHistory`_ | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/positions`_     | Yes     | —           | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/quotes`_        | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/state`_         | Yes     | Yes         | Yes                | Yes            |
++-------------------+---------+-------------+--------------------+----------------+
+| `/streaming`_     | Yes     | Yes         | Yes                | —              |
++-------------------+---------+-------------+--------------------+----------------+
+| `/symbol_info`_   | Yes     | Yes         | Yes                | —              |
++-------------------+---------+-------------+--------------------+----------------+
+
+Features of the implementation of some endpoints
+................................................
+Processed once at login: `/config`_, `/accounts`_, `/instruments`_, `/ordersHistory`_, `/permissions`_.
+
+The rest of the requests are sent either on a regular basis or are the result of user actions. In the first case, their
+frequency is set using :ref:`trading-configuring-pulling-intervals` in the `/config`_. In the second case, it happens in
+the `Trading`_ section.
+
+In some cases, the listed endpoints may not be implemented.
+
+* `/mapping`_ is not required if you work exclusively on your own symbols.
+* `/executions`_ can be disabled through the config, but in this case, transactions will not be displayed on the 
+  chart.
+* `/positions`_ can be disabled through the config, not used for Crypto Spot trading.
+* `/balances`_ can be disabled, used for Crypto Spot only.
+* `/depth`_ can be disabled if you are not going to support :term:`DOM` display.
+* `/permissions`_ and `/groups`_ are not required if you don't restrict access to certain data for certain user groups (for example, depending on the subscription plan or location).
+
 Trading integration issues
 --------------------------
 
