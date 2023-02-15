@@ -13,16 +13,14 @@ There are several cases when it might be needed:
 - Symbols can be hidden depending on the users' location. For example, users from Spain will be able to see symbols that are hidden from Italian users.
 - Symbols can be hidden from the *Symbol Search* bar. However, any user can open a chart by entering a full symbol name (i.e., EXCHANGE:SYM1SYM2).
 - Symbols can only be displayed after users log into their brokerage account.
+- If the broker uses data provided by TradingView, the broker's users may also need to pay for the TradingView subscription to get real-time data. This may happen in the following cases:
 
-Also, if you plan to use data provided by TradingView, the broker's users may need to pay for TradingView subscription to get real-time data.
-This may cause users to pay twice on the broker's and TradingView's ends in the following conditions:
+  - The broker doesn't cover the real-time data subscription for users.
+  - The real-time data provision is not subject to local compliance requirements.
 
-- The broker doesn't cover the real-time data subscription for users.
-- The real-time data provision is not a subject to local compliance requirements.
+  To prevent users from paying twice: on the broker's and TradingView's ends, TradingView can provide real-time data to verified integration users.
 
-To prevent users from paying twice: on the broker's and TradingView's ends, TradingView can provide real-time data to verified users of the integration.
-
-To have such restrictions, you need to implement the `/permissions`_ endpoint that gets a list of groups allowed for a user.
+In the cases described above, you need to implement the `/permissions`_ endpoint that gets a list of groups allowed for a user.
 
 .. note::
   You don't need to implement `/permissions`_ if you don't plan to hide any data.
