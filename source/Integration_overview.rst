@@ -52,6 +52,14 @@ Market data can come to the TradingView server from another source, for example,
 need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve 
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
+Is it possible to restrict access to market data
+..................................................
+
+You can restrict access to market data or hide symbols for some users.
+For example, restrictions can be made depending on the users' login, location, or subscription plan.
+To have such restrictions, you need to implement the `/permissions`_ endpoint.
+Refer to the :ref:`Permissions<permissions-endpoint>` article for more information.
+
 Recommended endpoints by broker/exchange type
 .............................................
 
@@ -101,15 +109,13 @@ the `Trading`_ section.
 
 In some cases, the listed endpoints may not be implemented.
 
-* `/mapping`_ --- not necessary if you work exclusively on your own symbols.
-* `/executions`_ --- can be disabled through the config, but in this case, transactions will not be displayed on the 
+* `/mapping`_ is not required if you work exclusively on your own symbols.
+* `/executions`_ can be disabled through the config, but in this case, transactions will not be displayed on the 
   chart.
-* `/positions`_ --- can be disabled through the config, not used for Crypto Spot trading.
-* `/balances`_ --- can be disabled, used for Crypto Spot only.
-* `/depth`_ --- can be disabled if you are not going to support :term:`DOM` display.
-* `/permissions`_, `/groups`_ --- it's set up on our side, if you are not going to restrict certain groups of users 
-  access to certain data (for example, on geographically, or depending on the tariff plan), we will not activate it 
-  on our side.
+* `/positions`_ can be disabled through the config, not used for Crypto Spot trading.
+* `/balances`_ can be disabled, used for Crypto Spot only.
+* `/depth`_ can be disabled if you are not going to support :term:`DOM` display.
+* `/permissions`_ and `/groups`_ are not required if you don't restrict access to certain data for certain user groups (for example, depending on the subscription plan or location).
 
 Trading integration issues
 --------------------------
