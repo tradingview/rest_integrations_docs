@@ -31,7 +31,7 @@ How restrictions work
 When a user logs into their broker account,
 TradingView requests `/permissions`_ to receive a list of the groups the user subscribed to.
 The user gets access to one or more groups depending on the list received.
-Refer to the :ref:`Groups <groups-endpoint>` article for more information about groups.
+Refer to the :ref:`Groups <groups-endpoint>` article for more information.
 
 Prerequisites
 ...............
