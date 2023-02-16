@@ -1,31 +1,17 @@
 Endpoint requirements
-**********************
+-----------------------
+
+Before you start integrating your broker platform into TradingView,
+you should look through the list of required and optional endpoints.
+This will allow you to understand which endpoints are needed for the features you'd like to have.
+
+.. note::
+  If you are not sure what endpoints you need in your particular case, contact the TradingView team.
 
 Required endpoints
 ...................
 
-The table below lists the required endpoints and their descriptions.
-
-.. list-table:: Table
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Endpoint
-     - Description
-   * - `/accounts`_
-     - Gets a list of accounts owned by a user.
-   * - `/config`_
-     - Gets localized configuration.
-   * - `/instruments`_
-     - Gets the list of the instruments that are available for trading with the specified account.
-   * - `/orders`_
-     - Gets current session orders for the account.
-   * - `/state`_
-     - Gets account information.
-   * - `/quotes`_
-     - Gets current prices of the instruments.<br>Note that `/quotes`_ is not a strictly required endpoint. However, TradingView highly recommends implementing it due to possible delays in data from exchange. This may lead users' orders to execute at unexpected prices. 
-
----
+The endpoints listed below are required for the integration.
 
 +------------------+------------------------------------------------------------------------------------------------------+
 | Endpoint         | Description                                                                                          |
@@ -55,43 +41,52 @@ The table below describes optional endpoints which can be required in several ca
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | Endpoint           | Description                                                                   | When required                                                                                                          |
 +====================+===============================================================================+========================================================================================================================+
-| `/authorize`_      | Authenticates users by their usernames and passwords.                         | Required when Password Bearer authentication type is used.                                                             |
+| `/authorize`_      | Authenticates users by their usernames and passwords.                         | Required when :ref:`Password Bearer <password-bearer-flow>` authentication type is used.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/logout`_         | Logs users out from broker accounts.                                          | Required when ``supportLogout: true``` is set in the `/accounts`_ endpoint.                                            |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          | Required when you use TradingView market data that is available from a third-party source.                             |
+| `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          | Required for :ref:`symbol mapping <symbol-mapping>` which is needed when you use TradingView market data               |
+|                    |                                                                               | that is available from a third-party source.                                                                           |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/positions`_      | Modifies an existing position stop loss or take profit or both.               | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot trading.                   |
+| `/positions`_      | Modifies an existing position stop loss or take profit or both.               | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/balances`_       | Gets crypto balances for an account.                                          | Required for Crypto brokers.                                                                                           |
+| `/balances`_       | Gets crypto balances for an account.                                          | Required for Crypto Spot Trading.                                                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/executions`_     | Gets a list of executions (fills or trades) for an account and an instrument. | Required when ``supportExecutions: true`` is set in `/accounts`_.                                                      |
-|                    |                                                                               | If `/executions`_ is not implemented, transactions will not be displayed on the Chart.                                 |
+|                    |                                                                               | If `/executions`_ is not implemented, transactions will not be displayed on the chart.                                 |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/ordersHistory`_  | Gets order history for an account.                                            | Required when ``supportOrdersHistory: true`` is set in `/accounts`_.                                                   |
+| `/ordersHistory`_  | Gets order history for an account.                                            | Required when ``supportOrdersHistory: true`` is set in `/accounts`_. All :ref:`orders <trading-concepts-orders>`       |
+|                    |                                                                               | that come in response to ``/ordersHistory`` requests are displayed on the *History* tab.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/previewOrder`_   | Gets estimated cost, commission, and other order information                  | Required when either ``supportPlaceOrderPreview`` or ``supportModifyOrderPreview`` is set to ``true`` in `/accounts`_. |
 |                    | without the order actually being placed or modified.                          |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/quotes`_         | Gets current prices of the instruments.                                       | Required when instruments with ``hasQuotes: true`` are present in the `/instruments`_ response.                        |
+| `/quotes`_         | Gets current instrument prices.                                               | Required when instruments with ``hasQuotes: true`` are present in the `/instruments`_ response.                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/depth`_          | Gets current depth of market for the instrument.                              | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
+| `/depth`_          | Gets current :ref:`depth of market <depth-of-market>` for the instrument.     | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/getLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
-|                    |                                                                               |                                                                                                                        |
-| `/setLeverage`_    |                                                                               |                                                                                                                        |
-|                    |                                                                               |                                                                                                                        |
-| `/previewLeverage`_|                                                                               |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/groups`_         | Gets a list of possible symbol groups.                                        | Required when different types of instruments are used or when you need to restrict access on market data for users.    |
-|                    |                                                                               |                                                                                                                        |
-| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |                                                                                                                        |
+| `/setLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/symbol_info`_    | Gets a list of all instruments.                                               | Required when data integration is used.                                                                                |
-|                    |                                                                               |                                                                                                                        |
-| `/history`_        | Gets history data for instruments.                                            |                                                                                                                        |
-|                    |                                                                               |                                                                                                                        |
-| `/streaming`_      | Gets real-time prices for instruments.                                        |                                                                                                                        |
+| `/previewLeverage`_|                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/groups`_         | Gets a list of possible symbol groups.                                        | Required when you use different instrument types, when you need to restrict access to market data,                     |
+|                    |                                                                               | hide symbols for some users, or prevent them from paying twice for real-time data subscriptions.                       |
+|                    |                                                                               | Learn more about :ref:`Groups <groups-endpoint>`.                                                                      |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              | Required when you need to restrict access to market data, hide symbols for some users,                                 |
+|                    |                                                                               | or prevent them from paying twice for real-time data subscriptions.                                                    |
+|                    |                                                                               | Learn more about :ref:`Permissions <permissions-endpoint>`.                                                            |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/symbol_info`_    | Gets a list of all instruments and a set of rules for them.                   | Required when you implement :ref:`data integration <data-integration>`.                                                |
+|                    |                                                                               | Learn more about :ref:`Symbol info <symbol-info-endpoint>`.                                                            |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/history`_        | Gets history data for instruments.                                            | Required when you implement :ref:`data integration <data-integration>`.                                                |
+|                    |                                                                               | Learn more about :ref:`History <history-endpoint>`.                                                                    |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/streaming`_      | Gets real-time prices for instruments.                                        | Required when you implement :ref:`data integration <data-integration>`.                                                |
+|                    |                                                                               | Learn more about :ref:`Streaming <streaming-endpoint>`.                                                                |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. links
