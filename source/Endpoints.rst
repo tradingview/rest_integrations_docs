@@ -27,7 +27,6 @@ The endpoints listed below are required for both trading and data integration.
 | `/state`_        | Gets account information.                                                                            |
 +------------------+------------------------------------------------------------------------------------------------------+
 | `/quotes`_       | Gets current prices of the instruments.                                                              |
-|                  |                                                                                                      |
 |                  | Note that `/quotes`_ is not a strictly required endpoint.                                            |
 |                  | However, TradingView highly recommends implementing it due to possible delays in data from exchange. |
 |                  | This may lead users' orders to execute at unexpected prices.                                         |
@@ -36,34 +35,31 @@ The endpoints listed below are required for both trading and data integration.
 Data related endpoints
 =======================
 
-If you plan to implement :ref:`data integration <data-integration>`, you also need to implement the following endpoints.
+If you plan to use :ref:`data integration <data-integration>`, you also need to implement the following endpoints.
 
 +--------------------+-------------------------------------------------------------------------------+
 | Endpoint           | Description                                                                   |
 +====================+===============================================================================+
 | `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          |
-|                    |                                                                               |
 |                    | Required for :ref:`symbol mapping <symbol-mapping>` which is needed when you  |
 |                    | use TradingView market data that is available from a third-party source.      |
 +--------------------+-------------------------------------------------------------------------------+
-| `/groups`_         | Gets a list of possible symbol groups. Required when you use different        |
-|                    | instrument types, when you need to restrict access to market data, hide       |
-|                    | symbols for some users, or prevent them from paying twice for real-time       |
-|                    | data subscriptions. Learn more about :ref:`Groups <groups-endpoint>`.         |
-+--------------------+-------------------------------------------------------------------------------+
-| `/permissions`_    | Gets a list of symbol groups allowed for a user. Used when you need to        |
+| `/groups`_         | Gets a list of possible :ref:`symbol groups <groups-endpoint>`.               |
+|                    | Required when you use different instrument types, when you need to            |
 |                    | restrict access to market data, hide symbols for some users,                  |
 |                    | or prevent them from paying twice for real-time data subscriptions.           |
-|                    | Learn more about :ref:`Permissions <permissions-endpoint>`.                   |
 +--------------------+-------------------------------------------------------------------------------+
-| `/symbol_info`_    | Gets a list of all instruments and a set of rules for them.                   |
-|                    | Learn more about :ref:`Symbol info <symbol-info-endpoint>`.                   |
+| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |
+|                    | Use it when you need to :ref:`restrict access <permissions-endpoint>` to      |
+|                    | market data, hide symbols for some users,                                     |
+|                    | or prevent them from paying twice for real-time data subscriptions.           |
 +--------------------+-------------------------------------------------------------------------------+
-| `/history`_        | Gets history data for instruments.                                            |
-|                    | Learn more about :ref:`History <history-endpoint>`.                           |
+| `/symbol_info`_    | Gets a list of all :ref:`instruments <symbol-info-endpoint>`                  |
+|                    | and a set of rules for them.                                                  |
 +--------------------+-------------------------------------------------------------------------------+
-| `/streaming`_      | Gets real-time prices for instruments.                                        |
-|                    | Learn more about :ref:`Streaming <streaming-endpoint>`.                       |
+| `/history`_        | Gets :ref:`history data <history-endpoint>` for instruments.                  |
++--------------------+-------------------------------------------------------------------------------+
+| `/streaming`_      | Gets :ref:`real-time prices <streaming-endpoint>` for instruments.            |
 +--------------------+-------------------------------------------------------------------------------+
 
 Optional endpoints
