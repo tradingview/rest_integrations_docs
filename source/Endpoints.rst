@@ -1,8 +1,8 @@
 Endpoint requirements
 -----------------------
 
-Before integrating your broker platform into TradingView,
-you should look through the list of required and optional endpoints.
+Before integrating your broker's platform into TradingView,
+you should review the list of required and optional endpoints.
 This will allow you to understand which endpoints are needed for the features you'd like to have.
 
 .. note::
@@ -13,24 +13,24 @@ Required endpoints
 
 The endpoints listed below are required for both trading and data integration.
 
-+------------------+------------------------------------------------------------------------------------------------------+
-| Endpoint         | Description                                                                                          |
-+==================+======================================================================================================+
-| `/accounts`_     | Gets a list of accounts owned by a user.                                                             |
-+------------------+------------------------------------------------------------------------------------------------------+
-| `/config`_       | Gets localized configuration.                                                                        |
-+------------------+------------------------------------------------------------------------------------------------------+
-| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account.          |
-+------------------+------------------------------------------------------------------------------------------------------+
-| `/orders`_       | Gets current session orders for the account.                                                         |
-+------------------+------------------------------------------------------------------------------------------------------+
-| `/state`_        | Gets account information.                                                                            |
-+------------------+------------------------------------------------------------------------------------------------------+
-| `/quotes`_       | Gets current prices of the instruments.                                                              |
-|                  | Note that `/quotes`_ is not a strictly required endpoint.                                            |
-|                  | However, TradingView highly recommends implementing it due to possible delays in data from exchange. |
-|                  | This may lead users' orders to execute at unexpected prices.                                         |
-+------------------+------------------------------------------------------------------------------------------------------+
++------------------+----------------------------------------------------------------------------------------------------------+
+| Endpoint         | Description                                                                                              |
++==================+==========================================================================================================+
+| `/accounts`_     | Gets a list of accounts owned by a user.                                                                 |
++------------------+----------------------------------------------------------------------------------------------------------+
+| `/config`_       | Gets localized configuration.                                                                            |
++------------------+----------------------------------------------------------------------------------------------------------+
+| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account.              |
++------------------+----------------------------------------------------------------------------------------------------------+
+| `/orders`_       | Gets current session orders for the account.                                                             |
++------------------+----------------------------------------------------------------------------------------------------------+
+| `/state`_        | Gets account information.                                                                                |
++------------------+----------------------------------------------------------------------------------------------------------+
+| `/quotes`_       | Gets current prices of the instruments.                                                                  |
+|                  | Note that `/quotes`_ is not a strictly required endpoint.                                                |
+|                  | However, TradingView highly recommends implementing it due to possible delays in data from the exchange. |
+|                  | This may lead users' orders to execute at unexpected prices.                                             |
++------------------+----------------------------------------------------------------------------------------------------------+
 
 Data related endpoints
 =======================
@@ -40,26 +40,26 @@ If you plan to use :ref:`data integration <data-integration>`, you also need to 
 +--------------------+-------------------------------------------------------------------------------+
 | Endpoint           | Description                                                                   |
 +====================+===============================================================================+
-| `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          |
-|                    | Required for :ref:`symbol mapping <symbol-mapping>` which is needed when you  |
-|                    | use TradingView market data that is available from a third-party source.      |
-+--------------------+-------------------------------------------------------------------------------+
-| `/groups`_         | Gets a list of possible :ref:`symbol groups <groups-endpoint>`.               |
-|                    | Required when you use different instrument types, when you need to            |
-|                    | restrict access to market data, hide symbols for some users,                  |
-|                    | or prevent them from paying twice for real-time data subscriptions.           |
-+--------------------+-------------------------------------------------------------------------------+
-| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |
-|                    | Use it when you need to :ref:`restrict access <permissions-endpoint>` to      |
-|                    | market data, hide symbols for some users,                                     |
-|                    | or prevent them from paying twice for real-time data subscriptions.           |
-+--------------------+-------------------------------------------------------------------------------+
 | `/symbol_info`_    | Gets a list of all :ref:`instruments <symbol-info-endpoint>`                  |
 |                    | and a set of rules for them.                                                  |
 +--------------------+-------------------------------------------------------------------------------+
 | `/history`_        | Gets :ref:`history data <history-endpoint>` for instruments.                  |
 +--------------------+-------------------------------------------------------------------------------+
 | `/streaming`_      | Gets :ref:`real-time prices <streaming-endpoint>` for instruments.            |
++--------------------+-------------------------------------------------------------------------------+
+| `/mapping`_        | Gets all broker symbols that match TradingView ones.                          |
+|                    | Required for :ref:`symbol mapping <symbol-mapping>` when you                  |
+|                    | use TradingView market data that is available from a third-party source.      |
++--------------------+-------------------------------------------------------------------------------+
+| `/groups`_         | Gets a list of possible :ref:`symbol groups <groups-endpoint>`.               |
+|                    | Required when you use different instrument types and when you need to         |
+|                    | restrict access to market data, hide symbols for some users,                  |
+|                    | or prevent them from paying twice for a real-time data subscription.          |
++--------------------+-------------------------------------------------------------------------------+
+| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |
+|                    | Use it when you need to :ref:`restrict access <permissions-endpoint>` to      |
+|                    | market data, hide symbols for some users,                                     |
+|                    | or prevent them from paying twice for a real-time data subscription.          |
 +--------------------+-------------------------------------------------------------------------------+
 
 Optional endpoints
