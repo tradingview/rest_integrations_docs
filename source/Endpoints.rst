@@ -1,7 +1,7 @@
 Endpoint requirements
 -----------------------
 
-Before you start integrating your broker platform into TradingView,
+Before integrating your broker platform into TradingView,
 you should look through the list of required and optional endpoints.
 This will allow you to understand which endpoints are needed for the features you'd like to have.
 
@@ -11,7 +11,7 @@ This will allow you to understand which endpoints are needed for the features yo
 Required endpoints
 ...................
 
-The endpoints listed below are required for the integration.
+The endpoints listed below are required for both trading and data integration.
 
 +------------------+------------------------------------------------------------------------------------------------------+
 | Endpoint         | Description                                                                                          |
@@ -33,6 +33,39 @@ The endpoints listed below are required for the integration.
 |                  | This may lead users' orders to execute at unexpected prices.                                         |
 +------------------+------------------------------------------------------------------------------------------------------+
 
+Data related endpoints
+=======================
+
+If you plan to implement :ref:`data integration <data-integration>`, you also need to implement the following endpoints.
+
++--------------------+-------------------------------------------------------------------------------+
+| Endpoint           | Description                                                                   |
++====================+===============================================================================+
+| `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          |
+|                    |                                                                               |
+|                    | Required for :ref:`symbol mapping <symbol-mapping>` which is needed when you  |
+|                    | use TradingView market data that is available from a third-party source.      |
++--------------------+-------------------------------------------------------------------------------+
+| `/groups`_         | Gets a list of possible symbol groups. Required when you use different        |
+|                    | instrument types, when you need to restrict access to market data, hide       |
+|                    | symbols for some users, or prevent them from paying twice for real-time       |
+|                    | data subscriptions. Learn more about :ref:`Groups <groups-endpoint>`.         |
++--------------------+-------------------------------------------------------------------------------+
+| `/permissions`_    | Gets a list of symbol groups allowed for a user. Used when you need to        |
+|                    | restrict access to market data, hide symbols for some users,                  |
+|                    | or prevent them from paying twice for real-time data subscriptions.           |
+|                    | Learn more about :ref:`Permissions <permissions-endpoint>`.                   |
++--------------------+-------------------------------------------------------------------------------+
+| `/symbol_info`_    | Gets a list of all instruments and a set of rules for them.                   |
+|                    | Learn more about :ref:`Symbol info <symbol-info-endpoint>`.                   |
++--------------------+-------------------------------------------------------------------------------+
+| `/history`_        | Gets history data for instruments.                                            |
+|                    | Learn more about :ref:`History <history-endpoint>`.                           |
++--------------------+-------------------------------------------------------------------------------+
+| `/streaming`_      | Gets real-time prices for instruments.                                        |
+|                    | Learn more about :ref:`Streaming <streaming-endpoint>`.                       |
++--------------------+-------------------------------------------------------------------------------+
+
 Optional endpoints
 ...................
 
@@ -44,9 +77,6 @@ The table below describes optional endpoints which can be required in several ca
 | `/authorize`_      | Authenticates users by their usernames and passwords.                         | Required when :ref:`Password Bearer <password-bearer-flow>` authentication type is used.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/logout`_         | Logs users out from broker accounts.                                          | Required when ``supportLogout: true``` is set in the `/accounts`_ endpoint.                                            |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/mapping`_        | Gets all broker symbols matched to TradingView ones.                          | Required for :ref:`symbol mapping <symbol-mapping>` which is needed when you use TradingView market data               |
-|                    |                                                                               | that is available from a third-party source.                                                                           |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/positions`_      | Modifies an existing position stop loss or take profit or both.               | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
@@ -65,28 +95,11 @@ The table below describes optional endpoints which can be required in several ca
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/depth`_          | Gets current :ref:`depth of market <depth-of-market>` for the instrument.     | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/getLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
+| `/getLeverage`_    | Gets changes on every action users do in order ticket.                        | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/setLeverage`_    |                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
+| `/previewLeverage`_| Displays preview information when users edit the leverage.                    | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/previewLeverage`_|                                                                               | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/groups`_         | Gets a list of possible symbol groups.                                        | Required when you use different instrument types, when you need to restrict access to market data,                     |
-|                    |                                                                               | hide symbols for some users, or prevent them from paying twice for real-time data subscriptions.                       |
-|                    |                                                                               | Learn more about :ref:`Groups <groups-endpoint>`.                                                                      |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              | Required when you need to restrict access to market data, hide symbols for some users,                                 |
-|                    |                                                                               | or prevent them from paying twice for real-time data subscriptions.                                                    |
-|                    |                                                                               | Learn more about :ref:`Permissions <permissions-endpoint>`.                                                            |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/symbol_info`_    | Gets a list of all instruments and a set of rules for them.                   | Required when you implement :ref:`data integration <data-integration>`.                                                |
-|                    |                                                                               | Learn more about :ref:`Symbol info <symbol-info-endpoint>`.                                                            |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/history`_        | Gets history data for instruments.                                            | Required when you implement :ref:`data integration <data-integration>`.                                                |
-|                    |                                                                               | Learn more about :ref:`History <history-endpoint>`.                                                                    |
-+--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/streaming`_      | Gets real-time prices for instruments.                                        | Required when you implement :ref:`data integration <data-integration>`.                                                |
-|                    |                                                                               | Learn more about :ref:`Streaming <streaming-endpoint>`.                                                                |
+| `/setLeverage`_    | Sets the leverage when users confirm changing it.                             | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. links
