@@ -20,33 +20,34 @@ Concepts
 Orders and Orders history
 .........................
 
-The orders statuses can be divided into two groups in our API:
+Orders have statuses that can be divided into two groups in the API:
 
-* transitional (``placing``, ``inactive``, ``working``),
-* final (``rejected``, ``filled``, ``canceled``).
+* transitional (``placing``, ``inactive``, ``working``)
+* final (``rejected``, ``filled``, ``canceled``)
 
-The status of an order can only change from transitional to final, but not vice versa.
+.. note:: 
+  The order status can only change from transitional to final, not vice versa.
 
-Requests:
+Endpoints:
 
-* In response to the `/orders`_ request, we expect ALL orders of the current trading session and orders with
+* `/orders`_ is used to get **all** orders of the current trading session and orders with
   transitional statuses from previous trading sessions.
-* In response to the `/ordersHistory`_ request, we expect ALL orders with final statuses from previous trading
-  sessions.
+  However, orders that have received the final status should be included in the list before the end of the trading session, 
+  or at least within *one minute* after the change in the order status.
 
-Tab Display:
+* `/ordersHistory`_ is used to get order history for the account.
+  In response to `/ordersHistory`_, TradingView expects **all** orders with final statuses from previous trading sessions.
+  Set ``supportOrdersHistory: true`` in `/accounts`_ if you provide orders history for accounts.
+
+.. info::
+  The current session is the interval from the user's login to their logout.
+
+Tab display:
 
 * The Orders tab displays all orders that come in response to the `/orders`_ request.
 * The History tab displays all orders that come in response to the `/ordersHistory`_ request and orders from
   `/orders`_ that have the final status. So, orders with final statuses from `/orders`_ are simultaneously displayed
   on both the Orders and the History tabs.
-
-`/orders`_ is used to get current session orders and orders with ``working`` status from the previous sessions. However,
-orders, that have received final status should be included in the list until the end of the trading session, or at 
-least within 1 minute after changing order status.
-
-`/ordersHistory`_ is used to get order history for the account. It is expected that returned orders would have a final
-status. This endpoint is optional. Set ``supportOrdersHistory`` flag in `/accounts`_ to ``true`` if you provide orders history for accounts. The ``accountId`` parameter is required.
 
 .. _trading-concepts-brackets:
 
