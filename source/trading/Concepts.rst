@@ -39,7 +39,7 @@ Endpoints:
   In response to `/ordersHistory`_, TradingView expects **all** orders with final statuses from previous trading sessions.
   Set ``supportOrdersHistory: true`` in `/accounts`_ if you provide orders history for accounts.
 
-.. info::
+.. admonition:: Info
   The current session is the interval from the user's login to their logout.
 
 Tab display:
