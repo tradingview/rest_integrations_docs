@@ -26,11 +26,6 @@ The endpoints listed below are required for both trading and data integration.
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/state`_        | Gets account information.                                                                                |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/quotes`_       | Gets current prices of the instruments.                                                                  |
-|                  | Note that `/quotes`_ is not a strictly required endpoint.                                                |
-|                  | However, TradingView highly recommends implementing it due to possible delays in data from the exchange. |
-|                  | This may lead users' orders to execute at unexpected prices.                                             |
-+------------------+----------------------------------------------------------------------------------------------------------+
 
 Data related endpoints
 =======================
@@ -87,7 +82,10 @@ The table below describes optional endpoints which can be required in several ca
 | `/previewOrder`_   | Gets estimated cost, commission, and other order information                  | Required when either ``supportPlaceOrderPreview`` or ``supportModifyOrderPreview`` is set to ``true`` in `/accounts`_. |
 |                    | without the order actually being placed or modified.                          |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/quotes`_         | Gets current instrument prices.                                               | Required when instruments with ``hasQuotes: true`` are present in the `/instruments`_ response.                        |
+| `/quotes`_         | Gets current instrument prices.                                               | TradingView highly recommends implementing `quotes`_ due to possible delays in data from the exchange.                 |
+|                    |                                                                               | This may lead users' orders to execute at unexpected prices.                                                           |
+|                    |                                                                               |                                                                                                                        |
+|                    |                                                                               | Required when instruments with ``hasQuotes: true`` are present in the `/instruments`_ response.                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/depth`_          | Gets current :ref:`depth of market <depth-of-market>` for the instrument.     | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
