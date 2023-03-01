@@ -42,18 +42,9 @@ If you plan to use :ref:`data integration <data-integration>`, you also need to 
 +--------------------+-------------------------------------------------------------------------------+
 | `/streaming`_      | Gets :ref:`real-time prices <streaming-endpoint>` for instruments.            |
 +--------------------+-------------------------------------------------------------------------------+
-| `/mapping`_        | Gets all broker symbols that match TradingView ones.                          |
-|                    | Required for :ref:`symbol mapping <symbol-mapping>` when you                  |
-|                    | use TradingView market data that is available from a third-party source.      |
-+--------------------+-------------------------------------------------------------------------------+
 | `/groups`_         | Gets a list of possible :ref:`symbol groups <groups-endpoint>`.               |
 |                    | Required when you use different instrument types and when you need to         |
 |                    | restrict access to market data, hide symbols for some users,                  |
-|                    | or prevent them from paying twice for a real-time data subscription.          |
-+--------------------+-------------------------------------------------------------------------------+
-| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              |
-|                    | Use it when you need to :ref:`restrict access <permissions-endpoint>` to      |
-|                    | market data, hide symbols for some users,                                     |
 |                    | or prevent them from paying twice for a real-time data subscription.          |
 +--------------------+-------------------------------------------------------------------------------+
 
@@ -98,6 +89,12 @@ The table below describes optional endpoints which can be required in several ca
 | `/previewLeverage`_| Displays preview information when users edit the leverage.                    | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/setLeverage`_    | Sets the leverage when users confirm changing it.                             | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/mapping`_        | Gets all broker symbols that match the TradingView ones.                      | Required for :ref:`symbol mapping <symbol-mapping>` when you                                                           |
+|                    |                                                                               | use TradingView market data that is available from a third-party source.                                               |
++--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| `/permissions`_    | Gets a list of symbol groups allowed for a user.                              | Required for :ref:`restricting access <permissions-endpoint>` to market data, hide symbols for some users,             |
+|                    |                                                                               | or prevent them from paying twice for a real-time data subscription.                                                   | 
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 
 .. links
