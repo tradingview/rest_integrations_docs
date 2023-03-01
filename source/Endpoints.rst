@@ -16,15 +16,15 @@ The endpoints listed below are required for both trading and data integration.
 +------------------+----------------------------------------------------------------------------------------------------------+
 | Endpoint         | Description                                                                                              |
 +==================+==========================================================================================================+
-| `/accounts`_     | Gets a list of accounts owned by a user.                                                                 |
+| `/accounts`_     | Gets a list of accounts (sub accounts) owned by a user.                                                  |
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/config`_       | Gets localized configuration.                                                                            |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account.              |
+| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account (sub account).|
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/orders`_       | Gets current session orders for the account.                                                             |
+| `/orders`_       | Gets current session orders for the account (sub account).                                               |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/state`_        | Gets account information.                                                                                |
+| `/state`_        | Gets account (sub account) information.                                                                  |
 +------------------+----------------------------------------------------------------------------------------------------------+
 
 Data related endpoints
@@ -73,14 +73,14 @@ The table below describes optional endpoints which can be required in several ca
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Note that you should implement either `/positions`_ or `/balances`_ or both endpoints in your integration.             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/balances`_       | Gets crypto balances for an account.                                          | Required for Crypto Spot Trading.                                                                                      |
+| `/balances`_       | Gets crypto balances for an account (sub account).                            | Required for Crypto Spot Trading.                                                                                      |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Note that you should implement either `/positions`_ or `/balances`_ or both endpoints in your integration.             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/executions`_     | Gets a list of executions (fills or trades) for an account and an instrument. | Required when ``supportExecutions: true`` is set in `/accounts`_.                                                      |
-|                    |                                                                               | If `/executions`_ is not implemented, transactions will not be displayed on the chart.                                 |
+| `/executions`_     | Gets a list of executions (fills or trades) for an account (sub account)      | Required when ``supportExecutions: true`` is set in `/accounts`_.                                                      |
+|                    | and an instrument.                                                            | If `/executions`_ is not implemented, transactions will not be displayed on the chart.                                 |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/ordersHistory`_  | Gets order history for an account.                                            | Required when ``supportOrdersHistory: true`` is set in `/accounts`_. All :ref:`orders <trading-concepts-orders>`       |
+| `/ordersHistory`_  | Gets order history for an account (sub accounts).                             | Required when ``supportOrdersHistory: true`` is set in `/accounts`_. All :ref:`orders <trading-concepts-orders>`       |
 |                    |                                                                               | that come in response to ``/ordersHistory`` requests are displayed on the *History* tab.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/previewOrder`_   | Gets estimated cost, commission, and other order information                  | Required when either ``supportPlaceOrderPreview`` or ``supportModifyOrderPreview`` is set to ``true`` in `/accounts`_. |
