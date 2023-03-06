@@ -23,34 +23,34 @@ Orders and orders history
 Orders
 ~~~~~~~
 
-Orders are instructions to a broker to purchase or sell assets on a users's behalf.
-On the TradingView platform, the *Orders* tab displays all orders that come in response to `/orders`_.
+Orders are instructions to a broker to purchase or sell assets on a user's behalf.
+On the TradingView platform, the *Orders* tab displays all orders received in response to `/orders`_.
 
 .. image:: ../../images/Trading_Concepts_OrdersTab.png
     :alt: Orders tab
     :align: center
 
 When an order is placed, it follows a process of order execution.
-In order execution process, orders have statuses that can be divided into two groups:
+In the order execution process, orders have statuses that can be divided into two groups:
 
 * Transitional
 
  * Placing — an order was not created on the broker's side yet.
- * Working — an order was created and approved by exchange but not executed yet.
+ * Working — an order was created and approved by the exchange but not executed yet.
  * Inactive — a bracket order is created but waiting for a base order to be filled.
 
 * Final
 
  * Filled — an order is successfully executed.
- * Canceled — an order is cancelled by a user.
+ * Canceled — an order is canceled by a user.
  * Rejected — an order is rejected for some reason, e.g., the exchange rejected the order.
 
 .. important::
   1. The order status can only change from transitional to final, not vice versa.
    
-  2. TradingView doesn't expect the *Placing* status in response to `/orders`_ as it mainly used as an internal status.
-     For an order that is already in the system, but not at work, use the *Inactive* status.
-     Exception: the broker has registered an order, the exchange has not yet confirmed the status — in this case, use the *Placing* status.
+  2. TradingView doesn't expect the *placing* status in response to `/orders`_ as it is mainly used as an internal status.
+     For an order that is already in the system, but not at work, use the *inactive* status.
+     Exception: the broker has registered an order, but the exchange has not yet confirmed the status — in this case, use the *Placing* status.
 
 The `/orders`_ endpoint is used to get *all* orders of the current session 
 and orders with transitional statuses from previous sessions (otherwise, the user will not see that there is a pending order).
@@ -58,13 +58,13 @@ Orders that have received the final status should be included in the list before
 or at least within *one minute* after the change in the order status.
 
 .. note::
-  Current session is an interval from a user's login to their logout.
+  The current session is an interval from a user's login to their logout.
 
 Order history
 ~~~~~~~~~~~~~~
 
-On the TradingView platform, the *History* tab displays all orders that come in response to the `/ordersHistory`_ request
-and orders from `/orders`_ that have the final status.
+On the TradingView platform, the *History* tab displays all orders received in response to the `/ordersHistory`_ request
+and orders with the final status received from `/orders`_ .
 Orders with final statuses from `/orders`_ are simultaneously displayed on both the *Orders* and the *History* tabs.
 
 .. image:: ../../images/Trading_Concepts_HistoryTab.png
