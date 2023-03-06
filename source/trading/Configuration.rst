@@ -35,18 +35,32 @@ previous one.
 Pulling intervals
 .................
 
-Pulling intervals are designed to determine the frequency of requests to a specific endpoint. They are configurable 
-at the broker level only. Consider the infrastructure when configuring the intervals to avoid dropping
-connections on the broker's side. High values in requests can cause rate limit errors.
-  
-TradingView does not strictly limit the amount of pulling intervals for requests, however, it is not recommended 
-to set their values higher than the maximum recommended. Because the TradingView UI can become 
-unresponsive to the user experience, which can lead to user complaints.
+Pulling intervals are designed to determine the frequency of requests to a specific endpoint.
+It is the only way TradingView can track if anything was changed on the user's account.
+If your integration doesn't comply with the request frequency,
+TradingView UI can become unresponsive and display outdated information to users.
+This may lead to user complaints.
 
-Matching fields to requests:
+Pulling intervals must be configurable at the broker's level only and defined in the ``pullingInterval`` object of `/config`_.
+Consider the infrastructure when configuring the intervals to avoid dropping connections on the broker's side.
+High values in requests can cause rate-limit errors.
 
-* ``quotes`` --- the `/quotes`_ and `/depth`_ requests (max 1000ms)
-* ``accountManager`` --- the `/state`_ request (max 1500ms)
-* ``orders`` --- the `/orders`_ request (max 1000ms)
-* ``positions`` --- the `/positions`_ request (max 1500ms)
-* ``balances`` --- the `/balances`_ request (max 1500ms)
+The ``pullingInterval`` object has the following fields:
+
++--------------------+--------------------------------------------+---------------+-----------+
+| Field              | Description                                | Default value | Max value |
++====================+============================================+===============+===========+
+| ``quotes``         | For the `/quotes`_ and `/depth`_ requests. | 500 ms        | 1000 ms   |
++--------------------+--------------------------------------------+---------------+-----------+
+| ``orders``         | For the `/orders`_ requests.               | 500 ms        | 1000 ms   |
++--------------------+--------------------------------------------+---------------+-----------+
+| ``accountManager`` | For the `/state`_ requests.                | 500 ms        | 1500 ms   |
++--------------------+--------------------------------------------+---------------+-----------+
+| ``positions``      | For the `/positions`_ requests.            | 1000 ms       | 1500 ms   |
++--------------------+--------------------------------------------+---------------+-----------+
+| ``balances``       | For the `/balances`_ requests.             | 1000 ms       | 1500 ms   |
++--------------------+--------------------------------------------+---------------+-----------+
+
+.. important::
+  TradingView does not strictly limit the number of pulling intervals for requests, however,
+  it is not recommended to set their values higher than the maximum recommended.
