@@ -13,6 +13,9 @@ Glossary
       The `Cboe BZX`_ exchange (formerly BATS) provides US stock data for free. Their data is often very
       similar to the data from the exchanges, but there `can be differences`_. 
 
+   Current session
+      An interval from a user's login to their logout.
+   
    Mapping symbol
       The mapping between the names of the broker\'s instruments and TradingView instruments. This mapping solves the
       problem of TradingView and broker symbol names mismatching.

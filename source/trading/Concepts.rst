@@ -17,37 +17,59 @@ Concepts
 
 .. _trading-concepts-orders:
 
-Orders and Orders history
+Orders and orders history
 .........................
 
-Orders have statuses that can be divided into two groups in the API:
+Orders
+~~~~~~~
 
-* transitional (``placing``, ``inactive``, ``working``)
-* final (``rejected``, ``filled``, ``canceled``)
+Orders are instructions to a broker to purchase or sell assets on a users's behalf.
+On the TradingView platform, the *Orders* tab displays all orders that come in response to `/orders`_.
 
-.. note:: 
-  The order status can only change from transitional to final, not vice versa.
+.. image:: ../../images/Trading_Concepts_OrdersTab.png
+    :alt: Orders tab
+    :align: center
 
-Endpoints:
+When an order is placed, it follows a process of order execution.
+In order execution process, orders have statuses that can be divided into two groups:
 
-* `/orders`_ is used to get **all** orders of the current trading session and orders with
-  transitional statuses from previous trading sessions.
-  However, orders that have received the final status should be included in the list before the end of the trading session, 
-  or at least within *one minute* after the change in the order status.
+* Transitional
+  * Placing — an order was not created on the broker's side yet.
+  * Working — an order was created and approved by exchange but not executed yet.
+  * Inactive — a bracket order is created but waiting for a base order to be filled.
+* Final
+  * Filled — an order is successfully executed.
+  * Canceled — an order is cancelled by a user.
+  * Rejected — an order is rejected for some reason, e.g., the exchange rejected the order.
 
-* `/ordersHistory`_ is used to get order history for the account.
-  In response to `/ordersHistory`_, TradingView expects **all** orders with final statuses from previous trading sessions.
-  Set ``supportOrdersHistory: true`` in `/accounts`_ if you provide orders history for accounts.
+.. important::
+  1. The order status can only change from transitional to final, not vice versa.
+   
+  2. TradingView doesn't expect the *Placing* status in response to `/orders`_ as it mainly used as an internal status.
+     For an order that is already in the system, but not at work, use the *Inactive* status.
+     Exception: the broker has registered an order, the exchange has not yet confirmed the status — in this case, use the *Placing* status.
+
+The `/orders`_ endpoint is used to get *all* orders of the current session 
+and orders with transitional statuses from previous sessions (otherwise, the user will not see that there is a pending order).
+Orders that have received the final status should be included in the list before the end of the session, 
+or at least within *one minute* after the change in the order status.
 
 .. note::
-  The current session is the interval from the user's login to their logout.
+  Current session is an interval from a user's login to their logout.
 
-Tab display:
+Order history
+~~~~~~~~~~~~~~
 
-* The Orders tab displays all orders that come in response to the `/orders`_ request.
-* The History tab displays all orders that come in response to the `/ordersHistory`_ request and orders from
-  `/orders`_ that have the final status. So, orders with final statuses from `/orders`_ are simultaneously displayed
-  on both the Orders and the History tabs.
+On the TradingView platform, the *History* tab displays all orders that come in response to the `/ordersHistory`_ request
+and orders from `/orders`_ that have the final status.
+Orders with final statuses from `/orders`_ are simultaneously displayed on both the *Orders* and the *History* tabs.
+
+.. image:: ../../images/Trading_Concepts_HistoryTab.png
+    :alt: Orders history
+    :align: center
+
+The `/ordersHistory`_ endpoint is used to get order history for the account.
+To provide order history for accounts, set ``supportOrdersHistory: true`` in the `/accounts`_ endpoint.
 
 .. _trading-concepts-brackets:
 
