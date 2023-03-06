@@ -34,13 +34,16 @@ When an order is placed, it follows a process of order execution.
 In order execution process, orders have statuses that can be divided into two groups:
 
 * Transitional
-  * Placing — an order was not created on the broker's side yet.
-  * Working — an order was created and approved by exchange but not executed yet.
-  * Inactive — a bracket order is created but waiting for a base order to be filled.
+
+ * Placing — an order was not created on the broker's side yet.
+ * Working — an order was created and approved by exchange but not executed yet.
+ * Inactive — a bracket order is created but waiting for a base order to be filled.
+
 * Final
-  * Filled — an order is successfully executed.
-  * Canceled — an order is cancelled by a user.
-  * Rejected — an order is rejected for some reason, e.g., the exchange rejected the order.
+
+ * Filled — an order is successfully executed.
+ * Canceled — an order is cancelled by a user.
+ * Rejected — an order is rejected for some reason, e.g., the exchange rejected the order.
 
 .. important::
   1. The order status can only change from transitional to final, not vice versa.
