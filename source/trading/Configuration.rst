@@ -9,8 +9,8 @@
 .. _`/quotes`: https://www.tradingview.com/rest-api-spec/#operation/getQuotes
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 
-Configuring
------------
+Configuration
+--------------
 
 .. .. contents:: :local:
 ..    :depth: 1
@@ -30,10 +30,11 @@ All these requests are executed once when logging into the broker integration. T
 same UI elements is as follows: *broker*, *account*, *instrument*. Each subsequent configuration overrides the
 previous one.
 
-.. _trading-configuring-pulling-intervals:
+.. _trading-configuration-pulling-intervals:
 
 Pulling intervals
 .................
+
 Pulling intervals are designed to determine the frequency of requests to a specific endpoint. They are configurable 
 at the broker level only. Consider the infrastructure when configuring the intervals to avoid dropping
 connections on the broker's side. High values in requests can cause rate limit errors.

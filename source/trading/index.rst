@@ -4,7 +4,7 @@ Trading integration
 .. toctree::
    :maxdepth: 2
 
-   Configuring
+   Configuration
    Concepts
    Authentication
    UI_elements
