@@ -22,7 +22,7 @@ The endpoints listed below are required for both trading and data integration.
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account (sub account).|
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/orders`_       | Gets current session orders for the account (sub account).                                               |
+| `/orders`_       | Gets, places, modifies, or deletes current session orders for the account (sub account).                 |
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/state`_        | Gets account (sub account) information.                                                                  |
 +------------------+----------------------------------------------------------------------------------------------------------+
@@ -58,9 +58,9 @@ The table below describes optional endpoints which can be required in several ca
 +====================+===============================================================================+========================================================================================================================+
 | `/authorize`_      | Authenticates users by their usernames and passwords.                         | Required when :ref:`Password Bearer <password-bearer-flow>` authentication type is used.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/logout`_         | Logs users out from broker accounts.                                          | Required when ``supportLogout: true``` is set in the `/accounts`_ endpoint.                                            |
+| `/logout`_         | Sends logout.                                                                 | Required when ``supportLogout: true``` is set in the `/accounts`_ endpoint.                                            |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/positions`_      | Gets positions for a broker account (sub account).                            | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
+| `/positions`_      | Gets, modifies, or deletes positions for a broker account (sub account).      | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Note that you should implement either `/positions`_ or `/balances`_ or both endpoints in your integration.             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
@@ -77,14 +77,14 @@ The table below describes optional endpoints which can be required in several ca
 | `/previewOrder`_   | Gets estimated cost, commission, and other order information                  | Required when either ``supportPlaceOrderPreview`` or ``supportModifyOrderPreview`` is set to ``true`` in `/accounts`_. |
 |                    | without the order actually being placed or modified.                          |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/quotes`_         | Gets current instrument prices.                                               | TradingView highly recommends implementing `/quotes`_ due to possible delays in data from the exchange.                |
+| `/quotes`_         | Gets current instrument prices and its data restrictions.                     | TradingView highly recommends implementing `/quotes`_ due to possible delays in data from the exchange.                |
 |                    |                                                                               | This may lead users' orders to execute at unexpected prices.                                                           |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Required when there are instruments with ``hasQuotes: true`` in the `/instruments`_ response.                          |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/depth`_          | Gets current :ref:`depth of market <depth-of-market>` for the instrument.     | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/getLeverage`_    | Gets changes on every action users do in an order ticket                      | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
+| `/getLeverage`_    | Gets changes on every action users do in an order ticket.                     | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/previewLeverage`_| Displays preview information when users edit the leverage.                    | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
