@@ -11,7 +11,7 @@ This will allow you to understand which endpoints are needed for the features yo
 Required endpoints
 ...................
 
-The endpoints listed below are required for both trading and data integration.
+The endpoints listed below are required for trading integration.
 
 +------------------+----------------------------------------------------------------------------------------------------------+
 | Endpoint         | Description                                                                                              |
@@ -22,7 +22,7 @@ The endpoints listed below are required for both trading and data integration.
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account (sub account).|
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/orders`_       | Gets, places, modifies, or deletes current session orders for the account (sub account).                 |
+| `/orders`_       | Gets, places, modifies, or deletes orders for the account (sub account).                                 |
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/state`_        | Gets account (sub account) information.                                                                  |
 +------------------+----------------------------------------------------------------------------------------------------------+
@@ -87,7 +87,7 @@ The table below describes optional endpoints which can be required in several ca
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/depth`_          | Gets current :ref:`depth of market <depth-of-market>` for the instrument.     | Required when ``supportLevel2Data: true`` is set in `/accounts`_.                                                      |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/getLeverage`_    | Gets changes on every action users do in an order ticket.                     | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
+| `/getLeverage`_    | Gets changes on every action users do in the order ticket.                    | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/previewLeverage`_| Displays preview information when users edit the leverage.                    | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
