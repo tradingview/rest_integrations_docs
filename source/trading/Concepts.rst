@@ -35,7 +35,7 @@ In the order execution process, orders have statuses that can be divided into tw
 
 - Transitional
   
-  - Placing — an order was not created on the broker's side yet.
+  - Placing — an order was not created on the broker's side yet or the broker has registered an order, but the exchange has not yet confirmed the status.
   - Working — an order was created and approved by the exchange but not executed yet.
   - Inactive — a bracket order is created but waiting for a base order to be filled.
 
@@ -50,15 +50,11 @@ In the order execution process, orders have statuses that can be divided into tw
    
   2. TradingView doesn't expect the *placing* status in response to `/orders`_ as it is mainly used as an internal status.
      For an order that is already in the system, but not at work, use the *inactive* status.
-     Exception: the broker has registered an order, but the exchange has not yet confirmed the status — in this case, use the *Placing* status.
 
-The `/orders`_ endpoint is used to get *all* orders of the current session 
+The `/orders`_ endpoint is used to get *all* orders of the current :term:`trading session` 
 and orders with transitional statuses from previous sessions (otherwise, the user will not see that there is a pending order).
 Orders that have received the final status should be included in the list before the end of the session, 
 or at least within *one minute* after the change in the order status.
-
-.. note::
-  The current session is an interval from a user's login to their logout.
 
 Order history
 ~~~~~~~~~~~~~~
