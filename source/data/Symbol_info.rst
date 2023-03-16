@@ -56,7 +56,7 @@ Stocks from the different exchanges under one prefix
 	
 Forex
 ~~~~~
-``<FX>:<Currecny><Currency>``
+``<FX>:<Currency><Currency>``
 
 .. code-block:: cfg
 
@@ -92,6 +92,20 @@ Crypto
 	BTCUSD → OKEX:BTCUSD // crypto pair
 	BTCUSDT.P → OKEX:BTCUSDT.P // perpetual swap contract
 	BTCUSDT25H2022 → BITMEX:BTCUSDT25H2022 // futures contract
+
+Decentralized Exchanges (DEX)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Format: ``<BASECURRENCY>:<CURRENCY>_<First 6 hash numbers of the pair>`` 
+Format for pairs converted to USD or other fiat currency: ``<BASECURRENCY>:<CURRENCY>_<first 6 hash numbers of the pair>.USD``
+
+Examples:
+
+.. code-block:: cfg
+	PANCAKESWAP:ETHUSD_74E471
+	PANCAKESWAP:ETHUSD_74E471.USD  
+
+
 
 
 Price display
