@@ -105,9 +105,6 @@ Examples:
 	PANCAKESWAP:ETHUSD_74E471
 	PANCAKESWAP:ETHUSD_74E471.USD  
 
-
-
-
 Price display
 ......................
 
