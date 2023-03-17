@@ -6,7 +6,7 @@ you should review the list of required and optional endpoints.
 This will allow you to understand which endpoints are needed for the features you'd like to have.
 
 .. note::
-  If you are not sure what endpoints you need in your particular case, contact the TradingView team.
+  If you are not sure which endpoints you need in your particular case, contact the TradingView team.
 
 Required endpoints
 ...................
@@ -16,21 +16,21 @@ The endpoints listed below are required for trading integration.
 +------------------+----------------------------------------------------------------------------------------------------------+
 | Endpoint         | Description                                                                                              |
 +==================+==========================================================================================================+
-| `/accounts`_     | Gets a list of accounts (sub accounts) owned by a user.                                                  |
+| `/accounts`_     | Gets a list of accounts (subaccounts) owned by a user.                                                   |
 +------------------+----------------------------------------------------------------------------------------------------------+
 | `/config`_       | Gets localized configuration.                                                                            |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account (sub account).|
+| `/instruments`_  | Gets the list of the instruments that are available for trading with the specified account (subaccount). |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/orders`_       | Gets, places, modifies, or deletes orders for the account (sub account).                                 |
+| `/orders`_       | Gets, places, modifies, or deletes orders for the account (subaccount).                                  |
 +------------------+----------------------------------------------------------------------------------------------------------+
-| `/state`_        | Gets account (sub account) information.                                                                  |
+| `/state`_        | Gets account (subaccount) information.                                                                   |
 +------------------+----------------------------------------------------------------------------------------------------------+
 
-Data related endpoints
+Data-related endpoints
 =======================
 
-If you plan to use :ref:`data integration <data-integration>`, you also need to implement the following endpoints.
+If you plan to :ref:`integrate data <data-integration>`, you also need to implement the following endpoints.
 
 +--------------------+-------------------------------------------------------------------------------+
 | Endpoint           | Description                                                                   |
@@ -63,24 +63,24 @@ The table below describes optional endpoints which can be required in several ca
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Required when ``supportLogout: true`` is set in the `/accounts`_ endpoint.                                             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/positions`_      | Gets, modifies, or deletes positions for a broker account (sub account).      | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
+| `/positions`_      | Gets, modifies, or deletes positions for a broker account (subaccount).       | Required unless ``supportPositions: false`` is set in `/accounts`_. Not used in Crypto Spot Trading.                   |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Note that you should implement either `/positions`_ or `/balances`_ or both endpoints in your integration.             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/balances`_       | Gets crypto balances for an account (sub account).                            | Required for Crypto Spot Trading.                                                                                      |
+| `/balances`_       | Gets crypto balances for an account (subaccount).                             | Required for Crypto Spot Trading.                                                                                      |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Note that you should implement either `/positions`_ or `/balances`_ or both endpoints in your integration.             |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/executions`_     | Gets a list of executions (fills or trades) for an account (sub account)      | Required when ``supportExecutions: true`` is set in `/accounts`_.                                                      |
+| `/executions`_     | Gets a list of executions (fills or trades) for an account (subaccount)       | Required when ``supportExecutions: true`` is set in `/accounts`_.                                                      |
 |                    | and an instrument.                                                            | If `/executions`_ is not implemented, transactions will not be displayed on the chart.                                 |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/ordersHistory`_  | Gets order history for an account (sub accounts).                             | Required when ``supportOrdersHistory: true`` is set in `/accounts`_. All :ref:`orders <trading-concepts-orders>`       |
+| `/ordersHistory`_  | Gets order history for an account (subaccounts).                              | Required when ``supportOrdersHistory: true`` is set in `/accounts`_. All :ref:`orders <trading-concepts-orders>`       |
 |                    |                                                                               | that come in response to ``/ordersHistory`` requests are displayed on the *History* tab.                               |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/previewOrder`_   | Gets estimated cost, commission, and other order information                  | Required when either ``supportPlaceOrderPreview`` or ``supportModifyOrderPreview`` is set to ``true`` in `/accounts`_. |
 |                    | without the order actually being placed or modified.                          |                                                                                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
-| `/quotes`_         | Gets current instrument prices and its data restrictions.                     | TradingView highly recommends implementing `/quotes`_ due to possible delays in data from the exchange.                |
+| `/quotes`_         | Gets the current prices of an instrument and its data restrictions.           | TradingView highly recommends implementing `/quotes`_ due to possible delays in fetching data from the exchange.       |
 |                    |                                                                               | This may lead users' orders to execute at unexpected prices.                                                           |
 |                    |                                                                               |                                                                                                                        |
 |                    |                                                                               | Required when there are instruments with ``hasQuotes: true`` in the `/instruments`_ response.                          |
@@ -94,7 +94,7 @@ The table below describes optional endpoints which can be required in several ca
 | `/setLeverage`_    | Sets the leverage when users confirm changing it.                             | Required when ``supportLeverage: true`` is set in `/accounts`_.                                                        |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/mapping`_        | Gets all broker symbols that match the TradingView ones.                      | Required for :ref:`symbol mapping <symbol-mapping>` when you                                                           |
-|                    |                                                                               | use TradingView market data that is available from a third-party source.                                               |
+|                    |                                                                               | use the TradingView market data that is available from a third-party source.                                           |
 +--------------------+-------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
 | `/permissions`_    | Gets a list of symbol groups allowed for a user.                              | Required for :ref:`restricting access <permissions-endpoint>` to market data, hide symbols for some users,             |
 |                    |                                                                               | or prevent them from paying twice for a real-time data subscription.                                                   | 
