@@ -2,6 +2,8 @@
 .. _`/history`: https://www.tradingview.com/rest-api-spec/#operation/getHistory
 .. _`/streaming`: https://www.tradingview.com/rest-api-spec/#operation/streaming
 
+.. _history-endpoint:
+
 History
 -------
 
