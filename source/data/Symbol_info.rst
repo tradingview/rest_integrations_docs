@@ -1,6 +1,8 @@
 .. links
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 
+.. _symbol-info-endpoint:
+
 Symbol info
 -----------
 

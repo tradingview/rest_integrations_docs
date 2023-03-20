@@ -3,6 +3,8 @@
 .. _`/symbol_info`: https://www.tradingview.com/rest-api-spec/#operation/getSymbolInfo
 .. _`chunked transfer encoding`: https://en.wikipedia.org/wiki/Chunked_transfer_encoding
 
+.. _streaming-endpoint:
+
 Streaming
 ---------
 
