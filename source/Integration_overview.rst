@@ -38,6 +38,9 @@ What are the parts of the integration
 The broker's integration consists of two independent parts: data integration based on a server-to-server 
 architecture and trading integration based on a client-server architecture.
 
+.. note::
+  Data and trading integration :ref:`endpoints <endpoint-requirements>` can be located on different base URLs.
+
 Why data integration is needed
 ..............................
 The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as 
