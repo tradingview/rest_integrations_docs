@@ -17,7 +17,7 @@ Concepts
 
 .. _trading-concepts-orders:
 
-Orders and orders history
+Orders and order history
 .........................
 
 Orders
