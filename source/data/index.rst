@@ -11,3 +11,5 @@ Data integration
    Session_specification
    Bar_building
    Streaming
+
+.. _data-integration:
