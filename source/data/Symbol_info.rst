@@ -96,12 +96,14 @@ Crypto
 Decentralized Exchanges (DEX)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Format: ``<Base currency>:<Currency>_<First 6 hash numbers of the pair>`` 
+Format: ``<Base currency>:<Currency>_<First 6 hash numbers of the pair>``
+
 Format for pairs converted to USD or other fiat currency: ``<BASECURRENCY>:<CURRENCY>_<first 6 hash numbers of the pair>.USD``
 
 Examples:
 
 .. code-block:: cfg
+
 	PANCAKESWAP:ETHUSD_74E471
 	PANCAKESWAP:ETHUSD_74E471.USD
 
@@ -113,6 +115,7 @@ Format: ``<Exchange>:<Symbol>.<Leverage size><Long or short direction>``
 Examples:
 
 .. code-block:: cfg
+	
 	MEXC:BTCUSDT.3L // BTC 3× Long 
 	MEXC:BTCUSDT.3S // BTC 3× Short
 
