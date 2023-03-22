@@ -35,7 +35,7 @@ In the order execution process, orders have statuses that can be divided into tw
 
 - Transitional
   
-  - Placing — an order is registered by the broker, but the exchange has not yet confirmed the status.
+  - Placing — an order is registered by the broker, but the exchange has not confirmed the status yet.
   - Working — an order is created and approved by the exchange but not executed yet.
   - Inactive — an order is in the system, but not at work.
 

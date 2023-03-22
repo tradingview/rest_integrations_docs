@@ -18,7 +18,7 @@ Glossary
       For Forex and Crypto exchanges, trading session is the last 24 hours.
 
    User session
-      An interval from a user's login to their logout
+      A time interval from a user's login to their logout.
    
    Mapping symbol
       The mapping between the names of the broker\'s instruments and TradingView instruments. This mapping solves the
