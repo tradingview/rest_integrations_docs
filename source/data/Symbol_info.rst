@@ -27,97 +27,143 @@ If the symbol groups exist, their names should have a prefix as broker\'s name. 
 Symbol naming rules
 ......................
 
-Here are the symbol naming rules for different instrument types on the TradingView\'s side.
+Here are the symbol naming rules for different instrument types:
+
+- `Stocks <#stocks>`__
+- `Futures <#futures>`__
+- `Crypto <#crypto>`__
 
 Stocks
 ~~~~~~
-``<Traded Exchange>:<Symbol>``
 
-.. code-block:: cfg
+Formats
+^^^^^^^^^
 
-	AAPL → NASDAQ:AAPL
-	IBM → NYSE:IBM
-	AAA → TSX:AAA
-	ADW-B → TSX:ADW-B
-	AAN → TSXV:AAN
-	AFLT → MICEX:AFLT
++---------------------------------+---------------------------------------+
+| Type                            | Format                                |
++=================================+=======================================+
+| Stocks from one exchange        | ``<Exchange Ticker>``                 |
++---------------------------------+---------------------------------------+
+| Stocks from different exchanges | ``<Exchange Code>_<Exchange Ticker>`` |
++---------------------------------+---------------------------------------+
 
 .. note::
-  CFDs require ``is-cfd`` flag set to ``true``
+  CFDs require the ``is-cfd`` flag to be set to ``true``.
 
-Stocks from the different exchanges under one prefix
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-``<Traded Exchange>:<Exchange suffix>_<Symbol>``
+Examples
+^^^^^^^^^
 
 .. code-block:: cfg
 
-	CFD at NASDAQ:AAPL → EXCHANGENAME:NASDAQ_AAPL
-	CFD at ASX:AAPL → EXCHANGENAME:ASX_AAPL
-	
+	AAPL        // Apple stock
+	NASDAQ_AAPL // Apple stock from Nasdaq
+	ASX_AAPL    // Apple stock from ASX
+
 Forex
 ~~~~~
-``<FX>:<Currency><Currency>``
+
+Format: ``<Base Currency><Quote Currency>``
+
+Examples
+^^^^^^^^^
 
 .. code-block:: cfg
 
-	EURUSD → FX:EURUSD
-	USDEUR → FX:USDEUR
+	EURUSD // Euro to US Dollar
+	USDGBP // US Dollar to British Pound
 	
 Futures
 ~~~~~~~~
-``<Exchange>:<Root><2 Digit Day(optional)><Month Code><4 Digit Year>``
 
-.. code-block:: cfg
+Formats
+^^^^^^^^^
 
-	IMH2 → LIFFE:IMH2012
-	MAH2 → EUIDX:MAH2012
-	AVU2 → EUREX:AVU2012
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| Type                                                | Format                                                                   |
++=====================================================+==========================================================================+
+| Standard                                            | ``<Symbol Root><Month Code><Four-digit Year>``                           |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| When more than one contract is expired in one month | ``<Symbol Root><Two-digit Expiration Day><Month Code><Four-digit Year>`` |
++-----------------------------------------------------+--------------------------------------------------------------------------+
 
-If more than one contract is expired in one month, the expiration day is added to the name after the root.
+The table below represents months and their corresponding codes.
 
-.. code-block:: cfg
-
-	BTCUSD → OKEX:BTCUSD24M2020
-	ETHBTC → BITMEX:ETHBTC30U2020
++-----------+------------+
+| Month     | Month Code |
++===========+============+
+| January   | F          |
++-----------+------------+
+| February  | G          |
++-----------+------------+
+| March     | H          |
++-----------+------------+
+| April     | J          |
++-----------+------------+
+| May       | K          |
++-----------+------------+
+| June      | M          |
++-----------+------------+
+| July      | N          |
++-----------+------------+
+| August    | Q          |
++-----------+------------+
+| September | U          |
++-----------+------------+
+| October   | V          |
++-----------+------------+
+| November  | X          |
++-----------+------------+
+| December  | Z          |
++-----------+------------+
 
 .. note::
-  Futures require ``root`` and ``root-description`` parameters
+  For futures, the ``root`` and ``root-description`` fields are required in `/symbol_info`_.
+
+Examples
+^^^^^^^^^
+
+.. code-block:: cfg
+
+	ESM2023       // S&P 500 future contract (June 2023)
+	NQZ2023       // Nasdaq-100 future contract (December 2023)
+	BTCUSD24M2022 // Bitcoin future contract quoted in US Dollar (June 2022)
+	ETHBTC30U2022 // Ethereum / Bitcoin future contract (September 2022)
+
 
 Crypto
 ~~~~~~
-``<Exchange>:<Root><2 Digit Day(optional)><Month Code><4 Digit Year>``
+
+Formats
+^^^^^^^^^
+
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Type                                                  | Format                                                                       |
++=======================================================+==============================================================================+
+| Base crypto pair                                      | ``<Base Currency><Quote Currency>``                                          |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Leveraged crypto ETF's                                | ``<Base Currency><Quote Currency>.<Leverage Size><Long or Short Direction>`` |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Future contracts                                      | See the `Futures <#futures>`__ section.                                      |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Perpetual swop contracts                              | ``<Base Currency><Quote Currency>.P``                                        |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Decentralized exchanges (DEX)                         | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>``       |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| DEX for pairs converted to USD or other fiat currency | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>.USD``   |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+
+Examples
+^^^^^^^^^
 
 .. code-block:: cfg
 
-	BTCUSD → OKEX:BTCUSD // crypto pair
-	BTCUSDT.P → OKEX:BTCUSDT.P // perpetual swap contract
-	BTCUSDT25H2022 → BITMEX:BTCUSDT25H2022 // futures contract
-
-Decentralized Exchanges (DEX)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Format: ``<Base currency>:<Currency>_<First 6 hash numbers of the pair>``
-
-Format for pairs converted to USD or other fiat currency: ``<BASECURRENCY>:<CURRENCY>_<first 6 hash numbers of the pair>.USD``
-
-Examples:
-
-.. code-block:: cfg
-
-	PANCAKESWAP:ETHUSD_74E471
-	PANCAKESWAP:ETHUSD_74E471.USD
-
-Leveraged Crypto ETFs
-~~~~~~~~~~~~~~~~~~~~~~
-
-Format: ``<Exchange>:<Symbol>.<Leverage size><Long or short direction>``
-
-Examples:
-
-.. code-block:: cfg
-	
-	MEXC:BTCUSDT.3L // BTC 3× Long 
-	MEXC:BTCUSDT.3S // BTC 3× Short
+	BTCUSD            // Bitcoin / US Dollar crypto pair
+	BTCUSDT24H2023    // Bitcoin future contract quoted in US Dollar (March 2023)
+	BTCUSDT.3L        // Bitcoin 3× Long 
+	BTCUSDT.3S        // BTC 3× Short
+	BTCUSDT.P         // Bitcoin perpetual swap contract
+	ETHUSD_7380E1     // Ethereum / BTCB on BSC in US Dollar
+	ETHUSD_7380E1.USD // Ethereum / BTCB on BSC in US Dollar (converted to USD)
 
 Price display
 ......................
