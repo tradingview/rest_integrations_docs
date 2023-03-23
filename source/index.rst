@@ -12,6 +12,7 @@ Broker Integration Manual
    :maxdepth: 1
 
    Integration_overview
+   Endpoints
    trading/index
    trading_tests/index
    data/index
