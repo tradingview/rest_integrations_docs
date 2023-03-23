@@ -13,6 +13,13 @@ Glossary
       The `Cboe BZX`_ exchange (formerly BATS) provides US stock data for free. Their data is often very
       similar to the data from the exchanges, but there `can be differences`_. 
 
+   Trading session
+      The period of time that matches the primary daytime trading hours for a given exchange and locale.
+      For Forex and Crypto exchanges, trading session is the last 24 hours.
+
+   User session
+      A time interval from a user's login to their logout.
+   
    Mapping symbol
       The mapping between the names of the broker\'s instruments and TradingView instruments. This mapping solves the
       problem of TradingView and broker symbol names mismatching.
