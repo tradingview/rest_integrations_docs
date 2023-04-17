@@ -25,7 +25,7 @@ query to the `/symbol_info`_.
 If the symbol groups exist, their names should have a prefix as broker\'s name. In this case, a request to the 
 `/symbol_info`_ without groups parameter must return and error.
 
-Note that some optional fields in `/symbol_info`_ may be required depending on the instrumentation type:
+Note that some optional fields in `/symbol_info`_ may be required depending on the instrument type:
 
 - For CFDs, the ``is-cfd`` flag must be set to ``true``.
 - For futures, the ``root`` and ``root-description`` fields are required.
@@ -67,19 +67,19 @@ Forex
 Futures
 ~~~~~~~~
 
-+-----------------------------------------------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| Type                                                | Format                                                                   | Example                                                                         |
-+=====================================================+==========================================================================+=================================================================================+
-| Standard                                            | ``<Symbol Root><Month Code><Four-digit Year>``                           | ``ESM2023`` — S&P 500 future contract (June 2023)                               |
-|                                                     |                                                                          |                                                                                 |
-|                                                     |                                                                          | ``NQZ2023`` — Nasdaq-100 future contract (December 2023)                        |
-+-----------------------------------------------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------------+
-| When more than one contract is expired in one month | ``<Symbol Root><Two-digit Expiration Day><Month Code><Four-digit Year>`` | ``BTCUSD24M2022`` — Bitcoin future contract quoted in US Dollar (June 24, 2022) |
-|                                                     |                                                                          |                                                                                 |
-|                                                     |                                                                          | ``BTCUSD30M2022`` — Bitcoin future contract quoted in US Dollar (June 30, 2022) |
-+-----------------------------------------------------+--------------------------------------------------------------------------+---------------------------------------------------------------------------------+
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| Type                                                | Format                                                                   |
++=====================================================+==========================================================================+
+| Standard                                            | ``<Symbol Root><Month Code><Four-digit Year>``                           |
+|                                                     |                                                                          |
+|                                                     |                                                                          |
++-----------------------------------------------------+--------------------------------------------------------------------------+
+| When more than one contract is expired in one month | ``<Symbol Root><Two-digit Expiration Day><Month Code><Four-digit Year>`` |
+|                                                     |                                                                          |
+|                                                     |                                                                          |
++-----------------------------------------------------+--------------------------------------------------------------------------+
 
-The table below represents months and their corresponding codes.
+The table below represents months and their corresponding codes:
 
 +-----------+------------+
 | Month     | Month Code |
@@ -109,26 +109,46 @@ The table below represents months and their corresponding codes.
 | December  | Z          |
 +-----------+------------+
 
+The corresponding examples are added below:
+
+.. code-block:: cfg
+
+	ESM2023       // S&P 500 future contract (June 2023)
+	NQZ2023       // Nasdaq-100 future contract (December 2023)
+	BTCUSD24M2022 // Bitcoin future contract quoted in US Dollar (June 24, 2022)
+	BTCUSD30M2022 // Bitcoin future contract quoted in US Dollar (June 30, 2022)
+
 Crypto
 ~~~~~~
 
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| Type                                                  | Format                                                                       | Example                                                                        |
-+=======================================================+==============================================================================+================================================================================+
-| Base crypto pair                                      | ``<Base Currency><Quote Currency>``                                          | ``BTCUSD`` — Bitcoin / US Dollar crypto pair                                   |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| Leveraged crypto ETF's                                | ``<Base Currency><Quote Currency>.<Leverage Size><Long or Short Direction>`` | ``BTCUSDT.3L`` — Bitcoin 3× Long                                               |
-|                                                       |                                                                              |                                                                                |
-|                                                       |                                                                              | ``BTCUSDT.3S`` — BTC 3× Short                                                  |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| Future contracts                                      | See the `Futures <#futures>`__ section.                                      | See the `Futures <#futures>`__ section.                                        |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| Perpetual swap contracts                              | ``<Base Currency><Quote Currency>.P``                                        | ``BTCUSDT.P`` — Bitcoin perpetual swap contract                                |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| Decentralized exchanges (DEX)                         | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>``       | ``ETHUSD_7380E1`` — Ethereum / BTCB on BSC in US Dollar                        |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
-| DEX for pairs converted to USD or other fiat currency | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>.USD``   | ``ETHUSD_7380E1.USD`` — Ethereum / BTCB on BSC in US Dollar (converted to USD) |
-+-------------------------------------------------------+------------------------------------------------------------------------------+--------------------------------------------------------------------------------+
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Type                                                  | Format                                                                       |
++=======================================================+==============================================================================+
+| Base crypto pair                                      | ``<Base Currency><Quote Currency>``                                          |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Leveraged crypto ETF's                                | ``<Base Currency><Quote Currency>.<Leverage Size><Long or Short Direction>`` |
+|                                                       |                                                                              |
+|                                                       |                                                                              |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Future contracts                                      | See the `Futures <#futures>`__ section.                                      |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Perpetual swap contracts                              | ``<Base Currency><Quote Currency>.P``                                        |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| Decentralized exchanges (DEX)                         | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>``       |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+| DEX for pairs converted to USD or other fiat currency | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>.USD``   |
++-------------------------------------------------------+------------------------------------------------------------------------------+
+
+The corresponding examples are added below:
+
+.. code-block:: cfg
+
+	BTCUSD            // Bitcoin / US Dollar crypto pair
+	BTCUSDT.3L        // Bitcoin 3× Long 
+	BTCUSDT.3S        // BTC 3× Short
+	BTCUSDT.P         // Bitcoin perpetual swap contract
+	ETHUSD_7380E1     // Ethereum / BTCB on BSC in US Dollar
+	ETHUSD_7380E1.USD // Ethereum / BTCB on BSC in US Dollar (converted to USD)
 
 Price display
 ......................
