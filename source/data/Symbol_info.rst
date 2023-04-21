@@ -6,11 +6,11 @@
 Symbol info
 -----------
 
-The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them. This endpoint is requested
-every hour.
+The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
+This endpoint is requested every hour.
 
-The response body (JSON) must include an ``s`` field. The response header must include the ``Content-Type`` 
-header with the ``application/json`` value.
+The response body (JSON) must include an ``s`` field.
+The response header must include the ``Content-Type`` header with the ``application/json`` value.
 
 A ``symbol`` field is an array of strings. It is the name of the symbol that users will see. It must be unique. Symbol 
 names are always displayed in uppercase. The symbol name is validated with a regex:
@@ -19,16 +19,23 @@ names are always displayed in uppercase. The symbol name is validated with a reg
 
   [A-Z0-9._]
 
-With :ref:`division into symbol groups <groups-division>`, API must return symbols regardless of the parameters in the 
-query to the `/symbol_info`_.
-
-If the symbol groups exist, their names should have a prefix as broker\'s name. In this case, a request to the 
-`/symbol_info`_ without groups parameter must return and error.
-
 Note that some optional fields in `/symbol_info`_ may be required depending on the instrument type:
 
 - For CFDs, the ``is-cfd`` flag must be set to ``true``.
 - For futures, the ``root`` and ``root-description`` fields are required.
+
+Symbol groups
+..............
+
+If you have :ref:`groups <groups-endpoint>` implemented,
+requests to `/symbol_info`_ can be either with or without the ``group`` parameter.
+In the first case, TradingView expects to receive a list of only those symbols that belong to the group specified.
+In the second case, TradingView expects to receive a list of all symbols from all groups.
+
+Note that the symbol group ID must contain a broker name as a prefix to the group name.
+
+If you :ref:`do not have groups implemented <groups-division>`,
+your API must return symbols regardless of the parameters in the query to `/symbol_info`_.
 
 Symbol naming rules
 ......................
