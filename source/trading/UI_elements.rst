@@ -2,6 +2,7 @@
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
 .. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
+.. _`Modify Order`: https://www.tradingview.com/rest-api-spec/#operation/modifyOrder
 .. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
 .. _`/previewOrder`: https://www.tradingview.com/rest-api-spec/#operation/previewOrder
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
@@ -153,7 +154,7 @@ you must first set the ``supportPlaceOrderPreview`` and/or ``supportModifyOrderP
 When users place or modify an order, the request is first sent to `/previewOrder`_.
 In response, you can display all necessary information in the UI.
 In the *Order confirmation* dialog, users can click the *Send Order* button.
-This action will send the `Place Order`_ request.
+This action will send the `Place Order`_ or `Modify Order`_ request.
 
 Durations
 ~~~~~~~~~
