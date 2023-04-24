@@ -12,7 +12,7 @@ This endpoint is requested every hour.
 The response body (JSON) must include an ``s`` field.
 The response header must include the ``Content-Type`` header with the ``application/json`` value.
 
-A ``symbol`` field is an array of strings. It is the name of the symbol that users will see. It must be unique. Symbol 
+A ``symbol`` field is an array of strings. Each array item represents the name of the symbol that users will see. It must be unique. Symbol 
 names are always displayed in uppercase. The symbol name is validated with a regex:
 
 .. code-block:: none
@@ -116,7 +116,7 @@ The table below represents months and their corresponding codes:
 | December  | Z          |
 +-----------+------------+
 
-The corresponding examples are added below:
+Consider the examples below:
 
 .. code-block:: cfg
 
