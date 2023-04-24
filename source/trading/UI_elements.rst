@@ -2,6 +2,8 @@
 .. _`/accounts`: https://www.tradingview.com/rest-api-spec/#operation/getAccounts
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
 .. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
+.. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
+.. _`previewOrder`: https://www.tradingview.com/rest-api-spec/#operation/previewOrder
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`TradingView REST API`: https://www.tradingview.com/rest-api-spec
 
@@ -127,6 +129,31 @@ Order Ticket
    :scale: 35 %
    :alt: Order Dialog
    :align: center
+
+.. _trading-ui-order-preview:
+
+Order Preview
+~~~~~~~~~~~~~~
+
+To show users additional order details without modifying or placing the order
+you can implement the `/previewOrder`_ endpoint. 
+For example, you can display the estimated order cost, commission, and expiry date,
+as well as any warning or error messages in the *Order confirmation* dialog.
+
+.. image:: ../../images/Trading_UiElements_OrderPreview.png
+   :alt: Order Preview
+   :align: center
+
+Before implementing the `/previewOrder`_ endpoint,
+you must first set the ``supportPlaceOrderPreview`` and/or ``supportModifyOrderPreview`` flags to ``true`` in the `/accounts`_ endpoint.
+
+- ``supportPlaceOrderPreview`` is used when you want to provide more information about an order before users place it.
+- ``supportModifyOrderPreview`` is used when you want to provide more information about an order before users modify it.
+
+When users place or modify an order, the request is first sent to `/previewOrder`_.
+In response, you can display all necessary information in the UI.
+In the *Order confirmation* dialog, users can click the *Send Order* button.
+This action will send the `Place Order`_ request.
 
 Durations
 ~~~~~~~~~
