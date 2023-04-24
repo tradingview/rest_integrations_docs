@@ -9,6 +9,9 @@ Symbol info
 The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
 This endpoint is requested every hour.
 
+Response fields
+................
+
 The response body (JSON) must include an ``s`` field.
 The response header must include the ``Content-Type`` header with the ``application/json`` value.
 
@@ -141,9 +144,9 @@ Crypto
 +-------------------------------------------------------+------------------------------------------------------------------------------+
 | Perpetual swap contracts                              | ``<Base Currency><Quote Currency>.P``                                        |
 +-------------------------------------------------------+------------------------------------------------------------------------------+
-| Decentralized exchanges (DEX)                         | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>``       |
+| Decentralized exchanges (DEX)                         | ``<Base Currency><Quote Currency>_<First Six Hash Numbers of the Pair>``     |
 +-------------------------------------------------------+------------------------------------------------------------------------------+
-| DEX for pairs converted to USD or other fiat currency | ``<Base Currency><Quote Currency>_<First 6 Hash Numbers of the Pair>.USD``   |
+| DEX for pairs converted to USD or other fiat currency | ``<Base Currency><Quote Currency>_<First Six Hash Numbers of the Pair>.USD`` |
 +-------------------------------------------------------+------------------------------------------------------------------------------+
 
 The corresponding examples are added below:
