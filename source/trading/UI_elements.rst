@@ -3,7 +3,7 @@
 .. _`/config`: https://www.tradingview.com/rest-api-spec/#operation/getConfiguration
 .. _`/depth`: https://www.tradingview.com/rest-api-spec/#operation/getDepth
 .. _`Place Order`: https://www.tradingview.com/rest-api-spec/#operation/placeOrder
-.. _`previewOrder`: https://www.tradingview.com/rest-api-spec/#operation/previewOrder
+.. _`/previewOrder`: https://www.tradingview.com/rest-api-spec/#operation/previewOrder
 .. _`/state`: https://www.tradingview.com/rest-api-spec/#operation/getState
 .. _`TradingView REST API`: https://www.tradingview.com/rest-api-spec
 
