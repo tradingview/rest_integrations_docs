@@ -15,8 +15,7 @@ groups to group symbols by type. The `/groups`_ allow you to specify a list of g
   there.
 
 If a broker has many various groups of instruments, we recommend split them into groups. So, the requests to the 
-`/symbol_info`_ should be processed with the ``group`` parameter. If the ``group`` parameter isn\'t specified in the 
-`/symbol_info`_ request, you should return an error.
+`/symbol_info`_ should be processed with the ``group`` parameter.
 
 .. tip:: 
   Each integration is limited by 10 symbol groups. Each symbol group can contain up to 10K symbols in it. You cannot 
