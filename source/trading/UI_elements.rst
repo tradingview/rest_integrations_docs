@@ -27,7 +27,7 @@ By default, *Account Summary Row* displays the values of the `/state`_ request i
 
 The ``equity`` parameter is used in the order ticket to calculate risks. This parameter is optional and can be
 calculated automatically as ``balance`` + ``unrealizedPl``. If you calculate equity in a different way, provide the
-required value of ``equity`` in the responce to `/state`_.
+required value of ``equity`` in the response to `/state`_.
 
 .. code-block:: json
 
@@ -136,7 +136,7 @@ Order Ticket
 Order Preview
 ~~~~~~~~~~~~~~
 
-To show users additional order details without modifying or placing the order
+To show users additional order details without modifying or placing orders
 you can implement the `/previewOrder`_ endpoint. 
 For example, you can display the estimated order cost, commission, and expiry date,
 as well as any warning or error messages in the *Order confirmation* dialog.
@@ -145,15 +145,15 @@ as well as any warning or error messages in the *Order confirmation* dialog.
    :alt: Order Preview
    :align: center
 
-Before implementing the `/previewOrder`_ endpoint,
-you must first set the ``supportPlaceOrderPreview`` and/or ``supportModifyOrderPreview`` flags to ``true`` in the `/accounts`_ endpoint.
+To use the `/previewOrder`_ endpoint,
+set the ``supportPlaceOrderPreview`` and/or ``supportModifyOrderPreview`` flags to ``true`` in the `/accounts`_ endpoint.
 
-- ``supportPlaceOrderPreview`` is used when you want to provide more information about an order before users place it.
-- ``supportModifyOrderPreview`` is used when you want to provide more information about an order before users modify it.
+- ``supportPlaceOrderPreview`` is used when you want to provide more information about an order before a user places it.
+- ``supportModifyOrderPreview`` is used when you want to provide more information about an order before a user modifies it.
 
-When users place or modify an order, the request is first sent to `/previewOrder`_.
-In response, you can display all necessary information in the UI.
-In the *Order confirmation* dialog, users can click the *Send Order* button.
+When a user places or modifies an order, the request is first sent to `/previewOrder`_.
+In response, you can specify all the necessary information that will be displayed in the *Order confirmation* dialog.
+In *Order confirmation*, the user can click the *Send Order* button.
 This action will send the `Place Order`_ or `Modify Order`_ request.
 
 Durations
