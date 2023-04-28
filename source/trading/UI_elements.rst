@@ -136,7 +136,7 @@ Order Ticket
 Order Preview
 ~~~~~~~~~~~~~~
 
-To show users additional order details without modifying or placing orders
+To show users additional order details without modifying or placing orders,
 you can implement the `/previewOrder`_ endpoint. 
 For example, you can display the estimated order cost, commission, and expiry date,
 as well as any warning or error messages in the *Order confirmation* dialog.
