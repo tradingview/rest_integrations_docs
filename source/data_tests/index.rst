@@ -14,7 +14,7 @@ Data integration tests
 
 After you implement API, contact the TradingView team.
 They will prepare a test suite in Jenkins and provide you with credentials.
-The tests help the broker ensure that the integration with the TradingView user interface works correctly.
+The tests help you ensure that the integration with the TradingView user interface works correctly.
 
 Run tests
 ...........
@@ -23,7 +23,7 @@ Run tests
 2. Select *Data_Integrations → inspect_<project_name>* to open your project page.
 3. Go to *Build with parameters* and select the parameters that correspond to the endpoints of your API. Here, you can select all endpoints at once or just one.
 
-  .. note:: 
+  .. important::
     The ``/history`` and ``/streaming`` tests require the ``/symbol`` and ``/groups`` (if you have groups implemented) tests to pass.
     Otherwise, even if there are no issues with ``/history`` and ``/streaming``, the tests will fail.
 
@@ -54,6 +54,12 @@ The build is accompanied with an indicator in one of the following colors:
 .. image:: ../../images/DataTests_LastBuildResult.png
     :alt: Build results
     :align: center
+
+Next steps
+............
+
+To continue with the integration process, ensure that you pass all tests for `/symbol_info`_, `/history`_, and `/streaming`_.
+Otherwise, the TradingView team will not be able to process the data delivery.
 
 When all tests are passed, contact the TradingView team for further instructions.
 Usually, the process of delivering data to production takes 1−2 weeks after testing is completed.
