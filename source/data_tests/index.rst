@@ -58,7 +58,7 @@ The build is accompanied with an indicator in one of the following colors:
 Next steps
 ............
 
-To continue with the integration process, ensure that you pass all tests for `/symbol_info`_, `/history`_, and `/streaming`_.
+To continue with the integration process, ensure that all tests for `/symbol_info`_, `/history`_, and `/streaming`_ have passed.
 Otherwise, the TradingView team will not be able to process the data delivery.
 
 When all tests are passed, contact the TradingView team for further instructions.
