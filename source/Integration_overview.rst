@@ -112,7 +112,7 @@ The table below describes six pairs of environment connections between TradingVi
 +=========================+====================+=====================================================================================================================================================+
 | Localhost               | Staging            | An environment that TradingView developers use for troubleshooting.                                                                                 |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-| Staging                 | Staging            | An environment that the broker uses during integration development in the TradingView sandbox.                                                      |
+| Staging                 | Staging            | An environment that the broker uses during integration development in the TradingView `sandbox <#what-is-sandbox>`__.                               |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Production              | Staging            | An environment that TradingView and the broker use to test any changes the broker made after release to the TradingView production environment.     |
 |                         |                    | Used to ensure that changes do not affect the broker production environment.                                                                        |
@@ -128,22 +128,29 @@ The table below describes six pairs of environment connections between TradingVi
 The TradingView website in a staging or production environment can only be connected to one broker environment at a time.
 After the TradingView team completes the configuration, you will be informed how to switch between environments through the browser console.
 
-.. _what-is-the-sandbox:
+.. _what-is-sandbox:
 
-What is the sandbox
-...................
-The sandbox is a fully functional copy of the TradingView website located at `beta-rest.xstaging.tv`_. Access to the
-resource is provided by adding an IP address to the whitelist on the TradingView side.
+What is sandbox
+.................
 
-When the broker's integration can be placed in the Sandbox
-...........................................................
-There are two conditions to place a broker integration to the sandbox:
+The sandbox is a fully functional copy of the TradingView website at `beta-rest.xstaging.tv`_.
+During the integration development in the sandbox,
+you need to work on the UI and ensure the trading functionality works as expected.
 
-* passing conformational (authorization & trading conformance) tests at the `autotest service`_,
-* availability of market data required for the integration to work on the TradingView staging server
+How to get access to sandbox
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If the broker does not integrate market data but uses data obtained by TradingView from another source,
-it is necessary to implement the `/mapping`_ endpoint.
+To get access to the sandbox, you need to ensure that the following two conditions are met:
+
+- You have passed the :doc:`trading <../trading_tests/index>` and :doc:`data <../data_tests/index>` autotests on Jenkins.
+- You have available market data on the TradingView staging environment if you use *only* your symbol data.
+
+After that, you need to provide the TradingView team with the following information:
+
+- Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
+- Your SVG icons for the trading panel and login dialog.
+
+The TradingView team will provide you with further instructions.
 
 .. _localization-support:
 
