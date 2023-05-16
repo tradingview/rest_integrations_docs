@@ -140,12 +140,14 @@ you need to work on the UI and ensure the trading functionality works as expecte
 How to get access to sandbox
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To get access to the sandbox, you need to ensure that the following two conditions are met:
+To get access to the sandbox, follow the steps below:
+
+1. Ensure that the following two conditions are met:
 
 - You have passed the :doc:`trading <../trading_tests/index>` and :doc:`data <../data_tests/index>` autotests on Jenkins.
 - You have available market data on the TradingView staging environment if you use *only* your symbol data.
 
-After that, you need to provide the TradingView team with the following information:
+2. Provide the TradingView team with the following information:
 
 - Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
 - Your SVG icons for the trading panel and login dialog.
