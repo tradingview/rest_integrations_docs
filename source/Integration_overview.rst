@@ -144,13 +144,13 @@ To get access to the sandbox, follow the steps below:
 
 1. Ensure that the following two conditions are met:
 
-  - You have passed the :doc:`trading <../trading_tests/index>` and :doc:`data <../data_tests/index>` autotests on Jenkins.
-  - You have available market data on the TradingView staging environment if you use *only* your symbol data.
+   - You have passed the :doc:`trading <../trading_tests/index>` and :doc:`data <../data_tests/index>` autotests on Jenkins.
+   - You have available market data on the TradingView staging environment if you use *only* your symbol data.
 
 2. Provide the TradingView team with the following information:
 
-  - Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
-  - Your SVG icons for the trading panel and login dialog.
+   - Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
+   - Your SVG icons for the trading panel and login dialog.
 
 The TradingView team will provide you with further instructions.
 
