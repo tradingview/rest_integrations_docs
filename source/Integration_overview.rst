@@ -188,7 +188,7 @@ Adding features after release
 
 If you want to add new features to the TradingView production environment after release,
 you first need to confirm the changes with the TradingView team.
-Once confirmed, you can implement the new feature on your :ref:`staging environment <trading-environments>`.
+Once confirmed, you should implement the new feature on your :ref:`staging environment <trading-environments>`.
 Note that deploying new features to your production environment is only allowed after successful testing by the TradingView team.
 
 Data integration issues
