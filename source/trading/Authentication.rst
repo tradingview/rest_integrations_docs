@@ -36,6 +36,8 @@ response and that point in time is approaching. For better security, please use
 By default, placeholders in the authorization pop-up window have the values ``login`` and ``password``.
 If you wish to change these values, provide your version in English.
 
+.. _oauth2-flow:
+
 OAuth2Bearer
 ............
 TradingView's security policy does not allow the same OAuth secrets for all of the six supported

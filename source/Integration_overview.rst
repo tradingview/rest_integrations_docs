@@ -135,7 +135,7 @@ What is sandbox
 
 The sandbox is a fully functional copy of the TradingView website at `beta-rest.xstaging.tv`_.
 During the integration development in the sandbox,
-you need to work on the UI and ensure the trading functionality works as expected.
+you need to work on the UX and ensure the trading functionality works as expected.
 
 How to get access to sandbox
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -150,8 +150,32 @@ To get access to the sandbox, follow the steps below:
 2. Provide the TradingView team with the following information:
 
    - Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
-   - Your SVG icons for the trading panel and login dialog.
+   - SVG icons for the trading panel and login dialog. Refer to the table below for icons requirements.
 
++---------------+---------------------------------------------------+
+| Placement     | Requirements                                      |
++===============+===================================================+
+| Trading panel | One icon for both dark and light themes.          |
+|               |                                                   |
+|               | Size: 56×56px.                                    |
+|               |                                                   |
+|               | Border radius: 0px.                               |
+|               | The TradingView team will change border radius    |
+|               | depending on the icon location.                   |
+|               |                                                   |
+|               | Format type: SVG.                                 |
+|               |                                                   |
+|               | Color scheme: no requirements.                    |
++---------------+---------------------------------------------------+
+| Login dialog  | Two icons: one for dark and one for light theme.  |
+|               |                                                   |
+|               | Size: 160×54px.                                   |
+|               |                                                   |
+|               | Format type: SVG.                                 |
+|               |                                                   |
+|               | Color scheme: no requirements.                    |
++---------------+---------------------------------------------------+
+     
 The TradingView team will provide you with further instructions.
 
 .. _localization-support:
