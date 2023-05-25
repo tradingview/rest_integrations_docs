@@ -150,7 +150,7 @@ To get access to the sandbox, follow the steps below:
 2. Provide the TradingView team with the following information:
 
    - Your IP addresses. The team will whitelist them in TradingView to grant access to the sandbox.
-   - ``client_id``, ``authorization_uri``, ``scope``, ``client_secret`` (for Code Flow only), and ``token_uri`` (for Code Flow only) if you implement the OAuth2Bearer type of authorization. Refer to :ref:`Authentication<oauth2-flow>` section for more information.
+   - Client identifier, authorization URI, client secret (for Code Flow only), and token endpoint URI (for Code Flow only) if you implement the OAuth2Bearer type of authorization. Refer to :ref:`Authentication<oauth2-flow>` section for more information.
    - SVG icons for the trading panel and login dialog. Refer to the table below for icons requirements.
 
 +---------------+---------------------------------------------------+
