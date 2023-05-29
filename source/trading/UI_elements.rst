@@ -18,7 +18,7 @@ Account Summary Row
 ...................
 
 The *Account Summary Row* is a line that is always displayed after login into the integration. It contains the most
-important information about the current state of the sub-account currently selected by the user.
+important information about the current state of the selected sub-account.
 
 .. image:: ../../images/Trading_UiElements_AccountSummaryRow.png
    :alt: Account Summary Row
@@ -205,13 +205,13 @@ By default :term:`DOM` widget in the UI is enabled. If you wish to hide it, set 
 Account Manager
 ...............
 
-*Account manager* is a panel at the bottom of the screen. This panel can have multiple tabs.
+*Account Manager* is a panel at the bottom of the screen. This panel can have multiple tabs.
 
 .. image:: ../../images/Trading_UiElements_AccountManager.png
    :alt: Account Manager
    :align: center
 
-The *Account Manager* can be configured at the broker configuration level and for each sub-account separately. You should use
+You can configure *Account Manager* at the broker configuration level and for each sub-account separately. To do this, you should use
 one of these options.
 
 * At the broker level, use `/config`_ → ``d`` → ``accountManager``.

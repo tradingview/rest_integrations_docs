@@ -36,7 +36,7 @@ Symbol information is displayed on the *Symbol Info* tab.
    :alt: Symbol Info Tab
    :align: center
 
-Also, symbol name, description, type, and the exchange name are displayed in *Symbol Search* and on the symbol legend.
+A symbol name, description, type, and exchange name are also displayed in the *Symbol Search* panel and a chart legend.
 
 Symbol groups
 ..............
