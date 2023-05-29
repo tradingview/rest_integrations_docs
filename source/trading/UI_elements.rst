@@ -21,7 +21,6 @@ The *Account Summary Row* is a line that is always displayed after login into th
 important information about the current state of the sub-account currently selected by the user.
 
 .. image:: ../../images/Trading_UiElements_AccountSummaryRow.png
-   :scale: 35 %
    :alt: Account Summary Row
    :align: center
 
@@ -99,7 +98,6 @@ table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``
 is optional).
 
 .. image:: ../../images/Trading_UiElements_AccountSummaryTab.png
-   :scale: 35 %
    :alt: Account Summary Tab
    :align: center
 

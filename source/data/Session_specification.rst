@@ -7,7 +7,6 @@ Session specification
 The session allows you to set a weekly trading schedule, with an accuracy up to a specific day of the week.
 
 .. image:: ../../images/Data_SessionSpecification_Session.png
-   :scale: 35 %
    :alt: Session information
    :align: center
 

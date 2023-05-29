@@ -33,7 +33,6 @@ UI
 Symbol information is displayed on the *Symbol Info* tab.
 
 .. image:: ../../images/Data_SymbolInfo_SymbolInfoTab.png
-   :scale: 35 %
    :alt: Symbol Info Tab
    :align: center
 
