@@ -16,8 +16,14 @@ UI elements
 
 Account Summary Row
 ...................
-The *Account Summary Row* is a line that is always displayed after login into the integration. It contains the most 
-important information about the current state of the sub-account currently selected by the user. 
+
+The *Account Summary Row* is a line that is always displayed after login into the integration. It contains the most
+important information about the current state of the sub-account currently selected by the user.
+
+.. image:: ../../images/Trading_UiElements_AccountSummaryRow.png
+   :scale: 35 %
+   :alt: Account Summary Row
+   :align: center
 
 By default, *Account Summary Row* displays the values of the `/state`_ request into three fields:
 
@@ -78,22 +84,28 @@ For custom configuration of the *Account Summary Row* follow the steps below.
    the account level. The account level setting has a higher priority and will be applied if there is a configuration at
    both levels.
 #. Set up ``accountSummaryRowData`` object in the `/state`_ to configure the *Account Summary Row* fields.
-#. In the `/state`_ request in the ``accountSummaryRowData`` object, send the values for *Account Summary Row*. 
+#. In the `/state`_ request in the ``accountSummaryRowData`` object, send the values for *Account Summary Row*.
    The order and size of the sent array must match the order and size of the array specified in the configuration.
 
-If the display area of the *Account Summary Row* is undersized, the elements will be hidden sequentially, 
-starting with the very first. This can happen on low-resolution screens. Therefore, arrange information in order of 
+If the display area of the *Account Summary Row* is undersized, the elements will be hidden sequentially,
+starting with the very first. This can happen on low-resolution screens. Therefore, arrange information in order of
 increasing importance.
 
 Account Summary Tab
 ...................
-The *Account Summary Tab* displays the fields received by `/state`_ request as a set of tables. Only one 
-table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the field 
+
+The *Account Summary Tab* displays the fields received by `/state`_ request as a set of tables. Only one
+table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the field
 is optional).
 
+.. image:: ../../images/Trading_UiElements_AccountSummaryTab.png
+   :scale: 35 %
+   :alt: Account Summary Tab
+   :align: center
+
 The information displayed in the *Account Summary Tab* can be flexibly configured at the broker or sub-account level.
-The settings made at the broker level will be displayed the same for all sub-accounts. Setting at the sub-account level 
-will allow displaying information for the account selected by the user, and the information may be different for 
+The settings made at the broker level will be displayed the same for all sub-accounts. Setting at the sub-account level
+will allow displaying information for the account selected by the user, and the information may be different for
 different sub-accounts.
 
 * At the broker level, the ``accountManager`` object is returned in the `/config`_ request.
@@ -101,8 +113,8 @@ different sub-accounts.
 
 In both cases, it contains an array of table objects. The columns of the table are defined within each such array.
 
-Regardless of the configuration level, values for the tables are returned in the `/state`_ query in the ``amData`` 
-object. The ``amData`` object is an array of tables. It contains a nested array of strings with a nested array of 
+Regardless of the configuration level, values for the tables are returned in the `/state`_ query in the ``amData``
+object. The ``amData`` object is an array of tables. It contains a nested array of strings with a nested array of
 columns as string values. This object must be the same size as the object defined in the configuration.
 
 .. _trading-ui-orderticket:
@@ -111,7 +123,7 @@ Order Ticket
 ............
 
 .. tip::
-   
+
    Purchase behavior:
 
    * There is a :term:`Short Position` and we set a trailing stop to buy.
@@ -137,7 +149,7 @@ Order Preview
 ~~~~~~~~~~~~~~
 
 To show users additional order details without modifying or placing orders,
-you can implement the `/previewOrder`_ endpoint. 
+you can implement the `/previewOrder`_ endpoint.
 For example, you can display the estimated order cost, commission, and expiry date,
 as well as any warning or error messages in the *Order confirmation* dialog.
 
@@ -192,22 +204,22 @@ By default :term:`DOM` widget in the UI is enabled. If you wish to hide it, set 
 
 .. _trading-ui-accountmanager:
 
-..
 Account Manager
 ...............
 
-*Account manager* is a panel on the bottom of the screen. This panel can have multiple tables. The *Account Manager* 
-can be configured both at the broker configuration level and for each individual sub-account separately. You should use 
-one of these options.
-
-* At the broker level use `/config`_ → ``d`` → ``accountManager``.
-* At the sub-account level use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
-
-But the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
+*Account manager* is a panel at the bottom of the screen. This panel can have multiple tabs.
 
 .. image:: ../../images/Trading_UiElements_AccountManager.png
    :alt: Account Manager
    :align: center
+
+The *Account Manager* can be configured at the broker configuration level and for each sub-account separately. You should use
+one of these options.
+
+* At the broker level, use `/config`_ → ``d`` → ``accountManager``.
+* At the sub-account level, use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
+
+Note that the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
 
 .. Orders table
 .. ~~~~~~~~~~~~
