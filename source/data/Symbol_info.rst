@@ -9,6 +9,17 @@ Symbol info
 The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
 This endpoint is requested every hour.
 
+UI
+...
+
+Symbol information is displayed on the *Symbol Info* tab.
+
+.. image:: ../../images/Data_SymbolInfo_SymbolInfoTab.png
+   :alt: Symbol Info Tab
+   :align: center
+
+A symbol name, description, type, and exchange name are also displayed in the *Symbol Search* panel and a chart legend.
+
 Response fields
 ................
 
@@ -26,17 +37,6 @@ Note that some optional fields in `/symbol_info`_ may be required depending on t
 
 - For CFDs, the ``is-cfd`` flag must be set to ``true``.
 - For futures, the ``root`` and ``root-description`` fields are required.
-
-UI
-...
-
-Symbol information is displayed on the *Symbol Info* tab.
-
-.. image:: ../../images/Data_SymbolInfo_SymbolInfoTab.png
-   :alt: Symbol Info Tab
-   :align: center
-
-A symbol name, description, type, and exchange name are also displayed in the *Symbol Search* panel and a chart legend.
 
 Symbol groups
 ..............
