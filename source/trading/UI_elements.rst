@@ -94,7 +94,7 @@ Account Summary Tab
 ...................
 
 *Account Summary Tab* displays fields received by the `/state`_ request as a set of tables. Only one
-table is displayed, by default. It uses the ``balance``, ``unrealizedPL``, and ``equity`` (optional) fields.
+table is displayed by default. It uses the ``balance``, ``unrealizedPL``, and ``equity`` (optional) fields.
 
 .. image:: ../../images/Trading_UiElements_AccountSummaryTab.png
    :alt: Account Summary Tab
