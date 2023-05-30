@@ -9,7 +9,7 @@ Symbol info
 The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
 This endpoint is requested every hour.
 
-Information that `/symbol_info`_ returns is displayed on the *Symbol Info* dialog.
+Information that `/symbol_info`_ returns is displayed in the *Symbol Info* dialog.
 
 .. image:: ../../images/Data_SymbolInfo_SymbolInfoDialog.png
    :alt: Symbol Info Dialog

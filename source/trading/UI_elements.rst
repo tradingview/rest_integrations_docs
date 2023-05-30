@@ -17,7 +17,7 @@ UI elements
 Account Summary Row
 ...................
 
-The *Account Summary Row* is a line that is always displayed after login into the integration. It contains the most
+*Account Summary Row* is a line that is always displayed after login into the integration. It contains the most
 important information about the current state of the selected sub-account.
 
 .. image:: ../../images/Trading_UiElements_AccountSummaryRow.png
@@ -93,7 +93,7 @@ increasing importance.
 Account Summary Tab
 ...................
 
-The *Account Summary Tab* displays the fields received by `/state`_ request as a set of tables. Only one
+*Account Summary Tab* displays fields received by the `/state`_ request as a set of tables. Only one
 table is displayed, by default. It uses the fields ``balance``, ``unrealizedPL``, and ``equity`` (if sent, the field
 is optional).
 
@@ -217,7 +217,7 @@ one of these options.
 * At the broker level, use `/config`_ → ``d`` → ``accountManager``.
 * At the sub-account level, use `/accounts`_ → ``d`` → ``ui`` → ``accountManager``.
 
-Note that the data for the *Account manager* in any case is sent to `/state`_ → ``d`` → ``amData``
+Note that the data for *Account Manager* in any case is sent to `/state`_ → ``d`` → ``amData``
 
 .. Orders table
 .. ~~~~~~~~~~~~
