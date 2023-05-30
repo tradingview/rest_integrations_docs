@@ -9,13 +9,21 @@ Symbol info
 The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
 This endpoint is requested every hour.
 
+Information that `/symbol_info`_ returns is displayed in the *Symbol Info* dialog.
+
+.. image:: ../../images/Data_SymbolInfo_SymbolInfoDialog.png
+   :alt: Symbol Info Dialog
+   :align: center
+
+A symbol name, description, type, and exchange name are also displayed in the *Symbol Search* panel and a chart legend.
+
 Response fields
 ................
 
 The response body (JSON) must include an ``s`` field.
 The response header must include the ``Content-Type`` header with the ``application/json`` value.
 
-A ``symbol`` field is an array of strings. Each array item represents the name of the symbol that users will see. It must be unique. Symbol 
+A ``symbol`` field is an array of strings. Each array item represents the name of the symbol that users will see. It must be unique. Symbol
 names are always displayed in uppercase. The symbol name is validated with a regex:
 
 .. code-block:: none
@@ -73,7 +81,7 @@ Forex
 |                                       |                                            |
 |                                       | ``USDGBP`` — US Dollar to British Pound    |
 +---------------------------------------+--------------------------------------------+
-	
+
 Futures
 ~~~~~~~~
 
@@ -154,7 +162,7 @@ The corresponding examples are added below:
 .. code-block:: cfg
 
 	BTCUSD            // Bitcoin / US Dollar crypto pair
-	BTCUSDT.3L        // Bitcoin 3× Long 
+	BTCUSDT.3L        // Bitcoin 3× Long
 	BTCUSDT.3S        // BTC 3× Short
 	BTCUSDT.P         // Bitcoin perpetual swap contract
 	ETHUSD_7380E1     // Ethereum / BTCB on BSC in US Dollar
@@ -169,12 +177,12 @@ To manage how the price is displayed on the chart, use the following parameters 
 -  ``pricescale`` indicates how many decimal places a security price has.
 -  ``minmovement2`` indicates the pip size for Forex prices or how to separate the main and additional fractions for fractional prices.
 
-The parameter values depend on the price format chosen. 
+The parameter values depend on the price format chosen.
 There are two ways to display a security price:
 
 -  The `decimal <#decimal-format>`__ format is used for most instruments, such as stocks, indices, and futures.
--  The `fractional <#fractional-format>`__ format is used only for futures traded on the CBOT (Chicago Board of Trade), 
-   including futures on bulk commodities (grains, etc.) and US Federal Reserve Government bonds. 
+-  The `fractional <#fractional-format>`__ format is used only for futures traded on the CBOT (Chicago Board of Trade),
+   including futures on bulk commodities (grains, etc.) and US Federal Reserve Government bonds.
    This format also has a variety — that is a fractional format of the fractional price.
 
 Decimal format
@@ -183,9 +191,9 @@ Decimal format
 For the decimal format:
 
 -  The ``minmovement`` value depends on the price tick chosen: 1, 5, etc.
--  The ``pricescale`` value must always be ``10^n``, where *n* is the number of decimal places. 
-   For example, if the price has two decimal places ``300.01``, ``pricescale`` must be ``100``. 
-   If it has three decimal places ``300.001``, ``pricescale`` must be ``1000``, etc. 
+-  The ``pricescale`` value must always be ``10^n``, where *n* is the number of decimal places.
+   For example, if the price has two decimal places ``300.01``, ``pricescale`` must be ``100``.
+   If it has three decimal places ``300.001``, ``pricescale`` must be ``1000``, etc.
    If the price doesn't have decimals, ``pricescale`` must be ``1``.
 -  The ``minmovement2`` value must always be ``0``, except for `Forex symbols <#forex-symbols>`__.
 
@@ -193,7 +201,7 @@ Forex symbols
 ^^^^^^^^^^^^^
 
 Forex symbols have the decimal price format, however, the ``minmovement2`` value must differ from ``0``.
-In this case, ``minmovement2`` indicates the pip size on the chart and the value must be ``10^n``, where ``n`` is the number of pips. 
+In this case, ``minmovement2`` indicates the pip size on the chart and the value must be ``10^n``, where ``n`` is the number of pips.
 A pip is the smallest whole unit measurement of the spread.
 On the chart, the pip is displayed smaller than the price digits.
 
@@ -222,7 +230,7 @@ For the fractional format:
 Fractional format of the fractional price
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The fractional format of the fractional price is a particular case of the fractional price format. 
+The fractional format of the fractional price is a particular case of the fractional price format.
 In this case, ``minmovement2`` indicates the part of the fraction and can differ from ``0``.
 
 For example, for the ``76'27'2`` price: 76 is an integral part of the price, 27 is a fractional part of the price,
@@ -232,7 +240,7 @@ To display such a price, you can specify the parameters in the following way: ``
 Tick size
 ...........
 
-Tick size (minimum price step) is the minimum price amount a security can move in exchange. 
+Tick size (minimum price step) is the minimum price amount a security can move in exchange.
 The tick size is calculated as ``minmovement``/ ``pricescale``.
 For example, if you need a price step to be ``0.25``:
 

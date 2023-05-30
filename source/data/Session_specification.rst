@@ -4,7 +4,12 @@
 Session specification
 ---------------------
 
-The session allows you to set a weekly trading schedule, with an accuracy up to a specific day of the week.
+A session allows you to set a weekly trading schedule with an accuracy up to a specific day of the week.
+Session information is displayed in the *Symbol Info* dialog.
+
+.. image:: ../../images/Data_SessionSpecification_Session.png
+   :alt: Session information
+   :align: center
 
 How to set session boundaries
 ..............................
@@ -28,7 +33,7 @@ Session boundaries are specified by several parameters in the `/symbol_info`_.
 |                        | The end time equal the end time of ``session-postmarket``.                             |
 +------------------------+----------------------------------------------------------------------------------------+
 
-.. note:: 
+.. note::
   Session time must be accurate to the minute, however, the last minute is not included in the session on the TradingView side.
   For example, if you specify that the session closes at ``23:59``, the last trade time included in TradingView will be ``23:58:59``.
 
@@ -37,12 +42,12 @@ How to use
 
 Here are some examples:
 
-* Session 24/7, UTC timezone: first bar of the day opens at 00:00 UTC. The daily bar closes at 23:59 UTC every day, 
+* Session 24/7, UTC timezone: first bar of the day opens at 00:00 UTC. The daily bar closes at 23:59 UTC every day,
   including Saturday and Sunday.
 * Session ``0930-1600``, UTC timezone: bars open at 09:30 UTC, closing at 16:00 UTC every weekday.
 * Session ``0930-1600`` New York timezone: bars open at 09:30 and close at 16:00 New York time every weekday.
 * Session ``1800-1700``, London timezone: overnight session, interim bars to be cut from Sunday 18:00 London time.
-* Session ``0900-1700:1|1000-1700:2|1100-1700:34567``, where *1* is Sunday, *2* is Monday, etc.: Separate session 
+* Session ``0900-1700:1|1000-1700:2|1100-1700:34567``, where *1* is Sunday, *2* is Monday, etc.: Separate session
   for each day. It is important that the schedule doesn\'t overlap.
 
 .. code-block:: json
