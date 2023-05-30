@@ -5,6 +5,7 @@ Session specification
 ---------------------
 
 The session allows you to set a weekly trading schedule, with an accuracy up to a specific day of the week.
+The session information is displayed on the *Symbol Info* dialog.
 
 .. image:: ../../images/Data_SessionSpecification_Session.png
    :alt: Session information

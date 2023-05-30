@@ -9,13 +9,10 @@ Symbol info
 The `/symbol_info`_ endpoint returns a list of instruments and a set of rules for them.
 This endpoint is requested every hour.
 
-UI
-...
+Information that `/symbol_info`_ returns is displayed on the *Symbol Info* dialog.
 
-Symbol information is displayed on the *Symbol Info* tab.
-
-.. image:: ../../images/Data_SymbolInfo_SymbolInfoTab.png
-   :alt: Symbol Info Tab
+.. image:: ../../images/Data_SymbolInfo_SymbolInfoDialog.png
+   :alt: Symbol Info Dialog
    :align: center
 
 A symbol name, description, type, and exchange name are also displayed in the *Symbol Search* panel and a chart legend.
