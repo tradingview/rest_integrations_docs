@@ -35,21 +35,21 @@ Integration architecture
 
 What are the parts of the integration
 .....................................
-The broker's integration consists of two independent parts: data integration based on a server-to-server 
+The broker's integration consists of two independent parts: data integration based on a server-to-server
 architecture and trading integration based on a client-server architecture.
 
 Why data integration is needed
 ..............................
-The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as 
-well as server alerts, etc. Data integration is required for the market data to be first received by the 
-TradingView server, and then transferred to the client side. For FOREX and CRYPTO, the data needs to be connected 
+The TradingView website can only receive data from the TradingView server. Indicators are counted on this server, as
+well as server alerts, etc. Data integration is required for the market data to be first received by the
+TradingView server, and then transferred to the client side. For FOREX and CRYPTO, the data needs to be connected
 in any case, as it is not linked to the particular exchange and is always different. For CFD it is possible to use
 existing data via `/mapping`_ if the CFD is mapped to a specific exchange stock.
 
 In what cases it is possible not to integrate data
 ..................................................
 Market data can come to the TradingView server from another source, for example, directly from the exchange. There is no
-need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve 
+need for market data integration in this case, and the broker needs to implement the `/mapping`_ endpoint to solve
 :ref:`the symbol names matching<mapping-symbols-label>` issue between the TradingView and broker symbols.
 
 Is it possible to restrict access to market data
@@ -71,7 +71,7 @@ the `Trading`_ section.
 In some cases, the listed endpoints may not be implemented.
 
 * `/mapping`_ is not required if you work exclusively on your own symbols.
-* `/executions`_ can be disabled through the config, but in this case, transactions will not be displayed on the 
+* `/executions`_ can be disabled through the config, but in this case, transactions will not be displayed on the
   chart.
 * `/positions`_ can be disabled through the config, not used for Crypto Spot trading.
 * `/balances`_ can be disabled, used for Crypto Spot only.
@@ -86,7 +86,7 @@ How trading integration works
 The trading integration uses a client-server architecture: requests from the user's browser are sent directly to the
 broker's server. The TradingView server is not involved in this data exchange. An exception is a request to
 `/permissions`_. It is sent from the TradingView server to give the user access to the data.
-  
+
 Requests from the client browser require a configured :ref:`CORS policy<cors-policy-label>` on the broker side.
 
 .. _trading-environments:
@@ -97,9 +97,9 @@ Environment types
 There are three environment types used in the integration development and support.
 Each environment type contains real market data and has its own URL.
 
-- The *production environment* is available to end users. 
+- The *production environment* is available to end users.
 - The *staging environment* is used for testing.
-- The *local environment* is used on the TradingView developers\' computers. They connect to the 
+- The *local environment* is used on the TradingView developers\' computers. They connect to the
   broker\'s staging environment from the ``localhost:6285`` address.
 
 .. note::
@@ -150,21 +150,21 @@ it is necessary to implement the `/mapping`_ endpoint.
 Localization support
 ....................
 Usually, the integration of a specific broker is aimed at an audience using their national language.
-However, English language support is required for all requests coming from the main locale of the 
+However, English language support is required for all requests coming from the main locale of the
 TradingView application.
 
-The user's locale can be determined through the ``locale`` query parameter, which is present in every request coming 
+The user's locale can be determined through the ``locale`` query parameter, which is present in every request coming
 from the client to the broker's server.
 
 .. _cors-policy-label:
 
 CORS policy
 ...........
-Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example, 
-the German version of the site is located at ``de.tradingview.com``. TradingView can send a request from any of these 
+Test servers and website versions in different languages are located on ``*.tradingview.com`` subdomains. For example,
+the German version of the site is located at ``de.tradingview.com``. TradingView can send a request from any of these
 addresses.
 
-Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent 
+Therefore, you must include an ``Access-Control-Allow-Origin`` response header with the specific subdomain that sent
 the request in each endpoint for each response code.
 
 During sandbox testing, it is also necessary to allow requests from ``*.xstaging.tv``.
@@ -189,7 +189,7 @@ Adding features after release
 If you want to add new features to the TradingView production environment after release,
 you first need to confirm the changes with the TradingView team.
 Once confirmed, you should implement the new feature on your :ref:`staging environment <trading-environments>`.
-Note that deploying new features to your production environment is only allowed after successful testing by the TradingView team.
+Note that you can deploy new features to your production environment only after successful testing by the TradingView team.
 
 Data integration issues
 -----------------------
@@ -199,16 +199,16 @@ Data requirements
 
 All the data which is displayed at TradingView has to meet the following standards:
 
-* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_ 
-  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise, 
+* Real-time data obtained from the `/streaming`_ endpoint must match the historical data, obtained from the `/history`_
+  API. The allowed count of mismatched bars (candles) must not exceed 5% for frequently traded symbols, otherwise,
   integration into TradingView is not possible.
 
-* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history 
+* Historical data should look healthy. It must not contain unreasonable price gaps, 1 min and D-resolution history
   holes, and incorrect prices.
 
-The user sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from 
+The user sees bars built from streaming ticks on the chart. The `/streaming`_ data is replaced by the data from
 `/history`_ sometime after the user reloads the chart. The data from `/streaming`_ and `/history`_ must be the same.
-Data mismatch can lead to a false alert triggering for the user, which is unacceptable. The data in 
+Data mismatch can lead to a false alert triggering for the user, which is unacceptable. The data in
 `/history`_ shouldn\'t change.
 
 .. tip::
@@ -256,27 +256,27 @@ Endpoints requirements
 Data integration requires the implementation of three endpoints:
 
 * `/symbol_info`_ --- a list of symbols and a set of rules for them; the endpoint is requested once an hour.
-* `/history`_ --- full data history for each symbol gap on 1-minute bars (candles); in some cases, the history of 
+* `/history`_ --- full data history for each symbol gap on 1-minute bars (candles); in some cases, the history of
   daily bars may be required.
-* `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide 
+* `/streaming`_ --- a permanent HTTP connection, a stream of messages on completed deals; data feed should provide
   trades and quotes. In some cases, daily bars may be required.
 
-If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are 
+If your data is not public, you can add authorization via the `/authorize`_ endpoint. Two authentication options are
 supported: `PasswordBearer`_ and `ServerOAuth2Bearer`_.
 
 Types of environments
 ......................
 
-We strongly recommend using two environments in the integration process: staging and production. Each environment must 
+We strongly recommend using two environments in the integration process: staging and production. Each environment must
 have a separate URL.
 
-First, the broker's staging connects to the staging of TradingView. Initial automated testing is done here, and then 
-manual tests are performed after. 
+First, the broker's staging connects to the staging of TradingView. Initial automated testing is done here, and then
+manual tests are performed after.
 
 .. important::
   The broker staging API should provide real data.
 
-When the acceptance tests are successful, the broker deploys own code to the production environment. The final testing 
+When the acceptance tests are successful, the broker deploys own code to the production environment. The final testing
 of the broker's production API and the deployment of the TradingView client applications are to be performed here.
 
 All changes on the broker side go through the following steps after the deployment to the TradingView production:
@@ -285,11 +285,11 @@ All changes on the broker side go through the following steps after the deployme
 * They are then tested on the TradingView side.
 * The broker transfers the changes to the production once confirmed by TradingView.
 
-Both environments on the TradingView side are switched to the production URL once the broker's API is deployed to 
+Both environments on the TradingView side are switched to the production URL once the broker's API is deployed to
 production.
 
 .. note::
-  Thus, there will be 4 client applications running on the TradingView side all the time, which will interact with the 
+  Thus, there will be 4 client applications running on the TradingView side all the time, which will interact with the
   broker's production API: two in the staging and two in the production.
 
 Each of these applications will maintain at least one persistent HTTP connection to the `/streaming`_ endpoint and make
@@ -298,10 +298,10 @@ on the servers. The end-user browser never makes requests to these endpoints.
 
 TradingView client applications use a separate set of credentials per environment by default (if authorized).
 
-Therefore, the broker should provide at least two independent sets of credentials to its production API: one is for 
+Therefore, the broker should provide at least two independent sets of credentials to its production API: one is for
 clients in the TradingView production, one is for clients in the staging, testing and development.
 
-If the number of simultaneous connections is limited to one connection per account, the broker needs to provide the 
+If the number of simultaneous connections is limited to one connection per account, the broker needs to provide the
 required number of credentials sets:
 
 * two for client applications in the staging,
