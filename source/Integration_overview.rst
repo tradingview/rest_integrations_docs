@@ -217,10 +217,13 @@ will have to:
 * Turn off HSTS in production.
 * Wait for two years.
 
-Adding features after the integration release
-................................................
-New features need to be added to the broker's staging environment and tested in the sandbox.
-The feature gets into production only after successful testing by the TradingView testing team.
+Adding features after release
+...............................
+
+If you want to add new features to the TradingView production environment after release,
+you first need to confirm the changes with the TradingView team.
+Once confirmed, you should implement the new feature on your :ref:`staging environment <trading-environments>`.
+Note that you can deploy new features to your production environment only after successful testing by the TradingView team.
 
 Data integration issues
 -----------------------

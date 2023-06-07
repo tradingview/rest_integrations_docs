@@ -16,6 +16,22 @@ After you implement API, contact the TradingView team.
 They will prepare a test suite in Jenkins and provide you with credentials.
 The tests help you ensure that the integration with the TradingView user interface works correctly.
 
+Run-time details
+.................
+
+Tests' run-time depends on two things:
+
+- Your server response time: some servers may take milliseconds to return data, while it may take seconds for others.
+- The number of symbols provided in the integration: the more you have, the longer it may take. For example, tests that check the `/history`_ endpoint request each symbol. This means that the run-time for a 100-symbol integration is much faster than for a 10,000-symbol integration.
+
+Run-time reconfiguration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Usually, each test for `/streaming`_ takes at least two hours to run.
+However, the TradingView team may reconfigure these tests for shorter run-times in a rare case,
+such as when you need to fix a bug.
+Note that run-time reconfiguration is more of an exception, as proper validation is required for the best data quality.
+
 Run tests
 ...........
 
