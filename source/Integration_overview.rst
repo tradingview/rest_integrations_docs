@@ -112,7 +112,7 @@ The table below describes six pairs of environment connections between TradingVi
 +=========================+====================+=====================================================================================================================================================+
 | Localhost               | Staging            | An environment that TradingView developers use for troubleshooting.                                                                                 |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-| Staging                 | Staging            | An environment that the broker uses during integration development in the TradingView `sandbox <#what-is-sandbox>`__.                               |
+| Staging                 | Staging            | An environment that the broker uses during integration development in the TradingView `sandbox <#sandbox>`__.                                       |
 +-------------------------+--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
 | Production              | Staging            | An environment that TradingView and the broker use to test any changes the broker made after release to the TradingView production environment.     |
 |                         |                    | Used to ensure that changes do not affect the broker production environment.                                                                        |
@@ -128,16 +128,16 @@ The table below describes six pairs of environment connections between TradingVi
 The TradingView website in a staging or production environment can only be connected to one broker environment at a time.
 After the TradingView team completes the configuration, you will be informed how to switch between environments through the browser console.
 
-.. _what-is-sandbox:
+.. _sandbox:
 
-What is sandbox
+Sandbox
 .................
 
 The sandbox is a fully functional copy of the TradingView website at `beta-rest.xstaging.tv`_.
 During the integration development in the sandbox,
 you need to work on the UX and ensure the trading functionality works as expected.
 
-How to get access to sandbox
+Get access to sandbox
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To get access to the sandbox, follow the steps below:
@@ -153,29 +153,29 @@ To get access to the sandbox, follow the steps below:
    - Client identifier, authorization URI, client secret (for Code Flow only), and token endpoint URI (for Code Flow only) if you implement the OAuth2Bearer type of authorization. Refer to :ref:`Authentication<oauth2-flow>` section for more information.
    - SVG icons for the trading panel and login dialog. Refer to the table below for icons requirements.
 
-+---------------+---------------------------------------------------+
-| Placement     | Requirements                                      |
-+===============+===================================================+
-| Trading panel | One icon for both dark and light themes.          |
-|               |                                                   |
-|               | Size: 56×56px.                                    |
-|               |                                                   |
-|               | Border radius: 0px.                               |
-|               | The TradingView team will change border radius    |
-|               | depending on the icon location.                   |
-|               |                                                   |
-|               | Format type: SVG.                                 |
-|               |                                                   |
-|               | Color scheme: no requirements.                    |
-+---------------+---------------------------------------------------+
-| Login dialog  | Two icons: one for dark and one for light theme.  |
-|               |                                                   |
-|               | Size: 160×54px.                                   |
-|               |                                                   |
-|               | Format type: SVG.                                 |
-|               |                                                   |
-|               | Color scheme: no requirements.                    |
-+---------------+---------------------------------------------------+
++---------------+--------------------------------------------------------------+
+| Placement     | Requirements                                                 |
++===============+==============================================================+
+| Trading panel | One icon for both dark and light themes.                     |
+|               |                                                              |
+|               | Size: 56×56px.                                               |
+|               |                                                              |
+|               | Border radius: 0px.                                          |
+|               | The TradingView team will change border radius               |
+|               | depending on the icon location.                              |
+|               |                                                              |
+|               | Format type: SVG.                                            |
+|               |                                                              |
+|               | Color scheme: no requirements.                               |
++---------------+--------------------------------------------------------------+
+| Login dialog  | Two icons: one for the dark theme and one for the light one. |
+|               |                                                              |
+|               | Size: 160×54px.                                              |
+|               |                                                              |
+|               | Format type: SVG.                                            |
+|               |                                                              |
+|               | Color scheme: no requirements.                               |
++---------------+--------------------------------------------------------------+
 
 The TradingView team will provide you with further instructions.
 
