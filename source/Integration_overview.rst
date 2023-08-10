@@ -65,7 +65,7 @@ Features of the implementation of some endpoints
 Processed once at login: `/config`_, `/accounts`_, `/instruments`_, `/ordersHistory`_, `/permissions`_.
 
 The rest of the requests are sent either on a regular basis or are the result of user actions. In the first case, their
-frequency is set using :ref:`trading-configuring-pulling-intervals` in the `/config`_. In the second case, it happens in
+frequency is set using :ref:`trading-configuration-pulling-intervals` in the `/config`_. In the second case, it happens in
 the `Trading`_ section.
 
 In some cases, the listed endpoints may not be implemented.
